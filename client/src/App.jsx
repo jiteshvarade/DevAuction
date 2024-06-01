@@ -5,11 +5,13 @@ import stepDetails from "./assets/component data/AuctionSteps";
 import "./App.css";
 import OurContributer from "./Components/HomePageHero/OurContributer";
 import HomePageFooter from "./Components/Home page footer/HomePageFooter";
+import FeaturesSection from "./Components/Featues section/FeaturesSection";
 
 function App() {
   return (
     <>
       
+    <FeaturesSection />
     </>
   );
 }
