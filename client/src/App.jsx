@@ -1,9 +1,9 @@
 import "./App.css";
-import FeaturesSection from "./Components/Featues section/FeaturesSection";
+import OurMission from "./Components/Our mission section/OurMission";
 
 function App() {
   return (
-    <FeaturesSection />
+    <OurMission />
   );
 }
 
