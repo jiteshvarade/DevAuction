@@ -1,5 +1,7 @@
 import React from 'react'
 import logo from '../../../public/Icons/Logo.png'
+import HamMenu from '../../../public/Icons/iconsmenu.png'
+import GradientBtn from '../Gradient Btn/GradientBtn'
 function Navbar() {
   return (
     <>
@@ -11,7 +13,7 @@ function Navbar() {
             className='w-16'
             />
         </div>
-        <ul className='flex gap-4 text-white'>
+        <ul className='hidden gap-4 text-white md:flex'>
             <li><span className='text-lg font-semibold hover:text-[#23DD9F] cursor-pointer hover:underline'>Home</span></li>
             <li><span className='text-lg font-semibold hover:text-[#23DD9F] cursor-pointer hover:underline'>How it works</span></li>
             <li><span className='text-lg font-semibold hover:text-[#23DD9F] cursor-pointer hover:underline'>Features</span></li>
@@ -20,7 +22,10 @@ function Navbar() {
 
         </ul>
 
-        <button className='text-red-500'>Login</button>
+        <div className='flex'>
+        <GradientBtn placeholder='LogIn' type="button" />
+        <img className='block md:hidden w-10 mx-4' src={HamMenu} alt="" />
+        </div>
     </nav>
     </>
   )
