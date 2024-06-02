@@ -2,6 +2,8 @@ import React from 'react'
 import logo from '../../../public/Icons/Logo.png'
 import HamMenu from '../../../public/Icons/iconsmenu.png'
 import GradientBtn from '../Gradient Btn/GradientBtn'
+import LoginButton from '../Gradient Btn/LoginButton'
+import LogoutButton from '../Gradient Btn/LogoutButton'
 function Navbar() {
   return (
     <>
@@ -23,7 +25,10 @@ function Navbar() {
         </ul>
 
         <div className='flex'>
-        <GradientBtn placeholder='LogIn' type="button" />
+        {/* <GradientBtn placeholder='LogIn' type="button" /> */}
+        <LoginButton placeHolder='LogIn'/>
+        <LogoutButton />
+        {/* <button className='text-white ' onClick={Authfunction}>Login</button> */}
         <img className='block md:hidden w-10 mx-4' src={HamMenu} alt="" />
         </div>
     </nav>
