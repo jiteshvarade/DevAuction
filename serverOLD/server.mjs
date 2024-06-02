@@ -2,7 +2,8 @@ import express from "express"
 import cors from "cors"
 import ConnectDB from "./src/db/connection.mjs"
 import {PORT} from "./constants.mjs"
-import contactRouter from "./src/routes/contactusRoutes.mjs"
+
+import contactusRouter from "./src/routes/contactusRoutes.mjs"
 
 //mongodb connection
 ConnectDB()
@@ -23,5 +24,5 @@ app.get("/",(req, res)=>{
     res.send("Welocome to DevAuction Server")
 })
 
-//routes
-app.use("/contactus", contactRouter)
+// routes
+app.use("/contactus",contactusRouter)
