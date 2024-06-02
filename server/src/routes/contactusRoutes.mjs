@@ -1,6 +1,7 @@
 import { Router } from "express"
-const router = Router()
 import ContactUs from "../models/contactus.mjs"
+import sendEmail from "../utils/email.mjs"
+const router = Router()
 
 router.post("/",async (req,res)=>{
     const { Name, Email , PhoneNo, Subject, Message} = req.body
@@ -13,6 +14,28 @@ router.post("/",async (req,res)=>{
 
         const newContact = new ContactUs({ Name , Email, PhoneNo, Subject, Message })
         await newContact.save()
+
+        const subject = "Thanks for reaching out! We'll be in touch soon."
+        const html = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>Thanks for Contacting Us!</title>
+        </head>
+        <body>
+          <p>Dear ${Name},</p>
+          <p>Thank you for contacting <a href="http://localhost:5173/">DevAuction</a>! We appreciate you reaching out to us.</p>
+          <p>We've received your message and our team is working on a response. You can expect to hear back from us within 24 hours.</p>
+          <p>In the meantime, you can explore our website for answers to frequently asked questions: <a href="http://localhost:5173/FAQ">FAQ</a>.</p>
+          <p>We look forward to assisting you further!</p>
+          <p>Sincerely,</p>
+          <p>The DevAuction Team</p>
+        </body>
+        </html>
+        `
+
+        sendEmail(Email, subject, html)
 
         res.status(201).json({ message: 'Contact form submitted successfully!', data: newContact })
     } catch (err) {
