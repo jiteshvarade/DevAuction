@@ -11,7 +11,7 @@ router.post("/",async (req,res)=>{
             return res.status(400).json({ message: 'Please send required user data' })
         }
 
-        const UserInfo = new User(data)
+        const UserInfo = new User({UserInfo : data})
         await UserInfo.save()
 
         console.log("User created successfully!")
