@@ -1,7 +1,7 @@
 import React from 'react'
-import logo from '../WonderKids Landing Page Exploration 1 (1).png'
-import eye from '../mdi_eye.png'
-import time from '../ion_time.png'
+import logo from '../../assets/AuctionroomImages/WonderKids Landing Page Exploration 1 (1).png'
+import eye from '../../assets/AuctionroomImages/mdi_eye.png'
+import time from '../../assets/AuctionroomImages/ion_time.png'
 import './Auctionroom.css'
 
 const Card = () => {

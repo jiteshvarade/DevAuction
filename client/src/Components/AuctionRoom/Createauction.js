@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import background from '../Rectangle.png'
-import add from '../+ADD.png'
+import background from '../../assets/AuctionroomImages/Rectangle.png'
+import add from '../../assets/AuctionroomImages/+ADD.png'
 import { Dropdown } from 'primereact/dropdown'
 import './Auctionroom.css'
 

@@ -1,11 +1,12 @@
 import React from 'react'
 import Card from './Card'
 import './Auctionroom.css'
+
 const Auctionrooms = () => {
     return (
         <div className='w-[100vw] h-full bg-[#050618] flex gap-4' >
             <div className='w-[22%] border-r'>
-
+ 
             </div>
             <div className='w-[70%] p-12 flex flex-col gap-4'>
                 <div className='flex justify-between' >
