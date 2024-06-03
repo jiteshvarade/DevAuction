@@ -15,7 +15,7 @@ router.post("/",async (req,res)=>{
     console.log("Inside razorpay router")
 
     var options = {
-        amount: amount, // in paise
+        amount: req.body.amount, // in paise
         currency: "INR",
         receipt: "order_rcptid_11"
     };
