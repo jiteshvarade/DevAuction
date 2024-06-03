@@ -12,6 +12,7 @@ function RazorpayButton() {
 
   async function handleSubmit()
   {
+    const amount = 100
     try {
       const response = await fetch("https://devauction.onrender.com/payments", {
         method: "POST", 
