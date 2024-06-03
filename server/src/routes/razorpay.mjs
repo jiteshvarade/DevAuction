@@ -11,8 +11,7 @@ var instance = new Razorpay({
 });
 
 router.post("/",async (req,res)=>{
-    const amount = req.body
-    console.log(amount)
+    console.log(req.body.amount)
     console.log("Inside razorpay router")
 
     var options = {
