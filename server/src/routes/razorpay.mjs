@@ -1,11 +1,13 @@
 import Router from "express"
 import Razorpay from "razorpay";
 import crypto from "crypto"
+import {RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY, Webhook_Secret} from "../../constants.mjs"
+
 const router = Router()
 
 var instance = new Razorpay({
-    key_id: "rzp_test_w1PnHafmCNsrDy",
-    key_secret: "2eF70F5jV31adagetesPvu4a",
+    key_id: RAZORPAY_ID_KEY,
+    key_secret: RAZORPAY_SECRET_KEY,
 });
 
 router.post("/",async (req,res)=>{
@@ -25,7 +27,7 @@ router.post("/",async (req,res)=>{
 })
 
 router.post("/verify",async (req,res)=>{
-    const secret = "1234567890"
+    const secret = Webhook_Secret
     console.log(req.body)
 
     const shasum = crypto.createHmac("sha256", secret)
