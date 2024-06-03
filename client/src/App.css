@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.shadowButton {
+    box-shadow: 0px 5px 25.5px #0CA3E7;
+}
+
+.dropShado {
+    filter: drop-shadow(-5px -5px 30.5px #0CA3E7);
+}
