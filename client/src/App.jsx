@@ -12,8 +12,8 @@ function App() {
   return <>
   {/* <Test /> */}
   {/* <HomePageFooter /> */}
-  <NavBar />
-  <Razorpaybutton></Razorpaybutton>
+  {/* <NavBar />
+  <Razorpaybutton></Razorpaybutton> */}
   <Dashbord />
 
   </>

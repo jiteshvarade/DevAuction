@@ -1,14 +1,13 @@
 import React from 'react'
-import EarningCards from './EarningCards'
 
 import hamMenu from '../../../public/Icons/iconsmenu.png'
 
 function Header({ Username = "Jhon", UserImg= "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" }) {
     return (
         <>
-            <div className='w-[100%] md:basis-[80%] border-2 bg-[#050618] text-white'>
+            
 
-                <div id="nav-top" className='flex justify-between items-center px-10 mt-5'>
+                <div id="nav-top" className='flex justify-between items-center mt-5'>
                     <img className='w-10 md:hidden ml-[-20px]' onClick={(pos) => setNavPosition(!pos)} src={hamMenu} alt="" />
                     <div>
                         <h3 className='text-[20px] font-semibold'>Hi, {Username}</h3>
@@ -37,11 +36,10 @@ function Header({ Username = "Jhon", UserImg= "https://images.unsplash.com/photo
                         </div>
                     </div>
                 </div>
-                {/* earnings cards */}
-                <EarningCards />
+               
 
 
-            </div>
+           
 
         </>
     )

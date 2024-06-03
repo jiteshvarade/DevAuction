@@ -27,7 +27,6 @@ function Navbar() {
         <div className='flex'>
         {/* <GradientBtn placeholder='LogIn' type="button" /> */}
         <LoginButton placeHolder='LogIn'/>
-        <LogoutButton />
         {/* <button className='text-white ' onClick={Authfunction}>Login</button> */}
         <img className='block md:hidden w-10 mx-4' src={HamMenu} alt="" />
         </div>
