@@ -2,6 +2,7 @@ import Router from "express"
 import Razorpay from "razorpay";
 import crypto from "crypto"
 import {RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY, Webhook_Secret} from "../../constants.mjs"
+import Payment from "../models/payment.mjs";
 
 const router = Router()
 
@@ -38,6 +39,12 @@ router.post("/verify",async (req,res)=>{
     if(digest === req.headers["x-razorpay-signature"])
     {
         console.log("Successfull payment")
+        try{
+            const newPayment = new Payment(req.body)
+            await newPayment.save()
+        }catch(error){
+            console.log("Payment ID saved successfully")
+        }
         // logic to update in database
         res.json({status : "ok"})
     }
