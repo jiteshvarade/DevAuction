@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const userSchema = new mongoose.Schema({
     UserInfo : {
         type : Object,
-        required : false,
+        required : true,
     }
 },{timestamps : true})
 
