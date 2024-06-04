@@ -7,7 +7,7 @@ function UploadFiles() {
   const upload = () => {
     const formData = new FormData()
     formData.append('file', file)
-    axios.post("http://localhost:5000/uploads", formData)
+    axios.post("https://devauction.onrender.com/uploads", formData)
       .then(response => {console.log(response)})
       .catch(error => console.log(error))
   }

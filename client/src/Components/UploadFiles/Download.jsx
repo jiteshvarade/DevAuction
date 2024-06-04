@@ -7,7 +7,7 @@ function Download() {
     try {
 
       const response = await axios({
-        url : 'http://localhost:5000/uploads/download',
+        url : 'https://devauction.onrender.com//uploads/download',
         method : "POST",
         responseType : "blob",
         data : {fileID : "1o4sDzcEHXsnG0Gvds0gs9-4iqO9rsEZ_"},
