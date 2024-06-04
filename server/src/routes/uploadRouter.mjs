@@ -124,7 +124,21 @@ router.get("/sendfile",async(req, res) => {
                 return res.status(404).send('File not found')
             }
             
-            res.download(filepath)
+            res.sendFile(filepath, (err) => {
+                if (err) {
+                  console.error('Error sending file:', err)
+                  res.status(500).send('Error sending file')
+                  return
+                }
+          
+                fs.unlink("./public/downloads/sourcecode.zip", (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log('File deleted successfully!');
+                    }
+                })
+            })
         })
 
     }catch(error){
