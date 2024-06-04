@@ -1,0 +1,24 @@
+
+.custom-dropdown .p-dropdown-label.p-placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Faded white color for placeholder */
+  }
+  .custom-dropdown-item {
+    color: white;
+    background-color: #062541;
+    padding: 0.5rem;
+  }
+  
+  .custom-dropdown .p-dropdown-label {
+    color: white; /* White color for dropdown text */
+  }
+  .custom-dropdown .p-dropdown-panel {
+    background-color: white; /* Dropdown panel background color */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
