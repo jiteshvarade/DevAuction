@@ -5,6 +5,7 @@ import EarningCards from './EarningCards'
 import hamMenu from '../../../public/Icons/iconsmenu.png'
 import Header from './Header'
 import Cradites from './Cradites'
+import Auction from './Auction'
 
 function Dashbord() {
 
@@ -14,11 +15,13 @@ function Dashbord() {
                 {/* navbar */}
                 <LeftNavbar />
 
-                <div className='w-[100%] md:basis-[80%] border-2 bg-[#050618]  px-10 text-white'>
+                <div className='w-[100%] overflow-y-scroll md:basis-[80%] border-l-2 bg-[#050618]  px-10 pb-10 text-white'>
                     <Header />
-
+                        
                     {/* earnings cards */}
                     <EarningCards />
+                        
+                        <Auction />
 
                     <Cradites />
                 </div>

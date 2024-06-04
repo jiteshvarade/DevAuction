@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* this is for left navbar in dashbord  */
 .shadowButton {
     box-shadow: 0px 5px 25.5px #0CA3E7;
 }
-
+/* this is for dashbord earnings area */
 .dropShado {
     filter: drop-shadow(-5px -5px 30.5px #0CA3E7);
 }
+/* input type number arrows removed */
+@layer base {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
