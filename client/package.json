@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "axios": "^1.7.2",
+    "file-saver": "^2.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
