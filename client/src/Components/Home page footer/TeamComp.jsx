@@ -4,31 +4,31 @@ function TeamComp() {
 
     const data = [
         {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
+            url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg',
             name: 'Khushi Prashad',
         },
         {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
-            name: 'Nithsh',
+            url: 'https://xsgames.co/randomusers/assets/avatars/male/74.jpg',
+            name: 'Nitish Kumar',
         },
         {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
-            name: 'Ankit',
+            url: 'https://xsgames.co/randomusers/assets/avatars/male/74.jpg',
+            name: 'Ankit Chauhan',
         },
         {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
-            name: 'Gitash',
+            url: 'https://xsgames.co/randomusers/assets/avatars/male/74.jpg',
+            name: 'Jitesh Varade',
         },
         {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
-            name: 'Kaniska',
+            url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg',
+            name: 'Kanishka',
         },
         {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
+            url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg',
             name: 'Aarti',
         },
         {
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
+            url: 'https://xsgames.co/randomusers/assets/avatars/male/74.jpg',
             name: 'Shubham',
         },
     ]
@@ -41,7 +41,7 @@ function TeamComp() {
         <div id="outer-wrapper" className='max-w-[1300px] overflow-hidden mx-auto mb-10'>
             <div id="inner-weapper" className='flex gap-3 animate-[toRight_20s_linear_infinite]'>
                 {data.map(({url, name}) => (
-                    <div className="card w-[180px] border-2 border-[#25ffbb] p-3 rounded-3xl bg-[#0a0b1d]">
+                    <div className='card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative after:content-[""] after:w-[85%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-[#ECECEC] after:to-[#0a0b1d] after:absolute after:bottom-0  after:h-[2px] after:block'>
                         <div className="img w-[150px] h-[150px]">
                         <img src={url} className='object-cover w-[150px] h-[150px] rounded-full' alt="" />
                         </div>
@@ -51,7 +51,7 @@ function TeamComp() {
                     </div>
                 ))}
                 {data.map(({url, name}) => (
-                    <div className="card w-[180px] border-2 border-[#25ffbb] p-3 rounded-3xl bg-[#0a0b1d]">
+                    <div className='card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative after:content-[""] after:w-[85%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-[#ECECEC] after:to-[#0a0b1d] after:absolute after:bottom-0  after:h-[2px] after:block'>
                         <div className="img w-[150px] h-[150px]">
                         <img src={url} className='object-cover w-[150px] h-[150px] rounded-full' alt="" />
                         </div>

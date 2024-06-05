@@ -26,5 +26,5 @@ html{
 }
 #outer-wrapper {
     -webkit-mask: linear-gradient(90deg, transparent, white 20%, rgb(244, 25, 25) 80%, transparent);
-    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 30%, white 70%, transparent);
 }

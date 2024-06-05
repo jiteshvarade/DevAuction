@@ -75,7 +75,7 @@ export default function HomePageFooter() {
 
         <div className='flex justify-center flex-wrap rounded-2xl items-center mb-10 '>
 
-          <div className='max-w-[40vw]  bg-gradient-to-br rounded-xl from-[#0c768f] to-[#0a0e20] p-[2px]  min-w-[350px]'>
+          <div className='max-w-[40vw]  bg-gradient-to-br rounded-xl from-[#0EBBD9] to-[#0a0e20] p-[2px]  min-w-[350px]'>
             <form action="#" className='w-[100%]  bg-[#0a0b1d] bg-opacity-90 rounded-2xl mx-auto py-4 px-6'>
               <h4 className='text-4xl font-bold mb-5'>Contact Form</h4>
 
