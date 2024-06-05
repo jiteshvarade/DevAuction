@@ -4,31 +4,31 @@ function TeamComp() {
 
     const data = [
         {
-            url: 'https://picsum.photos/id/237/600/300',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
             name: 'Khushi Prashad',
         },
         {
-            url: 'https://picsum.photos/id/237/600/300',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
             name: 'Nithsh',
         },
         {
-            url: 'https://picsum.photos/id/237/600/300',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
             name: 'Ankit',
         },
         {
-            url: 'https://picsum.photos/id/237/600/300',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
             name: 'Gitash',
         },
         {
-            url: 'https://picsum.photos/id/237/600/300',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
             name: 'Kaniska',
         },
         {
-            url: 'https://picsum.photos/id/237/600/300',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
             name: 'Aarti',
         },
         {
-            url: 'https://picsum.photos/id/237/600/300',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcyI9Cvp53aaP9XeRn-ZKbJDH2QaWC72O26A&s',
             name: 'Shubham',
         },
     ]
