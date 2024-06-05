@@ -6,9 +6,9 @@ function Cradites() {
         <>
 
             <section id="cradites">
-                <div className=' mx-auto lg:w-[100%] bg-[#050b1e] border-2 flex items-center justify-between rounded-xl'>
+                <div className=' mx-auto lg:w-[100%] border-[#223534] bg-[#050b1e] border-2 flex items-center justify-between rounded-xl'>
                     <div className=' w-[100%] mx-3 my-3'>
-                        <h4 className='text-2xl font-bold mb-3'>My Cradits</h4>
+                        <h4 className='text-2xl font-bold mb-1'>My Cradits</h4>
                         <div className='flex gap-2 flex-wrap'>
 
                             <div className='bg-[#0567FC] flex rounded-xl text-lg bg-opacity-30 px-3 py-2'>
@@ -34,9 +34,9 @@ function Cradites() {
                     </div>
                 </div>
 
-                <div className='mt-5 lg:flex justify-between'>
+                <div className='mt-5  lg:flex justify-between'>
 
-                    <div className='border-2 mb-4 lg:mb-0 rounded-lg py-3 lg:basis-[49%]'>
+                    <div className='border-2 border-[#223534]  mb-4 lg:mb-0 rounded-lg py-3 lg:basis-[49%]'>
                         <h4 className='text-2xl font-semibold ml-3 my-3'>Transaction history</h4>
                         <div>
                             <div className='bg-[#0567FC] flex rounded-xl text-lg bg-opacity-30 px-3 py-2 w-[90%] mx-auto'>
@@ -48,7 +48,7 @@ function Cradites() {
                         </div>
                     </div>
 
-                    <div className='border-2 rounded-lg py-3 lg:basis-[49%]'>
+                    <div className='border-2 border-[#223534] rounded-lg py-3 lg:basis-[49%]'>
                         <h4 className='text-2xl font-semibold ml-3 my-3'>Transaction history</h4>
                         <div>
                             <div className='bg-[#0567FC] flex rounded-xl text-lg bg-opacity-30 px-3 py-2 w-[90%] mx-auto'>

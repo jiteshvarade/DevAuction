@@ -27,7 +27,7 @@ function Header({ Username = "Jhon", UserImg= "https://images.unsplash.com/photo
                                 id="" />
                         </div>
                         <div className='flex justify-center items-center border-2 bg-white text-[#050618] py-2 px-3 rounded-xl'>
-                            <span className="material-symbols-outlined text-[24px] ">
+                            <span className="material-symbols-outlined text-3xl ">
                                 notifications
                             </span>
                         </div>

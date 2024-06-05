@@ -9,3 +9,5 @@ export const APP_PASSWD = process.env.APP_PASSWD
 export const RAZORPAY_ID_KEY = process.env.RAZORPAY_ID_KEY
 export const RAZORPAY_SECRET_KEY = process.env.RAZORPAY_SECRET_KEY
 export const Webhook_Secret = process.env.Webhook_Secret
+export const client_email = process.env.client_email
+export const private_key = process.env.private_key

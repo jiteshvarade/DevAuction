@@ -5,6 +5,7 @@ import {PORT} from "./constants.mjs"
 import contactRouter from "./src/routes/contactusRoutes.mjs"
 import auth from "./src/middlewares/auth.mjs"
 import razorpayRouter from "./src/routes/razorpay.mjs"
+import uploadRouter from "./src/routes/uploadRouter.mjs"
 
 //mongodb connection
 ConnectDB()
@@ -29,3 +30,4 @@ app.get("/",(req, res)=>{
 app.use("/auth",auth)
 app.use("/contactus", contactRouter)
 app.use("/payments",razorpayRouter)
+app.use("/uploads",uploadRouter)

@@ -21,7 +21,7 @@ function EarningCards({earningAmount="000.00", earningRate="+00%", spandAmount="
                    <img src={coinStack} className='w-[150px] dropShado absolute right-0 top-10' alt="" />
                 </div>
 
-                <div className='relative min-w-[300px] mt-3 border-2 border-[#223534] rounded-lg basis-[32%]'>
+                <div className='relative min-w-[300px] mt-3 border-2  border-[#223534] rounded-lg basis-[32%]'>
                    <div className='flex items-center gap-3 mt-8 ml-6 mb-6'>
                     <img src={moneySak} width={30} alt="" />
                     <p className='text-xl font-semibold'>Total Spending</p>

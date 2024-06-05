@@ -5,11 +5,11 @@ import LogoutButton from '../Gradient Btn/LogoutButton'
 function LeftNavbar({show}) {
   return (
     <>
-      <nav className='hidden md:flex basis-[20%] bg-[#050618] text-white h-[100vh] pt-4 flex-col justify-between  items-center'>
+      <nav className='hidden md:flex basis-[20%] bg-[#050618] text-white h-[100vh]   pt-4 flex-col justify-between  items-center'>
         <div className='w-[80%] mx-auto h-[40vh] '>
 
           <div className='flex justify-center items-center'>
-            <span class="material-symbols-outlined text-[34px] mr-3">
+            <span className="material-symbols-outlined text-[34px] mr-3">
               flutter_dash
             </span>
             <div>
@@ -18,7 +18,7 @@ function LeftNavbar({show}) {
             </div>
           </div>
 
-          <div className='border-2 mt-5 shadowButton border-[#0CA3E7] text-[16px] flex justify-center items-center bg-gradient-to-t from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
+          <div className='border-2 mt-20 shadowButton border-[#0CA3E7] text-[16px] flex justify-center items-center bg-gradient-to-t from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
             <span className="material-symbols-outlined text-[24px]">
               home
             </span>
@@ -26,7 +26,7 @@ function LeftNavbar({show}) {
           </div>
 
           <div className='border-2 mt-5 shadowButton border-[#0CA3E7] text-[16px] flex justify-center items-center bg-gradient-to-t from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
-            <span class="material-symbols-outlined text-[24px] ">
+            <span className="material-symbols-outlined text-[24px] ">
               database
             </span>
             <span className='font-semibold ml-2'>Gallery</span>
