@@ -3,6 +3,7 @@ import GradientBtn from '../Gradient Btn/GradientBtn'
 import youtubeIcon from '../../../public/Icons/youtube.png'
 import facebookIcon from '../../../public/Icons/facebook.png'
 import instagramIcon from '../../../public/Icons/instagram.png'
+import TeamComp from './TeamComp'
 
 export default function HomePageFooter() {
   const [styleSucess, setStyleSucess] = useState(null)
@@ -143,6 +144,8 @@ export default function HomePageFooter() {
         <div className={styleSucess}>
           {textSucess}
         </div>
+
+        <TeamComp />
 
         <div>
           <div className='flex justify-between items-center flex-wrap w-full px-10'>

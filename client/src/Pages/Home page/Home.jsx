@@ -6,6 +6,7 @@ import FeatureSection from "../../Components/Featues section/FeaturesSection";
 import OurMission from "../../Components/Our mission section/OurMission";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import StepsContainer from "../../Components/Auction Steps Container/StepsContainer";
+import HomePageFooter from "../../Components/Home page footer/HomePageFooter";
 
 function Home() {
   const featureSectionParallax = [
@@ -71,6 +72,7 @@ function Home() {
         rightParallaxData={fromRightFeature}
       />
       <Testimonials />
+      <HomePageFooter />
     </div>
   );
 }
