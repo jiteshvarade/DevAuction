@@ -1,23 +1,11 @@
 import React from "react";
 
-export default function FeatureTile({ featureIcon, featureDetails }) {
+export default function FeatureTile({ tileIcon, tileDescription }) {
   return (
-    <div
-      className="w-80 sm:aspect-video overflow-hidden flex flex-col gap-4 p-6 justify-center items-center bg-red-400 rounded-2xl text-white max-w-full"
-      style={{
-        border: "1px solid rgba(255, 255, 255, .1)",
-        backgroundColor: "rgba(255, 255, 255, 0.15)",
-        boxShadow: "0 0 10px 1px rgba(0, 0, 0, 0.25)",
-        backdropFilter: "blur(15px)",
-      }}
-    >
-      <div className="icon w-fit">{featureIcon}</div>
-      <div className="details text-center">
-        <div className="heading text-xl font-semibold">
-          {featureDetails.heading}
-        </div>
-        <div className="description">{featureDetails.description}</div>
-      </div>
-    </div>
+    <div className='w-[300px] h-48 bg-[#050618] text-white text-center flex flex-col justify-center items-center p-4 z-50'>
+    <div className="icon mb-4 text-[#66BEE3]">{tileIcon}</div>        
+    <div className="heading text-xl font-bold">{tileDescription.heading}</div>
+    <div className="description font-thin text-gray-400">{tileDescription.description}</div>
+</div>
   );
 }
