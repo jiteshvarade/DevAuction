@@ -15,7 +15,7 @@ export default function StepsContainer() {
       start: "self",
       duration: 600,
       easing: "ease",
-      properties: [{ startValue: 500, endValue: 100, property: "translateX" }],
+      properties: [{ startValue: 500, endValue: window.innerWidth > 1024 ?  100 : 0, property: "translateX" }],
     },
   ];
   const fromLeft = [
@@ -30,7 +30,7 @@ export default function StepsContainer() {
       duration: 600,
       easing: "ease",
       properties: [
-        { startValue: -500, endValue: -100, property: "translateX" },
+        { startValue: -500, endValue: window.innerWidth > 1024 ?  -100 : 0, property: "translateX" },
       ],
     },
   ];
@@ -40,17 +40,18 @@ export default function StepsContainer() {
       key="stepsSection"
       className="flex justify-center gap-10 flex-col items-center m-auto p-10 px-0 bg-[#050618] overflow-x-hidden"
       style={{
-        padding: window.innerWidth * (window.innerWidth <= 1285 ? 0.001 : 0.1),
+        padding: window.innerWidth * (window.innerWidth <= 1285 ? 0.001 : 0.005),
       }}
     >
-      <h1 className="text-white text-4xl font-bold mb-20">
+      <h1 className="text-white lg:text-4xl text-xl sm:text-2xl  font-bold my-20">
         HOW DEVAUCTION WORKS?
       </h1>
       {stepDetails.map((elem) => {
         return (
           <Plx
             key={"elem " + elem.step}
-            className="bg-green-500 w-fit"
+            // className="bg-blue-500 lg:w-fit w-full"
+            className="bg-green-500 lg:w-fit"
             parallaxData={elem.step % 2 !== 0 ? fromLeft : fromRight}
             style={{ width: "80%" }}
           >
