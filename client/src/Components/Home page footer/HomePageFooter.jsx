@@ -7,6 +7,7 @@ import instagramIcon from '../../../public/Icons/instagram.png'
 export default function HomePageFooter() {
   const [styleSucess, setStyleSucess] = useState(null)
   const [textSucess, setTextSucess] = useState(null)
+  const [check, setCheck] = useState(false)
   const reset = () => {
     setTimeout(() => {
       setStyleSucess(null)
@@ -14,23 +15,31 @@ export default function HomePageFooter() {
     }, 5000);
   }
 
-  const  handelSubmit = async (e) => {
+  const handelSubmit = async (e) => {
+
+    
+
     // e.preventdefault()
-    const name = document.querySelector('#name');
+    const firstName = document.querySelector('#firstName');
+    const lastName = document.querySelector('#lastName');
     const email = document.querySelector('#email');
     const phone = document.querySelector('#phone');
-    const subject = document.querySelector('#subject');
     const message = document.querySelector('#message');
-    
-    if (name == "" || email == "" || phone == "" || subject == "" || message == "") {
+
+    // console.log(checkbox.value)
+    if (!check){
+      alert('please accept T&C first')
+      return 
+    }
+    if (firstName =="" || lastName == "" || email == "" || phone == ""  || message == "") {
       window.alert('enter the details first');
       return
     } else {
+      let fullName = firstName.value + " " + lastName.value
       const details = {
-        Name: name.value,
+        Name: fullName,
         Email: email.value,
         PhoneNo: phone.value,
-        Subject: subject.value,
         Message: message.value,
       }
       const response = await fetch("https://devauction.onrender.com/contactus", {
@@ -40,83 +49,116 @@ export default function HomePageFooter() {
           "Content-type": "application/json; charset=UTF-8"
         }
       });
-      // console.log(response)
-      if(response.ok){
+      console.log(response)
+      if (response.ok) {
         window.alert('Thank You for contacting us!');
         setStyleSucess('bg-green-600 py-2 px-3 mt-3 font-semibold text-2xl')
         setTextSucess(`Email Sent!`)
         reset()
-      }else{
+      } else {
         setStyleSucess('bg-red-600 py-2 px-3 mt-3 font-semibold text-2xl')
         setTextSucess(`Email not Sent!`)
         reset()
       }
-      
-      name.value = "";
+
+      firstName.value = "";
+      lastName.value = "";
       email.value = "";
       phone.value = "";
-      subject.value = "";
       message.value = "";
     }
   }
   return (
     <>
-      <section className='bg-black text-white py-10'>
-        <div className='text-center py-4'>
-          <h4 className='text-4xl font-bold mb-5'>Contact Us</h4>
-          <p className='text-sm text-slate-300'> Have questions? Get in touch with our support team.</p>
+      <section className='bg-[#080a1c] text-white py-10'>
 
+        <div className='flex justify-center flex-wrap rounded-2xl items-center mb-10 '>
 
-          <form action="#" className='w-[80%] max-w-[450px] mx-auto pt-10'>
-            <input
-              className='bg-white bg-opacity-20 border-slate-400 border-2 w-full rounded-md px-2 py-1'
-              type="text"
-              placeholder='Name'
-              name="Name"
-              id="name" />
-            <input
-              className='bg-white bg-opacity-20 mt-7 border-slate-400 border-2 w-full rounded-md px-2 py-1'
-              type="email"
-              placeholder='Email'
-              name="email"
-              id="email" />
-            <input
-              type="tel"
-              className='bg-white bg-opacity-20 border-slate-400 border-2 w-[48%] mt-8 rounded-md px-2 py-1'
-              placeholder='Phone'
-              name="phone"
-              id="phone" />
-            <input
-              type="text"
-              className='bg-white bg-opacity-20 border-slate-400 ml-[4%] mb-8 border-2 w-[48%] mt-8 rounded-md px-2 py-1'
-              name="subject"
-              placeholder='Subject'
-              id="subject" />
-            <textarea
-              name="message"
-              placeholder='Message'
-              className='bg-white bg-opacity-20 mb-9 border-slate-400 border-2 w-full rounded-md px-2 py-1'
-              id="message"></textarea>
+          <div className='max-w-[40vw]  bg-gradient-to-br rounded-xl from-[#0c768f] to-[#0a0e20] p-[2px]  min-w-[350px]'>
+            <form action="#" className='w-[100%]  bg-[#0a0b1d] bg-opacity-90 rounded-2xl mx-auto py-4 px-6'>
+              <h4 className='text-4xl font-bold mb-5'>Contact Form</h4>
 
-            <GradientBtn type="button" placeholder='Submit' onClick={() => {handelSubmit()}} />
-            {/* <input type="button" value="Submit" onClick={(e) => handelSubmit(e)} /> */}
+              <div className='flex gap-2 w-full '>
+              <div className='basis-[50%] after:content-[""] after:w-[100%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-white after:to-[#0a0b1d]  after:h-[2px] after:block '>
+                <p>First Name</p>
+                <input
+                className='bg-white bg-opacity-5 border-slate-800 border-2 w-full rounded-md px-2 py-1'
+                type="text"
+                name="Name"
+                id="firstName"/>
+              </div>
+              <div className='basis-[50%] after:content-[""] after:w-[100%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-white after:to-[#0a0b1d]  after:h-[2px] after:block' >
+                <p>Last Name</p>
+                <input
+                className='bg-white bg-opacity-5 border-slate-800 border-2 w-full rounded-md px-2 py-1'
+                type="text"
+                name="Name"
+                id="lastName"/>
+              </div>
+              </div>
 
-          </form>
-          <div className={styleSucess}>
-            {textSucess}
+              <div className='flex gap-2 my-3'>
+              <div className='basis-[50%] after:content-[""] after:w-[100%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-white after:to-[#0a0b1d]  after:h-[2px] after:block'>
+                <p >Phone</p>
+                <input
+                type="tel"
+                className='bg-white w-full bg-opacity-5 border-slate-800 border-2 rounded-md px-2 py-1'
+                name="phone"
+                id="phone" />
+              </div>
+              <div className='basis-[50%] after:content-[""] after:w-[100%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-white after:to-[#0a0b1d]  after:h-[2px] after:block'>
+                <p >Email</p>
+                <input
+                className='bg-white bg-opacity-5 border-slate-800 border-2 w-full rounded-md px-2 py-1'
+                type="email"
+                name="email"
+                id="email" />
+              </div>
+              </div>
+              
+              <div className='after:content-[""] after:w-[100%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-white after:to-[#0a0b1d] after:mt-[-6px]  after:h-[2px] after:block'>
+                <p>Message</p>
+                <textarea
+                name="message"
+                placeholder='Message'
+                className='bg-white bg-opacity-5 border-slate-800 border-2 resize-none w-full rounded-md px-2 py-1'
+                id="message"></textarea>
+              </div>
+                <input type="checkbox" id='checkbox' value={check} onChange={() => setCheck(!check)} className='' />
+                <span className='text-sm ml-2 opacity-70'>By sending this form I confirm that I have read and accept the <a className=" underline text-white opacity-100" href="#" target='_blank'>Privacy Policy</a></span>
+                  <br />
+                  <br />
+              <GradientBtn type="button" placeholder='Submit' onClick={() => { handelSubmit() }} />
+              {/* <input type="button" value="Submit" onClick={(e) => handelSubmit(e)} /> */}
+
+            </form>
+          </div>
+
+          <div className='w-[300px] ml-10 relative before:contents[""] before:w-8 before:h-2 before:bg-white before:block before:rounded-[100%] before:shadow-[0_0_105px_10px_white] after:contents[""] after:w-2 after:h-8 after:bg-white after:block after:rounded-[100%] after:shadow-[0_0_105px_20px_white] after:absolute before:absolute after:right-[-57px] before:right-[-70px] before:bottom-[-20px] after:opacity-90 before:opacity-90'>
+            <h4 className='font-semibold mb-2'>Stay Updated</h4>
+            <p className='text-xs opacity-55'>At DevAuction. Our Constant Pursuit Is To Build Engaging Community That Spared Joy. Don't Hesitate To Reach Out To Us With Your Thoughts And Messages - We Are All Ears!</p>
           </div>
         </div>
+
+        <div className={styleSucess}>
+          {textSucess}
+        </div>
+
         <div>
-          <h4 className='text-6xl text-center font-bold mb-5'>DevAuction</h4>
-          <ul className='flex text-lg justify-between max-w-[550px] mx-auto'>
-            <li><span className='hover:underline hover:text-slate-500 cursor-pointer'>Home</span></li>
-            <li><span className='hover:underline hover:text-slate-500 cursor-pointer'>How it Works</span></li>
-            <li><span className='hover:underline hover:text-slate-500 cursor-pointer'>Features</span></li>
-            <li><span className='hover:underline hover:text-slate-500 cursor-pointer'>About Us</span></li>
-            <li><span className='hover:underline hover:text-slate-500 cursor-pointer'>Contact Us</span></li>
+          <div className='flex justify-between items-center flex-wrap w-full px-10'>
+
+          <h4 className='text-2xl text-center font-bold'><span className='text-4xl text-[#8ed7f8]'>DEV</span>AUCTION</h4>
+          <ul className='flex text-lg items-center text-white font-thin gap-3'>
+            <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>Home</span></li>
+            <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>How it Works</span></li>
+            <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>Features</span></li>
+            <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>About Us</span></li>
+            <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>Contact Us</span></li>
           </ul>
-          <hr className='mt-10 ' />
-          <div className='flex justify-between items-center lg:px-10'>
+          </div>
+
+          <hr className='mt-6 ' />
+          <div className='flex justify-between items-center lg:px-10 mt-6'>
             <div>&copy; 2024, DevAuction All Rights Reserved</div>
             <div className='flex justify-between items-center gap-3 '>
               <a href="#" target='_blank'><img width={40} src={youtubeIcon} alt="" /></a>

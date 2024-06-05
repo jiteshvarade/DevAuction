@@ -18,14 +18,14 @@ function LeftNavbar({show}) {
             </div>
           </div>
 
-          <div className='border-2 mt-5 shadowButton border-[#0CA3E7] text-[16px] flex justify-center items-center bg-gradient-to-t from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
+          <div className='mt-20  text-[16px] flex justify-center items-center bg-gradient-to-b from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
             <span className="material-symbols-outlined text-[24px]">
               home
             </span>
             <span className='font-semibold ml-2'>Auction</span>
           </div>
 
-          <div className='border-2 mt-5 shadowButton border-[#0CA3E7] text-[16px] flex justify-center items-center bg-gradient-to-t from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
+          <div className=' mt-5  text-[16px] flex justify-center items-center bg-gradient-to-b from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
             <span class="material-symbols-outlined text-[24px] ">
               database
             </span>
