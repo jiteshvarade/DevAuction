@@ -6,6 +6,7 @@ import hamMenu from '../../../public/Icons/iconsmenu.png'
 import Header from './Header'
 import Cradites from './Cradites'
 import Auction from './Auction'
+import Auctionrooms from '../AuctionRoom/Auctionrooms'
 
 function Dashbord() {
 
@@ -21,7 +22,8 @@ function Dashbord() {
                     {/* earnings cards */}
                     <EarningCards />
                         
-                        <Auction />
+                        {/* <Auction /> */}
+                        <Auctionrooms />
 
                     <Cradites />
                 </div>
