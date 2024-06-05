@@ -5,11 +5,11 @@ import LogoutButton from '../Gradient Btn/LogoutButton'
 function LeftNavbar({show}) {
   return (
     <>
-      <nav className='hidden md:flex basis-[20%] bg-[#050618] text-white h-[100vh] pt-4 flex-col justify-between  items-center'>
+      <nav className='hidden md:flex basis-[20%] bg-[#050618] text-white h-[100vh]   pt-4 flex-col justify-between  items-center'>
         <div className='w-[80%] mx-auto h-[40vh] '>
 
           <div className='flex justify-center items-center'>
-            <span class="material-symbols-outlined text-[34px] mr-3">
+            <span className="material-symbols-outlined text-[34px] mr-3">
               flutter_dash
             </span>
             <div>

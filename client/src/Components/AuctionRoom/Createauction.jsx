@@ -21,9 +21,9 @@ const Createauction = () => {
     };
 
     return (
-        <div className="flex justify-center items-center  relative h-[100vh] w-[100vw] bg-[#050618]">
+        <div className="flex justify-center items-center relative h-[800px] w-[1200px] rounded-xl shadow-lg bg-[#050618]">
 
-            <div className='flex flex-col items-center gap-4 font-semibold  w-[80%] h-[650px] z-10 ' >
+            <div className='flex flex-col items-center gap-4 font-semibold  w-[80%] h-[650px] z-20 ' >
 
                 <div className='  w-full text-[40px] text-left  text-white' >Create Auction</div>
 

@@ -4,15 +4,15 @@ import sendEmail from "../utils/email.mjs"
 const router = Router()
 
 router.post("/",async (req,res)=>{
-    const { Name, Email , PhoneNo, Subject, Message} = req.body
+    const { Name, Email , PhoneNo, Message} = req.body
 
     try {
 
-        if (!Name || !Email || !PhoneNo || !Subject || !Message) {
+        if (!Name || !Email || !PhoneNo || !Message) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newContact = new ContactUs({ Name , Email, PhoneNo, Subject, Message })
+        const newContact = new ContactUs({ Name , Email, PhoneNo, Message })
         await newContact.save()
 
         const subject = "Thanks for reaching out! We'll be in touch soon."

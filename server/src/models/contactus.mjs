@@ -13,10 +13,6 @@ const contactusSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    Subject : {
-        type : String,
-        required : true,
-    },
     Message : {
         type : String,
         required : true,
