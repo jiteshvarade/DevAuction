@@ -135,7 +135,7 @@ export default function HomePageFooter() {
             </form>
           </div>
 
-          <div className='w-[300px] ml-10 relative before:contents[""] before:w-8 before:h-2 before:bg-white before:block before:rounded-[100%] before:shadow-[0_0_105px_10px_white] after:contents[""] after:w-2 after:h-8 after:bg-white after:block after:rounded-[100%] after:shadow-[0_0_105px_20px_white] after:absolute before:absolute after:right-[-57px] before:right-[-70px] before:bottom-[-20px] after:opacity-90 before:opacity-90'>
+          <div id='star' className='w-[300px] ml-10 relative '>
             <h4 className='font-semibold mb-2'>Stay Updated</h4>
             <p className='text-xs opacity-55'>At DevAuction. Our Constant Pursuit Is To Build Engaging Community That Spared Joy. Don't Hesitate To Reach Out To Us With Your Thoughts And Messages - We Are All Ears!</p>
           </div>
@@ -148,10 +148,10 @@ export default function HomePageFooter() {
         <TeamComp />
 
         <div>
-          <div className='flex justify-between items-center flex-wrap w-full px-10'>
+          <div className='flex justify-between items-center flex-wrap gap-4 w-full px-10'>
 
           <h4 className='text-2xl text-center font-bold'><span className='text-4xl text-[#8ed7f8]'>DEV</span>AUCTION</h4>
-          <ul className='flex text-lg items-center text-white font-thin gap-3'>
+          <ul className='flex text-base lg:text-lg flex-wrap  items-center text-white font-thin gap-3'>
             <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>Home</span></li>
             <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>How it Works</span></li>
             <li><span className='hover:underline hover:text-[#8ed7f8] cursor-pointer'>Features</span></li>
