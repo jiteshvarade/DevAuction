@@ -38,20 +38,19 @@ export default function StepsContainer() {
     <div
       id="steps"
       key="stepsSection"
-      className="flex justify-center gap-10 flex-col items-center m-auto p-10 px-0 bg-[#050618] overflow-x-hidden"
+      className="flex justify-center lg:gap-20 gap-10 flex-col items-center m-auto p-10 px-0 overflow-x-hidden"
       style={{
         padding: window.innerWidth * (window.innerWidth <= 1285 ? 0.001 : 0.005),
       }}
     >
-      <h1 className="text-white lg:text-4xl text-xl sm:text-2xl  font-bold my-20">
+      <h1 className="text-white lg:text-4xl text-xl sm:text-2xl font-bold my-20">
         HOW DEVAUCTION WORKS?
       </h1>
       {stepDetails.map((elem) => {
         return (
           <Plx
             key={"elem " + elem.step}
-            // className="bg-blue-500 lg:w-fit w-full"
-            className="bg-green-500 lg:w-fit"
+            className="lg:w-fit"
             parallaxData={elem.step % 2 !== 0 ? fromLeft : fromRight}
             style={{ width: "80%" }}
           >
