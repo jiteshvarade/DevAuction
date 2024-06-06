@@ -7,32 +7,22 @@ function Header({ Username = "Jhon", UserImg= "https://images.unsplash.com/photo
         <>
             
 
-                <div id="nav-top" className='flex justify-between items-center mt-5'>
-                    <img className='w-10 md:hidden ml-[-20px]' onClick={(pos) => setNavPosition(!pos)} src={hamMenu} alt="" />
+                <div id="nav-top" className='flex px-5 justify-between flex-wrap-reverse md:flex-nowrap items-center mt-5'>
                     <div>
                         <h3 className='text-[20px] font-semibold'>Hi, {Username}</h3>
                         <p className='text-[14px]'>Welcome back, it's good to have you back</p>
                     </div>
 
-                    <div className='flex gap-4'>
-                        <div id="search" className='hidden lg:flex justify-center items-center border-2 border-slate-700 px-2 rounded-xl '>
-                            <span className="material-symbols-outlined text-[32px] ">
-                                search
-                            </span>
-                            <input
-                                type="text"
-                                className='bg-transparent border-none outline-none ml-2 placeholder:text-white'
-                                name="Search"
-                                placeholder='Search'
-                                id="" />
-                        </div>
-                        <div className='flex justify-center items-center border-2 bg-white text-[#050618] py-2 px-3 rounded-xl'>
+                    <div className='flex w-[100%] md:w-fit justify-end gap-4'>
+                    <img className='w-10 md:hidden mr-auto' onClick={(pos) => setNavPosition(!pos)} src={hamMenu} alt="" />
+                        
+                        <div className='flex justify-center items-center border-2 bg-white text-[#050618] py-2 px-3 rounded-full' >
                             <span className="material-symbols-outlined text-3xl ">
                                 notifications
                             </span>
                         </div>
-                        <div className='h-[60px] w-[60px] bg-white border-2 border-white rounded-lg'>
-                            <img className='h-[100%] w-[100%] rounded-lg' src={UserImg} alt="" />
+                        <div className='h-[60px] w-[60px] bg-white border-2 border-white rounded-full'>
+                            <img className='h-[100%] w-[100%] rounded-full' src={UserImg} alt="" />
                         </div>
                     </div>
                 </div>

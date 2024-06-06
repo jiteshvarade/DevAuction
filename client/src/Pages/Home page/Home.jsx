@@ -7,6 +7,8 @@ import OurMission from "../../Components/Our mission section/OurMission";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import StepsContainer from "../../Components/Auction Steps Container/StepsContainer";
 import HomePageFooter from "../../Components/Home page footer/HomePageFooter";
+import ContactUs from "../../Components/Home page footer/ContactUs";
+import TeamComp from "../../Components/Home page footer/TeamComp";
 
 function Home() {
   const featureSectionParallax = [
@@ -72,6 +74,8 @@ function Home() {
         rightParallaxData={fromRightFeature}
       />
       <Testimonials />
+      <ContactUs />
+      <TeamComp />
       <HomePageFooter />
     </div>
   );

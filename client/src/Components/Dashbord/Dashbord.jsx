@@ -16,7 +16,7 @@ function Dashbord() {
                 {/* navbar */}
                 <LeftNavbar />
 
-                <div className='w-[100%] overflow-y-scroll md:basis-[80%] border-l-2 bg-[#050618]  px-10 pb-10 text-white'>
+                <div className='w-[100%] overflow-y-scroll md:basis-[80%] border-l-2 bg-[#050618]  mg:px-10 pb-10 text-white'>
                     <Header />
                         
                     {/* earnings cards */}

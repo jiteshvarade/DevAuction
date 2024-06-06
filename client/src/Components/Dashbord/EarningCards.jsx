@@ -7,7 +7,7 @@ import coins2 from '../../../public/Icons/2coins.png'
 function EarningCards({earningAmount="000.00", earningRate="+00%", spandAmount="000.00", spandRate="+00%", avgAmount="000.00", avgRate="+00%",} ) {
     return (
         <>
-            <div id="earningCards" className='flex justify-center items-center gap-3 my-10  flex-wrap'>
+            <div id="earningCards" className='no-scrollbar flex gap-3 h-auto md:justify-center md:items-center md:flex-wrap px-2 overflow-x-auto overflow-y-hidden'>
 
                 <div className='relative min-w-[300px] mt-3 border-2 border-[#223534] rounded-lg basis-[32%]'>
                    <div className='flex items-center gap-3 mt-8 ml-6 mb-6'>
