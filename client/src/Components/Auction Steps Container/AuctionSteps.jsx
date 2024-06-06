@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import GradientBtn from "../Gradient Btn/GradientBtn";
-import randomImg from "../../assets/Frame 2147223052.png";
+import randomImg from "../../assets/images/Frame 2147223052.png";
 import { IoIosArrowDown } from "react-icons/io";
+import StepsBtn from "../Buttons/StepsBtn"
 
 export default function AuctionSteps({
   stepNo,
@@ -12,12 +12,10 @@ export default function AuctionSteps({
 }) {
   const [showMore, setShowMore] = useState(false);
   return (
-    // <div className='parent bg-green-500 text-white flex p-28 lg:gap-10'>
-    <div className="parent bg-[#050618] text-white flex xl:p-28 p-4 py-8 lg:gap-10">
+    <div className="parent bg-[#050618] text-white flex xl:px-28 p-4 py-8 lg:gap-10">
       <div className="left lg:w-1/2 w-full flex flex-col gap-4 justify-center">
-        <GradientBtn
-          placeholder={"Step " + stepNo}
-          className={"text-white w-fit"}
+        <StepsBtn
+        stepNo={stepNo}
         />
         <div className="heading text-2xl font-bold">{heading}</div>
         <div className="para font-thin text-gray-400">{description}</div>

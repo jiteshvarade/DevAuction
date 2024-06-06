@@ -1,5 +1,4 @@
-import contributerImg from "../Icons/contributerImg.png";
-
+import contributerImg from "../../assets/Icons/contributerImg.png";
 
 export const items = [
     {
@@ -44,7 +43,7 @@ export const items = [
     export const belowCardStyles = "-translate-y-0 z-0 opacity-75 scale-90";
     export const aboveCardStyles = "-translate-y-8 z-0 opacity-0 scale-90";
     export const cardsCommonStyles =
-      "temtimonial bg-gray-600 transition-all duration-1000 absolute max-w-screen p-4 sm:h-[290px] min-h-[290px] w-full rounded-2xl text-white text-center pt-10 px-20";
+      "temtimonial bg-[#0D0E20] border-2 border-[#383946]  transition-all duration-1000 absolute max-w-screen p-4 sm:h-[290px] min-h-[290px] w-full rounded-2xl text-white text-center pt-10 px-20";
     export const cardHeadingStyles =
       "contributersName text-lg font-bold leading-[35px] relative";
     export const cardDescriptionStyles =
@@ -52,5 +51,5 @@ export const items = [
     export const cardImgStyles =
       "w-[150px] aspect-square rounded-full absolute left-1/2 -translate-x-1/2 -top-32";
     export const buttonStyles =
-      "text-[#66bee3] hover:text-gray-600 absolute z-[500] top-[5.5rem] bg-[#66bee3] active:scale-90 transition-all duration-500 sm:scale-100 scale-75";
+      "text-[#66bee3] hover:text-[#0D0E20] absolute z-[500] top-[5.5rem] bg-[#66bee3] active:scale-90 transition-all duration-100 sm:scale-100 scale-75";
   

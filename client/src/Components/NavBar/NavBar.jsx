@@ -1,26 +1,9 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-
 import logo from "../../../public/Icons/Logo.png";
 import HamMenu from "../../../public/Icons/iconsmenu.png";
-import GradientBtn from "../Gradient Btn/GradientBtn";
-import LoginButton from "../Gradient Btn/LoginButton";
-import LogoutButton from "../Gradient Btn/LogoutButton";
-function Navbar() {
-  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-  console.log(isAuthenticated);
-  if (isAuthenticated) {
-    console.log(user);
-    console.log(isAuthenticated);
-    const response = fetch("https://devauction.onrender.com/auth", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-  }
+import GradientBtn from "../Buttons/GradientBtn";
 
+function Navbar({ loginWithRedirect }) {
   const smoothScroll = (target, duration) => {
     const targetPosition = target.getBoundingClientRect().top;
     console.log(targetPosition);

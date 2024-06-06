@@ -1,8 +1,37 @@
 import React from "react";
-import missionDetails from "../../assets/component data/ourMissionDetails";
+import missionDetails from "./ourMissionDetails";
 import Plx from "react-plx";
 
-export default function OurMission({ leftParallaxData, rightParallaxData }) {
+export default function OurMission() {
+  const fromLeft = [
+    {
+      start: "self",
+      duration: 600,
+      easing: "ease",
+      properties: [{ startValue: 0, endValue: 1, property: "opacity" }],
+    },
+    {
+      start: "self",
+      duration: 600,
+      easing: "ease",
+      properties: [{ startValue: -500, endValue: 0, property: "translateX" }],
+    },
+  ];
+
+  const fromRight = [
+    {
+      start: "self",
+      duration: 600,
+      easing: "ease",
+      properties: [{ startValue: 0, endValue: 1, property: "opacity" }],
+    },
+    {
+      start: "self",
+      duration: 600,
+      easing: "ease",
+      properties: [{ startValue: 500, endValue: 0, property: "translateX" }],
+    },
+  ];
   return (
     <div
       id="mission"
@@ -15,11 +44,9 @@ export default function OurMission({ leftParallaxData, rightParallaxData }) {
         {missionDetails.map((elem, index) => {
           return (
             <Plx
-            key={index}
+              key={index}
               className="p-8 border-2 border-gray-500 rounded-3xl"
-              parallaxData={
-                index % 2 == 0 ? leftParallaxData : rightParallaxData
-              }
+              parallaxData={index % 2 == 0 ? fromLeft : fromRight}
               style={{ width: "fit-content" }}
             >
               <div className="mission" key={index}>

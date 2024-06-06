@@ -1,4 +1,5 @@
-
+import React, { useState } from 'react'
+import GradientBtn from '../Buttons/GradientBtn'
 import youtubeIcon from '../../../public/Icons/youtube.png'
 import facebookIcon from '../../../public/Icons/facebook.png'
 import instagramIcon from '../../../public/Icons/instagram.png'
