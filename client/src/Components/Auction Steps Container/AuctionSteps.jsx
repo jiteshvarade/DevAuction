@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import GradientBtn from "../Gradient Btn/GradientBtn";
-import randomImg from "../../assets/Frame 2147223052.png";
+import randomImg from "../../assets/images/Frame 2147223052.png";
 import { IoIosArrowDown } from "react-icons/io";
-import StepsBtn from "../Steps Btn/StepsBtn"
+import StepsBtn from "../Buttons/StepsBtn"
 
 export default function AuctionSteps({
   stepNo,

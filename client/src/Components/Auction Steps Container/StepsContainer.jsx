@@ -1,7 +1,7 @@
 import React from "react";
 import Plx from "react-plx";
-import AuctionSteps from "../../Components/Auction Steps/AuctionSteps";
-import stepDetails from "../../assets/component data/AuctionSteps";
+import AuctionSteps from "./AuctionSteps";
+import stepDetails from "./AuctionStepsData";
 
 export default function StepsContainer() {
   const fromRight = [

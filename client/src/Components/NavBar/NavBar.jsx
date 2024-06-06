@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../../public/Icons/Logo.png";
 import HamMenu from "../../../public/Icons/iconsmenu.png";
-import GradientBtn from "../Gradient Btn/GradientBtn";
+import GradientBtn from "../Buttons/GradientBtn";
 
 function Navbar({ loginWithRedirect }) {
   const smoothScroll = (target, duration) => {

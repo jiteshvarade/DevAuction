@@ -1,6 +1,6 @@
 import React from "react";
-import GradientBtn from "../Gradient Btn/GradientBtn";
-import Counters from "../Hero Section counters/Counters";
+import GradientBtn from "../Buttons/GradientBtn";
+import Counters from "./Counters";
 import auctionsCounterImg from "../../assets/Icons/ri_auction-line.svg";
 import maxBitCounterImg from "../../assets/Icons/counterGrowth.svg";
 
