@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import GradientBtn from '../Gradient Btn/GradientBtn'
+import GradientBtn from '../Buttons/GradientBtn'
 
 
 function ContactUs() {
