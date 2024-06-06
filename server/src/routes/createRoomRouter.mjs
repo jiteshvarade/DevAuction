@@ -91,19 +91,18 @@ function generateUniqueHexId() {
 
 router.post("/", upload.single("file"), async (req,res)=>{
     try{
-        console.log(req.body)
-        filename = req.file.name
+        filename = req.bdoy.file.name
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
         const room_id = generateUniqueHexId()
         const room_secret = generateUniqueHexId()
 
         const {Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret} = {
-            Owner : req.email,
-            Image : req.image,
-            Premium: req.premium,
-            Time: req.time,
-            Title : req.title,
-            Description: req.description,
+            Owner : req.bdoy.email,
+            Image : req.bdoy.image,
+            Premium: req.bdoy..premium,
+            Time: req.bdoy..time,
+            Title : req.bdoy..title,
+            Description: req.bdoy.description,
             FileID : fileuploadResponse.data.id,
             RoomID : room_id,
             RoomSecret : room_secret
