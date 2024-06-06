@@ -7,6 +7,7 @@ import OurMission from "../../Components/Our mission section/OurMission";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import StepsContainer from "../../Components/Auction Steps Container/StepsContainer";
 import { useAuth0 } from "@auth0/auth0-react";
+import HomePageFooter from "../../Components/Home page footer/HomePageFooter";
 
 function Home() {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -85,6 +86,7 @@ function Home() {
         rightParallaxData={fromRightFeature}
       />
       <Testimonials />
+      <HomePageFooter />
     </div>
   );
 }
