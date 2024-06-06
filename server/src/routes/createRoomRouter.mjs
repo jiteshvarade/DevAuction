@@ -98,16 +98,17 @@ router.post("/", upload.single("file"), async (req,res)=>{
         const room_secret = generateUniqueHexId()
 
         const {Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret} = {
-            Owner : req.email,
-            Image : req.image,
-            Premium: req.premium,
-            Time: req.time,
-            Title : req.title,
-            Description: req.description,
+            Owner : req.body.email,
+            Image : req.body.image,
+            Premium: req.body.premium,
+            Time: req.body.date,
+            Title : req.body.title,
+            Description: req.body.description,
             FileID : fileuploadResponse.data.id,
             RoomID : room_id,
             RoomSecret : room_secret
         }
+
 
         if (!Owner || !Image || !Premium || !Time || !Title || !Description || !FileID || !RoomID || !RoomSecret) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
