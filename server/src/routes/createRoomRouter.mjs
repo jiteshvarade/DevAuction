@@ -99,7 +99,7 @@ router.post("/", upload.single("file"), async (req,res)=>{
         const {Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret} = {
             Owner : req.email,
             Image : req.image,
-            Premium: req.premimum,
+            Premium: req.premium,
             Time: req.time,
             Title : req.title,
             Description: req.description,
