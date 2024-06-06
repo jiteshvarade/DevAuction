@@ -91,6 +91,7 @@ function generateUniqueHexId() {
 
 router.post("/", upload.single("file"), async (req,res)=>{
     try{
+        console.log(req.file)
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
         const room_id = generateUniqueHexId()
