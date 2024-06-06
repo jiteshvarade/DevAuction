@@ -68,7 +68,7 @@ function ContactUs() {
     
             <div className='flex w-full justify-center flex-wrap gap-4  items-center bg-[#080a1c] text-white py-10 '>
 
-                <div className='max-w-[40vw]  bg-gradient-to-br rounded-xl from-[#0EBBD9] to-[#0a0e20] p-[2px]  min-w-[350px]'>
+                <div className='max-w-[40vw]  bg-gradient-to-br rounded-xl from-[#0EBBD9] to-[#0a0e20] p-[2px]  min-w-[300px]'>
                     <form action="#" className='w-[100%]  bg-[#0a0b1d] bg-opacity-90 rounded-2xl mx-auto py-4 px-6'>
                         <h4 className='text-4xl font-bold mb-5'>Contact Form</h4>
 

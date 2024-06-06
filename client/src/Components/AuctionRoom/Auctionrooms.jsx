@@ -36,7 +36,7 @@ const Auctionrooms = ({ show, setshow }) => {
                         className=' bg-gradient-to-b from-[#0ca2e7b0] px-8 py-2 text-white  border-white rounded-xl font-semibold text-[16px] '
                     >Create Room</button>
                 </div>
-                <div className='text-white flex gap-4 text-[24px] font-semibold'>
+                <div className='text-white text-[20px] flex gap-4 md:text-[24px] font-semibold'>
                     <div className=' border-r-2 pr-3 ' >
                         Free Rooms
                     </div>
