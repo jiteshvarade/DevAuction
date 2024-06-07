@@ -64,18 +64,28 @@ html {
   @apply overflow-hidden relative bg-white bg-opacity-10;
 }
 
-.staticShining::before {
-  content: "";
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-60 w-full h-[500px] origin-top max-w-96;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #66bee3 35%,
-    white 55%,
-    #66bee3 75%,
-    transparent
+.rdlGrdnt {
+  background-image: radial-gradient(
+    white 0%,
+    rgba(186, 233, 254, 0.97) 12%,
+    rgba(126, 215, 255, 0.57) 24%,
+    rgba(97, 206, 255, 0.43) 37%,
+    rgba(48, 176, 233, 0.23) 50%,
+    rgba(12, 163, 231, 0.16) 62%,
+    rgba(12, 163, 231, 0.06) 75%,
+    rgba(12, 163, 231, 0.02) 88%,
+    rgba(12, 163, 231, 0) 100%
   );
-  @apply z-0;
+}
+
+.ctaBtn::after {
+  content: "";
+  @apply w-3/5 h-2 absolute left-1/2 -translate-x-1/2 bottom-[-4px] rounded-[100%] rdlGrdnt;
+}
+
+.carouselDots::after{
+  content: "";
+  @apply w-full h-full absolute top-0  bg-red-500;
 }
 
 .child {

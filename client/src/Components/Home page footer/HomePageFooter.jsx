@@ -8,9 +8,7 @@ import TeamComp from './TeamComp'
 export default function HomePageFooter() {
   return (
     <>
-      <section className='bg-[#080a1c] text-white py-10'>
-
-
+      <section className='text-white py-10'>
         <div>
           <div className='flex justify-between items-center flex-wrap gap-4 w-full px-10'>
 

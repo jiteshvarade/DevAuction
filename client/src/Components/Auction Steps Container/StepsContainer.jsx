@@ -36,7 +36,7 @@ export default function StepsContainer() {
   ];
   return (
     <div
-      id="steps"
+      id="how it works"
       key="stepsSection"
       className="flex justify-center lg:gap-20 gap-10 flex-col items-center m-auto p-10 px-0 overflow-x-hidden"
       style={{

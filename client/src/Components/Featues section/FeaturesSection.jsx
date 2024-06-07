@@ -20,7 +20,7 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <div id="feature" className="overflow-hidden bg-[#050618] w-full h-fit">
+    <div id="features" className="overflow-hidden bg-[#050618] w-full h-fit">
       <Plx
         className="bg-green-400"
         parallaxData={featureSectionParallax}
