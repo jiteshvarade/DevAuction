@@ -24,7 +24,6 @@ function Home() {
       },
     });
   }
-
   return (
     <div className="HomePage bg-[#050618] text-white">
       <NavBar loginWithRedirect={loginWithRedirect} />

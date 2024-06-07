@@ -28,3 +28,38 @@ html{
     -webkit-mask: linear-gradient(90deg, transparent, white 20%, rgb(244, 25, 25) 80%, transparent);
     mask: linear-gradient(90deg, transparent, white 30%, white 70%, transparent);
 }
+
+.spinning {
+    animation: spinning 8s linear infinite;
+}
+
+@keyframes spinning {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .shining::before {
+    content: '';
+    @apply absolute top-1/2 left-0 w-full h-[500px] origin-top max-w-96 spinning;
+    background: linear-gradient(to right, transparent 10%, #66bee3 25%, white 50%, #66bee3 65%, transparent);
+    @apply z-0;
+  }
+
+  .staticShining{
+    @apply rounded-xl overflow-hidden p-[2px] relative w-full h-full bg-white bg-opacity-10;
+  }
+
+  .staticShining::before {
+    content: '';
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-72  w-full h-[500px] origin-top max-w-96;
+    background: linear-gradient(to right, transparent, #66bee3 35%, white 55%, #66bee3 75%, transparent);
+    @apply z-0;
+  }
+
+  .child {
+    @apply relative z-10;
+  }
