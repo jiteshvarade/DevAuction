@@ -12,8 +12,8 @@ function App() {
   return (
     <>
       <Home />
-      {/* //<Dashbord />
-      //<Createauction/> */}
+      {/* {/* //<Dashbord /> */}
+      {/* <Createauction/> */}
     </>
   ) 
   

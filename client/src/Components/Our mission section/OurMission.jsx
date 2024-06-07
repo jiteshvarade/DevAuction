@@ -45,16 +45,16 @@ export default function OurMission() {
           return (
             <Plx
               key={index}
-              className="p-8 border-2 border-gray-500 rounded-3xl"
+              className="rounded-3xl relative overflow-hidden p-[2px] shining bg-white bg-opacity-10"
               parallaxData={index % 2 == 0 ? fromLeft : fromRight}
               style={{ width: "fit-content" }}
             >
-              <div className="mission" key={index}>
+              <div className="mission w-full h-full bg-[#050618] relative rounded-3xl p-8" key={index}>
                 <div className="mb-4">{elem.icon}</div>
                 <div className="heading xl:text-3xl md:text-2xl font-serif font-semibold">
                   {elem.heading}
                 </div>
-                <div className="description w-11/12 md:text-base text-sm">
+                <div className="description w-11/12 md:text-base text-xs text-gray-400 font-thin">
                   {elem.description}
                 </div>
               </div>

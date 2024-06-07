@@ -24,7 +24,7 @@ const Carousel = () => {
 
   const handlePrev = () => {
     setTransitionState(transitionState == 0 ? 2 : transitionState - 1);
-    setFirst(first == items.length - 1 ? 0 : first + 1);
+    setFirst(first == 0 ? items.length - 1 : first - 1);
   };
   return (
     <div className="testimonialSection pt-40 px-4">
@@ -42,20 +42,22 @@ const Carousel = () => {
                 : aboveCardStyles
             }`}
           >
-            <div className={cardHeadingStyles}>
-              {transitionState == 2 ? items[first].title : ""}{" "}
-              <img
-                src={transitionState == 2 ? items[first].img : ""}
-                alt={
-                  transitionState == 2 ? items[first].title : "" + "'s image"
-                }
-                className={
-                  cardImgStyles + ` ${transitionState == 2 ? "" : "opacity-0"}`
-                }
-              />
-            </div>
-            <div className={cardDescriptionStyles}>
-              {transitionState == 2 ? items[first].description : ""}
+            <img
+              src={transitionState == 2 ? items[first].img : ""}
+              alt={transitionState == 2 ? items[first].title : "" + "'s image"}
+              className={
+                cardImgStyles + ` ${transitionState == 2 ? "" : "opacity-0"}`
+              }
+            />
+            <div className="staticShining">
+              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20]">
+                <div className={cardHeadingStyles}>
+                  {transitionState == 2 ? items[first].title : ""}{" "}
+                </div>
+                <div className={cardDescriptionStyles}>
+                  {transitionState == 2 ? items[first].description : ""}
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -67,20 +69,22 @@ const Carousel = () => {
                 : aboveCardStyles
             }`}
           >
-            <div className={cardHeadingStyles}>
-              {transitionState == 0 ? items[first].title : ""}
-              <img
-                src={transitionState == 0 ? items[first].img : ""}
-                alt={
-                  transitionState == 0 ? items[first].title : "" + "'s image"
-                }
-                className={
-                  cardImgStyles + ` ${transitionState == 0 ? "" : "opacity-0"}`
-                }
-              />
-            </div>
-            <div className={cardDescriptionStyles}>
-              {transitionState == 0 ? items[first].description : ""}
+            <img
+              src={transitionState == 0 ? items[first].img : ""}
+              alt={transitionState == 0 ? items[first].title : "" + "'s image"}
+              className={
+                cardImgStyles + ` ${transitionState == 0 ? "" : "opacity-0"}`
+              }
+            />
+            <div className="staticShining">
+              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20]">
+                <div className={cardHeadingStyles}>
+                  {transitionState == 0 ? items[first].title : ""}
+                </div>
+                <div className={cardDescriptionStyles}>
+                  {transitionState == 0 ? items[first].description : ""}
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -92,20 +96,22 @@ const Carousel = () => {
                 : aboveCardStyles
             }`}
           >
-            <div className={cardHeadingStyles}>
-              {transitionState == 1 ? items[first].title : ""}
-              <img
-                src={transitionState == 1 ? items[first].img : ""}
-                alt={
-                  transitionState == 1 ? items[first].title : "" + "'s image"
-                }
-                className={
-                  cardImgStyles + ` ${transitionState == 1 ? "" : "opacity-0"}`
-                }
-              />
-            </div>
-            <div className={cardDescriptionStyles}>
-              {transitionState == 1 ? items[first].description : ""}
+            <img
+              src={transitionState == 1 ? items[first].img : ""}
+              alt={transitionState == 1 ? items[first].title : "" + "'s image"}
+              className={
+                cardImgStyles + ` ${transitionState == 1 ? "" : "opacity-0"}`
+              }
+            />
+            <div className="staticShining">
+              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20]">
+                <div className={cardHeadingStyles}>
+                  {transitionState == 1 ? items[first].title : ""}
+                </div>
+                <div className={cardDescriptionStyles}>
+                  {transitionState == 1 ? items[first].description : ""}
+                </div>
+              </div>
             </div>
           </div>
           <button
