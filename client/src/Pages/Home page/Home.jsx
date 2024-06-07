@@ -7,6 +7,8 @@ import Testimonials from "../../Components/Testimonials/Testimonials";
 import StepsContainer from "../../Components/Auction Steps Container/StepsContainer";
 import { useAuth0 } from "@auth0/auth0-react";
 import HomePageFooter from "../../Components/Home page footer/HomePageFooter";
+import ContactUs from "../../Components/Home page footer/ContactUs";
+import TeamComp from "../../Components/Home page footer/TeamComp";
 
 function Home() {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -30,6 +32,8 @@ function Home() {
       <FeatureSection />
       <OurMission />
       <Testimonials />
+      <ContactUs />
+      <TeamComp />
       <HomePageFooter />
     </div>
   );

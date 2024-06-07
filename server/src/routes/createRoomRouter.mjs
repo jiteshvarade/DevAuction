@@ -4,6 +4,8 @@ import {google} from "googleapis"
 import multer from "multer"
 import path from "path"
 import {client_email, private_key} from "../../constants.mjs"
+import Room from "../models/createRoom.mjs"
+import crypto from "crypto"
 
 const router = Router()
 
@@ -82,10 +84,38 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage})
 
+function generateUniqueHexId() {
+    const randomBytes = crypto.randomBytes(20);
+    const hexString = randomBytes.toString('hex')
+    return hexString.slice(0, 15)
+}
+
 router.post("/", upload.single("file"), async (req,res)=>{
     try{
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
+        const room_id = generateUniqueHexId()
+        const room_secret = generateUniqueHexId()
+
+        const {Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret} = {
+            Owner : req.body.email,
+            Image : req.body.image,
+            Premium: req.body.premium,
+            Time: req.body.date,
+            Title : req.body.title,
+            Description: req.body.description,
+            FileID : fileuploadResponse.data.id,
+            RoomID : room_id,
+            RoomSecret : room_secret
+        }
+
+
+        if (!Owner || !Image || !Premium || !Time || !Title || !Description || !FileID || !RoomID || !RoomSecret) {
+            return res.status(400).json({ message: 'Please fill in all required fields' })
+        }
+
+        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID})
+        await newRoom.save()
 
         await fs.unlink(`./public/temp/${filename}`, (err) => {
             if (err) {

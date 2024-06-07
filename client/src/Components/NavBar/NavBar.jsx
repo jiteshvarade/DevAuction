@@ -47,6 +47,7 @@ function Navbar({ loginWithRedirect }) {
   return (
     <>
       <nav className="flex justify-between items-center w-full px-5 bg-[#050618] fixed z-[1000]">
+        <div className="relative top-0"> X</div>
         <div>
           <img src={logo} alt="" className="w-16" />
         </div>
@@ -104,7 +105,7 @@ function Navbar({ loginWithRedirect }) {
             onClick={() => loginWithRedirect()}
             className={"text-white"}
           />
-          <img className="block md:hidden w-10 mx-4" src={HamMenu} alt="" />
+          {/* <img className="block md:hidden w-10 mx-4" src={HamMenu} alt="" /> */}
         </div>
       </nav>
     </>

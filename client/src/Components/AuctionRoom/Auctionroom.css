@@ -1,6 +1,6 @@
 
 .custom-dropdown .p-dropdown-label.p-placeholder {
-    color: rgba(255, 255, 255, 0.5); /* Faded white color for placeholder */
+    color: rgba(255, 255, 255, 0.5); 
   }
   .custom-dropdown-item {
     color: white;
@@ -9,16 +9,25 @@
   }
   
   .custom-dropdown .p-dropdown-label {
-    color: white; /* White color for dropdown text */
+    color: white; 
   }
   .custom-dropdown .p-dropdown-panel {
-    background-color: white; /* Dropdown panel background color */
+    background-color: white; 
   }
   .no-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none; 
   }
   .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
   }
+
+  .custom-paginator .p-paginator-page {
+    @apply text-blue-500; 
+}
+
+.custom-paginator .p-paginator-page.p-highlight {
+    @apply bg-blue-500 text-white rounded-full;
+}
+
   

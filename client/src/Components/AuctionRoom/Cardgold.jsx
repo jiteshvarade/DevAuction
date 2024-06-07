@@ -6,7 +6,7 @@ import './Auctionroom.css'
 
 const Card = () => {
   return (
-    <div className='border w-[31%]  rounded-xl bg-[#fae7b231] border-[#FAE7B2] text-white p-4 flex flex-col gap-2 justify-center items-center' >
+    <div className='border w-[350px]  rounded-xl bg-[#fae7b231] border-[#FAE7B2] text-white p-4 flex flex-col gap-2 justify-center items-center' >
 
       <div className=' text-left w-full text-[1rem] font-bold' >Wonder Kids Website</div>
       <div className='md:shrink-0'>
