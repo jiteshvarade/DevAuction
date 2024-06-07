@@ -1,65 +1,83 @@
-html{
-    scroll-behaviour: smooth !important ;
+html {
+  scroll-behaviour: smooth !important ;
 }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 .featureSection::after {
-    -webkit-box-shadow: 0px 0px 100px 100px #66BEE3;
-    -moz-box-shadow: 0px 0px 100px 100px #66BEE3;
-    box-shadow: 0px 0px 100px 100px #66BEE3;
+  -webkit-box-shadow: 0px 0px 100px 100px #66bee3;
+  -moz-box-shadow: 0px 0px 100px 100px #66bee3;
+  box-shadow: 0px 0px 100px 100px #66bee3;
 }
 .featureSection::before {
-    z-index: 10;
-    -webkit-box-shadow: 0px 0px 50px 30px white;
-    -moz-box-shadow: 0px 0px 50px 30px white;
-    box-shadow: 0px 0px 50px 30px white;
+  z-index: 10;
+  -webkit-box-shadow: 0px 0px 50px 30px white;
+  -moz-box-shadow: 0px 0px 50px 30px white;
+  box-shadow: 0px 0px 50px 30px white;
 }
 
 @keyframes toRight {
-    to {
-        transform: translate(calc(-100% - 30px));
-    }
-   
+  to {
+    transform: translate(calc(-100% - 30px));
+  }
 }
 #outer-wrapper {
-    -webkit-mask: linear-gradient(90deg, transparent, white 20%, rgb(244, 25, 25) 80%, transparent);
-    mask: linear-gradient(90deg, transparent, white 30%, white 70%, transparent);
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    rgb(244, 25, 25) 80%,
+    transparent
+  );
+  mask: linear-gradient(90deg, transparent, white 30%, white 70%, transparent);
 }
 
 .spinning {
-    animation: spinning 8s linear infinite;
+  animation: spinning 8s linear infinite;
 }
 
 @keyframes spinning {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-  .shining::before {
-    content: '';
-    @apply absolute top-1/2 left-0 w-full h-[500px] origin-top max-w-96 spinning;
-    background: linear-gradient(to right, transparent 10%, #66bee3 25%, white 50%, #66bee3 65%, transparent);
-    @apply z-0;
-  }
+.shining::before {
+  content: "";
+  @apply absolute top-1/2 left-0 w-full h-[500px] origin-top max-w-96 spinning;
+  background: linear-gradient(
+    to right,
+    transparent 10%,
+    #66bee3 25%,
+    white 50%,
+    #66bee3 65%,
+    transparent
+  );
+  @apply z-0;
+}
 
-  .staticShining{
-    @apply rounded-xl overflow-hidden p-[2px] relative w-full h-full bg-white bg-opacity-10;
-  }
+.staticShining {
+  @apply overflow-hidden relative bg-white bg-opacity-10;
+}
 
-  .staticShining::before {
-    content: '';
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-72  w-full h-[500px] origin-top max-w-96;
-    background: linear-gradient(to right, transparent, #66bee3 35%, white 55%, #66bee3 75%, transparent);
-    @apply z-0;
-  }
+.staticShining::before {
+  content: "";
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-60 w-full h-[500px] origin-top max-w-96;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #66bee3 35%,
+    white 55%,
+    #66bee3 75%,
+    transparent
+  );
+  @apply z-0;
+}
 
-  .child {
-    @apply relative z-10;
-  }
+.child {
+  @apply relative z-10;
+}
