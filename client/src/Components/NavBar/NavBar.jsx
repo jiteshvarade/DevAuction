@@ -44,59 +44,29 @@ function Navbar({ loginWithRedirect }) {
     }
   }
 
+  // Array for the nav links
+  const NavLinks = ["Home", "How it Works", "Features", "About Us", "Contact Us"]
+  
   return (
     <>
       <nav className="flex justify-between items-center w-full px-5 bg-[#050618] fixed z-[1000]">
-        <div className="relative top-0"> X</div>
+        {/* <div className="relative top-0"> X</div> */}
         <div>
           <img src={logo} alt="" className="w-16" />
         </div>
         <ul className="hidden gap-7 text-white md:flex font-thin">
-          <li>
+          {NavLinks.map((elem) => (
+            <li>
             <a
-              href="#home"
+              href={"#" + elem.toLocaleLowerCase()}
               className=" hover:text-[#23DD9F] cursor-pointer hover:underline"
               onClick={scrollInToView}
             >
-              Home
+              {elem}
             </a>
           </li>
-          <li>
-            <a
-              href="#steps"
-              className=" hover:text-[#23DD9F] cursor-pointer hover:underline"
-              onClick={scrollInToView}
-            >
-              How it works
-            </a>
-          </li>
-          <li>
-            <a
-              href="#feature"
-              className=" hover:text-[#23DD9F] cursor-pointer hover:underline"
-              onClick={scrollInToView}
-            >
-              Features
-            </a>
-          </li>
-          <li>
-            <a
-              href="#mission"
-              className=" hover:text-[#23DD9F] cursor-pointer hover:underline"
-              onClick={scrollInToView}
-            >
-              About Us
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              className=" hover:text-[#23DD9F] cursor-pointer hover:underline"
-              onClick={scrollInToView}
-            >
-              Contact Us
-            </a>
-          </li>
+          ))}
+          
         </ul>
 
         <div className="flex">
