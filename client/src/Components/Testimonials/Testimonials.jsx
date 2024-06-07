@@ -49,8 +49,8 @@ const Carousel = () => {
                 cardImgStyles + ` ${transitionState == 2 ? "" : "opacity-0"}`
               }
             />
-            <div className="staticShining">
-              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20]">
+            <div className="staticShining max-[640px]:min-h-[290px]">
+              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20] max-[640px]:min-h-[288px]">
                 <div className={cardHeadingStyles}>
                   {transitionState == 2 ? items[first].title : ""}{" "}
                 </div>
@@ -76,8 +76,8 @@ const Carousel = () => {
                 cardImgStyles + ` ${transitionState == 0 ? "" : "opacity-0"}`
               }
             />
-            <div className="staticShining">
-              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20]">
+            <div className="staticShining max-[640px]:min-h-[290px]">
+              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20] max-[640px]:min-h-[288px]">
                 <div className={cardHeadingStyles}>
                   {transitionState == 0 ? items[first].title : ""}
                 </div>
@@ -103,8 +103,8 @@ const Carousel = () => {
                 cardImgStyles + ` ${transitionState == 1 ? "" : "opacity-0"}`
               }
             />
-            <div className="staticShining">
-              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20]">
+            <div className="staticShining max-[640px]:min-h-[290px]">
+              <div className="p-4 pt-10 px-20 w-full h-full child rounded-xl bg-[#0D0E20] max-[640px]:min-h-[288px]">
                 <div className={cardHeadingStyles}>
                   {transitionState == 1 ? items[first].title : ""}
                 </div>
