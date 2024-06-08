@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import HomePageFooter from "../../Components/Home page footer/HomePageFooter";
 import ContactUs from "../../Components/Home page footer/ContactUs";
 import TeamComp from "../../Components/Home page footer/TeamComp";
+import Pricing from "../../Components/Pricing/Pricing";
 
 function Home() {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -32,6 +33,7 @@ function Home() {
       <FeatureSection />
       <OurMission />
       <Testimonials />
+      <Pricing />
       <ContactUs />
       <TeamComp />
       <HomePageFooter />

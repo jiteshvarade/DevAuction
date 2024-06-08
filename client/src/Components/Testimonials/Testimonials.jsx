@@ -50,7 +50,7 @@ const Carousel = () => {
               }
             />
             <div
-              className="p-4 pt-10 px-20 w-full h-full bg-[#0D0E20] overflow-hidden ctaBtn rounded-xl"
+              className="p-4 pt-10 px-20 w-full h-full bg-[#0D0E20] overflow-hidden ctaBtn rounded-xl sm:h-[290px] min-h-[290px]"
               style={{
                 boxShadow: "0 0 29px -1px rgba(0, 0, 0, 0.19)",
                 border: "3px solid rgba(255, 255, 255, 0.2)",
@@ -81,7 +81,7 @@ const Carousel = () => {
               }
             />
             <div
-              className="p-4 pt-10 px-20 w-full h-full bg-[#0D0E20] overflow-hidden ctaBtn rounded-xl"
+              className="p-4 pt-10 px-20 w-full h-full bg-[#0D0E20] overflow-hidden ctaBtn rounded-xl sm:h-[290px] min-h-[290px]"
               style={{
                 boxShadow: "0 0 29px -1px rgba(0, 0, 0, 0.19)",
                 border: "3px solid rgba(255, 255, 255, 0.2)",
@@ -112,7 +112,7 @@ const Carousel = () => {
               }
             />
             <div
-              className="p-4 pt-10 px-20 w-full h-full rounded-xl bg-[#0D0E20] overflow-hidden ctaBtn"
+              className="p-4 pt-10 px-20 w-full h-full rounded-xl bg-[#0D0E20] overflow-hidden ctaBtn sm:h-[290px] min-h-[290px]"
               style={{
                 boxShadow: "0 0 29px -1px rgba(0, 0, 0, 0.19)",
                 border: "3px solid rgba(255, 255, 255, 0.2)",

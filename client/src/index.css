@@ -33,10 +33,6 @@ html {
   mask: linear-gradient(90deg, transparent, white 30%, white 70%, transparent);
 }
 
-.spinning {
-  animation: spinning 8s linear infinite;
-}
-
 @keyframes spinning {
   from {
     transform: rotate(0deg);
@@ -44,6 +40,9 @@ html {
   to {
     transform: rotate(360deg);
   }
+}
+.spinning {
+  animation: spinning 8s linear infinite;
 }
 
 .shining::before {
@@ -58,10 +57,6 @@ html {
     transparent
   );
   @apply z-0;
-}
-
-.staticShining {
-  @apply overflow-hidden relative bg-white bg-opacity-10;
 }
 
 .rdlGrdnt {
@@ -81,11 +76,6 @@ html {
 .ctaBtn::after {
   content: "";
   @apply w-3/5 h-2 absolute left-1/2 -translate-x-1/2 bottom-[-4px] rounded-[100%] rdlGrdnt;
-}
-
-.carouselDots::after{
-  content: "";
-  @apply w-full h-full absolute top-0  bg-red-500;
 }
 
 .child {
