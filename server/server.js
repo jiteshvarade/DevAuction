@@ -43,6 +43,27 @@ const io = new Server(server, {
 // socket.io connections
 io.on("connection",(socket)=>{
     console.log("User connected : ",socket.id)
+
+    socket.on("new:user",data=>{
+        console.log(data)
+        io.to(data.roomID).emit("new:user",{message : "New user joined", id : socket.id})
+    })
+
+    socket.on("room:join",data => {
+        console.log(data)
+        io.to(socket.id).emit("room:join",data)
+    })
+
+    socket.on("room:connect",data=>{
+        console.log(data)
+        socket.join(data.roomID)
+        io.to(data.roomID).emit("room:connect",{message : "room joined successfully"})
+    })
+
+    socket.on("room:video",data => {
+        console.log(data.roomID)
+        io.to(data.roomID).emit("room:video",{message : data.message, sender : socket.id})
+    })
 })
 
 server.listen(PORT, ()=>{
