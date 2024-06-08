@@ -122,7 +122,7 @@ router.post("/", upload.single("file"), async (req,res)=>{
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID})
+        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret})
         await newRoom.save()
 
         await fs.unlink(`./public/temp/${filename}`, (err) => {

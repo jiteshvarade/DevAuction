@@ -36,7 +36,7 @@ const cerateRoomSchema = new mongoose.Schema({
     },
     RoomSecret : {
         type : String,
-        required : false
+        required : true
     }
 },{timestamps : true})
 
