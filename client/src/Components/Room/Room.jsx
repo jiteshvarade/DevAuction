@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useSocket } from "../../context/SocketProvider"
-import peer from "../../service/peer"
-import ReactPlayer from "react-player"
 
 const Room = ()=> {
     const socket = useSocket()
