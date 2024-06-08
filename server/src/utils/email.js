@@ -1,5 +1,7 @@
-import nodemailer from "nodemailer"
-import {EMAIL, APP_PASSWD} from "../../constants.mjs"
+// import nodemailer from "nodemailer"
+// import {EMAIL, APP_PASSWD} from "../../constants.js"
+const nodemailer = require('nodemailer')
+const {EMAIL, APP_PASSWD} = require('../../constants')
 
 const transporter = nodemailer.createTransport({
     service : "gmail",
@@ -34,4 +36,5 @@ async function sendEmail(email, subject, html){
     }
 }
 
-export default sendEmail
+// export default sendEmail
+module.exports = sendEmail

@@ -1,4 +1,5 @@
-import mongoose from "mongoose"
+// import mongoose from "mongoose"
+const mongoose = require("mongoose")
 
 const cerateRoomSchema = new mongoose.Schema({
     Owner : {
@@ -40,4 +41,6 @@ const cerateRoomSchema = new mongoose.Schema({
 },{timestamps : true})
 
 const Room = mongoose.model("Room", cerateRoomSchema) 
-export default Room
+
+// export default Room
+module.exports = Room

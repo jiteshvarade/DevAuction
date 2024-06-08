@@ -1,4 +1,5 @@
-import mongoose from "mongoose"
+// import mongoose from "mongoose"
+const mongoose = require("mongoose")
 
 const contactusSchema = new mongoose.Schema({
     Name : {
@@ -20,4 +21,6 @@ const contactusSchema = new mongoose.Schema({
 },{timestamps : true})
 
 const ContactUs = mongoose.model("ContactUs", contactusSchema) 
-export default ContactUs
+
+// export default ContactUs
+module.exports = ContactUs

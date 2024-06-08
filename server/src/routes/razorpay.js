@@ -1,8 +1,13 @@
-import Router from "express"
-import Razorpay from "razorpay";
-import crypto from "crypto"
-import {RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY, Webhook_Secret} from "../../constants.mjs"
-import Payment from "../models/payment.mjs";
+// import Router from "express"
+// import Razorpay from "razorpay";
+// import crypto from "crypto"
+// import {RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY, Webhook_Secret} from "../../constants.js"
+// import Payment from "../models/payment.js";
+const Router = require('express')
+const Razorpay = require('razorpay')
+const crypto = require('crypto')
+const {RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY, Webhook_Secret} = require('../../constants')
+const Payment = require('../models/payment')
 
 const router = Router()
 
@@ -55,4 +60,5 @@ router.post("/verify",async (req,res)=>{
     }
 })
 
-export default router
+// export default router
+module.exports = router

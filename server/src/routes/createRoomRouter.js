@@ -1,11 +1,19 @@
-import Router from "express"
-import fs from 'fs'
-import {google} from "googleapis"
-import multer from "multer"
-import path from "path"
-import {client_email, private_key} from "../../constants.mjs"
-import Room from "../models/createRoom.mjs"
-import crypto from "crypto"
+// import Router from "express"
+// import fs from 'fs'
+// import {google} from "googleapis"
+// import multer from "multer"
+// import path from "path"
+// import {client_email, private_key} from "../../constants.js"
+// import Room from "../models/createRoom.js"
+// import crypto from "crypto"
+const Router = require('express')
+const fs = require('fs')
+const {google} = require('googleapis')
+const multer = require('multer')
+const path = require('path')
+const {client_email,private_key} = require('../../constants')
+const Room = require('../models/createRoom')
+const crypto = require('crypto')
 
 const router = Router()
 
@@ -177,4 +185,5 @@ router.get("/sendfile",async(req, res) => {
 })
 
 
-export default router
+// export default router
+module.exports = router
