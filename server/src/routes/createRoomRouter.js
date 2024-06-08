@@ -6,7 +6,7 @@
 // import {client_email, private_key} from "../../constants.js"
 // import Room from "../models/createRoom.js"
 // import crypto from "crypto"
-const Router = require('express')
+const express = require('express')
 const fs = require('fs')
 const {google} = require('googleapis')
 const multer = require('multer')
@@ -15,7 +15,7 @@ const {client_email,private_key} = require('../../constants')
 const Room = require('../models/createRoom')
 const crypto = require('crypto')
 
-const router = Router()
+const router = express.Router()
 
 const SCOPE = ['https://www.googleapis.com/auth/drive']
 
