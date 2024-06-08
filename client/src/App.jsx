@@ -19,8 +19,9 @@ function App() {
         {/* <Home /> */}
         {/* //<Dashbord />
         //<Createauction/> */}
-        <Route path="/" element={<RoomLobby></RoomLobby>} />
-        <Route path="/room/:roomID" element={<Room></Room>} />
+        <Route path="/createRoom" element={<Createauction></Createauction>} />
+        {/* <Route path="/" element={<RoomLobby></RoomLobby>} />
+        <Route path="/room/:roomID" element={<Room></Room>} /> */}
       </Routes>
     </>
   ) 
