@@ -1,37 +1,45 @@
 import React, { useState } from 'react'
 import LeftNavbar from './LeftNavbar'
-
 import EarningCards from './EarningCards'
-import hamMenu from '../../../public/Icons/iconsmenu.png'
 import Header from './Header'
 import Cradites from './Cradites'
-import Auction from './Auction'
 import Auctionrooms from '../AuctionRoom/Auctionrooms'
 import Highestbidder from '../AuctionRoom/Highestbidder'
+import Createauction from '../AuctionRoom/Createauction'
 
 function Dashbord() {
     const [isnav, setisnav] = useState(false)
+    const [show, setshow] = useState(true);
+
     return (
-        <>
+        <div className=' '>
+
             <div id="main" className='flex h-screen'>
+                
+                {
+                    show &&
+                    <div className='absolute w-full flex justify-center  ' >
+                        <Createauction show={show} setshow={setshow}/>
+                    </div>
+                }
                 {/* navbar */}
                 <LeftNavbar isnav={isnav} setisnav={setisnav} />
 
-                <div className='w-[100%] overflow-y-scroll md:basis-[80%] border-l-2 border-[#4b4c59] bg-[#050618]  mg:px-10 pb-10 text-white'>
+                <div className={'w-[100%] overflow-y-scroll md:basis-[80%] border-l-2 border-[#4b4c59] bg-[#050618]  mg:px-10 pb-10 text-white'}>
                     <Header isnav={isnav} setisnav={setisnav} />
-                        
+
                     {/* earnings cards */}
                     <EarningCards />
-                        
-                        {/* <Auction /> */}
-                        <Auctionrooms />
-                        <Highestbidder />
+
+                    {/* <Auction /> */}
+                    <Auctionrooms show={show} setshow={setshow} />
+                    <Highestbidder />
 
                     <Cradites />
                 </div>
             </div>
 
-        </>
+        </div>
     )
 }
 

@@ -3,6 +3,7 @@ import logo from '../../assets/AuctionroomImages/WonderKids Landing Page Explora
 import eye from '../../assets/AuctionroomImages/mdi_eye.png'
 import time from '../../assets/AuctionroomImages/ion_time.png'
 import './Auctionroom.css'
+import GradientBtn from '../Buttons/GradientBtn'
 
 const Card = () => {
   const [live,setlive] = useState(true) ;
@@ -32,7 +33,7 @@ const Card = () => {
         </div>
       </div>
       <div className='w-full hover:scale-[0.95] transition ease-in-out' >
-        <button className='text-white bg-gradient-to-b from-[#0ca2e7b0] px-8 py-3 text-[18px] font-semibold rounded-lg w-full' >Enter</button>
+        <button className='text-[#11111] bg-gradient-to-b from-[#18203E] to-[#172748]rounded-full px-8 py-3 text-[18px] font-semibold rounded-full border w-full' >Enter</button>
       </div>
 
     </div>
