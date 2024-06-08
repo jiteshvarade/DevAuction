@@ -87,7 +87,7 @@ function ContactUs() {
                   className="outline-none bg-[#060e21]  border-[0.5px] border-[#2D2E3D] w-full rounded-xl px-2 py-1 h-10"
                   type="text"
                   name="Name"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="firstName"
                   style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
                 />
@@ -98,7 +98,7 @@ function ContactUs() {
                   className="outline-none bg-[#060e21] border-[0.5px] border-[#2D2E3D] w-full rounded-xl px-2 py-1 h-10"
                   type="text"
                   name="Name"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="lastName"
                   style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
                 />
@@ -112,7 +112,7 @@ function ContactUs() {
                   type="tel"
                   className="outline-none w-full bg-[#060e21] border-[0.5px] border-[#2D2E3D] rounded-xl px-2 py-1 h-10"
                   name="phone"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="phone"
                   style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
                 />
@@ -123,7 +123,7 @@ function ContactUs() {
                   className="outline-none bg-[#060e21] border-[0.5px] border-[#2D2E3D] w-full rounded-xl px-2 py-1 h-10"
                   type="email"
                   name="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="email"
                   style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
                 />

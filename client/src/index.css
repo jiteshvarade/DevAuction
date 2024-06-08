@@ -77,7 +77,3 @@ html {
   content: "";
   @apply w-3/5 h-2 absolute left-1/2 -translate-x-1/2 bottom-[-4px] rounded-[100%] rdlGrdnt;
 }
-
-.child {
-  @apply relative z-10;
-}

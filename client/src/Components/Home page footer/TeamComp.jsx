@@ -45,8 +45,8 @@ function TeamComp() {
           id="inner-weapper"
           className="flex gap-3 animate-[toRight_20s_linear_infinite]"
         >
-          {data.map(({ url, name }) => (
-            <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn">
+          {data.map(({ url, name }, index) => (
+            <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn" key={"members" + index}>
               <div className="img w-[150px] h-[150px]">
                 <img
                   src={url}
@@ -59,8 +59,8 @@ function TeamComp() {
               </div>
             </div>
           ))}
-          {data.map(({ url, name }) => (
-            <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn">
+          {data.map(({ url, name }, index) => (
+            <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn" key={"members" + index}>
               <div className="img w-[150px] h-[150px]">
                 <img
                   src={url}
