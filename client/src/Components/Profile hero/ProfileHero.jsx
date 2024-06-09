@@ -6,7 +6,7 @@ import { IoMenu } from "react-icons/io5";
 import SkillsContainer from "./SkillsContainer";
 import { RiNotificationLine } from "react-icons/ri";
 
-export default function ProfileHero({ showMenu, setShowMenu }) {
+export default function ProfileHero({showFollow ,setShowFollow , showFollowing , setShowFollowing , showMenu, setShowMenu }) {
   const skills = [
     "prototyping",
     "lifestyle",
@@ -56,11 +56,19 @@ export default function ProfileHero({ showMenu, setShowMenu }) {
               </div>
               <div className="followers flex gap-1 items-end flex-wrap justify-center">
                 <div className="count sm:text-2xl font-bold text-sm">360</div>
-                <div className="heading sm:text-lg text-xs">Followers</div>
+                <div 
+                onClick={()=>{
+                  setShowFollow(!showFollow)
+                }}
+                className="heading sm:text-lg text-xs">Followers</div>
               </div>
               <div className="following flex gap-1 items-end flex-wrap justify-center">
                 <div className="count sm:text-2xl font-bold text-sm">960</div>
-                <div className="heading sm:text-lg text-xs">Following</div>
+                <div
+                onClick={()=>{
+                  setShowFollowing(!showFollowing)
+                }}
+                className="heading sm:text-lg text-xs">Following</div>
               </div>
             </div>
             <div className="description text-xs sm:text-base">

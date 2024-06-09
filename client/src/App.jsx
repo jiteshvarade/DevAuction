@@ -17,15 +17,15 @@ function App() {
       {/* <Dashbord /> */}
       {/* <Createauction/> */}
       <HomePage />
-      <Routes>
+      {/* <Routes> */}
         {/* <Route path="/" element={<Home />} /> */}
         {/* <Home /> */}
         {/* //<Dashbord />
         //<Createauction/> */}
-        <Route path="/createRoom" element={<Createauction></Createauction>} />
+        {/* <Route path="/createRoom" element={<Createauction></Createauction>} /> */}
         {/* <Route path="/" element={<RoomLobby></RoomLobby>} />
         <Route path="/room/:roomID" element={<Room></Room>} /> */}
-      </Routes>
+      {/* </Routes> */}
     </>
   ) 
   
