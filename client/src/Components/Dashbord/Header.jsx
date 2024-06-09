@@ -15,7 +15,7 @@ function Header({ Username = "Jhon", UserImg = "https://images.unsplash.com/phot
 
                 <div className='flex w-[100%] md:w-fit justify-end gap-4'>
                     <div className='w-10 md:hidden mr-auto' onClick={() => setisnav(!isnav)} src={hamMenu}> 
-                    <span class="material-symbols-outlined ">
+                    <span className="material-symbols-outlined ">
                         menu
                     </span></div>
 

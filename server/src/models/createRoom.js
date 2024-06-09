@@ -1,4 +1,5 @@
-import mongoose from "mongoose"
+// import mongoose from "mongoose"
+const mongoose = require("mongoose")
 
 const cerateRoomSchema = new mongoose.Schema({
     Owner : {
@@ -25,6 +26,10 @@ const cerateRoomSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    Topic : {
+        type : [String],
+        required : false
+    },
     FileID : {
         type : String,
         required : true,
@@ -36,8 +41,18 @@ const cerateRoomSchema = new mongoose.Schema({
     RoomSecret : {
         type : String,
         required : true
+    },
+    Bids : {
+        type : [{
+            email: String,
+            amount: Number,
+            accepted: Boolean,
+        }],
+        required : false
     }
 },{timestamps : true})
 
 const Room = mongoose.model("Room", cerateRoomSchema) 
-export default Room
+
+// export default Room
+module.exports = Room

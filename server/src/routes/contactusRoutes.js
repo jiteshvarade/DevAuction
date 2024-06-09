@@ -1,7 +1,11 @@
-import { Router } from "express"
-import ContactUs from "../models/contactus.mjs"
-import sendEmail from "../utils/email.mjs"
-const router = Router()
+// import { Router } from "express"
+// import ContactUs from "../models/contactus.js"
+// import sendEmail from "../utils/email.js"
+const express = require("express")
+const ContactUs = require("../models/contactus")
+const sendEmail = require('../utils/email')
+
+const router = express.Router()
 
 router.post("/",async (req,res)=>{
     const { Name, Email , PhoneNo, Message} = req.body
@@ -45,4 +49,5 @@ router.post("/",async (req,res)=>{
   
 })
 
-export default router
+// export default router
+module.exports = router
