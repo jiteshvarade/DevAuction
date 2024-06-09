@@ -1,15 +1,3 @@
-// import express from "express"
-// import cors from "cors"
-// import { createServer } from "http"
-// import { Server } from "socket.io"
-
-// import ConnectDB from "./src/db/connection.js"
-// import {PORT} from "./constants.js"
-// import contactRouter from "./src/routes/contactusRoutes.js"
-// import auth from "./src/middlewares/auth.js"
-// import razorpayRouter from "./src/routes/razorpay.js"
-// import createRoomRouter from "./src/routes/createRoomRouter.js"
-
 const express = require('express')
 const cors = require('cors')
 const {createServer} = require('http')
@@ -20,7 +8,7 @@ const {PORT} = require('./constants')
 const contactRouter = require('./src/routes/contactusRoutes')
 const auth = require('./src/middlewares/auth')
 const razorpayRouter = require('./src/routes/razorpay')
-const createRoomRouter = require('./src/routes/createRoomRouter')
+const createRoomRouter = require('./src/routes/createRouter')
 const insideRoomRouter = require('./src/routes/insideRoomRouter')
 const projectRouter = require('./src/routes/projectsRouter')
 const profileRouter = require("./src/routes/profileRouter")
@@ -82,7 +70,7 @@ app.get("/",(req, res)=>{
 app.use("/auth",auth)
 app.use("/contactus", contactRouter)
 app.use("/payments",razorpayRouter)
-app.use("/uploads",createRoomRouter)
+app.use("/create",createRoomRouter)
 app.use("/rooms",insideRoomRouter)
 app.use("/project",projectRouter)
 app.use("/profile",profileRouter)

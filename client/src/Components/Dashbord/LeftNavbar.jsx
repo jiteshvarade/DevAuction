@@ -2,10 +2,10 @@ import React from 'react'
 import logo from '../../../public/Icons/Logo.png'
 import menuIcon from '../../../public/Icons/iconsmenu.png'
 import LogoutButton from '../Gradient Btn/LogoutButton'
-function LeftNavbar({ isnav, setisnav }) {
+function LeftNavbar({show, isnav, setisnav }) {
   return (
     <>
-      <nav className={(isnav ? 'flex bg-[#050618] z-10 text-white h-[100vh]   pt-4 flex-col justify-between  items-center absolute top-0 left-0' : 'hidden md:flex basis-[20%] bg-[#050618] text-white h-[100vh]   pt-4 flex-col justify-between  items-center')}>
+      <nav className={(isnav ? 'flex bg-[#050618] z-10 text-white h-[100vh]   pt-4 flex-col justify-between  items-center absolute top-0 left-0' : 'hidden md:flex basis-[20%] bg-[#050618] text-white h-[100vh]   pt-4 flex-col justify-between  items-center') + `${show ? " blur-xl " : ""}`}>
         <div className='w-[80%] mx-auto h-[40vh] '>
           
 

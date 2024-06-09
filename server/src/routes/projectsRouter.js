@@ -2,19 +2,15 @@ const express = require('express')
 const router = express.Router()
 const Project = require('../models/project')
 
-router.post('/', async (req,res)=>{
-    // logic to add create project data
-})
-
 router.post('/getProject', async (req,res)=>{
-    // Loagic to get data of specific project 
+    // Logic to get data of specific project 
 })
 
 router.post('/offers', async (req, res) => {
     const { projectID, email, amount } = req.body
   
     try {
-        const project = await Project.findById(projectID);
+        const project = await Project.findOne({ ProjectID: projectID })
     
         if (!project) {
             // Logic to give user his credits back
@@ -27,7 +23,9 @@ router.post('/offers', async (req, res) => {
             results: 0 
         }
 
-        // if Bids field is not present create one and push new bid in it
+        if (!project.Offers) {
+            project.Offers = [] //logic to add offers array if not present
+        }
     
         project.Offers.push(newOffer)
         await project.save()
