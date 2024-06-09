@@ -1,8 +1,8 @@
 import "./App.css"
 import Dashbord from "./Components/Dashbord/Dashbord"
-import Home from "./Pages/Home page/Home"
 import Createauction from "./Components/AuctionRoom/Createauction"
 import { useSocket } from "./context/SocketProvider"
+import HomePage from "./Pages/Home page/HomePage"
 
 function App() {
 
@@ -11,9 +11,10 @@ function App() {
 
   return (
     <>
-      <Home />
-      {/* {/* //<Dashbord /> */}
+      {/* <Dashbord /> */}
       {/* <Createauction/> */}
+      <HomePage />
+
     </>
   ) 
   
