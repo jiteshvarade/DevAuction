@@ -23,6 +23,7 @@ const razorpayRouter = require('./src/routes/razorpay')
 const createRoomRouter = require('./src/routes/createRoomRouter')
 const insideRoomRouter = require('./src/routes/insideRoomRouter')
 const projectRouter = require('./src/routes/projectsRouter')
+const profileRouter = require("./src/routes/profileRouter")
 
 //mongodb connection
 ConnectDB()
@@ -84,3 +85,4 @@ app.use("/payments",razorpayRouter)
 app.use("/uploads",createRoomRouter)
 app.use("/rooms",insideRoomRouter)
 app.use("/project",projectRouter)
+app.use("/profile",profileRouter)

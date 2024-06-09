@@ -6,6 +6,10 @@ router.post('/', async (req,res)=>{
     // logic to add create project data
 })
 
+router.post('/getProject', async (req,res)=>{
+    // Loagic to get data of specific project 
+})
+
 router.post('/offers', async (req, res) => {
     const { projectID, email, amount } = req.body
   
@@ -22,6 +26,8 @@ router.post('/offers', async (req, res) => {
             amount,
             results: 0 
         }
+
+        // if Bids field is not present create one and push new bid in it
     
         project.Offers.push(newOffer)
         await project.save()

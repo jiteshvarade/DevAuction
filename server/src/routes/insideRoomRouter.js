@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const Room = require('../models/createRoom')
 
+router.post('/getRoom', async (req,res)=>{
+    // Loagic to get data of specific room 
+})
+
 router.post('/bids', async (req, res) => {
     const { roomId, email, amount } = req.body
   
@@ -18,6 +22,8 @@ router.post('/bids', async (req, res) => {
             amount,
             accepted: false 
         }
+
+        // if Bids field is not present create one and push new bid in it
     
         room.Bids.push(newBid)
         await room.save()
