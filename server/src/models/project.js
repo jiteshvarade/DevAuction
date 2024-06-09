@@ -33,6 +33,10 @@ const createProjectSchema = new mongoose.Schema({
         type : String,
         required : false,
     },
+    ProjectID : {
+        type : String,
+        required : true
+    },
     OfferPrice : {
         type : String,
         required : true,

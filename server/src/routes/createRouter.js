@@ -1,11 +1,3 @@
-// import Router from "express"
-// import fs from 'fs'
-// import {google} from "googleapis"
-// import multer from "multer"
-// import path from "path"
-// import {client_email, private_key} from "../../constants.js"
-// import Room from "../models/createRoom.js"
-// import crypto from "crypto"
 const express = require('express')
 const fs = require('fs')
 const {google} = require('googleapis')
@@ -14,6 +6,7 @@ const path = require('path')
 const {client_email,private_key} = require('../../constants')
 const Room = require('../models/createRoom')
 const crypto = require('crypto')
+const Project = require('../models/project')
 
 const router = express.Router()
 
@@ -98,7 +91,55 @@ function generateUniqueHexId() {
     return hexString.slice(0, 15)
 }
 
-router.post("/", upload.single("file"), async (req,res)=>{
+router.post('/project', async (req,res)=>{
+    try{
+        filename = req.file.filename
+        const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
+        const project_id = generateUniqueHexId()
+
+        const {Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID,OfferPrice} = {
+            Owner : req.body.email,
+            Image : req.body.image,
+            Premium: req.body.premium,
+            Title : req.body.title,
+            Description: req.body.description,
+            Topic : req.body.topic,
+            FileID : fileuploadResponse.data.id,
+            Link : req.body.link,
+            OfferPrice : req.body.offerPrice,
+            ProjectID : project_id
+        }
+
+
+        if (!Owner || !Image || !Premium || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
+            return res.status(400).json({ message: 'Please fill in all required fields' })
+        }
+
+        const newProject = new Project({Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID, OfferPrice})
+        await newProject.save()
+
+        await fs.unlink(`./public/temp/${filename}`, (err) => {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log('File deleted successfully!');
+            }
+        })
+
+        // Store ProjectId in users data
+
+        // if premimum 
+                // substract credits from user
+                // add spendings data
+
+        res.send({ message : "Project created successfully"})
+    }catch(error)
+    {
+        console.log(error)
+    }
+})
+
+router.post("/room", upload.single("file"), async (req,res)=>{
     try{
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
@@ -127,13 +168,19 @@ router.post("/", upload.single("file"), async (req,res)=>{
 
         await fs.unlink(`./public/temp/${filename}`, (err) => {
             if (err) {
-                console.error(err);
+                console.error(err)
             } else {
-                console.log('File deleted successfully!');
+                console.log('File deleted successfully!')
             }
-        });
+        })
 
-        res.send({roomSecretID : fileuploadResponse.data.id , message : "fileuploaded successfully"})
+        // Store RoomId in users data
+
+        // if premimum 
+                // substract credits from user
+                // add spendings data
+
+        res.send({ message : "Room created successfully"})
     }catch(error)
     {
         console.log(error)
@@ -184,6 +231,4 @@ router.get("/sendfile",async(req, res) => {
     }
 })
 
-
-// export default router
 module.exports = router
