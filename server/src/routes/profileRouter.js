@@ -8,7 +8,6 @@ router.post('/', async (req, res) => {
 
     try{    
         const user = await User.findOne({"UserInfo.email" : email})
-        console.log(user)
 
         if(!user)
         {
