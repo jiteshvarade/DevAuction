@@ -30,8 +30,8 @@ export default function HomePage() {
         </div>
       </div>
       <div className="right overflow-auto w-full">
-        {/* <Profile showMenu={showMenu} setShowMenu={setShowMenu} /> */}
-        <Chat showMenu={showMenu} setShowMenu={setShowMenu}  />
+        <Profile showMenu={showMenu} setShowMenu={setShowMenu} />
+        {/* <Chat showMenu={showMenu} setShowMenu={setShowMenu}  /> */}
       </div>
     </div>
   );
