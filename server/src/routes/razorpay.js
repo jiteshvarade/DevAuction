@@ -33,7 +33,8 @@ router.post("/",async (req,res)=>{
 
 router.post("/verify",async (req,res)=>{
     const secret = Webhook_Secret
-    console.log(req.body)
+    const email = req.body.payload.payment.entity.email
+    const amount = req.body.payload.payment.entity.amount
 
     const shasum = crypto.createHmac("sha256", secret)
     shasum.update(JSON.stringify(req.body))
@@ -44,13 +45,10 @@ router.post("/verify",async (req,res)=>{
     if(digest === req.headers["x-razorpay-signature"])
     {
         console.log("Successfull payment")
-        try{
-            const newPayment = new Payment(req.body)
-            await newPayment.save()
-        }catch(error){
-            console.log("Payment ID saved successfully")
-        }
-        // logic to update in database
+        
+        const newPayment = new Payment({PaymentInfo : {email : email, amount : amount, type : "debit"}})
+        await newPayment.save()
+
         res.json({status : "ok"})
     }
     else
