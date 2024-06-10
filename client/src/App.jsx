@@ -3,17 +3,21 @@ import Dashbord from "./Components/Dashbord/Dashbord"
 import Home from "./Pages/Home page/Home"
 import Createauction from "./Components/AuctionRoom/Createauction"
 import { useSocket } from "./context/SocketProvider"
+import CreateProPopUp from "./Components/ProjectAndEProfile/CreateProPopUp"
+import ProfileEdit from "./Components/ProjectAndEProfile/ProfileEdit"
 
 function App() {
 
   const socket = useSocket()
-  console.log(socket)
+  // console.log(socket)
 
   return (
     <>
-      <Home />
+      {/* <Home /> */}
       {/* {/* //<Dashbord /> */}
       {/* <Createauction/> */}
+      <CreateProPopUp />
+      {/* <ProfileEdit /> */}
     </>
   ) 
   
