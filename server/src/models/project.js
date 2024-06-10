@@ -1,7 +1,6 @@
-// import mongoose from "mongoose"
 const mongoose = require("mongoose")
 
-const cerateRoomSchema = new mongoose.Schema({
+const createProjectSchema = new mongoose.Schema({
     Owner : {
         type : String,
         required : true
@@ -12,11 +11,7 @@ const cerateRoomSchema = new mongoose.Schema({
     },
     Premium : {
         type : Boolean,
-        required : true
-    },
-    Time : {
-        type : String,
-        required : true
+        required : false
     },
     Title : {
         type : String,
@@ -34,19 +29,23 @@ const cerateRoomSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    RoomID : {
+    Link : {
+        type : String,
+        required : false,
+    },
+    ProjectID : {
         type : String,
         required : true
     },
-    RoomSecret : {
+    OfferPrice : {
         type : String,
-        required : true
+        required : true,
     },
-    Bids : {
+    Offers : {
         type : [{
             email: String,
             amount: Number,
-            accepted: Boolean,
+            results: Number,
         }],
         required : false
     },
@@ -59,7 +58,6 @@ const cerateRoomSchema = new mongoose.Schema({
     }
 },{timestamps : true})
 
-const Room = mongoose.model("Room", cerateRoomSchema) 
+const Project = mongoose.model("Project", createProjectSchema) 
 
-// export default Room
-module.exports = Room
+module.exports = Project

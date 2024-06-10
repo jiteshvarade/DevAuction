@@ -1,12 +1,4 @@
-// import Router from "express"
-// import fs from 'fs'
-// import {google} from "googleapis"
-// import multer from "multer"
-// import path from "path"
-// import {client_email, private_key} from "../../constants.js"
-// import Room from "../models/createRoom.js"
-// import crypto from "crypto"
-const Router = require('express')
+const express = require('express')
 const fs = require('fs')
 const {google} = require('googleapis')
 const multer = require('multer')
@@ -14,8 +6,10 @@ const path = require('path')
 const {client_email,private_key} = require('../../constants')
 const Room = require('../models/createRoom')
 const crypto = require('crypto')
+const Project = require('../models/project')
+const User = require("../models/user")
 
-const router = Router()
+const router = express.Router()
 
 const SCOPE = ['https://www.googleapis.com/auth/drive']
 
@@ -98,7 +92,76 @@ function generateUniqueHexId() {
     return hexString.slice(0, 15)
 }
 
-router.post("/", upload.single("file"), async (req,res)=>{
+router.post('/project', async (req,res)=>{
+    try{
+        filename = req.file.filename
+        const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
+        const project_id = generateUniqueHexId()
+
+        const {Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID,OfferPrice} = {
+            Owner : req.body.email,
+            Image : req.body.image,
+            Premium: req.body.premium,
+            Title : req.body.title,
+            Description: req.body.description,
+            Topic : req.body.topic,
+            FileID : fileuploadResponse.data.id,
+            Link : req.body.link,
+            OfferPrice : req.body.offerPrice,
+            ProjectID : project_id
+        }
+
+
+        if (!Owner || !Image || !Premium || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
+            return res.status(400).json({ message: 'Please fill in all required fields' })
+        }
+
+        const newProject = new Project({Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
+        await newProject.save()
+
+        await fs.unlink(`./public/temp/${filename}`, (err) => {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log('File deleted successfully!');
+            }
+        })
+
+        let user
+        if(req.body.premium){
+
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $inc : {"Profile.Credits" : -req.body.offerPrice},
+                $push : {
+                    "Profile.Projects" : project_id, 
+                    "Profile.Spendings" : {Category : "Project creation fee", Amount : req.body.offerPrice}
+                }
+            })
+
+        }else{
+
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $push : {
+                    "Profile.Projects" : project_id,
+                }
+            })
+        }
+
+        if(!user)
+        {
+            res.status(500).json({message : "User Not found"})
+        }
+
+        await user.save()
+
+        res.send({ message : "Project created successfully"})
+    }catch(error)
+    {
+        console.log(error)
+    }
+})
+
+router.post("/room", upload.single("file"), async (req,res)=>{
     try{
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
@@ -122,18 +185,45 @@ router.post("/", upload.single("file"), async (req,res)=>{
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID})
+        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret, Bids : [], Sold : {}})
         await newRoom.save()
 
         await fs.unlink(`./public/temp/${filename}`, (err) => {
             if (err) {
-                console.error(err);
+                console.error(err)
             } else {
-                console.log('File deleted successfully!');
+                console.log('File deleted successfully!')
             }
-        });
+        })
 
-        res.send({roomSecretID : fileuploadResponse.data.id , message : "fileuploaded successfully"})
+        let user
+        if(req.body.premium){
+
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $inc : {"Profile.Credits" : -req.body.creationFee},
+                $push : {
+                    "Profile.RoomsCreated" : room_id, 
+                    "Profile.Spendings" : {Category : "Room creation fee", Amount : req.body.creationFee}
+                }
+            })
+
+        }else{
+
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $push : {
+                    "Profile.RoomsCreated" : room_id,
+                }
+            })
+        }
+
+        if(!user)
+        {
+            res.status(500).json({message : "User Not found"})
+        }
+
+        await user.save()
+
+        res.send({ message : "Room created successfully"})
     }catch(error)
     {
         console.log(error)
@@ -184,6 +274,4 @@ router.get("/sendfile",async(req, res) => {
     }
 })
 
-
-// export default router
 module.exports = router

@@ -1,11 +1,11 @@
 // import { Router } from "express"
 // import ContactUs from "../models/contactus.js"
 // import sendEmail from "../utils/email.js"
-const Router = require('express')
+const express = require("express")
 const ContactUs = require("../models/contactus")
 const sendEmail = require('../utils/email')
 
-const router = Router()
+const router = express.Router()
 
 router.post("/",async (req,res)=>{
     const { Name, Email , PhoneNo, Message} = req.body

@@ -4,9 +4,9 @@ import eye from '../../assets/AuctionroomImages/mdi_eye.png'
 
 const ShortCard = () => {
   return (
-    <div className='border mt-4 mb-4 bg-[#0ca2e739] rounded-2xl w-[300px] h-[300px] inline-block md:w-[350px] md:h-[300px]' >
+    <div className='border mt-4 mb-4 bg-[#0ca2e739] rounded-2xl w-[250px] h-[300px] inline-block lg:w-[350px] lg:h-[300px]' >
       <div className='w-[100%] h-[100%] p-3 flex flex-col gap-2'>
-        <div className='border bg-[#a4f518] rounded-2xl md:w-[325px] md:h-[200px]' >
+        <div className='border bg-[#a4f518] rounded-2xl lg:w-[325px] lg:h-[200px]' >
           <img className='h-[100%] w-[100%] rounded-2xl object-cover ' src={Gif} alt="" />
         </div>
         <div className='flex justify-between '>
