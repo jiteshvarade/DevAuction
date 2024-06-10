@@ -54,10 +54,10 @@ router.post("/verify",async (req,res)=>{
             $push : {"Profile.Transactions" : {
                 email : email,
                 amount : amount,
-                type : "debit"
+                category : "debit"
             }}
         })
-        
+
         await user.save()
 
         res.json({status : "ok"})

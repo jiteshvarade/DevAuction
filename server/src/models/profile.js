@@ -56,7 +56,7 @@ const profileSchema = new mongoose.Schema({
         type : [{
             email : String, 
             amount : Number, 
-            type : String
+            category : String
         }],
         required : false
     },
