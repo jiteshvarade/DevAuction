@@ -50,7 +50,7 @@ router.post("/verify",async (req,res)=>{
         const newPayment = new Payment({PaymentInfo : {email : email, amount : amount, type : "debit"}})
         await newPayment.save()
 
-        const user = new User.findOneAndUpdate({"UserInfo.email" : email},{
+        const user = User.findOneAndUpdate({"UserInfo.email" : email},{
             $push : {"Profile.Transactions" : {
                 email : email,
                 amount : amount,
