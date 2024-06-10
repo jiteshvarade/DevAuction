@@ -14,25 +14,14 @@ function App() {
 
   return (
     <>
-      <Dashbord />
-      {/* <LandingPage/> */}
+      {/* <Dashbord /> */}
+      
       {/* <Createauction/> */}
       {/* <HomePage /> */}
-      {/* <Routes> */}
-      {/* <Route path="/" element={<HomePage/>} /> */}
-      {/* <Home /> */}
-      {/* //<Dashbord />
-        //<Createauction/> */}
-      {/* <Route path="/createRoom" element={<Createauction></Createauction>} /> */}
-      {/* <Route path="/" element={<RoomLobby></RoomLobby>} />
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Home /> */}
-        {/* //<Dashbord />
-        //<Createauction/> */}
-        {/* <Route path="/createRoom" element={<Createauction></Createauction>} /> */}
-        {/* <Route path="/" element={<RoomLobby></RoomLobby>} />
-        <Route path="/room/:roomID" element={<Room></Room>} /> */}
-      {/* </Routes> */}
+      <Routes>
+        <Route path="/" element={<LandingPage/>} />
+        <Route path="/dashboard" element={<Dashbord/>} />
+      </Routes>
     </>
   );
 }

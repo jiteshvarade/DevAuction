@@ -103,7 +103,7 @@ function Cradites({ trans , credits = 0  }) {
             <section className='p-3' id="cradites">
                 <div className=' mx-auto lg:w-[100%] border-[#223534] bg-[#050b1e] border-2 flex items-center justify-between rounded-xl'>
                     <div style={{ backgroundImage: 'url("../../../public/Icons/craditeBG.png")' }} className=' rounded-xl w-[100%] bg-cover bg-center'>
-                        <h4 className='text-2xl font-semibold ml-5 my-3'>My C</h4>
+                        <h4 className='text-2xl font-semibold ml-5 my-3'>My Credits</h4>
                         <div className='flex gap-2 flex-wrap'>
 
                             <div className='bg-[#0567FC] ml-5 flex rounded-xl text-lg bg-opacity-30 px-3 py-2'>

@@ -10,8 +10,11 @@ import HomePageFooter from "../../Components/Home page footer/HomePageFooter";
 import ContactUs from "../../Components/Home page footer/ContactUs";
 import TeamComp from "../../Components/Home page footer/TeamComp";
 import Pricing from "../../Components/Pricing/Pricing";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+  const navigate = useNavigate() ;
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   console.log(isAuthenticated);
   if (isAuthenticated) {
@@ -24,6 +27,8 @@ function Home() {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
+
+    navigate("/dashboard")
   }
   return (
     <div className="HomePage bg-[#050618] text-white">
