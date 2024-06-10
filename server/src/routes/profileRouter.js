@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
             res.status(500).send("User not found!")
         }
 
-        res.send(user)
+        res.send({userData : user})
 
     } catch(error) {
         console.error(err)
