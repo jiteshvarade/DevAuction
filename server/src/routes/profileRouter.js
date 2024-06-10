@@ -4,7 +4,7 @@ const User = require("../models/user")
 
 router.post('/', async (req, res) => {
     // logic to get data of someones profile
-    const email = req.body
+    const email = req.body.email
 
     try{    
         const user = await User.findOne({"UserInfo.email" : email})
