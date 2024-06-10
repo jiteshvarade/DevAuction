@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 
     } catch(error) {
         console.error(error)
-    res.status(500).send("Internal Server Error")
+        res.status(500).send("Internal Server Error")
     }
 })
 
@@ -35,7 +35,24 @@ router.post('/placedOffers', async (req, res) => {
 })
 
 router.post('/followers', async (req, res) => {
-    // logic to store followers data
+    const array = req.body.followers
+    let data
+
+    try{
+        array.forEach(async function(follower) {
+            const user = await User.findOne({"UserInfo.email" : email})
+            const segregatedData = {
+                name : user.UserInfo.name,
+                image : user.UserInfo.picture
+            }
+            data.push(segregatedData)
+        })
+
+        res.send({data : data})
+    }catch(error){
+        console.error(error)
+        res.status(500).send("Internal Server Error")
+    }
 })
 
 router.post('/spending', async (req, res) => {
