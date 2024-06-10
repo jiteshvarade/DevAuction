@@ -1,9 +1,26 @@
 const express = require('express')
 const router = express.Router()
-const Profile = require('../models/profile')
+const User = require("../models/user")
 
 router.post('/', async (req, res) => {
     // logic to get data of someones profile
+    const email = req.body.email
+
+    try{    
+        const user = await User.findOne({"UserInfo.email" : email})
+        console.log(user)
+
+        if(!user)
+        {
+            res.status(500).send("User not found!")
+        }
+
+        res.send({userData : user})
+
+    } catch(error) {
+        console.error(err)
+    res.status(500).send("Internal Server Error")
+    }
 })
 
 router.post('/createdRooms', async (req, res) => {

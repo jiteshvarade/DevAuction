@@ -49,11 +49,9 @@ const profileSchema = new mongoose.Schema({
     },
     Credits : {
         type : Number,
-        requried : false,
+        required : false,
         default : 0
     }
 },{timestamps : true})
 
-const Profile = mongoose.model("Profile", profileSchema) 
-
-module.exports = Profile
+module.exports = profileSchema
