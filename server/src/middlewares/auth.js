@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
       console.log("Email already exists in the database.")
       return res.status(409).json({ message: "Email already exists" })
     } else {
-      const newUser = new User({UserInfo : data})
+      const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0}})
       await newUser.save()
       console.log("User created successfully!")
       res.status(201).json({ message: "User created successfully!", data: newUser })

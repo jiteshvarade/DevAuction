@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const Profile = require('../models/profile')
 
 router.post('/', async (req, res) => {
     // logic to get data of someones profile

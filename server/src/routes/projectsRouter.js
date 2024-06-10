@@ -45,7 +45,7 @@ router.post('/offers', async (req, res) => {
     }
 })
 
-router("/earnings", async (req,res)=>{
+router.post("/earnings", async (req,res)=>{
     const {email, category, amount} = req.body
 
     try {
@@ -66,7 +66,7 @@ router("/earnings", async (req,res)=>{
     }
 })
 
-router("/follow", async (req,res)=>{
+router.post("/follow", async (req,res)=>{
     const {from, to} = req.body
 
     try {
