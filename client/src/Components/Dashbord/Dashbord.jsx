@@ -18,6 +18,7 @@ function Dashbord() {
     const [total,settotal] = useState(0) ; 
     const [totalearn,settotalearn] = useState(0) ; 
     const [credits,setcredits] = useState(0) ; 
+    const [trans, settrans] = useState();
 
 
     // https://devauction.onrender.com/profile
@@ -33,8 +34,14 @@ function Dashbord() {
         })
 
         const data =  await res.json() 
+        // console.log(data);
         setdata(data) ; 
         setcredits(data.userData.Profile.Credits)
+
+        if(data.userData.Profile.Transactions.length != 0 )
+        {
+            settrans(data.userData.Profile.Transactions)  
+        }
 
         let avgspend = 0 ; 
         let totalspend = 0  ; 
@@ -65,9 +72,6 @@ function Dashbord() {
 
       response();
 
-      
-      
-
     return (
         <div className=' '>
 
@@ -84,7 +88,7 @@ function Dashbord() {
                 <LeftNavbar show={show} isnav={isnav} setisnav={setisnav} />
 
                 <div className={`w-[100%] overflow-y-scroll md:basis-[80%] border-l-2 border-[#4b4c59] bg-[#050618] mg:px-10 pb-10 text-white ${show ? "blur-xl" : ""}`}>
-                    <Header isnav={isnav} setisnav={setisnav} />    
+                    <Header  isnav={isnav} setisnav={setisnav} />    
 
                     {/* earnings cards */}
                     <EarningCards earningAmount={totalearn} spandAmount={total} avgAmount={avg} />
@@ -92,7 +96,7 @@ function Dashbord() {
                     {/* <Auction /> */}
                     <Auctionrooms show={show} setshow={setshow} />
                     <Highestbidder />
-                    <Cradites credits={credits} />
+                    <Cradites trans={trans} credits={credits} />
                 </div>
             </div>
 

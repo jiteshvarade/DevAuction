@@ -1,10 +1,11 @@
 import "./App.css";
-// import Dashbord from "./Components/Dashbord/Dashbord";
+import Dashbord from "./Components/Dashbord/Dashbord";
 // import Createauction from "./Components/AuctionRoom/Createauction";
 // import { useSocket } from "./context/SocketProvider";
 import HomePage from "./Pages/Home page/HomePage";
 // import RoomLobby from "./Components/Room/RoomLobby";
-// import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./Pages/Landing page/LandingPage"
 // import Room from "./Components/Room/Room";
 
 function App() {
@@ -13,11 +14,12 @@ function App() {
 
   return (
     <>
-      {/* <Dashbord /> */}
+      <Dashbord />
+      {/* <LandingPage/> */}
       {/* <Createauction/> */}
-      <HomePage />
+      {/* <HomePage /> */}
       {/* <Routes> */}
-      {/* <Route path="/" element={<Home />} /> */}
+      {/* <Route path="/" element={<HomePage/>} /> */}
       {/* <Home /> */}
       {/* //<Dashbord />
         //<Createauction/> */}
