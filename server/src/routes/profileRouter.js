@@ -36,7 +36,6 @@ router.post('/placedOffers', async (req, res) => {
 
 router.post('/followers', async (req, res) => {
     const array = req.body.followers
-    console.log(array)
     let data = []
 
     try{
@@ -52,7 +51,6 @@ router.post('/followers', async (req, res) => {
 
         for(let i = 0; i <  array.length;i++){
             const user = await User.findOne({"UserInfo.email" : array[i]})
-            console.log(user)
             const segregatedData = {
                 name : user.UserInfo.name,
                 image : user.UserInfo.picture
