@@ -40,15 +40,25 @@ router.post('/followers', async (req, res) => {
     let data
 
     try{
-        array.forEach(async function(follower) {
-            const user = await User.findOne({"UserInfo.email" : follower})
+        // array.forEach(async function(follower) {
+        //     const user = await User.findOne({"UserInfo.email" : follower})
+        //     console.log(user)
+        //     const segregatedData = {
+        //         name : user.UserInfo.name,
+        //         image : user.UserInfo.picture
+        //     }
+        //     data.push(segregatedData)
+        // })
+
+        for(let i = 0; i <  array.length;i++){
+            const user = await User.findOne({"UserInfo.email" : array[i]})
             console.log(user)
             const segregatedData = {
                 name : user.UserInfo.name,
                 image : user.UserInfo.picture
             }
             data.push(segregatedData)
-        })
+        }
 
         res.send({data : data})
     }catch(error){
