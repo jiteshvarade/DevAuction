@@ -51,7 +51,16 @@ const profileSchema = new mongoose.Schema({
         type : Number,
         required : false,
         default : 0
-    }
+    },
+    Transactions : {
+        type : [{
+            email : String, 
+            amount : Number, 
+            type : String
+        }],
+        required : false
+    },
+
 },{timestamps : true})
 
 module.exports = profileSchema

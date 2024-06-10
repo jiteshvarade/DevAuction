@@ -8,6 +8,7 @@ const Razorpay = require('razorpay')
 const crypto = require('crypto')
 const {RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY, Webhook_Secret} = require('../../constants')
 const Payment = require('../models/payment')
+const User = require("../models/user")
 
 const router = express.Router()
 
@@ -48,6 +49,15 @@ router.post("/verify",async (req,res)=>{
         
         const newPayment = new Payment({PaymentInfo : {email : email, amount : amount, type : "debit"}})
         await newPayment.save()
+
+        const user = new User.findOneAndUpdate({"UserInfo.email" : email},{
+            $push : {"Profile.Transactions" : {
+                email : email,
+                amount : amount,
+                type : "debit"
+            }}
+        })
+        await user.save()
 
         res.json({status : "ok"})
     }
