@@ -37,7 +37,7 @@ router.post('/placedOffers', async (req, res) => {
 router.post('/followers', async (req, res) => {
     const array = req.body.followers
     console.log(array)
-    let data
+    let data = []
 
     try{
         // array.forEach(async function(follower) {
