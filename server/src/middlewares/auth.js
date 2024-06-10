@@ -2,6 +2,7 @@
 // import User from "../models/user.js"
 const Router = require('express')
 const User = require('../models/user')
+const sendEmail = require("../utils/email")
 
 const router = Router()
 
@@ -23,6 +24,29 @@ router.post("/", async (req, res) => {
       const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0}})
       console.log(newUser,data)
       await newUser.save()
+
+      let subject = `Welcome to DevAuction, ${data.name}!`
+
+      let html = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+        </head>
+        <body>
+          <h1>Hi ${data.name},</h1>
+          <p>We're thrilled to welcome you to the DevAuction community!</p>
+          <h2>Getting Started</h2>
+          <p>If you have any questions or need help navigating the website, please don't hesitate to contact our friendly support team at DevAuction</a>.</p>
+          <p>Welcome aboard! We're excited to have you as part of the community.</p>
+          <p>Best regards,</p>
+          <p>The DevAuction Team</p>
+        </body>
+        </html>
+      `
+
+      await sendEmail(email,subject,html)
+
       console.log("User created successfully!")
       res.status(201).json({ message: "User created successfully!", data: newUser })
     }
