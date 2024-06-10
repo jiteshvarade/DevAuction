@@ -48,6 +48,13 @@ const createProjectSchema = new mongoose.Schema({
             results: Number,
         }],
         required : false
+    },
+    Sold : {
+        type : {
+            email : String,
+            amount : Number,
+        },
+        required : false
     }
 },{timestamps : true})
 

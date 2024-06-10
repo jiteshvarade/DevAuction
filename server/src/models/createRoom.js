@@ -49,6 +49,13 @@ const cerateRoomSchema = new mongoose.Schema({
             accepted: Boolean,
         }],
         required : false
+    },
+    Sold : {
+        type : {
+            email : String,
+            amount : Number,
+        },
+        required : false
     }
 },{timestamps : true})
 

@@ -7,6 +7,7 @@ const {client_email,private_key} = require('../../constants')
 const Room = require('../models/createRoom')
 const crypto = require('crypto')
 const Project = require('../models/project')
+const User = require("../models/user")
 
 const router = express.Router()
 
@@ -115,7 +116,7 @@ router.post('/project', async (req,res)=>{
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newProject = new Project({Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID, OfferPrice})
+        const newProject = new Project({Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
         await newProject.save()
 
         await fs.unlink(`./public/temp/${filename}`, (err) => {
@@ -126,11 +127,32 @@ router.post('/project', async (req,res)=>{
             }
         })
 
-        // Store ProjectId in users data
+        let user
+        if(req.body.premium){
 
-        // if premimum 
-                // substract credits from user
-                // add spendings data
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $inc : {"Profile.Credits" : -req.body.offerPrice},
+                $push : {
+                    "Profile.Projects" : project_id, 
+                    "Profile.Spendings" : {Category : "Project creation fee", Amount : req.body.offerPrice}
+                }
+            })
+
+        }else{
+
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $push : {
+                    "Profile.Projects" : project_id,
+                }
+            })
+        }
+
+        if(!user)
+        {
+            res.status(500).json({message : "User Not found"})
+        }
+
+        await user.save()
 
         res.send({ message : "Project created successfully"})
     }catch(error)
@@ -163,7 +185,7 @@ router.post("/room", upload.single("file"), async (req,res)=>{
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret})
+        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret, Bids : [], Sold : {}})
         await newRoom.save()
 
         await fs.unlink(`./public/temp/${filename}`, (err) => {
@@ -174,11 +196,32 @@ router.post("/room", upload.single("file"), async (req,res)=>{
             }
         })
 
-        // Store RoomId in users data
+        let user
+        if(req.body.premium){
 
-        // if premimum 
-                // substract credits from user
-                // add spendings data
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $inc : {"Profile.Credits" : -req.body.creationFee},
+                $push : {
+                    "Profile.RoomsCreated" : room_id, 
+                    "Profile.Spendings" : {Category : "Room creation fee", Amount : req.body.creationFee}
+                }
+            })
+
+        }else{
+
+            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $push : {
+                    "Profile.RoomsCreated" : room_id,
+                }
+            })
+        }
+
+        if(!user)
+        {
+            res.status(500).json({message : "User Not found"})
+        }
+
+        await user.save()
 
         res.send({ message : "Room created successfully"})
     }catch(error)

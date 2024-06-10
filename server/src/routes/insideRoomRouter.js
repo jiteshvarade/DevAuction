@@ -1,55 +1,45 @@
 const express = require('express')
 const router = express.Router()
 const Room = require('../models/createRoom')
+const User = require("../models/user")
 
 router.post('/getRoom', async (req,res)=>{
-    const { roomId } = req.body;
-
-    try {
-        const room = await Room.findOne({ RoomID: roomId })
-
-        if (!room) {
-        return res.status(404).send('Room not found')
-        }
-
-        res.status(200).json(room)
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error')
-    }
+    
 })
 
+// this must be in seperate post methode
+            // send mail if bid successfull
+            // give back credits to others who's bids where rejected
+
 router.post('/bids', async (req, res) => {
-    const { roomId, email, amount } = req.body
+    const { roomId, email, bid } = req.body
   
     try {
-        const room = await Room.findOne({ RoomID: roomId })
+        const room = await Room.findOneAndUpdate({ RoomID: roomId },{
+            $push : {"Bids" : {
+                email : email,
+                amount : bid,
+                accepted :false
+            }}
+        })
     
         if (!room) {
-            // Logic to give user his credits back
             return res.status(404).send('Room not found')
         }
 
-        if (!room.Bids) {
-            room.Bids = [] //logic to add bids array if not present
-        }
-    
-        const newBid = {
-            email,
-            amount,
-            accepted: false 
-        }
-    
-        room.Bids.push(newBid)
         await room.save()
 
-        // logic to add data inside user spendings
+        const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
+            $inc : {"Profile.Credits" : -bid},
+            $push : {"Profile.Spendings" : {Category : "Bid", Amount : bid}}
+        })
 
-        // Logic to substract amount from his credit balance
+        if(!user)
+        {
+            res.status(500).json({message : "User Not found"})
+        }
 
-        // this must be in seperate post methode
-            // send mail if bid successfull
-    
+        await user.save()
         res.status(201).send('Bid placed successfully')
     } catch (error) {
         console.error(error);

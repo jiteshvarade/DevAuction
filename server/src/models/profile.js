@@ -35,21 +35,22 @@ const profileSchema = new mongoose.Schema({
     },
     Spendings : {
         type : [{
-            ObjectID : String,
+            Category : String,
             Amount : Number
         }],
         required : false
     },
     Earnings : {
         type : [{
-            ObjectID : String,
+            Category : String,
             Amount : Number
         }],
         required : false
     },
     Credits : {
         type : Number,
-        requried : false
+        requried : false,
+        default : 0
     }
 },{timestamps : true})
 
