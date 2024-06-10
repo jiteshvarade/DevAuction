@@ -40,7 +40,7 @@ router.post('/followers', async (req, res) => {
 
     try{
         array.forEach(async function(follower) {
-            const user = await User.findOne({"UserInfo.email" : email})
+            const user = await User.findOne({"UserInfo.email" : follower})
             const segregatedData = {
                 name : user.UserInfo.name,
                 image : user.UserInfo.picture
