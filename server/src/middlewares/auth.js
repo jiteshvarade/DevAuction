@@ -6,7 +6,7 @@ const User = require('../models/user')
 const router = Router()
 
 router.post("/", async (req, res) => {
-  const data = req.body.data
+  const data = req.body
 
   try {
     if (!data) {
