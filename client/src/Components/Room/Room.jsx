@@ -59,14 +59,7 @@ const Room = ()=> {
             const peer = new RTCPeerConnection({
                 iceServers: [
                     {
-                        urls: [
-                            "turn:74.125.140.127:19305?transport=udp",
-                            "turn:74.125.140.127:19305?transport=tcp",
-                            "turn:74.125.140.127:443?transport=tcp",
-                            "turn:64.233.165.127:19305?transport=udp",
-                            "turn:64.233.165.127:19305?transport=tcp",
-                            "turn:64.233.165.127:443?transport=tcp"
-                        ]
+                        urls: "stun:stun.stunprotocol.org"
                     }
                 ]
             });
@@ -124,14 +117,7 @@ const Room = ()=> {
             const peer = new RTCPeerConnection({
                 iceServers: [
                     {
-                        urls: [
-                            "turn:74.125.140.127:19305?transport=udp",
-                            "turn:74.125.140.127:19305?transport=tcp",
-                            "turn:74.125.140.127:443?transport=tcp",
-                            "turn:64.233.165.127:19305?transport=udp",
-                            "turn:64.233.165.127:19305?transport=tcp",
-                            "turn:64.233.165.127:443?transport=tcp"
-                        ]
+                        urls: "stun:stun.stunprotocol.org"
                     }
                 ]
             });
