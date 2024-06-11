@@ -244,7 +244,7 @@ router.post('/chat/send', async (req, res) => {
         
         i = 0
         for(i = 0; i < toRecivedLength;i++) {
-            if(userTo.Recived[i].to == from) {
+            if(userTo.Recived[i].from == from) {
                 userTo.Recived[i].data.push({
                     mes : message,
                     at : Date.now()
