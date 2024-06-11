@@ -225,6 +225,8 @@ router.post('/chat/send', async (req, res) => {
             })
         }
 
+        await userFrom.save()
+
         // const userTo = await Inbox.findOneAndUpdate({User : to},{
         //     $push : {Recived : {
         //         from : from,
@@ -261,6 +263,8 @@ router.post('/chat/send', async (req, res) => {
                 }
             })
         }
+
+        await userTo.save()
 
         res.send("Message send successfully!")
         
