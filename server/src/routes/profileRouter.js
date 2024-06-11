@@ -78,112 +78,59 @@ router.post('/following', async (req, res) => {
     }
 })
 
-// router.post('/inbox', async (req, res) => {
-
-//     // logic to send profile photo and name of the user
-//     const email = req.body.email
-//     let inboxArray = []
-
-//     try{
-
-//         const inbox = await Inbox.findOne({User : email})
-
-//         if(inbox.Messages.length == 0 && inbox.Recived.length == 0){
-//             res.send("inbox empty")
-//         }
-
-//         const lengthSent = inbox.Messages.length
-//         const lengthRecived = inbox.Recived.length
-
-//         for(let i = 0; i < lengthSent;i++){
-//             const to = inbox.Messages[i].to
-//             const user = await User.findOne({"UserInfo.email" : to})
-//             const segregatedData = {
-//                 email : to,
-//                 name : user.UserInfo.name,
-//                 image : user.UserInfo.picture,
-//             }
-//             inboxArray.push(segregatedData)
-//         }
-
-//         for(let i = 0; i < lengthRecived;i++){
-//             const from = inbox.Recived[i].from
-//             const user = await User.findOne({"UserInfo.email" : from})
-//             const segregatedData = {
-//                 email : from,
-//                 name : user.UserInfo.name,
-//                 image : user.UserInfo.picture,
-//             }
-//             inboxArray.push(segregatedData)
-//         }
-
-//         res.send({data : inboxArray})
-
-//     }catch(error){
-//         console.error(error)
-//         res.status(500).send("Internal Server Error")
-//     }
-// })
-
 router.post('/inbox', async (req, res) => {
 
+    // logic to send profile photo and name of the user
     const email = req.body.email
     let inboxArray = []
     const uniqueEmails = new Set()
-  
-    try {
-        const inbox = await Inbox.findOne({ User: email })
-    
-        if (inbox.Messages.length === 0 && inbox.Recived.length === 0) {
+
+    try{
+
+        const inbox = await Inbox.findOne({User : email})
+
+        if(inbox.Messages.length == 0 && inbox.Recived.length == 0){
             res.send("inbox empty")
-            return
         }
-    
+
         const lengthSent = inbox.Messages.length
         const lengthRecived = inbox.Recived.length
-    
-        for (let i = 0; i < lengthSent; i++) {
 
+        for(let i = 0; i < lengthSent;i++){
             const to = inbox.Messages[i].to
-            
-            if (!uniqueEmails.has(to)) { 
-
-                const user = await User.findOne({ "UserInfo.email": to })
-
+            if(!uniqueEmails.has(to)) {
+                const user = await User.findOne({"UserInfo.email" : to})
                 const segregatedData = {
-                    email: to,
-                    name: user.UserInfo.name,
-                    image: user.UserInfo.picture,
+                    email : to,
+                    name : user.UserInfo.name,
+                    image : user.UserInfo.picture,
                 }
-
                 inboxArray.push(segregatedData)
-                uniqueEmails.add(to)
+                uniqueEmails.add(to),
             }
         }
-    
-        for (let i = 0; i < lengthRecived; i++) {
 
+        for(let i = 0; i < lengthRecived;i++){
             const from = inbox.Recived[i].from
-
-            if (!uniqueEmails.has(from)) {
-                const user = await User.findOne({ "UserInfo.email": from })
+            if(!uniqueEmails.has(from)) {
+                const user = await User.findOne({"UserInfo.email" : from})
                 const segregatedData = {
-                    email: from,
-                    name: user.UserInfo.name,
-                    image: user.UserInfo.picture,
+                    email : from,
+                    name : user.UserInfo.name,
+                    image : user.UserInfo.picture,
                 }
                 inboxArray.push(segregatedData)
                 uniqueEmails.add(from)
             }
         }
-    
-        res.send({ data: inboxArray })
-    } catch (error) {
+
+        res.send({data : inboxArray})
+
+    }catch(error){
         console.error(error)
         res.status(500).send("Internal Server Error")
     }
 })
-  
 
 router.post('/chats', async (req, res) => {
 
