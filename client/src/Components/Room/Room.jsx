@@ -59,12 +59,29 @@ const Room = ()=> {
             const peer = new RTCPeerConnection({
                 iceServers: [
                     {
-                        urls: [
-                            "stun:stun.l.google.com:19302",
-                            "stun:global.stun.twilio.com:3478"
-                        ]
-                    }
-                ]
+                      urls: "stun:stun.relay.metered.ca:80",
+                    },
+                    {
+                      urls: "turn:global.relay.metered.ca:80",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                    {
+                      urls: "turn:global.relay.metered.ca:80?transport=tcp",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                    {
+                      urls: "turn:global.relay.metered.ca:443",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                    {
+                      urls: "turns:global.relay.metered.ca:443?transport=tcp",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                ],
             });
             peer.onnegotiationneeded = () => handleNegotiationNeededEvent(peer)
         
@@ -110,6 +127,7 @@ const Room = ()=> {
         };
     
         const { data } = await axios.post('https://devauction.onrender.com/livestream/consumer', payload)
+        console.log(data)
         const desc = new RTCSessionDescription(data.sdp)
         peer.setRemoteDescription(desc).catch(e => console.log(e))
     }
@@ -119,12 +137,29 @@ const Room = ()=> {
             const peer = new RTCPeerConnection({
                 iceServers: [
                     {
-                        urls: [
-                            "stun:stun.l.google.com:19302",
-                            "stun:global.stun.twilio.com:3478"
-                        ]
-                    }
-                ]
+                      urls: "stun:stun.relay.metered.ca:80",
+                    },
+                    {
+                      urls: "turn:global.relay.metered.ca:80",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                    {
+                      urls: "turn:global.relay.metered.ca:80?transport=tcp",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                    {
+                      urls: "turn:global.relay.metered.ca:443",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                    {
+                      urls: "turns:global.relay.metered.ca:443?transport=tcp",
+                      username: "4c2170c2a5a36ec5a651eb78",
+                      credential: "KUIOr5l9Vw2zpin7",
+                    },
+                ],
             });
             peer.ontrack = handleTrackEvent;
             peer.onnegotiationneeded = () => handleNegotiationNeededEventView(peer)
