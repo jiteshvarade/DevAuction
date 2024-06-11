@@ -60,8 +60,12 @@ const Room = ()=> {
                 iceServers: [
                     {
                         urls: [
-                            "stun:stun.l.google.com:19302",
-                            "stun:global.stun.twilio.com:3478"
+                            "turn:74.125.140.127:19305?transport=udp",
+                            "turn:74.125.140.127:19305?transport=tcp",
+                            "turn:74.125.140.127:443?transport=tcp",
+                            "turn:64.233.165.127:19305?transport=udp",
+                            "turn:64.233.165.127:19305?transport=tcp",
+                            "turn:64.233.165.127:443?transport=tcp"
                         ]
                     }
                 ]
@@ -121,8 +125,12 @@ const Room = ()=> {
                 iceServers: [
                     {
                         urls: [
-                            "stun:stun.l.google.com:19302",
-                            "stun:global.stun.twilio.com:3478"
+                            "turn:74.125.140.127:19305?transport=udp",
+                            "turn:74.125.140.127:19305?transport=tcp",
+                            "turn:74.125.140.127:443?transport=tcp",
+                            "turn:64.233.165.127:19305?transport=udp",
+                            "turn:64.233.165.127:19305?transport=tcp",
+                            "turn:64.233.165.127:443?transport=tcp"
                         ]
                     }
                 ]
