@@ -26,10 +26,6 @@ const cerateRoomSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    Topic : {
-        type : [String],
-        required : false
-    },
     FileID : {
         type : String,
         required : true,

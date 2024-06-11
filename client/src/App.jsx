@@ -1,15 +1,21 @@
 import "./App.css";
 import AudioRecorder from "./Components/Audio Recording/AudioRecording";
 // import Dashbord from "./Components/Dashbord/Dashbord";
+import Dashbord from "./Components/Dashbord/Dashbord";
+import Gallery from "./Components/GallerySection/Gallery"
 // import Createauction from "./Components/AuctionRoom/Createauction";
 // import { useSocket } from "./context/SocketProvider";
+import Preview from "./Components/PreviewSection/Preview"
 import HomePage from "./Pages/Home page/HomePage";
 // import RoomLobby from "./Components/Room/RoomLobby";
 // import { Routes, Route } from "react-router-dom";
 // import Room from "./Components/Room/Room";
 import LandingPage from "./Pages/Landing page/LandingPage"
-
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./Pages/Landing page/LandingPage"
+import Profile from "./Pages/Profile page/Profile";
 function App() {
+
   // const socket = useSocket();
   // console.log(socket);
 
@@ -35,6 +41,13 @@ function App() {
         {/* <Route path="/" element={<RoomLobby></RoomLobby>} />
         <Route path="/room/:roomID" element={<Room></Room>} /> */}
       {/* </Routes> */}
+      <Routes>
+        <Route path="/" element={<LandingPage/>} />
+        <Route path="/dashboard" element={<Dashbord/>} />
+        <Route path="/gallery" element={<Gallery/>}/>
+        <Route path="/profile" element={<HomePage/>}/>
+        <Route path="/preview" element={<Preview/>} />
+      </Routes>
     </>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import logo from '../../../public/Icons/Logo.png'
 import menuIcon from '../../../public/Icons/iconsmenu.png'
 import LogoutButton from '../Gradient Btn/LogoutButton'
+
 function LeftNavbar({show, isnav, setisnav }) {
   return (
     <>

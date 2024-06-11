@@ -8,6 +8,7 @@ const Razorpay = require('razorpay')
 const crypto = require('crypto')
 const {RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY, Webhook_Secret} = require('../../constants')
 const Payment = require('../models/payment')
+const User = require("../models/user")
 
 const router = express.Router()
 
@@ -33,7 +34,8 @@ router.post("/",async (req,res)=>{
 
 router.post("/verify",async (req,res)=>{
     const secret = Webhook_Secret
-    console.log(req.body)
+    const email = req.body.payload.payment.entity.email
+    const amount = req.body.payload.payment.entity.amount
 
     const shasum = crypto.createHmac("sha256", secret)
     shasum.update(JSON.stringify(req.body))
@@ -44,13 +46,20 @@ router.post("/verify",async (req,res)=>{
     if(digest === req.headers["x-razorpay-signature"])
     {
         console.log("Successfull payment")
-        try{
-            const newPayment = new Payment(req.body)
-            await newPayment.save()
-        }catch(error){
-            console.log("Payment ID saved successfully")
-        }
-        // logic to update in database
+        
+        const newPayment = new Payment({PaymentInfo : {email : email, amount : amount, type : "debit"}})
+        await newPayment.save()
+
+        const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
+            $push : {"Profile.Transactions" : {
+                email : email,
+                amount : amount,
+                category : "debit"
+            }}
+        })
+
+        await user.save()
+
         res.json({status : "ok"})
     }
     else

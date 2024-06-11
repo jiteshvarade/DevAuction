@@ -131,11 +131,13 @@ const Createauction = ({show,setshow}) => {
                     <div className='flex flex-col gap-2 w-full p-6 '>
                         <label>Project Description</label>
                         <textarea
+                            
                             value={desc}
                             onChange={(e) => {
                                 setdesc(e.target.value);
                             }}
-                            placeholder='Project description' className='bg-[#062541] rounded-full px-10 py-2 h-[40px] w-full md:w-14rem' />
+                            rows='3'
+                            placeholder='Project description' className=' resize-none bg-[#062541] rounded-full px-10 py-2 h-[80px] w-full md:w-14rem' />
                     </div>
                 </div>
 
