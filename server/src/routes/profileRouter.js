@@ -186,6 +186,7 @@ router.post('/chat/send', async (req, res) => {
     const from = req.body.from
     const to = req.body.to
     const message = req.body.message
+    console.log(from,to,message)
 
     try{
 
@@ -208,10 +209,10 @@ router.post('/chat/send', async (req, res) => {
         if(i == fromMessagesLength) {
             userFrom.Messages.push({
                 to : to,
-                data : {
+                data : [{
                     mes : message,
                     at : Date.now()
-                }
+                }]
             })
         }
 
@@ -236,10 +237,10 @@ router.post('/chat/send', async (req, res) => {
         if(i == toRecivedLength) {
             userTo.Recived.push({
                 from : from,
-                data : {
+                data : [{
                     mes : message,
                     at : Date.now()
-                }
+                }]
             })
         }
 
