@@ -80,8 +80,91 @@ router.post('/following', async (req, res) => {
 
 router.post('/inbox', async (req, res) => {
 
+    // logic to send profile photo and name of the user
+    const email = req.body.email
+    let inboxArray = []
+
     try{
 
+        const inbox = await Inbox.findOne({User : email})
+
+        if(inbox.Messages.length == 0 && inbox.Recived.length == 0){
+            res.send("inbox empty")
+        }
+
+        const lengthSent = inbox.Messages.length
+        const lengthRecived = inbox.Recived.length
+
+        for(let i = 0; i < lengthSent;i++){
+            const to = inbox.Messages[i].to
+            const user = await User.findOne({"UserInfo.email" : to})
+            const segregatedData = {
+                email : array[i],
+                name : user.UserInfo.name,
+                image : user.UserInfo.picture,
+            }
+            inboxArray.push(segregatedData)
+        }
+
+        for(let i = 0; i < lengthRecived;i++){
+            const to = inbox.Recived[i].to
+            const user = await User.findOne({"UserInfo.email" : to})
+            const segregatedData = {
+                email : array[i],
+                name : user.UserInfo.name,
+                image : user.UserInfo.picture,
+            }
+            inboxArray.push(segregatedData)
+        }
+
+        res.send({data : inboxArray})
+
+    }catch(error){
+        console.error(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+router.post('/chats', async (req, res) => {
+
+    // logic to get chats of both the users
+    const me = req.body.me
+    const other = req.body.other
+
+    let meArray
+    let otherArray
+
+    try{
+
+        const inbox = await Inbox.findOne({User : me})
+
+        const lengthSent = inbox.Messages.length
+        const lengthRecived = inbox.Recived.length
+
+        for(let i = 0; i < lengthSent;i++){
+            if(inbox.Messages[i].to = other){
+                meArray = inbox.Messages[i].data
+                break
+            }
+        }
+
+        if(i == lengthSent){
+            meArray = []
+        }
+
+        for(let i = 0; i < lengthRecived;i++){
+            if(inbox.Recived[i].from = other){
+                otherArray = inbox.Recived[i].data
+                break
+            }
+        }
+
+        if(i == lengthRecived){
+            otherArray = []
+        }
+
+        res.send({myMessages : meArray, senderMessages : otherArray})
+ 
     }catch(error){
         console.error(error)
         res.status(500).send("Internal Server Error")
@@ -90,16 +173,44 @@ router.post('/inbox', async (req, res) => {
 
 router.post('/chat/send', async (req, res) => {
 
-    const email = req.body.email
+    // logic to store message in both user inbox collection
+    const from = req.body.from
+    const to = req.body.to
     const message = req.body.message
 
     try{
+
+        const userFrom = await Inbox.findOneAndUpdate({User : from},{
+            $push : {Messages : {
+                to : to,
+                data : {
+                    mes : message,
+                    at : Date.now()
+                }
+            }}
+        })
+        await userFrom.save()
+
+        const userTo = await Inbox.findOneAndUpdate({User : to},{
+            $push : {Recived : {
+                from : from,
+                data : {
+                    mes : message,
+                    at : Date.now()
+                }
+            }}
+        })
+        await userTo.save()
+
+        res.send("Message send successfully!")
         
     }catch(error){
         console.error(error)
         res.status(500).send("Internal Server Error")
     }
 })
+
+
 
 router.post('/spending', async (req, res) => {
     // logic to store spending data

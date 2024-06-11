@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
       const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0, Transactions : []}})
       await newUser.save()
 
-      const userInbox = new Inbox({User : email, Messages : []})
+      const userInbox = new Inbox({User : email, Messages : [], Recived : []})
       await userInbox.save()
 
       let subject = `Welcome to DevAuction, ${data.name}!`
