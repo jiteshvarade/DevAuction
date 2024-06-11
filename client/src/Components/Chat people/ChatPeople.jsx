@@ -2,7 +2,7 @@ import React from "react";
 import { CiSearch } from "react-icons/ci";
 import ChatMateStrip from "./ChatMateStrip";
 
-export default function ChatPeople() {
+export default function ChatPeople({ recentChatUsers, setSelectedUser }) {
   return (
     <div className="chatLeft lg:w-1/3 max-h-screen mx-auto px-10 max-[420px]:p-4 md:py-7 flex flex-col gap-4 w-full flex-1 min-[420px]:min-w-[410px] max-w-full">
       <div
@@ -30,26 +30,9 @@ export default function ChatPeople() {
       >
         <div className="body h-full">
           <div className="header text-xl font-bold">People</div>
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
-          <ChatMateStrip />
+          {recentChatUsers?.map((elem) => {
+            return <ChatMateStrip key={btoa(elem.email)}  imgSrc={elem.image} userName={elem.name} onClick={() => setSelectedUser(elem)} />
+          })}
         </div>
       </div>
     </div>

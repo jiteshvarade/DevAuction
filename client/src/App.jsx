@@ -1,4 +1,5 @@
 import "./App.css";
+import AudioRecorder from "./Components/Audio Recording/AudioRecording";
 // import Dashbord from "./Components/Dashbord/Dashbord";
 // import Createauction from "./Components/AuctionRoom/Createauction";
 // import { useSocket } from "./context/SocketProvider";
@@ -6,6 +7,7 @@ import HomePage from "./Pages/Home page/HomePage";
 // import RoomLobby from "./Components/Room/RoomLobby";
 // import { Routes, Route } from "react-router-dom";
 // import Room from "./Components/Room/Room";
+import LandingPage from "./Pages/Landing page/LandingPage"
 
 function App() {
   // const socket = useSocket();
@@ -16,6 +18,8 @@ function App() {
       {/* <Dashbord /> */}
       {/* <Createauction/> */}
       <HomePage />
+      {/* <AudioRecorder /> */}
+      {/* <LandingPage /> */}
       {/* <Routes> */}
       {/* <Route path="/" element={<Home />} /> */}
       {/* <Home /> */}
