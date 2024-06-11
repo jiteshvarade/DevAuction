@@ -13,6 +13,7 @@ const createRoomRouter = require('./src/routes/createRouter')
 const insideRoomRouter = require('./src/routes/insideRoomRouter')
 const projectRouter = require('./src/routes/projectsRouter')
 const profileRouter = require("./src/routes/profileRouter")
+const liveStreamRouter = require("./src/routes/livestream")
 
 //mongodb connection
 ConnectDB()
@@ -52,9 +53,9 @@ io.on("connection",(socket)=>{
         io.to(data.roomID).emit("room:connect",{message : "room joined successfully"})
     })
 
-    socket.on("room:video",data => {
+    socket.on("room:message",data => {
         console.log(data.roomID)
-        io.to(data.roomID).emit("room:video",{message : data.message, sender : socket.id})
+        io.to(data.roomID).emit("room:message",{message : data.message, sender : socket.id})
     })
 })
 
@@ -75,6 +76,7 @@ app.use("/create",createRoomRouter)
 app.use("/rooms",insideRoomRouter)
 app.use("/project",projectRouter)
 app.use("/profile",profileRouter)
+app.use("/livestream",liveStreamRouter)
 
 // to start chat cleanup process every midnight
 

@@ -186,7 +186,6 @@ router.post('/chat/send', async (req, res) => {
     const from = req.body.from
     const to = req.body.to
     const message = req.body.message
-    console.log(from,to,message)
 
     try{
 

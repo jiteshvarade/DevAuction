@@ -1,6 +1,3 @@
-// import { Router } from "express"
-// import ContactUs from "../models/contactus.js"
-// import sendEmail from "../utils/email.js"
 const express = require("express")
 const ContactUs = require("../models/contactus")
 const sendEmail = require('../utils/email')
@@ -49,5 +46,4 @@ router.post("/",async (req,res)=>{
   
 })
 
-// export default router
 module.exports = router
