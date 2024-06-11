@@ -99,7 +99,7 @@ router.post('/inbox', async (req, res) => {
             const to = inbox.Messages[i].to
             const user = await User.findOne({"UserInfo.email" : to})
             const segregatedData = {
-                email : inbox.Messages.to,
+                email : to,
                 name : user.UserInfo.name,
                 image : user.UserInfo.picture,
             }
@@ -107,10 +107,10 @@ router.post('/inbox', async (req, res) => {
         }
 
         for(let i = 0; i < lengthRecived;i++){
-            const to = inbox.Recived[i].to
-            const user = await User.findOne({"UserInfo.email" : to})
+            const from = inbox.Recived[i].from
+            const user = await User.findOne({"UserInfo.email" : from})
             const segregatedData = {
-                email : inbox.Recived.from,
+                email : from,
                 name : user.UserInfo.name,
                 image : user.UserInfo.picture,
             }
