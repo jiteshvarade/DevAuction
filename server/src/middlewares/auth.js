@@ -22,11 +22,16 @@ router.post("/", async (req, res) => {
       console.log("Email already exists in the database.")
       return res.status(409).json({ message: "Email already exists" })
     } else {
-      const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0, Transactions : []}})
-      await newUser.save()
 
-      const userInbox = new Inbox({User : email, Messages : [], Recived : []})
-      await userInbox.save()
+      try{
+        const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0, Transactions : []}})
+        await newUser.save()
+
+        const userInbox = new Inbox({User : email, Messages : [], Recived : []})
+        await userInbox.save()
+      }catch(error){
+        console.log("Internal Server error")
+      }
 
       let subject = `Welcome to DevAuction, ${data.name}!`
 
