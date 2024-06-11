@@ -141,7 +141,8 @@ router.post('/chats', async (req, res) => {
         const lengthSent = inbox.Messages.length
         const lengthRecived = inbox.Recived.length
 
-        for(let i = 0; i < lengthSent;i++){
+        let i = 0
+        for(i = 0; i < lengthSent;i++){
             if(inbox.Messages[i].to = other){
                 meArray = inbox.Messages[i].data
                 break
@@ -152,7 +153,8 @@ router.post('/chats', async (req, res) => {
             meArray = []
         }
 
-        for(let i = 0; i < lengthRecived;i++){
+        i = 0
+        for(i = 0; i < lengthRecived;i++){
             if(inbox.Recived[i].from = other){
                 otherArray = inbox.Recived[i].data
                 break
