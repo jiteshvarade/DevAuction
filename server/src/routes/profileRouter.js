@@ -172,7 +172,7 @@ router.post('/chats', async (req, res) => {
             otherArray = []
         }
 
-        res.send({myMessages : meArray, senderMessages : otherArray})
+        res.send({data : {myMessages : meArray, senderMessages : otherArray}})
  
     }catch(error){
         console.error(error)
@@ -189,16 +189,6 @@ router.post('/chat/send', async (req, res) => {
 
     try{
 
-        // const userFrom = await Inbox.findOneAndUpdate({User : from},{
-        //     $push : {Messages : {
-        //         to : to,
-        //         data : {
-        //             mes : message,
-        //             at : Date.now()
-        //         }
-        //     }}
-        // })
-        // await userFrom.save()
         const userFrom = await Inbox.findOne({User : from})
 
         const fromMessagesLength = userFrom.Messages.length
@@ -226,17 +216,6 @@ router.post('/chat/send', async (req, res) => {
         }
 
         await userFrom.save()
-
-        // const userTo = await Inbox.findOneAndUpdate({User : to},{
-        //     $push : {Recived : {
-        //         from : from,
-        //         data : {
-        //             mes : message,
-        //             at : Date.now()
-        //         }
-        //     }}
-        // })
-        // await userTo.save()
 
         const userTo = await Inbox.findOne({User : to})
 
@@ -288,6 +267,6 @@ router.post('/credits', async (req, res) => {
     // logic to store credits of user
 })
 
-
-
 module.exports = router
+
+
