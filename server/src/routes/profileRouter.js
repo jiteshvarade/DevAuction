@@ -172,7 +172,7 @@ router.post('/chats', async (req, res) => {
             otherArray = []
         }
 
-        res.send({data : {myMessages : meArray, senderMessages : otherArray}})
+        res.send({myMessages : meArray, senderMessages : otherArray})
  
     }catch(error){
         console.error(error)
