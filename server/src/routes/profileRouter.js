@@ -220,7 +220,7 @@ router.post('/chat/send', async (req, res) => {
 
         const userTo = await Inbox.findOne({User : to})
 
-        const toRecivedLength = userFrom.Recived.length
+        const toRecivedLength = userTo.Recived.length
         
         i = 0
         for(i = 0; i < toRecivedLength;i++) {

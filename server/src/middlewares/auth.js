@@ -56,7 +56,7 @@ router.post("/", async (req, res) => {
       await sendEmail(email,subject,html)
 
       console.log("User created successfully!")
-      res.status(201).json({ message: "User created successfully!", data: newUser })
+      res.status(201).json({ message: "User created successfully!"})
     }
   } catch (err) {
     console.error(err)
