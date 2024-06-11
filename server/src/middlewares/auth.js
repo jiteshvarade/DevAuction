@@ -23,7 +23,6 @@ router.post("/", async (req, res) => {
       return res.status(409).json({ message: "Email already exists" })
     } else {
       const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0, Transactions : []}})
-      console.log(newUser,data)
       await newUser.save()
 
       const userInbox = new Inbox({User : email, Messages : []})

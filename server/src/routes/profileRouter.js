@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const User = require("../models/user")
+const Inbox = require('../models/inbox')
 
 router.post('/', async (req, res) => {
-    // logic to get data of someones profile
     const email = req.body.email
 
     try{    
@@ -39,26 +39,62 @@ router.post('/followers', async (req, res) => {
     let data = []
 
     try{
-        // array.forEach(async function(follower) {
-        //     const user = await User.findOne({"UserInfo.email" : follower})
-        //     console.log(user)
-        //     const segregatedData = {
-        //         name : user.UserInfo.name,
-        //         image : user.UserInfo.picture
-        //     }
-        //     data.push(segregatedData)
-        // })
-
         for(let i = 0; i <  array.length;i++){
             const user = await User.findOne({"UserInfo.email" : array[i]})
             const segregatedData = {
+                email : array[i],
                 name : user.UserInfo.name,
-                image : user.UserInfo.picture
+                image : user.UserInfo.picture,
             }
             data.push(segregatedData)
         }
 
         res.send({data : data})
+    }catch(error){
+        console.error(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+router.post('/following', async (req, res) => {
+    const array = req.body.following
+    let data = []
+
+    try{
+        for(let i = 0; i <  array.length;i++){
+            const user = await User.findOne({"UserInfo.email" : array[i]})
+            const segregatedData = {
+                email : array[i],
+                name : user.UserInfo.name,
+                image : user.UserInfo.picture,
+            }
+            data.push(segregatedData)
+        }
+
+        res.send({data : data})
+    }catch(error){
+        console.error(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+router.post('/inbox', async (req, res) => {
+
+    try{
+
+    }catch(error){
+        console.error(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+router.post('/chat/send', async (req, res) => {
+
+    const email = req.body.email
+    const message = req.body.message
+
+    try{
+        
     }catch(error){
         console.error(error)
         res.status(500).send("Internal Server Error")

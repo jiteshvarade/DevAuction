@@ -7,8 +7,12 @@ const cleanupJob = cron.schedule('0 0 * * *', async () => {
 
     try {
         const deletedCount = await Inbox.deleteMany({
-            "Messages.data.at": { $lt: oneDayAgo }
+            $or: [
+                { "Messages.data.at": { $lt: oneDayAgo } },
+                { "Recived.data.at": { $lt: oneDayAgo } }
+            ]
         })
+        
         console.log(`Deleted ${deletedCount} day-old messages during cleanup`)
     } catch (error) {
         console.error('Error deleting day-old messages:', error)
