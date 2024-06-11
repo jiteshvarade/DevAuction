@@ -55,16 +55,23 @@ const Room = ()=> {
     //////////////////////////////////////////////////////
 
     function createPeer() {
-        const peer = new RTCPeerConnection({
-            iceServers: [
-                {
-                    urls: "stun:stun.stunprotocol.org"
-                }
-            ]
-        });
-        peer.onnegotiationneeded = () => handleNegotiationNeededEvent(peer)
-    
-        return peer;
+        try{
+            const peer = new RTCPeerConnection({
+                iceServers: [
+                    {
+                        urls: [
+                            "stun:stun.l.google.com:19302",
+                            "stun:global.stun.twilio.com:3478"
+                        ]
+                    }
+                ]
+            });
+            peer.onnegotiationneeded = () => handleNegotiationNeededEvent(peer)
+        
+            return peer
+        }catch(error){
+            console.log(error)
+        }
     }
 
     async function handleNegotiationNeededEvent(peer) {
@@ -108,17 +115,24 @@ const Room = ()=> {
     }
 
     function createPeerView() {
-        const peer = new RTCPeerConnection({
-            iceServers: [
-                {
-                    urls: "stun:stun.stunprotocol.org"
-                }
-            ]
-        });
-        peer.ontrack = handleTrackEvent;
-        peer.onnegotiationneeded = () => handleNegotiationNeededEventView(peer)
-    
-        return peer;
+        try{
+            const peer = new RTCPeerConnection({
+                iceServers: [
+                    {
+                        urls: [
+                            "stun:stun.l.google.com:19302",
+                            "stun:global.stun.twilio.com:3478"
+                        ]
+                    }
+                ]
+            });
+            peer.ontrack = handleTrackEvent;
+            peer.onnegotiationneeded = () => handleNegotiationNeededEventView(peer)
+        
+            return peer
+        }catch(error){
+            console.log(error)
+        }
     }
 
     const handleView = async (e)=>{
