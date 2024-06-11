@@ -22,7 +22,7 @@ const inboxSchema = new mongoose.Schema({
     }
 })
 
-theSchema.pre('save', async function(next) {
+inboxSchema.pre('save', async function(next) {
     const currentDoc = this
 
     if (!currentDoc.isModified('Messages')) {
