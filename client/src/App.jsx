@@ -21,7 +21,7 @@ function App() {
     <>
       {/* <Dashbord /> */}
       {/* <Createauction/> */}
-      <HomePage />
+      {/* <HomePage /> */}
       {/* <AudioRecorder /> */}
       {/* <LandingPage /> */}
       {/* <Routes> */}
@@ -45,7 +45,7 @@ function App() {
         <Route path="/gallery" element={<Gallery/>}/>
         <Route path="/profile" element={<HomePage/>}/>
         <Route path="/preview" element={<Preview/>} /> */}
-        <Router path="/" element={<RoomLobby />} />
+        <Route path="/" element={<RoomLobby />} />
         <Route path="/room/:roomID" element={<Room />} />
       </Routes>
     </>
