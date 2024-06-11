@@ -189,27 +189,78 @@ router.post('/chat/send', async (req, res) => {
 
     try{
 
-        const userFrom = await Inbox.findOneAndUpdate({User : from},{
-            $push : {Messages : {
+        // const userFrom = await Inbox.findOneAndUpdate({User : from},{
+        //     $push : {Messages : {
+        //         to : to,
+        //         data : {
+        //             mes : message,
+        //             at : Date.now()
+        //         }
+        //     }}
+        // })
+        // await userFrom.save()
+        const userFrom = await Inbox.findOne({User : from})
+
+        const fromMessagesLength = userFrom.Messages.length
+        
+        let i = 0
+        for(i = 0; i < fromMessagesLength;i++) {
+            if(userFrom.Messages[i].to == to) {
+                userFrom.Messages[i].data.push({
+                    mes : message,
+                    at : Date.now()
+                })
+
+                break
+            }
+        }
+
+        if(i == fromMessagesLength) {
+            userFrom.Messages.push({
                 to : to,
                 data : {
                     mes : message,
                     at : Date.now()
                 }
-            }}
-        })
-        await userFrom.save()
+            })
+        }
 
-        const userTo = await Inbox.findOneAndUpdate({User : to},{
-            $push : {Recived : {
+        // const userTo = await Inbox.findOneAndUpdate({User : to},{
+        //     $push : {Recived : {
+        //         from : from,
+        //         data : {
+        //             mes : message,
+        //             at : Date.now()
+        //         }
+        //     }}
+        // })
+        // await userTo.save()
+
+        const userTo = await Inbox.findOne({User : to})
+
+        const toRecivedLength = userFrom.Recived.length
+        
+        i = 0
+        for(i = 0; i < toRecivedLength;i++) {
+            if(userTo.Recived[i].to == from) {
+                userTo.Recived[i].data.push({
+                    mes : message,
+                    at : Date.now()
+                })
+
+                break
+            }
+        }
+
+        if(i == toRecivedLength) {
+            userTo.Recived.push({
                 from : from,
                 data : {
                     mes : message,
                     at : Date.now()
                 }
-            }}
-        })
-        await userTo.save()
+            })
+        }
 
         res.send("Message send successfully!")
         
