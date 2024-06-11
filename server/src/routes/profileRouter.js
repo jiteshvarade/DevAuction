@@ -106,7 +106,7 @@ router.post('/inbox', async (req, res) => {
                     image : user.UserInfo.picture,
                 }
                 inboxArray.push(segregatedData)
-                uniqueEmails.add(to),
+                uniqueEmails.add(to)
             }
         }
 
