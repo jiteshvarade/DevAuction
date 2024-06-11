@@ -3,6 +3,7 @@
 const Router = require('express')
 const User = require('../models/user')
 const sendEmail = require("../utils/email")
+const Inbox = require('../models/inbox')
 
 const router = Router()
 
@@ -24,6 +25,9 @@ router.post("/", async (req, res) => {
       const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0, Transactions : []}})
       console.log(newUser,data)
       await newUser.save()
+
+      const userInbox = new Inbox({User : email, Messages : []})
+      await userInbox.save()
 
       let subject = `Welcome to DevAuction, ${data.name}!`
 

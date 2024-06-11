@@ -2,9 +2,10 @@ const express = require('express')
 const cors = require('cors')
 const {createServer} = require('http')
 const {Server} = require('socket.io')
-
 const ConnectDB = require('./src/db/connection')
 const {PORT} = require('./constants')
+
+const cleanupJob = require('./src/utils/cleanupcode')
 const contactRouter = require('./src/routes/contactusRoutes')
 const auth = require('./src/middlewares/auth')
 const razorpayRouter = require('./src/routes/razorpay')
@@ -74,3 +75,7 @@ app.use("/create",createRoomRouter)
 app.use("/rooms",insideRoomRouter)
 app.use("/project",projectRouter)
 app.use("/profile",profileRouter)
+
+// to start chat cleanup process every midnight
+
+cleanupJob.start()
