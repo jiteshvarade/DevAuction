@@ -7,10 +7,8 @@ import Gallery from "./Components/GallerySection/Gallery"
 // import { useSocket } from "./context/SocketProvider";
 import Preview from "./Components/PreviewSection/Preview"
 import HomePage from "./Pages/Home page/HomePage";
-// import RoomLobby from "./Components/Room/RoomLobby";
-// import { Routes, Route } from "react-router-dom";
-// import Room from "./Components/Room/Room";
-import LandingPage from "./Pages/Landing page/LandingPage"
+import RoomLobby from "./Components/Room/RoomLobby";
+import Room from "./Components/Room/Room";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./Pages/Landing page/LandingPage"
 import Profile from "./Pages/Profile page/Profile";
@@ -42,11 +40,13 @@ function App() {
         <Route path="/room/:roomID" element={<Room></Room>} /> */}
       {/* </Routes> */}
       <Routes>
-        <Route path="/" element={<LandingPage/>} />
+        {/* <Route path="/" element={<LandingPage/>} />
         <Route path="/dashboard" element={<Dashbord/>} />
         <Route path="/gallery" element={<Gallery/>}/>
         <Route path="/profile" element={<HomePage/>}/>
-        <Route path="/preview" element={<Preview/>} />
+        <Route path="/preview" element={<Preview/>} /> */}
+        <Router path="/" element={<RoomLobby />} />
+        <Route path="/room/:roomID" element={<Room />} />
       </Routes>
     </>
   );
