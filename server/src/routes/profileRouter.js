@@ -8,12 +8,6 @@ router.post('/', async (req, res) => {
 
     try{    
         const user = await User.findOne({"UserInfo.email" : email})
-
-        if(!user)
-        {
-            res.status(500).send("User not found!")
-        }
-
         res.send({userData : user})
 
     } catch(error) {
