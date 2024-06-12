@@ -20,7 +20,7 @@ export default function ChatBtn({ msg, sender, time }) {
         onClick={showTimeHndl}
       >
         {msg}
-      <span className={`absolute text-xs text-white w-fit left-1 transition-all duration-500 ${showTime ? "bottom-[-18px] opacity-100" : "bottom-0 opacity-0"}`}>{time}</span>
+      <span className={`absolute text-xs text-white w-fit left-1 transition-all duration-500 ${showTime ? "bottom-[-15px] opacity-100" : "bottom-0 opacity-0"}`}>{time}</span>
       </div>
     );
   } else {
@@ -35,7 +35,7 @@ export default function ChatBtn({ msg, sender, time }) {
        onClick={showTimeHndl} 
       >
         {msg}
-      <span className={`absolute text-xs  text-white w-fit right-1 transition-all duration-500 ${showTime ? "bottom-[-18px] opacity-100" : "bottom-0 opacity-0"}`}>{time}</span>
+      <span className={`absolute text-xs  text-white w-fit right-1 transition-all duration-500 ${showTime ? "bottom-[-15px] opacity-100" : "bottom-0 opacity-0"}`}>{time}</span>
       </div>
     );
   }

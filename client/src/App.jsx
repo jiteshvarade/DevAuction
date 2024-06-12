@@ -21,7 +21,7 @@ function App() {
     <>
       {/* <Dashbord /> */}
       {/* <Createauction/> */}
-      {/* <HomePage /> */}
+      <HomePage />
       {/* <AudioRecorder /> */}
       {/* <LandingPage /> */}
       {/* <Routes> */}
@@ -39,15 +39,15 @@ function App() {
         {/* <Route path="/" element={<RoomLobby></RoomLobby>} />
         <Route path="/room/:roomID" element={<Room></Room>} /> */}
       {/* </Routes> */}
-      <Routes>
+      {/* <Routes> */}
         {/* <Route path="/" element={<LandingPage/>} />
         <Route path="/dashboard" element={<Dashbord/>} />
         <Route path="/gallery" element={<Gallery/>}/>
         <Route path="/profile" element={<HomePage/>}/>
         <Route path="/preview" element={<Preview/>} /> */}
-        <Route path="/" element={<RoomLobby />} />
-        <Route path="/room/:roomID" element={<Room />} />
-      </Routes>
+        {/* <Route path="/" element={<RoomLobby />} /> */}
+        {/* <Route path="/room/:roomID" element={<Room />} />
+      </Routes> */}
     </>
   );
 }

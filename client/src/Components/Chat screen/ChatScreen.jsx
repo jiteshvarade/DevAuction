@@ -1,150 +1,25 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import ChatScreenHeader from "./ChatScreenHeader";
 import ChatScreenFooter from "./ChatScreenFooter";
 import ChatBtn from "./ChatBtn";
 
-// export default function ChatScreen
-
 const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
   const [msgs, setMsgs] = useState([]);
-  // console.log(selectedUser);
-  const messages = [
-    {
-      msg: "Hey, how are you?",
-      date: "06/08/2024",
-      time: "10:00 AM",
-      sender: "from",
-    },
-    {
-      msg: "I'm good, thanks! How about you?",
-      date: "06/08/2024",
-      time: "10:02 AM",
-      sender: "to",
-    },
-    {
-      msg: "I'm doing well, just busy with work.",
-      date: "06/08/2024",
-      time: "10:05 AM",
-      sender: "from",
-    },
-    {
-      msg: "I understand. What project are you working on?",
-      date: "06/08/2024",
-      time: "10:07 AM",
-      sender: "to",
-    },
-    {
-      msg: "It's a new web development project.",
-      date: "06/08/2024",
-      time: "10:10 AM",
-      sender: "from",
-    },
-    {
-      msg: "That sounds interesting! Need any help?",
-      date: "06/08/2024",
-      time: "10:12 AM",
-      sender: "to",
-    },
-    {
-      msg: "Thanks! I might take you up on that offer.",
-      date: "06/08/2024",
-      time: "10:15 AM",
-      sender: "from",
-    },
-    {
-      msg: "Anytime. Just let me know.",
-      date: "06/08/2024",
-      time: "10:17 AM",
-      sender: "to",
-    },
-    {
-      msg: "Will do. How's your project coming along?",
-      date: "06/08/2024",
-      time: "10:20 AM",
-      sender: "from",
-    },
-    {
-      msg: "It's going well. Just a few bugs to fix.",
-      date: "06/08/2024",
-      time: "10:22 AM",
-      sender: "to",
-    },
-    {
-      msg: "Bugs are always a pain.",
-      date: "06/08/2024",
-      time: "10:25 AM",
-      sender: "from",
-    },
-    {
-      msg: "Yes, but I'll manage. Any plans for the weekend?",
-      date: "06/08/2024",
-      time: "10:27 AM",
-      sender: "to",
-    },
-    {
-      msg: "Not really, just relaxing at home.",
-      date: "06/08/2024",
-      time: "10:30 AM",
-      sender: "from",
-    },
-    {
-      msg: "Sounds like a good plan. Maybe we can catch up?",
-      date: "06/08/2024",
-      time: "10:32 AM",
-      sender: "to",
-    },
-    {
-      msg: "Sure, let's do that.",
-      date: "06/08/2024",
-      time: "10:35 AM",
-      sender: "from",
-    },
-    {
-      msg: "Great! I'll text you later.",
-      date: "06/08/2024",
-      time: "10:37 AM",
-      sender: "to",
-    },
-    {
-      msg: "Looking forward to it.",
-      date: "06/08/2024",
-      time: "10:40 AM",
-      sender: "from",
-    },
-    {
-      msg: "By the way, did you see the latest movie?",
-      date: "06/08/2024",
-      time: "10:42 AM",
-      sender: "to",
-    },
-    {
-      msg: "Not yet, planning to watch it this weekend.",
-      date: "06/08/2024",
-      time: "10:45 AM",
-      sender: "from",
-    },
-    {
-      msg: "I heard it's really good.",
-      date: "06/08/2024",
-      time: "10:47 AM",
-      sender: "to",
-    },
-    {
-      msg: "Yeah, can't wait to see it.",
-      date: "06/08/2024",
-      time: "10:50 AM",
-      sender: "from",
-    },
-    {
-      msg: "Let me know how it is!",
-      date: "06/08/2024",
-      time: "10:52 AM",
-      sender: "to",
-    },
-    { msg: "Will do!", date: "07/08/2024", time: "10:55 AM", sender: "from" },
-  ];
+  const messagesContainerRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      const { scrollHeight, clientHeight } = messagesContainerRef.current;
+      messagesContainerRef.current.scrollTop = scrollHeight - clientHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [msgs]);
 
   const getMsgs = async () => {
+    console.log("getting msgs from server");
     const res = await fetch("https://devauction.onrender.com/profile/chats", {
       method: "POST",
       body: JSON.stringify({
@@ -185,8 +60,8 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
   function genrateMsgs() {
     let i = 0;
     let j = 0;
-    const today = new Date()
-    const yesterday = new Date(today)
+    const today = new Date();
+    const yesterday = new Date(today);
     const items = [];
     const myMessages = msgs?.myMessages;
     const sendersMessages = msgs?.senderMessages;
@@ -209,7 +84,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
                 msg={myMessages[i].mes}
                 sender={"to"}
                 time={localTime}
-                key={myMessages[i].mes}
+                key={myMessages[i].mes + localTime}
               />
             </>
           );
@@ -242,7 +117,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
                 msg={sendersMessages[j].mes}
                 sender={"from"}
                 time={localTime}
-                key={sendersMessages[j].mes}
+                key={sendersMessages[j].mes + localTime}
               />
             </>
           );
@@ -252,7 +127,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
               msg={sendersMessages[j].mes}
               sender={"from"}
               time={localTime}
-              key={sendersMessages[j].mes}
+              key={sendersMessages[j].mes + localTime}
             />
           );
         }
@@ -278,7 +153,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
               msg={myMessages[i].mes}
               sender={"to"}
               time={localTime}
-              key={myMessages[i].mes}
+              key={myMessages[i].mes + localTime}
             />
           </>
         );
@@ -288,7 +163,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
             msg={myMessages[i].mes}
             sender={"to"}
             time={localTime}
-            key={myMessages[i].mes}
+            key={myMessages[i].mes + localTime}
           />
         );
       }
@@ -313,7 +188,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
               msg={sendersMessages[j].mes}
               sender={"from"}
               time={localTime}
-              key={sendersMessages[j].mes}
+              key={sendersMessages[j].mes + localTime}
             />
           </>
         );
@@ -323,7 +198,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
             msg={sendersMessages[j].mes}
             sender={"from"}
             time={localTime}
-            key={sendersMessages[j].mes}
+            key={sendersMessages[j].mes + localTime}
           />
         );
       }
@@ -332,7 +207,9 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
     return items;
   }
   return (
-    <div className="right lg:w-2/3 h-full w-full py-7 pr-6 absolute lg:static hidden lg:block overflow-hidden">
+    <div
+      className="right lg:w-2/3 h-full w-full py-7 pr-6 absolute lg:static hidden lg:block overflow-hidden "
+    >
       <div
         className="screen w-full rounded-xl h-full relative flex items-center pt-24 pb-20"
         style={{
@@ -347,12 +224,18 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
               userName={selectedUser?.name}
             />
             <div
-              className="msgs h-full my-auto overflow-auto p-2 px-6 w-full flex flex-col gap-2 z-0"
+              className="msgs h-full my-auto overflow-auto p-2 px-6 w-full flex flex-col gap-4 z-0"
+              ref={messagesContainerRef}
               key={"msgsContainer"}
             >
               {selectedUser && genrateMsgs()}
             </div>
-            <ChatScreenFooter receiversMailId={selectedUser.email} />
+            <ChatScreenFooter
+              receiversMailId={selectedUser.email}
+              msgs={msgs}
+              setMsgs={getMsgs}
+              key={"ChatScreenFooter"}
+            />
           </>
         ) : (
           <div className="logo flex w-full h-full justify-center items-center flex-col gap-2 select-none">

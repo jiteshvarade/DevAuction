@@ -9,7 +9,7 @@ import EmojiPicker from "emoji-picker-react";
 import CameraAccess from "./CameraAccess";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function ChatScreenFooter({ receiversMailId }) {
+export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
   const { user } = useAuth0();
   const [msg, setMsg] = useState("");
   const [showAttachment, setShowAttachMent] = useState(false);
@@ -19,12 +19,12 @@ export default function ChatScreenFooter({ receiversMailId }) {
     setMsg((preMsg) => {
       return preMsg + emoji.emoji;
     });
-    setShowEmojis(false);
+    // setShowEmojis(false);
   }
 
   async function sendMsg() {
     const userEmail = user.email;
-    console.log(userEmail, receiversMailId);
+    // console.log(userEmail, receiversMailId);
     console.log("sending msg");
     const res = await fetch(
       "https://devauction.onrender.com/profile/chat/send",
@@ -40,7 +40,9 @@ export default function ChatScreenFooter({ receiversMailId }) {
         },
       }
     );
-    const msgDeliveryResponse = await res.json();
+    const msgDeliveryResponse = await res.text();
+    setMsgs();
+    setMsg(() => "");
     console.log(msgDeliveryResponse);
   }
   
@@ -85,6 +87,10 @@ export default function ChatScreenFooter({ receiversMailId }) {
           className="flex-1 bg-inherit text-white h-fit outline-none"
           placeholder="Your thoughts here..."
           value={msg}
+          onFocus={() => {
+            setShowAttachMent(false);
+            setShowEmojis(false);
+          }}
           onChange={(e) => setMsg(e.target.value)}
         />
         <MdOutlineEmojiEmotions
@@ -105,12 +111,12 @@ export default function ChatScreenFooter({ receiversMailId }) {
         {msg.length == 0 ? (
           <MdKeyboardVoice
             size="3.4rem"
-            className="p-4 bg-[#66bee3] rounded-xl"
+            className="p-4 bg-[#66bee3] rounded-xl cursor-pointer"
           />
         ) : (
           <IoSend
             size="3.4rem"
-            className="p-4 bg-[#66bee3] rounded-xl"
+            className="p-4 bg-[#66bee3] rounded-xl cursor-pointer"
             onClick={msg.trim() !== "" ? sendMsg : ""}
           />
         )}
