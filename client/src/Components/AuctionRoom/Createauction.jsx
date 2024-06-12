@@ -7,10 +7,9 @@ import axios from "axios";
 import GradientBtn from "../Buttons/GradientBtn";
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 const Createauction = ({ show, setshow }) => {
-  const { user } = useAuth0();
 
+  const { user } = useAuth0();
   const [plan, setplan] = useState(null);
   const fileref = useRef(null);
   const [url, seturl] = useState("");
@@ -34,7 +33,7 @@ const Createauction = ({ show, setshow }) => {
     };
 
     if (data <= date.now()) {
-        alert("")
+      alert("");
       return;
     }
 
@@ -59,6 +58,14 @@ const Createauction = ({ show, setshow }) => {
         console.log(response);
       })
       .catch((error) => console.log(error));
+  };
+
+  const getTodayDate = () => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const dd = String(today.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
   };
 
   return (
@@ -128,6 +135,7 @@ const Createauction = ({ show, setshow }) => {
                 onChange={(e) => {
                   setDate(e.target.value);
                 }}
+                min={getTodayDate()}
                 className="bg-[#062541] rounded-full px-10 py-2 w-full md:w-14rem"
                 type="date"
               />
