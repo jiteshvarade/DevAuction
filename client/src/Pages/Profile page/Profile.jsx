@@ -6,8 +6,10 @@ import Follower from "../../Components/Follow/Follower";
 import Following from "../../Components/Follow/Following";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
+import { useMenuContext } from "../../context/MenuContextProvider";
 
-export default function Profile({ showMenu, setShowMenu }) {
+export default function Profile() {
+  const { showMenu, setShowMenu } = useMenuContext();
   const [explorerSection, setExplorerSection] = useState("Projects");
   const [showFollow, setShowFollow] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);

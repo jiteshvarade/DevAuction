@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import Profile from "../Profile page/Profile";
+import { Routes, Link, Route, Outlet } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 // import GradientBtn from "../../Components/Buttons/GradientBtn";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import Dashbord from "../Dashboardpage/Dashbord";
 import Chat from "../Chat page/Chat";
 import LogoutButton from "../../Components/Gradient Btn/LogoutButton";
+import {
+  MenuProvider,
+  useMenuContext,
+} from "../../context/MenuContextProvider";
 
 export default function HomePage() {
-  const [showMenu, setShowMenu] = useState(false); 
-  return ( 
+  // const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, setShowMenu } = useMenuContext();
+  return (
     <div className="profileParent flex h-dvh overflow-hidden w-full text-white bg-[#05081B]">
       <div
         className={
@@ -27,15 +33,17 @@ export default function HomePage() {
           />
         </div>
         <div className="navLinks py-4 h-full flex flex-col gap-2 justify-between">
-          <div className="links"></div>
+          <div className="links flex flex-col gap-4">
+            <Link to={""}>Dashboard</Link>
+            <Link to={"profile"}>Profile</Link>
+            <Link to={"chats"}>Chats</Link>
+          </div>
           {/* <div className="logout flex items-center gap-1 mx-auto mb-5 cursor-pointer active:text-gray-400 select-none"><RiLogoutBoxRLine /> Logout</div> */}
-          <LogoutButton/>
+          <LogoutButton />
         </div>
       </div>
       <div className="right overflow-auto w-full">
-        {/* <Profile showMenu={showMenu} setShowMenu={setShowMenu} /> */}
-        <Dashbord showMenu={showMenu} setShowMenu={setShowMenu} />
-        {/* <Chat showMenu={showMenu} setShowMenu={setShowMenu}  /> */}
+        <Outlet />
       </div>
     </div>
   );

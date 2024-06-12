@@ -3,8 +3,10 @@ import ChatHeader from "../../Components/Chats Header/ChatHeader";
 import ChatPeople from "../../Components/Chat people/ChatPeople";
 import ChatScreen from "../../Components/Chat screen/ChatScreen";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useMenuContext } from "../../context/MenuContextProvider";
 
-export default function Chat({ showMenu, setShowMenu }) {
+export default function Chat() {
+  const {showMenu, setShowMenu} = useMenuContext();
   const { user } = useAuth0();
   const [selectedUser, setSelectedUser] = useState(null);
   const [recentChatUsers, setRecentChatUsers] = useState([]);

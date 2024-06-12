@@ -56,7 +56,7 @@ const Highestbidder = () => {
             
             data.map((ele,index) => {
               return (
-                <tr>
+                <tr key={index + ele.name }>
                   <td className="p-2  text-center">{index + 1}</td>
                   <td className="p-2  text-center ">{ele.name}</td>
                   <td className="p-2  text-center">{ele.totalauc}</td>

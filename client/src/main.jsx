@@ -5,7 +5,7 @@ import './index.css'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { PrimeReactProvider } from 'primereact/api'
 import {SocketProvider} from "./context/SocketProvider.jsx"
-import {BrowserRouter} from "react-router-dom"
+// import {BrowserRouter} from "react-router-dom"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
@@ -19,9 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           }}
       >
         <PrimeReactProvider>
-          <BrowserRouter>
+          {/* <BrowserRouter> */}
             <App />
-          </BrowserRouter>
+          {/* </BrowserRouter> */}
         </PrimeReactProvider> 
       </Auth0Provider>
     </SocketProvider>

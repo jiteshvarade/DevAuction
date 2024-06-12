@@ -8,10 +8,10 @@ import AttachmentModel from "./AttachmentModel";
 import EmojiPicker from "emoji-picker-react";
 import CameraAccess from "./CameraAccess";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSocket } from "../../context/SocketProvider"
+import { useSocket } from "../../context/SocketProvider";
 
-export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
-  const socket = useSocket()
+const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
+  const socket = useSocket();
   const { user } = useAuth0();
   const [msg, setMsg] = useState("");
   const [showAttachment, setShowAttachMent] = useState(false);
@@ -24,9 +24,22 @@ export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
     // setShowEmojis(false);
   }
 
-  // useEffect(() => {
+  const handleMessageRequest = (data) => {
+    console.log(data);
+  };
 
-  // })
+  useEffect(() => {
+    socket.on("user:message", handleMessageRequest);
+    return () => {
+      socket.off("user:message", handleMessageRequest);
+    };
+  }, [socket, handleMessageRequest]);
+
+  useEffect(() => {
+    if (user.email) {
+      socket.emit("user:connected", { email: user.email });
+    }
+  }, [user]);
 
   async function sendMsg() {
     const userEmail = user.email;
@@ -36,7 +49,7 @@ export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
       from: userEmail,
       to: receiversMailId,
       message: msg,
-    })
+    });
     // const res = await fetch(
     //   "https://devauction.onrender.com/profile/chat/send",
     //   {
@@ -56,7 +69,7 @@ export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
     setMsg(() => "");
     // console.log(msgDeliveryResponse);
   }
-  
+
   return (
     <div className="absolute bottom-4 flex gap-4 items-center w-[95%] left-1/2 -translate-x-1/2">
       <AttachmentModel
@@ -134,4 +147,6 @@ export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
       </div>
     </div>
   );
-}
+});
+
+export default ChatScreenFooter;

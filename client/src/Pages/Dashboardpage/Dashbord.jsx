@@ -10,8 +10,10 @@ import Createauction from "../../Components/AuctionRoom/Createauction";
 // import Offers from '../../Components/Dashbord/Offers'
 import { useSocket } from "../../context/SocketProvider";
 import { ProgressSpinner } from "primereact/progressspinner";
+import { useMenuContext } from "../../context/MenuContextProvider";
 
-function Dashbord({ showMenu, setShowMenu }) {
+function Dashbord() {
+  const { showMenu, setShowMenu } = useMenuContext();
   
   const socket = useSocket();
   const [isnav, setisnav] = useState(false);
