@@ -35,11 +35,12 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
     };
   }, [socket, handleMessageRequest]);
 
-  useEffect(() => {
-    if (user.email) {
-      socket.emit("user:connected", { email: user.email });
-    }
-  }, [user]);
+
+  // useEffect(() => {
+  //   if (user.email) {
+  //     socket.emit("user:connected", { email: user.email });
+  //   } 
+  // }, [user]);
 
   async function sendMsg() {
     const userEmail = user.email;
@@ -50,24 +51,25 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
       to: receiversMailId,
       message: msg,
     });
-    // const res = await fetch(
-    //   "https://devauction.onrender.com/profile/chat/send",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       from: userEmail,
-    //       to: receiversMailId,
-    //       message: msg,
-    //     }),
-    //     headers: {
-    //       "Content-type": "application/json; charset=UTF-8",
-    //     },
-    //   }
-    // );
-    // const msgDeliveryResponse = await res.text();
+    const res = await fetch(
+      "https://devauction.onrender.com/profile/chat/send",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          from: userEmail,
+          to: receiversMailId,
+          message: msg,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
+
+    const msgDeliveryResponse = await res.text();
     setMsgs();
     setMsg(() => "");
-    // console.log(msgDeliveryResponse);
+    console.log(msgDeliveryResponse);
   }
 
   return (
