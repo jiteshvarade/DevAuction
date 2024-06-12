@@ -2,6 +2,33 @@ import React from "react";
 import "./Auctionroom.css";
 
 const Highestbidder = () => {
+  const data = [
+    {
+      name: "jistes varade",
+      totalauc: 4,
+      highest: 20000,
+      total: 100000,
+    },
+    {
+      name: "jistes varade",
+      totalauc: 4,
+      highest: 20000,
+      total: 100000,
+    },
+    {
+      name: "jistes varade",
+      totalauc: 4,
+      highest: 20000,
+      total: 100000,
+    },
+    {
+      name: "jistes varade",
+      totalauc: 4,
+      highest: 20000,
+      total: 100000,
+    },
+  ];
+
   return (
     <div className="p-4 flex flex-col gap-4 ">
       <div className="text-[28px] md:text-[40px] font-semibold">
@@ -25,83 +52,20 @@ const Highestbidder = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
-            <tr className="">
-              <td className="p-2  text-center">1</td>
-              <td className="p-2  text-center ">Jitesh Varade</td>
-              <td className="p-2  text-center">4</td>
-              <td className="p-2  text-center">20000</td>
-              <td className="p-2  text-center">1000000</td>
-            </tr>
+            {
+            
+            data.map((ele,index) => {
+              return (
+                <tr>
+                  <td className="p-2  text-center">{index + 1}</td>
+                  <td className="p-2  text-center ">{ele.name}</td>
+                  <td className="p-2  text-center">{ele.totalauc}</td>
+                  <td className="p-2  text-center">{ele.highest}</td>
+                  <td className="p-2  text-center">{ele.total}</td>
+                </tr>
+              );
+            })
+            }
           </tbody>
         </table>
       </div>

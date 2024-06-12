@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import LeftNavbar from './LeftNavbar'
-import EarningCards from './EarningCards'
-import Header from './Header'
-import Cradites from './Cradites'
+import LeftNavbar from '../../Components/Dashbord/LeftNavbar'
+import EarningCards from '../../Components/Dashbord/EarningCards'
+import Header from '../../Components/Dashbord/Header'
+import Cradites from '../../Components/Dashbord/Cradites'
 import { useAuth0 } from "@auth0/auth0-react";
-import Auctionrooms from '../AuctionRoom/Auctionrooms'
-import Highestbidder from '../AuctionRoom/Highestbidder'
-import Createauction from '../AuctionRoom/Createauction' 
-import Offers from './Offers'
+import Auctionrooms from '../../Components/AuctionRoom/Auctionrooms'
+import Highestbidder from '../../Components/AuctionRoom/Highestbidder'
+import Createauction from '../../Components/AuctionRoom/Createauction' 
+// import Offers from '../../Components/Dashbord/Offers'
 import { useSocket } from "../../context/SocketProvider"
 
 function Dashbord() {
@@ -58,7 +58,7 @@ function Dashbord() {
             {
                 totalspend = totalspend + arr1[i]?.Amount ; 
             }
-            avgspend = totalspend/arr1?.length ; 
+            avgspend = totalspend/arr1.length ; 
             setavg(avgspend) ;
             settotal(totalspend) ;
         }
@@ -77,11 +77,9 @@ function Dashbord() {
       }
 
       useEffect(() => {
-        // if(user){
+        
             response();
-        // }else{
-            // console.log("no user")
-        // }
+        
       }, [user])
 
 

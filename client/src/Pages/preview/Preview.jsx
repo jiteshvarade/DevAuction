@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../Dashbord/Header'
-import LeftNavbar from '../Dashbord/LeftNavbar'
-import PreviewSec from './PreviewSec'
+import Header from '../../Components/Dashbord/Header'
+import LeftNavbar from '../../Components/Dashbord/LeftNavbar'
+import PreviewSec from '../../Components/PreviewSection/PreviewSec'
 
 
 const Preview = () => { 

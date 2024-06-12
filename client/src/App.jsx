@@ -1,17 +1,17 @@
 import "./App.css";
-import AudioRecorder from "./Components/Audio Recording/AudioRecording";
+// import AudioRecorder from "./Components/Audio Recording/AudioRecording";
 // import Dashbord from "./Components/Dashbord/Dashbord";
-import Dashbord from "./Components/Dashbord/Dashbord";
+import Dashbord from "./Pages/Dashboardpage/Dashbord";
 import Gallery from "./Components/GallerySection/Gallery"
 // import Createauction from "./Components/AuctionRoom/Createauction";
 // import { useSocket } from "./context/SocketProvider";
-import Preview from "./Components/PreviewSection/Preview"
+import Preview from "./Pages/preview/Preview"
 import HomePage from "./Pages/Home page/HomePage";
-import RoomLobby from "./Components/Room/RoomLobby";
-import Room from "./Components/Room/Room";
+// import RoomLobby from "./Components/Room/RoomLobby";
+// import Room from "./Components/Room/Room";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./Pages/Landing page/LandingPage"
-import Profile from "./Pages/Profile page/Profile";
+// import Profile from "./Pages/Profile page/Profile";
 function App() {
 
   // const socket = useSocket();

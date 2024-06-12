@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Profile from "../Profile page/Profile";
 import { RxCross2 } from "react-icons/rx";
-import GradientBtn from "../../Components/Buttons/GradientBtn";
+// import GradientBtn from "../../Components/Buttons/GradientBtn";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import Chat from "../Chat page/Chat";
 
