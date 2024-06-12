@@ -18,7 +18,7 @@ function LeftNavbar({show, isnav, setisnav }) {
               <h5 className='text-[16px] font-bold'>Auction</h5>
               <p className='text-[14px] mt-[-8px]'>Auction@demo.com</p>
             </div>
-            {isnav ? <div onClick={() => setisnav(!isnav)} className='text-2xl absolute z-20 top-0 right-0'><span class="material-symbols-outlined">
+            {isnav ? <div onClick={() => setisnav(!isnav)} className='text-2xl absolute z-20 top-0 right-0'><span className="material-symbols-outlined">
             cancel
           </span></div> : ""}
           </div>
@@ -31,7 +31,7 @@ function LeftNavbar({show, isnav, setisnav }) {
           </div>
 
           <div className=' mt-5  text-[16px] flex justify-center items-center bg-gradient-to-b from-[#0CA3E7] to-[#050618] py-2 rounded-xl cursor-pointer'>
-            <span class="material-symbols-outlined text-[24px] ">
+            <span className="material-symbols-outlined text-[24px] ">
               database
             </span>
             <span className='font-semibold ml-2'>Gallery</span>

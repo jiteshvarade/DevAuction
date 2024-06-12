@@ -11,7 +11,7 @@ export default function Chat({ showMenu, setShowMenu }) {
   const usersEmail = user?.email;
 
   async function getUsersRecentChats() {
-    const res = await fetch(`${import.meta.env.VITE_WEB_SERVER_URL}/profile/inbox`, {
+    const res = await fetch(`https://devauction.onrender.com/profile/inbox`, {
       method: "POST",
       body: JSON.stringify({ email: usersEmail }),
       headers: {

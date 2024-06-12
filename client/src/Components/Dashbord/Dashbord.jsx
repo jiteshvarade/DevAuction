@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LeftNavbar from './LeftNavbar'
 import EarningCards from './EarningCards'
 import Header from './Header'
@@ -8,8 +8,10 @@ import Auctionrooms from '../AuctionRoom/Auctionrooms'
 import Highestbidder from '../AuctionRoom/Highestbidder'
 import Createauction from '../AuctionRoom/Createauction' 
 import Offers from './Offers'
+import { useSocket } from "../../context/SocketProvider"
 
 function Dashbord() {
+    const socket = useSocket()
     const [isnav, setisnav] = useState(false)
     const [show, setshow] = useState(false);
     const { user } = useAuth0();
@@ -22,55 +24,66 @@ function Dashbord() {
 
 
     // https://devauction.onrender.com/profile
+    // console.log("hi");
 
+    const userEmail = user?.email;
     const response = async () => {
-
         const res = await fetch("https://devauction.onrender.com/profile", {
             method: "POST",
-            body: JSON.stringify({email : user.email}),
+            body: JSON.stringify({email : userEmail}),
             headers: {
             "Content-type": "application/json; charset=UTF-8",
             },
         })
 
-        const data =  await res.json() 
-        // console.log(data);
-        setdata(data) ; 
-        setcredits(data.userData.Profile.Credits)
+        const userData =  await res.json() 
+        console.log(userData?.userData?.UserInfo.email);
+        if(userData){
+            socket.emit("user:connected",{email : userData?.userData?.UserInfo.email })
+        }
+        setdata(userData);
+        setcredits( userData.userData?.Profile.Credits)
 
-        if(data.userData.Profile.Transactions.length != 0 )
+        if(userData.userData?.Profile.Transactions.length != 0 )
         {
-            settrans(data.userData.Profile.Transactions)  
+            settrans(userData.userData?.Profile.Transactions)  
         }
 
         let avgspend = 0 ; 
         let totalspend = 0  ; 
-        const arr1 = data.userData.Profile.Spendings
+        const arr1 = userData.userData?.Profile.Spendings
 
-        if(arr1.length != 0 ) {
-            for(let i = 0 ; i < arr1.length ; i++ )
+        if(arr1?.length != 0 ) {
+            for(let i = 0 ; i < arr1?.length ; i++ )
             {
-                totalspend = totalspend + arr1[i].Amount ; 
+                totalspend = totalspend + arr1[i]?.Amount ; 
             }
-            avgspend = totalspend/arr1.length ; 
+            avgspend = totalspend/arr1?.length ; 
             setavg(avgspend) ;
             settotal(totalspend) ;
         }
 
         let totalEarn = 0 ; 
-        const arr2 = data.userData.Profile.Earnings  
+        const arr2 = userData.userData?.Profile.Earnings  
 
-        if(arr2.length != 0 )
+        if(arr2?.length != 0 )
         {
-            for(let i = 0 ; i < arr2.length ; i++ )
+            for(let i = 0 ; i < arr2?.length ; i++ )
             {
-                totalEarn = totalEarn + arr2[i].Amount ;
+                totalEarn = totalEarn + arr2[i]?.Amount ;
             }
             settotalearn(totalEarn) ;
         }
       }
 
-      response();
+      useEffect(() => {
+        // if(user){
+            response();
+        // }else{
+            // console.log("no user")
+        // }
+      }, [user])
+
 
     return (
         <div className=' '>

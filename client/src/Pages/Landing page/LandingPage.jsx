@@ -27,7 +27,7 @@ function Home() {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-
+    
     navigate("/dashboard")
   }
   return (

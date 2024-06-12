@@ -56,7 +56,7 @@ function Navbar({ loginWithRedirect }) {
         </div>
         <ul className="hidden gap-7 text-white md:flex font-thin">
           {NavLinks.map((elem) => (
-            <li>
+            <li key={elem.toLowerCase()}>
             <a
               href={"#" + elem.toLocaleLowerCase()}
               className=" hover:text-[#23DD9F] cursor-pointer hover:underline"
@@ -69,7 +69,7 @@ function Navbar({ loginWithRedirect }) {
           
         </ul>
 
-        <div className="flex">
+        <div className="flex" key={"loginBtn"}>
           <GradientBtn
             placeholder="LogIn"
             onClick={() => loginWithRedirect()}

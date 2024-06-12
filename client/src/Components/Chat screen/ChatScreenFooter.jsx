@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdAttachment } from "react-icons/md";
 import { LuCamera } from "react-icons/lu";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
@@ -8,8 +8,10 @@ import AttachmentModel from "./AttachmentModel";
 import EmojiPicker from "emoji-picker-react";
 import CameraAccess from "./CameraAccess";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSocket } from "../../context/SocketProvider"
 
 export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
+  const socket = useSocket()
   const { user } = useAuth0();
   const [msg, setMsg] = useState("");
   const [showAttachment, setShowAttachMent] = useState(false);
@@ -22,28 +24,37 @@ export default function ChatScreenFooter({ receiversMailId, msgs, setMsgs }) {
     // setShowEmojis(false);
   }
 
+  // useEffect(() => {
+
+  // })
+
   async function sendMsg() {
     const userEmail = user.email;
     // console.log(userEmail, receiversMailId);
     console.log("sending msg");
-    const res = await fetch(
-      "https://devauction.onrender.com/profile/chat/send",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          from: userEmail,
-          to: receiversMailId,
-          message: msg,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }
-    );
-    const msgDeliveryResponse = await res.text();
+    socket.emit("user:message", {
+      from: userEmail,
+      to: receiversMailId,
+      message: msg,
+    })
+    // const res = await fetch(
+    //   "https://devauction.onrender.com/profile/chat/send",
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       from: userEmail,
+    //       to: receiversMailId,
+    //       message: msg,
+    //     }),
+    //     headers: {
+    //       "Content-type": "application/json; charset=UTF-8",
+    //     },
+    //   }
+    // );
+    // const msgDeliveryResponse = await res.text();
     setMsgs();
     setMsg(() => "");
-    console.log(msgDeliveryResponse);
+    // console.log(msgDeliveryResponse);
   }
   
   return (
