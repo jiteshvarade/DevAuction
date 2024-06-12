@@ -19,11 +19,11 @@ function Header({ Username = "Jhon", UserImg = "https://images.unsplash.com/phot
                         menu
                     </span></div>
 
-                    <div className='flex justify-center items-center border-2 bg-white  text-[#050618] w-10 h-10 rounded-full' >
+                    {/* <div className=' flex justify-center items-center border-2 bg-white  text-[#050618] w-10 h-10 rounded-full' >
                         <span className="material-symbols-outlined text-xl md:text-3xl ">
                             notifications
                         </span>
-                    </div>
+                    </div> */}
                     <div className='w-10 h-10 bg-white border-2 border-white rounded-full'>
                         <img className='h-[100%] w-[100%] rounded-full' src={UserImg} alt="" />
                     </div>
