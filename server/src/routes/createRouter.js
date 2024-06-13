@@ -223,7 +223,7 @@ router.post("/room", upload.single("file"), async (req,res)=>{
 
         await user.save()
 
-        res.send({ message : "Room created successfully"})
+        res.send({ RoomID : room_id})
     }catch(error)
     {
         console.log(error)
