@@ -34,10 +34,6 @@ const cerateRoomSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    RoomSecret : {
-        type : String,
-        required : true
-    },
     Bids : {
         type : [{
             email: String,
