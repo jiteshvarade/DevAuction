@@ -9,8 +9,9 @@ import EmojiPicker from "emoji-picker-react";
 import CameraAccess from "./CameraAccess";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSocket } from "../../context/SocketProvider";
+import ChatBtn from "./ChatBtn";
 
-const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
+const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) => {
   const socket = useSocket();
   const { user } = useAuth0();
   const [msg, setMsg] = useState("");
@@ -21,6 +22,7 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
     setMsg((preMsg) => {
       return preMsg + emoji.emoji;
     });
+    // setShowEmojis(false);
   }
 
   const handleMessageRequest = (data) => {
@@ -35,6 +37,12 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
       socket.off("user:message", handleMessageRequest);
     };
   }, [socket, handleMessageRequest]);
+
+  // useEffect(() => {
+  //   if (user.email) {
+  //     socket.emit("user:connected", { email: user.email });
+  //   } 
+  // }, [user]);
 
   async function sendMsg() {
     const userEmail = user.email;
@@ -61,7 +69,9 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
     );
 
     const msgDeliveryResponse = await res.text();
-    setMsgs();
+    setMsgComps(prevState => {
+      return [...prevState, <ChatBtn msg={msg} sender={"to"} time={new Date().getTime()} key={new Date().getTime() + msg}  />]
+    })
     setMsg(() => "");
     console.log(msgDeliveryResponse);
   }
@@ -131,12 +141,12 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
         {msg.length == 0 ? (
           <MdKeyboardVoice
             size="3.4rem"
-            className="p-4 bg-[#66bee3] rounded-xl cursor-pointer"
+            className="p-4 bg-[#66bee3] rounded-xl cursor-pointer active:scale-95"
           />
         ) : (
           <IoSend
             size="3.4rem"
-            className="p-4 bg-[#66bee3] rounded-xl cursor-pointer"
+            className="p-4 bg-[#66bee3] rounded-xl cursor-pointer active:scale-95"
             onClick={msg.trim() !== "" ? sendMsg : ""}
           />
         )}

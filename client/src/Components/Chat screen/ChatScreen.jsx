@@ -6,6 +6,7 @@ import ChatBtn from "./ChatBtn";
 const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
   const [msgs, setMsgs] = useState([]);
   const messagesContainerRef = useRef(null);
+  const [msgComps, setMsgComps] = useState([]);
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
@@ -16,29 +17,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [msgs]);
-
-  const getMsgs = async () => {
-    console.log("getting msgs from server");
-    const res = await fetch("https://devauction.onrender.com/profile/chats", {
-      method: "POST",
-      body: JSON.stringify({
-        me: myEmail,
-        other: selectedUser?.email,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    const userMsgs = await res.json();
-    if (userMsgs) {
-      setMsgs(userMsgs);
-    }
-  };
-
-  useEffect(() => {
-    getMsgs();
-  }, []);
+  }, [msgComps]);
 
   function useDate(initialValue) {
     let state = initialValue;
@@ -203,8 +182,34 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
       }
       j++;
     }
-    return items;
+    // return items;
+    setMsgComps(items);
   }
+
+  const getMsgs = async () => {
+    console.log("getting msgs from server");
+    const res = await fetch("https://devauction.onrender.com/profile/chats", {
+      method: "POST",
+      body: JSON.stringify({
+        me: myEmail,
+        other: selectedUser?.email,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const userMsgs = await res.json();
+    if (userMsgs) {
+      setMsgs(userMsgs);
+    }
+  };
+
+  useEffect(genrateMsgs, [msgs])
+
+  useEffect(() => {
+    getMsgs();
+  }, [selectedUser]);
+
   return (
     <div className="right lg:w-2/3 h-full w-full py-7 pr-6 absolute lg:static hidden lg:block overflow-hidden ">
       <div
@@ -225,13 +230,18 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
               ref={messagesContainerRef}
               key={"msgsContainer"}
             >
-              {selectedUser && genrateMsgs()}
+              {selectedUser &&
+                msgComps.map((msgComp) => {
+                  {/* console.log(msgComp); */}
+                  return msgComp;
+                })}
             </div>
             <ChatScreenFooter
               genrateMsgs={genrateMsgs}
               receiversMailId={selectedUser.email}
               msgs={msgs}
               setMsgs={setMsgs}
+              setMsgComps={setMsgComps}
               key={"ChatScreenFooter"}
             />
           </>
