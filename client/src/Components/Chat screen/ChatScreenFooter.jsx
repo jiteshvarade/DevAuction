@@ -38,12 +38,6 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
     };
   }, [socket, handleMessageRequest]);
 
-  // useEffect(() => {
-  //   if (user.email) {
-  //     socket.emit("user:connected", { email: user.email });
-  //   } 
-  // }, [user]);
-
   async function sendMsg() {
     const userEmail = user.email;
     // console.log(userEmail, receiversMailId);
@@ -53,6 +47,7 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
       to: receiversMailId,
       message: msg,
     });
+
     const res = await fetch(
       "https://devauction.onrender.com/profile/chat/send",
       {
@@ -69,8 +64,8 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
     );
 
     const msgDeliveryResponse = await res.text();
-    setMsgComps(prevState => {
-      return [...prevState, <ChatBtn msg={msg} sender={"to"} time={new Date().getTime()} key={new Date().getTime() + msg}  />]
+    setMsgs(prevState => {
+      return {...prevState, myMessages: [...prevState.myMessages, {mes: msg, at: new Date().getTime()}]};
     })
     setMsg(() => "");
     console.log(msgDeliveryResponse);
