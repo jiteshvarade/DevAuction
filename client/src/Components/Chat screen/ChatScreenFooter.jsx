@@ -21,7 +21,6 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
     setMsg((preMsg) => {
       return preMsg + emoji.emoji;
     });
-    // setShowEmojis(false);
   }
 
   const handleMessageRequest = (data) => {
@@ -36,12 +35,6 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
       socket.off("user:message", handleMessageRequest);
     };
   }, [socket, handleMessageRequest]);
-
-  // useEffect(() => {
-  //   if (user.email) {
-  //     socket.emit("user:connected", { email: user.email });
-  //   } 
-  // }, [user]);
 
   async function sendMsg() {
     const userEmail = user.email;
