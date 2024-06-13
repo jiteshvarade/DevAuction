@@ -33,9 +33,28 @@ const io = new Server(server, {
     }
 })
 
+//mapping
+const emailToSocketIdMap = new Map()
+
 // socket.io connections
 io.on("connection",(socket)=>{
     console.log("User connected : ",socket.id)
+
+    socket.on("user:connected",async (data)=>{
+        if(data.email){
+            emailToSocketIdMap.set(data.email, socket.id)
+            console.log("new map inserted")
+        }
+    })
+
+    socket.on("user:message", async(data)=>{
+        if(data.to){
+            let reciverSocketID = emailToSocketIdMap.get(data.to)
+            console.log(data.from,data.to,data.message)
+            console.log("reciver socket.id : ",reciverSocketID)
+            io.to(reciverSocketID).emit("user:message",{mes : data.message, at : Date.now()})
+        }
+    })
 
     socket.on("new:user",data=>{
         console.log(data)
@@ -56,6 +75,16 @@ io.on("connection",(socket)=>{
     socket.on("room:message",data => {
         console.log(data.roomID)
         io.to(data.roomID).emit("room:message",{message : data.message, sender : socket.id})
+    })
+
+    socket.on("disconnect", async()=>{
+        
+        for (const [key, value] of emailToSocketIdMap.entries()) {
+            if (value === socket.id) {
+                emailToSocketIdMap.delete(key)
+            }
+        }
+        console.log("map deleted")   
     })
 })
 
@@ -79,5 +108,4 @@ app.use("/profile",profileRouter)
 app.use("/livestream",liveStreamRouter)
 
 // to start chat cleanup process every midnight
-
 cleanupJob.start()
