@@ -127,30 +127,11 @@ router.post('/project', async (req,res)=>{
             }
         })
 
-        let user
-        if(req.body.premium){
-
-            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
-                $inc : {"Profile.Credits" : -req.body.offerPrice},
-                $push : {
-                    "Profile.Projects" : project_id, 
-                    "Profile.Spendings" : {Category : "Project creation fee", Amount : req.body.offerPrice}
-                }
-            })
-
-        }else{
-
-            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
-                $push : {
-                    "Profile.Projects" : project_id,
-                }
-            })
-        }
-
-        if(!user)
-        {
-            res.status(500).json({message : "User Not found"})
-        }
+        const user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+            $push : {
+                "Profile.Projects" : project_id,
+            }
+        })
 
         await user.save()
 
@@ -166,7 +147,6 @@ router.post("/room", upload.single("file"), async (req,res)=>{
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
         const room_id = generateUniqueHexId()
-        const room_secret = generateUniqueHexId()
 
         const {Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret} = {
             Owner : req.body.email,
@@ -176,19 +156,19 @@ router.post("/room", upload.single("file"), async (req,res)=>{
             Title : req.body.title,
             Description: req.body.description,
             FileID : fileuploadResponse.data.id,
-            RoomID : room_id,
-            RoomSecret : room_secret
+            RoomID : room_id
         }
 
 
-        if (!Owner || !Image || !Premium || !Time || !Title || !Description || !FileID || !RoomID || !RoomSecret) {
+        if (!Owner || !Image || !Premium || !Time || !Title || !Description || !FileID || !RoomID ) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret, Bids : [], Sold : {}})
+        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, Bids : [], Sold : {}})
         await newRoom.save()
+        console.log("Room created successfully")
 
-        await fs.unlink(`./public/temp/${filename}`, (err) => {
+        fs.unlink(`./public/temp/${filename}`, (err) => {
             if (err) {
                 console.error(err)
             } else {
@@ -196,34 +176,14 @@ router.post("/room", upload.single("file"), async (req,res)=>{
             }
         })
 
-        let user
-        if(req.body.premium){
-
-            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
-                $inc : {"Profile.Credits" : -req.body.creationFee},
-                $push : {
-                    "Profile.RoomsCreated" : room_id, 
-                    "Profile.Spendings" : {Category : "Room creation fee", Amount : req.body.creationFee}
-                }
-            })
-
-        }else{
-
-            user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
-                $push : {
-                    "Profile.RoomsCreated" : room_id,
-                }
-            })
-        }
-
-        if(!user)
-        {
-            res.status(500).json({message : "User Not found"})
-        }
-
+        const user = await User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+            $push : {
+                "Profile.RoomsCreated" : room_id,
+            }
+        })
         await user.save()
 
-        res.send({ message : "Room created successfully"})
+        res.send({ RoomID : room_id})
     }catch(error)
     {
         console.log(error)
