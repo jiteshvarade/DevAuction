@@ -10,7 +10,7 @@ export default function ChatHeader({showMenu, setShowMenu, userName, userImg}) {
         className="absolute top-[13px] left-3 md:hidden cursor-pointer z-20"
         onClick={() => setShowMenu(!showMenu)}
       />
-      <div className="left text-2xl">
+      <div className="left text-2xl md:pl-0 pl-8">
         <div className="userName">Hi, {userName || "Someone"}</div>
         <div className="greeting text-base font-thin sm:block hidden">
           Welcome back its good to have you here

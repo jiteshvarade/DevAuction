@@ -3,7 +3,7 @@ import ChatScreenHeader from "./ChatScreenHeader";
 import ChatScreenFooter from "./ChatScreenFooter";
 import ChatBtn from "./ChatBtn";
 
-const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
+const ChatScreen = React.memo(({ selectedUser, myEmail, showChats, setShowChats }) => {
   const [msgs, setMsgs] = useState([]);
   const messagesContainerRef = useRef(null);
   const [msgComps, setMsgComps] = useState([]);
@@ -211,7 +211,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
   }, [selectedUser]);
 
   return (
-    <div className="right lg:w-2/3 h-full w-full py-7 pr-6 absolute lg:static hidden lg:block overflow-hidden ">
+    <div className={`right lg:w-2/3 h-full w-full py-7 pr-6 max-[1024px]:pl-6 absolute lg:static hidden lg:block overflow-hidden ${showChats ? "max-[1024px]:block" : "hidden"}`}>
       <div
         className="screen w-full rounded-xl h-full relative flex items-center pt-24 pb-20"
         style={{
@@ -222,6 +222,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail }) => {
         {selectedUser ? (
           <>
             <ChatScreenHeader
+            setShowChats={setShowChats}
               imgSrc={selectedUser?.image}
               userName={selectedUser?.name}
             />

@@ -11,6 +11,7 @@ export default function Chat() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [recentChatUsers, setRecentChatUsers] = useState([]);
   const usersEmail = user?.email;
+  const [showChats, setShowChats] = useState(false);
 
   async function getUsersRecentChats() {
     const res = await fetch(`https://devauction.onrender.com/profile/inbox`, {
@@ -33,11 +34,11 @@ export default function Chat() {
     <div className="chatParent h-dvh flex flex-col">
       <ChatHeader setShowMenu={setShowMenu} showMenu={showMenu} userName={user?.given_name} userImg={user?.picture}  />
       <div
-        className="chatBody flex flex-1 relative"
+        className="chatBody flex flex-1 relative mb-4"
         style={{ height: "calc(100vh * .78)" }}
       >
-        <ChatPeople recentChatUsers={recentChatUsers} setSelectedUser={setSelectedUser} />
-        <ChatScreen selectedUser={selectedUser} myEmail={user?.email}  />
+        <ChatPeople recentChatUsers={recentChatUsers} setSelectedUser={setSelectedUser} showChats={showChats} setShowChats={setShowChats} />
+        <ChatScreen selectedUser={selectedUser} myEmail={user?.email} showChats={showChats} setShowChats={setShowChats}  />
       </div>
     </div>
   );

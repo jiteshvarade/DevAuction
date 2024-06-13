@@ -72,7 +72,7 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
   }
 
   return (
-    <div className="absolute bottom-4 flex gap-4 items-center w-[95%] left-1/2 -translate-x-1/2">
+    <div className="absolute bottom-4 flex gap-4 items-center w-[95%] left-1/2 max-w-full -translate-x-1/2">
       <AttachmentModel
         className={
           showAttachment ? " bottom-20 opacity-100" : " -bottom-80 opacity-0"
@@ -109,7 +109,7 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
         />
         <input
           type="text"
-          className="flex-1 bg-inherit text-white h-fit outline-none"
+          className="w-full bg-inherit text-white h-fit outline-none"
           placeholder="Your thoughts here..."
           value={msg}
           onFocus={() => {
