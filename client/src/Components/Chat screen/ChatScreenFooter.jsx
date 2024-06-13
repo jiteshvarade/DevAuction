@@ -25,7 +25,9 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
   }
 
   const handleMessageRequest = (data) => {
-    console.log(data);
+    setMsgs(prevState => {
+      return {...prevState, senderMessages: [...prevState.senderMessages, data]}
+    })
   };
 
   useEffect(() => {
@@ -34,7 +36,6 @@ const ChatScreenFooter = React.memo(({ receiversMailId, msgs, setMsgs }) => {
       socket.off("user:message", handleMessageRequest);
     };
   }, [socket, handleMessageRequest]);
-
 
   // useEffect(() => {
   //   if (user.email) {

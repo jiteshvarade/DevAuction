@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import Profile from "../Profile page/Profile";
-import { Routes, Link, Route, Outlet } from "react-router-dom";
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
-// import GradientBtn from "../../Components/Buttons/GradientBtn";
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import Dashbord from "../Dashboardpage/Dashbord";
-import Chat from "../Chat page/Chat";
 import LogoutButton from "../../Components/Gradient Btn/LogoutButton";
-import {
-  MenuProvider,
-  useMenuContext,
-} from "../../context/MenuContextProvider";
+import { MdDashboard } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
+import { IoPersonCircle } from "react-icons/io5";
+import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
+
+
+import { useMenuContext } from "../../context/MenuContextProvider";
 
 export default function HomePage() {
-  // const [showMenu, setShowMenu] = useState(false);
   const { showMenu, setShowMenu } = useMenuContext();
   return (
     <div className="profileParent flex h-dvh overflow-hidden w-full text-white bg-[#05081B]">
@@ -34,11 +31,10 @@ export default function HomePage() {
         </div>
         <div className="navLinks py-4 h-full flex flex-col gap-2 justify-between">
           <div className="links flex flex-col gap-4">
-            <Link to={""}>Dashboard</Link>
-            <Link to={"profile"}>Profile</Link>
-            <Link to={"chats"}>Chats</Link>
+            <Link to={""} className="flex gap-2 items-center p-2"><MdDashboard /> Dashboard</Link>
+            <Link to={"profile"} className="flex gap-2 items-center p-2"><IoPersonCircle />Profile</Link>
+            <Link to={"chats"} className="flex gap-2 items-center p-2"><IoChatbubbleEllipsesSharp />Chats</Link>
           </div>
-          {/* <div className="logout flex items-center gap-1 mx-auto mb-5 cursor-pointer active:text-gray-400 select-none"><RiLogoutBoxRLine /> Logout</div> */}
           <LogoutButton />
         </div>
       </div>
