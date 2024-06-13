@@ -9,7 +9,6 @@ import EmojiPicker from "emoji-picker-react";
 import CameraAccess from "./CameraAccess";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSocket } from "../../context/SocketProvider";
-import ChatBtn from "./ChatBtn";
 
 const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) => {
   const socket = useSocket();

@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import LogoutButton from "../../Components/Gradient Btn/LogoutButton";
 import { MdDashboard } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
 import { IoPersonCircle } from "react-icons/io5";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
-
-
 import { useMenuContext } from "../../context/MenuContextProvider";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useSocket } from "../../context/SocketProvider";
 
 export default function HomePage() {
+  const { user } = useAuth0();
+  const socket = useSocket();
+  useEffect(() => {
+    if (user) {
+      socket.emit("user:connected", {
+        email: user.email,
+      });
+    }
+  }, [user]);
   const { showMenu, setShowMenu } = useMenuContext();
   return (
     <div className="profileParent flex h-dvh overflow-hidden w-full text-white bg-[#05081B]">
@@ -31,9 +39,17 @@ export default function HomePage() {
         </div>
         <div className="navLinks py-4 h-full flex flex-col gap-2 justify-between">
           <div className="links flex flex-col gap-4">
-            <Link to={""} className="flex gap-2 items-center p-2"><MdDashboard /> Dashboard</Link>
-            <Link to={"profile"} className="flex gap-2 items-center p-2"><IoPersonCircle />Profile</Link>
-            <Link to={"chats"} className="flex gap-2 items-center p-2"><IoChatbubbleEllipsesSharp />Chats</Link>
+            <Link to={""} className="flex gap-2 items-center p-2">
+              <MdDashboard /> Dashboard
+            </Link>
+            <Link to={"profile"} className="flex gap-2 items-center p-2">
+              <IoPersonCircle />
+              Profile
+            </Link>
+            <Link to={"chats"} className="flex gap-2 items-center p-2">
+              <IoChatbubbleEllipsesSharp />
+              Chats
+            </Link>
           </div>
           <LogoutButton />
         </div>

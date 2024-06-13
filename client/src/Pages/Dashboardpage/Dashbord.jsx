@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import LeftNavbar from "../../Components/Dashbord/LeftNavbar";
 import EarningCards from "../../Components/Dashbord/EarningCards";
 import Header from "../../Components/Dashbord/Header";
 import Cradites from "../../Components/Dashbord/Cradites";
@@ -7,16 +6,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Auctionrooms from "../../Components/AuctionRoom/Auctionrooms";
 import Highestbidder from "../../Components/AuctionRoom/Highestbidder";
 import Createauction from "../../Components/AuctionRoom/Createauction";
-// import Offers from '../../Components/Dashbord/Offers'
-import { useSocket } from "../../context/SocketProvider";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
 
 function Dashbord() {
   const { showMenu, setShowMenu } = useMenuContext();
-  
-  const socket = useSocket();
-  const [isnav, setisnav] = useState(false);
   const [show, setshow] = useState(false);
   const { user } = useAuth0();
   const [data, setdata] = useState(null);
@@ -25,9 +19,6 @@ function Dashbord() {
   const [totalearn, settotalearn] = useState(0);
   const [credits, setcredits] = useState(0);
   const [trans, settrans] = useState();
-
-  // https://devauction.onrender.com/profile
-  // console.log("hi");
 
   const userEmail = user?.email;
   const response = async () => {
@@ -41,11 +32,6 @@ function Dashbord() {
 
     const userData = await res.json();
     console.log(userData?.userData?.UserInfo.email);
-    if (userData) {
-      socket.emit("user:connected", {
-        email: userData?.userData?.UserInfo.email,
-      });
-    }
     setdata(userData);
     setcredits(userData.userData?.Profile.Credits);
 
@@ -100,10 +86,6 @@ function Dashbord() {
               <Createauction show={show} setshow={setshow} />
             </div>
           )}
-          {/* navbar */}
-
-          {/* <LeftNavbar show={show} isnav={isnav} setisnav={setisnav} /> */}
-
           <div
             className={`w-[100%] overflow-y-scroll  border-l-2 border-[#4b4c59] bg-[#050618] mg:px-10 pb-10 text-white ${
               show ? "blur-xl" : ""
