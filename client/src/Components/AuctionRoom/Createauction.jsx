@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import background from "../../assets/AuctionroomImages/Rectangle.png";
-import add from "../../assets/AuctionroomImages/+ADD.png";
 import { Dropdown } from "primereact/dropdown";
 import "./Auctionroom.css";
 import axios from "axios";
 import GradientBtn from "../Buttons/GradientBtn";
+import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Createauction = ({ show, setshow }) => {
-
+  const navigate = useNavigate();
   const { user } = useAuth0();
   const [plan, setplan] = useState(null);
   const fileref = useRef(null);
@@ -16,13 +16,11 @@ const Createauction = ({ show, setshow }) => {
   const [title, settiltle] = useState("");
   const [date, setDate] = useState("");
   const [desc, setdesc] = useState("");
-
   const plans = [
     { name: "Free Rooms", code: "false" },
     { name: "Platinum Rooms", code: "true" },
   ];
-
-  const clickHandler = () => {
+  const clickHandler = async () => {
     const data = {
       image: url,
       title: title,
@@ -31,14 +29,8 @@ const Createauction = ({ show, setshow }) => {
       description: desc,
       premium: plan,
     };
-
-    if (data <= date.now()) {
-      alert("");
-      return;
-    }
-
+    console.log(user.email);
     setshow(!show);
-
     const formData = new FormData();
     formData.append("file", fileref.current.files[0]);
     formData.append("date", date);
@@ -47,17 +39,18 @@ const Createauction = ({ show, setshow }) => {
     formData.append("premium", plan.code);
     formData.append("image", url);
     formData.append("email", user.email);
-
     console.log(formData);
-
-    // https://devauction.onrender.com/uploads
-    // http://in1.localto.net:5947/uploads
-    axios
-      .post("http://in1.localto.net:5947/create/room", formData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
+    try {
+      const response = await axios.post('http://in1.localto.net:5947/create/room', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log(response.data);
+      navigate(`/room/${response.data.RoomID}`)
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+    }
   };
 
   const getTodayDate = () => {

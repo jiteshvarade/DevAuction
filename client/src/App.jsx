@@ -1,14 +1,10 @@
 import "./App.css";
-// import AudioRecorder from "./Components/Audio Recording/AudioRecording";
-// import Dashbord from "./Components/Dashbord/Dashbord";
 import Dashbord from "./Pages/Dashboardpage/Dashbord";
 import Gallery from "./Components/GallerySection/Gallery";
-// import Createauction from "./Components/AuctionRoom/Createauction";
-// import { useSocket } from "./context/SocketProvider";
 import Preview from "./Pages/preview/Preview";
 import HomePage from "./Pages/Home page/HomePage";
-// import RoomLobby from "./Components/Room/RoomLobby";
-// import Room from "./Components/Room/Room";
+import MeetingPage from "./Pages/Meeting Page/MeetingPage"
+
 import {
   Routes,
   Route,
@@ -38,6 +34,7 @@ function App() {
     },
     { path: "/gallery", element: <Gallery /> },
     { path: "/preview", element: <Preview /> },
+    {path: "/room/:roomid", element: <MeetingPage />}
   ]);
 
   return (
