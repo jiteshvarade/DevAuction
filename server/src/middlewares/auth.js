@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
     } else {
 
       try{
-        const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0, Transactions : []}})
+        const newUser = new User({UserInfo : data,Profile : {Bio : "", Skills : [],RoomsCreated : [],Projects : [],Offers : [],Followers : [], Following : [], Spendings : [], Earnings : [],Credits : 0, Transactions : [], Premium : false}})
         await newUser.save()
 
         const userInbox = new Inbox({User : email, Messages : [], Recived : []})

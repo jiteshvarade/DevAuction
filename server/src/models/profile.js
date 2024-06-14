@@ -60,6 +60,10 @@ const profileSchema = new mongoose.Schema({
         }],
         required : false
     },
+    Premium : {
+        type : Boolean,
+        required : false
+    }
 
 },{timestamps : true})
 

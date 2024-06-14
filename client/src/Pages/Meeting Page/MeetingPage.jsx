@@ -48,7 +48,13 @@ export default function MeetingPage() {
         videoStream: "",
         audioStream: "",
       },
+
+      // socket.emit("entered:room", data)
     });
+
+    // socket.on("entered:room",data=>{
+    // const {roomId, newUserData}
+    // })
 
     setSocket(socket);
 
