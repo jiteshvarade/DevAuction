@@ -54,7 +54,6 @@ router.post("/verify",async (req,res)=>{
 
         const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
             $push : {"Profile.Transactions" : {
-                email : email,
                 amount : amount,
                 category : "debit"
             }},
@@ -79,7 +78,6 @@ router.post("/withdraw",async (req,res)=>{
     try{
         const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
             $push : {"Profile.Transactions" : {
-                email : email,
                 amount : amount,
                 category : "credit"
             }},
