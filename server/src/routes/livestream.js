@@ -13,7 +13,22 @@ async function handleTrackEvent(e, peer) {
     }
 }
 
+router.post("/roomDetails",async (req, res)=>{
+    const roomId = req.body.roomId
+
+    try{
+        const room = await Room.findOne({RoomID : roomId})
+
+        res.send(room)
+        
+    }catch(error){
+        console.log(error)
+    }
+})
+
 router.post("/broadcast",async (req,res)=>{
+
+    console.log(req.body.sdp)
 
     try {
         const peer = new webrtc.RTCPeerConnection({

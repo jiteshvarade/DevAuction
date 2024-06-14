@@ -36,6 +36,7 @@ router.post("/verify",async (req,res)=>{
     const secret = Webhook_Secret
     const email = req.body.payload.payment.entity.email
     const amount = req.body.payload.payment.entity.amount
+    console.log(email,amount)
 
     const shasum = crypto.createHmac("sha256", secret)
     shasum.update(JSON.stringify(req.body))
@@ -55,7 +56,8 @@ router.post("/verify",async (req,res)=>{
                 email : email,
                 amount : amount,
                 category : "debit"
-            }}
+            }},
+            $inc : {"Profile.Credits" : amount}
         })
 
         await user.save()

@@ -30,8 +30,10 @@ router.post("/getRooms", async(req, res)=>{
 
             res.send({freeRooms : free, premiumRooms : premium, history : history})
         }
-
-        res.send("Sending wrong type")
+        else{
+            res.send("Sending wrong type")
+        }
+        
     }catch(error){
         console.log(error)
     }

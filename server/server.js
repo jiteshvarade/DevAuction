@@ -36,86 +36,10 @@ const io = new Server(server, {
 
 //mapping
 const emailToSocketIdMap = new Map()
-const roomWiseUsers = {}
-const roomWiseSocketIdToUserIdMapping = {}
 
 // socket.io connections
 io.on("connection",(socket)=>{
     console.log("User connected : ",socket.id)
-
-    ///////////////////////////////////////////////////////////////////
-    let RoomID
-    socket.on("meetingRoomJoin",(data)=>{
-        // retriveing handshake data from client
-        const {roomId, newUserData} = data;
-        RoomID = roomId
-        console.log("new user data", newUserData, "socketID", socket.id);
-        console.log("room id", roomId );
-
-        // Ensure roomWiseUsers[roomId] is initialized as an array if it doesn't exist
-        if (!roomWiseUsers[roomId]) {
-            roomWiseUsers[roomId] = {};
-        }
-
-        // Ensure roomWiseSocketIdToUserIdMapping[roomId] is initialized as an array if it doesn't exist
-        if (!roomWiseSocketIdToUserIdMapping[roomId]) {
-            roomWiseSocketIdToUserIdMapping[roomId] = {};
-        }
-
-        socket.join(roomId);
-
-        //sending the details of users that are already there in the room to the new joinee
-        io.to(roomId).emit("join", roomWiseUsers[roomId]);
-        // console.log("roomWiseUsers[roomId]", roomWiseUsers[roomId]);
-
-        //sending the report of new joinee to already joined users
-        io.to(roomId).emit("newUserJoined", newUserData);
-
-        //adding the host attribute to the first joinee of the meeting (a.k.a host)
-        if(Object.entries(roomWiseUsers[roomId]).length == 0){
-            console.log("l.65 roomWiseUsers[roomId]", roomWiseUsers[roomId]);
-            console.log("l.66",roomWiseUsers[roomId].length);
-            console.log("l.67 newUserData", newUserData);
-            newUserData.host = true;
-            console.log("l.69 newUserData", newUserData);
-            // updating the users in the room
-            roomWiseUsers[roomId][newUserData.userId] = newUserData;
-            roomWiseSocketIdToUserIdMapping[roomId][socket.id] = newUserData.userId;
-        }else{
-            console.log("l.74 roomWiseUsers[roomId]", roomWiseUsers[roomId]);
-            console.log("l.75", roomWiseUsers[roomId].length);
-            console.log("l.76 newUserData", newUserData);
-            newUserData.host = false;
-            console.log("l.78 newUserData", newUserData);
-            // updating the users in the room
-            roomWiseUsers[roomId][newUserData.userId] = newUserData;
-            roomWiseSocketIdToUserIdMapping[roomId][socket.id] = newUserData.userId;
-        }
-        console.log("l.83 roomWiseUsers[roomId]", roomWiseUsers[roomId]);
-        console.log("l.84 roomWiseSocketIdToUserIdMapping[roomId]", roomWiseSocketIdToUserIdMapping[roomId]);
-    })
-
-    const arrayOfClientSideEvents = [
-        "bidChange",
-        "micStatus",
-        "cameraStatus",
-        "handRaiseStatus",
-        "sendMessage",
-        "leaveRoom",
-    ]
-    
-    arrayOfClientSideEvents.forEach((elem) => {
-        socket.on(elem, (data) => {
-            const {roomId, ...toMemebers} = data //roomid chhodke baaki saara data room mein bhej rahe hai
-            console.log(elem, data)
-
-            
-            // Broadcast data to all connected clients
-            io.to(roomId).emit(elem, toMemebers)
-        })
-    })
-
-    /////////////////////////////////////////////////////////////////////
 
     socket.on("user:connected",async (data)=>{
         if(data.email){
@@ -162,17 +86,6 @@ io.on("connection",(socket)=>{
             }
         }
         console.log("map deleted")  
-        
-        ///////////////////////////////////////////////////
-        // console.log("user disconnected", socket.id);
-        // const userIdOfUserLeft = roomWiseSocketIdToUserIdMapping[roomId][socket.id] //changed roomId to RoomID
-        // // console.log("l.92 userIdOfUserLeft", userIdOfUserLeft);
-        // io.to(roomId).emit("userLeft", userIdOfUserLeft)
-        // delete roomWiseSocketIdToUserIdMapping[roomId][socket.id]
-        // delete roomWiseUsers[roomId][userIdOfUserLeft]
-        // console.log('l.96 roomWiseSocketIdToUserIdMapping[roomId]', roomWiseSocketIdToUserIdMapping[roomId])
-        // console.log('l.97 roomWiseUsers[roomId]', roomWiseUsers[roomId])
-        /////////////////////////////////////////////////////
     })
 })
 
