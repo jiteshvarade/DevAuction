@@ -9,10 +9,6 @@ const createProjectSchema = new mongoose.Schema({
         type : String,
         required : false
     },
-    Premium : {
-        type : Boolean,
-        required : false
-    },
     Title : {
         type : String,
         required : true
@@ -34,7 +30,7 @@ const createProjectSchema = new mongoose.Schema({
         required : true
     },
     OfferPrice : {
-        type : String,
+        type : Number,
         required : true,
     },
     Offers : {

@@ -92,16 +92,18 @@ function generateUniqueHexId() {
     return hexString.slice(0, 15)
 }
 
-router.post('/project', async (req,res)=>{
+router.post('/project', upload.single("file"), async (req,res)=>{
     try{
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
+        console.log(req.body)
         const project_id = generateUniqueHexId()
+        console.log(req.body.email,req.body.image,req.body.title,req.body.description,req.body.link,req.body.offerPrice)
+        console.log(req.file.filename)
 
-        const {Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID,OfferPrice} = {
+        const {Owner, Image, Title, Description, FileID, Link, ProjectID,OfferPrice} = {
             Owner : req.body.email,
             Image : req.body.image,
-            Premium: req.body.premium,
             Title : req.body.title,
             Description: req.body.description,
             FileID : fileuploadResponse.data.id,
@@ -111,30 +113,33 @@ router.post('/project', async (req,res)=>{
         }
 
 
-        if (!Owner || !Image || !Premium || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
+        if (!Owner || !Image || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
+        else{
+            const newProject = new Project({Owner, Image, Title, Description, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
+            await newProject.save()
 
-        const newProject = new Project({Owner, Image, Premium, Title, Description, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
-        await newProject.save()
+            fs.unlink(`./public/temp/${filename}`, (err) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log('File deleted successfully!');
+                }
+            })
 
-        fs.unlink(`./public/temp/${filename}`, (err) => {
-            if (err) {
-                console.error(err);
-            } else {
-                console.log('File deleted successfully!');
-            }
-        })
+            const user = await User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $push : {
+                    "Profile.Projects" : project_id,
+                }
+            })
 
-        const user = User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
-            $push : {
-                "Profile.Projects" : project_id,
-            }
-        })
+            await user.save()
 
-        await user.save()
+            res.send({ message : "Project created successfully"})
+        }
 
-        res.send({ message : "Project created successfully"})
+        
     }catch(error)
     {
         console.log(error)
@@ -161,28 +166,30 @@ router.post("/room", upload.single("file"), async (req,res)=>{
 
         if (!Owner || !Image || !Premium || !Time || !Title || !Description || !FileID || !RoomID ) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
+        }else{
+            const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, Bids : [], Sold : {}})
+            await newRoom.save()
+            console.log("Room created successfully")
+
+            fs.unlink(`./public/temp/${filename}`, (err) => {
+                if (err) {
+                    console.error(err)
+                } else {
+                    console.log('File deleted successfully!')
+                }
+            })
+
+            const user = await User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
+                $push : {
+                    "Profile.RoomsCreated" : room_id,
+                }
+            })
+            await user.save()
+
+            res.send({ RoomID : room_id})
         }
 
-        const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, Bids : [], Sold : {}})
-        await newRoom.save()
-        console.log("Room created successfully")
-
-        fs.unlink(`./public/temp/${filename}`, (err) => {
-            if (err) {
-                console.error(err)
-            } else {
-                console.log('File deleted successfully!')
-            }
-        })
-
-        const user = await User.findOneAndUpdate({"UserInfo.email" : req.body.email},{ 
-            $push : {
-                "Profile.RoomsCreated" : room_id,
-            }
-        })
-        await user.save()
-
-        res.send({ RoomID : room_id})
+        
     }catch(error)
     {
         console.log(error)
