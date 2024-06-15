@@ -3,37 +3,37 @@ import contributerImg from "../../assets/Icons/contributerImg.png";
 export const items = [
     {
       id: 1,
-      img: contributerImg,
-      title: "Amazing Nature",
-      description: "Experience the beauty of nature in its full glory.",
+      img: "https://unavatar.io/github/1stevengrant",
+      title: "John Smith, Lead Developer",
+      description: "Using [Your Website Name]'s auction platform has been a game-changer. The competitive bidding helped us secure a much higher value for our software than we anticipated. Highly recommended!",
       bgColor: "bg-green-500",
     },
     {
       id: 2,
-      img: contributerImg,
-      title: "City Life",
-      description: "Explore the vibrant city life and its fast-paced energy.",
+      img: "https://randomuser.me/api/portraits/women/76.jpg",
+      title: "Emily Johnson, CEO",
+      description: "The Free Plan gave us a great start, and the Premium Plan's enhanced listing options and featured promotion significantly increased our visibility. We're thrilled with the results!",
       bgColor: "bg-blue-500",
     },
     {
       id: 3,
-      img: contributerImg,
-      title: "Mountains",
-      description: "Feel the serenity of the mountains and the crisp air.",
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWHNWkbNYWA9KU6gofP5rqXmEiq3jnqvWfog&s',
+      title: "Michael Lee, Independent Developer",
+      description: "I was new to auctioning projects, but [Your Website Name]'s user-friendly platform and helpful support made the process straightforward. I successfully auctioned my first project and received a great price.",
       bgColor: "bg-purple-500",
     },
     {
       id: 4,
-      img: contributerImg,
-      title: "Desert Adventures",
-      description: "Embark on an adventurous journey through the deserts.",
+      img: 'https://randomuser.me/api/portraits/women/45.jpg',
+      title: "Sarah Thompson, CTO",
+      description: "The ability to customize our auction pages and access advanced marketing tools has been crucial for our high-value projects. The investment in the Premium Plan has paid off multiple times over.",
       bgColor: "bg-yellow-500",
     },
     {
       id: 5,
-      img: contributerImg,
-      title: "Ocean Depths",
-      description: "Dive deep into the ocean and discover its mysteries.",
+      img: 'https://forumstatic.oneplusmobile.com/opforum-gl/upload/image/front/thread/20220615/88487/1089238553391005703/1089238553391005703.jpg',
+      title: "David Wilson, Freelancer",
+      description: "The basic promotion and bidder notifications in the Free Plan helped me get started, and I successfully sold several small projects. The positive experience has convinced me to upgrade to the Premium Plan.",
       bgColor: "bg-teal-500",
     },
   ];
@@ -49,6 +49,6 @@ export const items = [
     export const cardDescriptionStyles =
       "contributersDescription text-gray-400 max-w-[675px] mx-auto";
     export const cardImgStyles =
-      "w-[150px] aspect-square rounded-full absolute left-1/2 -translate-x-1/2 -top-[5.5rem] z-[10000]";
+      "w-[120px] aspect-square rounded-full absolute left-1/2 -translate-x-1/2 -top-[5.5rem] z-[10000]";
     export const buttonStyles =
       "text-[#66bee3] hover:text-[#0D0E20] absolute z-[500] top-[5.5rem] bg-[#66bee3] active:scale-90 transition-all duration-100 sm:scale-100 scale-75";
