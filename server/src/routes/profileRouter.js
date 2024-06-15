@@ -101,7 +101,6 @@ router.post("/follow", async (req, res) => {
 
 router.post("/unFollow", async (req, res) => {
     const { from, to } = req.body
-    console.log(from, to)
   
     try {
         const fromUser = await User.findOne({ "UserInfo.email": from })
@@ -237,6 +236,7 @@ router.post('/chats', async (req, res) => {
     // logic to get chats of both the users
     const me = req.body.me
     const other = req.body.other
+    console.log(me,other)
 
     let meArray
     let otherArray

@@ -55,7 +55,8 @@ const profileSchema = new mongoose.Schema({
     Transactions : {
         type : [{ 
             amount : Number, 
-            category : String
+            category : String,
+            time : Number
         }],
         required : false
     },

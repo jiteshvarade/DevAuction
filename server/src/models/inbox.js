@@ -36,32 +36,32 @@ const inboxSchema = new mongoose.Schema({
     }
 })
 
-inboxSchema.pre('save', async function(next) {
-    const currentDoc = this;
+// inboxSchema.pre('save', async function(next) {
+//     const currentDoc = this;
 
-    const isMessagesModified = currentDoc.isModified('Messages')
-    const isRecivedModified = currentDoc.isModified('Recived')
+//     const isMessagesModified = currentDoc.isModified('Messages')
+//     const isRecivedModified = currentDoc.isModified('Recived')
 
-    if (!isMessagesModified && !isRecivedModified) {
-        return next()
-    }
+//     if (!isMessagesModified && !isRecivedModified) {
+//         return next()
+//     }
 
-    const oneDayAgo = moment().subtract(1, 'day').startOf('day').valueOf()
+//     const oneDayAgo = moment().subtract(1, 'day').startOf('day').valueOf()
 
-    if (isMessagesModified) {
-        currentDoc.Messages.forEach(messageGroup => {
-            messageGroup.data = messageGroup.data.filter(message => message.at > oneDayAgo)
-        })
-    }
+//     if (isMessagesModified) {
+//         currentDoc.Messages.forEach(messageGroup => {
+//             messageGroup.data = messageGroup.data.filter(message => message.at > oneDayAgo)
+//         })
+//     }
 
-    if (isRecivedModified) {
-        currentDoc.Recived.forEach(messageGroup => {
-            messageGroup.data = messageGroup.data.filter(message => message.at > oneDayAgo)
-        })
-    }
+//     if (isRecivedModified) {
+//         currentDoc.Recived.forEach(messageGroup => {
+//             messageGroup.data = messageGroup.data.filter(message => message.at > oneDayAgo)
+//         })
+//     }
 
-    next()
-})
+//     next()
+// })
 
 
 const Inbox = mongoose.model("Inbox", inboxSchema)
