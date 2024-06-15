@@ -8,11 +8,12 @@ import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { useMenuContext } from "../../context/MenuContextProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSocket } from "../../context/SocketProvider";
+import { GrGallery } from "react-icons/gr";
 
 export default function HomePage() {
   const { user } = useAuth0();
   const socket = useSocket();
-  useEffect(() => {
+  useEffect(() => { 
     if (user) {
       socket.emit("user:connected", {
         email: user.email,
@@ -41,7 +42,7 @@ export default function HomePage() {
           <div className="links flex flex-col gap-4">
             <Link to={""} className="flex gap-2 items-center p-2">
               <MdDashboard /> Dashboard
-            </Link>
+            </Link> 
             <Link to={"profile"} className="flex gap-2 items-center p-2">
               <IoPersonCircle />
               Profile
@@ -49,6 +50,10 @@ export default function HomePage() {
             <Link to={"chats"} className="flex gap-2 items-center p-2">
               <IoChatbubbleEllipsesSharp />
               Chats
+            </Link>
+            <Link to={"gallery"} className="flex gap-2 items-center p-2">
+              <GrGallery />
+              Gallery
             </Link>
           </div>
           <LogoutButton />

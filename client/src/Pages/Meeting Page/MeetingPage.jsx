@@ -14,7 +14,7 @@ const arrayOfClientSideEvents = [
   "bidChange",
   "micStatus",
   "cameraStatus",
-  "handRaiseStatus",
+  "handRaiseStatus", 
   "leaveRoom",
 ];
 

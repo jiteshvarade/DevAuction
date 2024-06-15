@@ -4,6 +4,7 @@ import Gallery from "./Components/GallerySection/Gallery";
 import Preview from "./Pages/preview/Preview";
 import HomePage from "./Pages/Home page/HomePage";
 import MeetingPage from "./Pages/Meeting Page/MeetingPage"
+import Searchprofile from "./Components/GallerySection/Searchprofile"
 
 import {
   Routes,
@@ -24,15 +25,16 @@ function App() {
       errorElement: <div>404 page not found</div>, // baad mein ise custome 404 page se replace kr lenge
     },
     {
-      path: "/homepage",
-      element: <HomePage />,
+      path: "/homepage", 
+      element: <HomePage />, 
       children: [
         { path: "/homepage", element: <Dashbord /> },
         { path: "/homepage/profile", element: <Profile /> },
         { path: "/homepage/chats", element: <Chat /> },
+        { path: "/homepage/gallery" , element: <Gallery/> },
+        { path: "/homepage/gallery/searchprofile/:id" , element:<Searchprofile/>}
       ],
     },
-    { path: "/gallery", element: <Gallery /> },
     { path: "/preview", element: <Preview /> },
     {path: "/room/:roomid", element: <MeetingPage />}
   ]);

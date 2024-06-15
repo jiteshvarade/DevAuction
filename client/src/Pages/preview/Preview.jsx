@@ -15,7 +15,7 @@ const Preview = () => {
                 <div className='border mt-6 border-[#0ca2e739]' ></div>
                 <PreviewSec/>
             </div>            
-        </div>
+        </div> 
       
     </div>
   )

@@ -14,7 +14,7 @@ export default function JoinRoomRequest() {
   const [askToJoin, setAskToJoin] = useState(false);
   const username = localStorage.getItem("username");
   
-  useEffect(() => {
+  useEffect(() => { 
     let stream;
     let audioStream;
 

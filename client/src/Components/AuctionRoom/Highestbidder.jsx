@@ -4,25 +4,25 @@ import "./Auctionroom.css";
 const Highestbidder = () => {
   const data = [
     {
-      name: "jistes varade",
+      name: "jistesh varade",
+      totalauc: 4,
+      highest: 20000,
+      total: 100000, 
+    },
+    {
+      name: "jitesh varade",
       totalauc: 4,
       highest: 20000,
       total: 100000,
     },
     {
-      name: "jistes varade",
+      name: "jitesh varade",
       totalauc: 4,
       highest: 20000,
       total: 100000,
     },
     {
-      name: "jistes varade",
-      totalauc: 4,
-      highest: 20000,
-      total: 100000,
-    },
-    {
-      name: "jistes varade",
+      name: "jitesh varade",
       totalauc: 4,
       highest: 20000,
       total: 100000,

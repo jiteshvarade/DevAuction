@@ -11,6 +11,7 @@ import { useMenuContext } from "../../context/MenuContextProvider";
 
 function Dashbord() {
   const { showMenu, setShowMenu } = useMenuContext();
+  const [showtable,setshowTable] = useState(false) ; 
   const [show, setshow] = useState(false);
   const { user } = useAuth0();
   const [data, setdata] = useState(null);
@@ -33,7 +34,8 @@ function Dashbord() {
     const userData = await res.json();
     console.log(userData?.userData?.UserInfo.email);
     setdata(userData);
-    setcredits(userData.userData?.Profile.Credits);
+    const creds = userData.userData?.Profile.Credits
+    setcredits(creds);
 
     if (userData.userData?.Profile.Transactions.length != 0) {
       settrans(userData.userData?.Profile.Transactions);
@@ -60,12 +62,14 @@ function Dashbord() {
         totalEarn = totalEarn + arr2[i]?.Amount;
       }
       settotalearn(totalEarn);
-    }
+    } 
   };
 
   useEffect(() => {
     response();
   }, [user]);
+
+  
 
   return (
     <div className=" ">
@@ -89,7 +93,7 @@ function Dashbord() {
           <div
             className={`w-[100%] overflow-y-scroll  border-l-2 border-[#4b4c59] bg-[#050618] mg:px-10 pb-10 text-white ${
               show ? "blur-xl" : ""
-            }`}
+            } ${showtable ? "":""}`}
           >
             <Header
               Username={user?.given_name}
@@ -108,7 +112,7 @@ function Dashbord() {
             {/* <Auction /> */}
             <Auctionrooms show={show} setshow={setshow} />
             <Highestbidder />
-            <Cradites trans={trans} credits={credits} />
+            <Cradites resp={response} showtable={showtable} setshowTable={setshowTable} trans={trans} credits={credits/100} />
           </div>
         </div>
       )}

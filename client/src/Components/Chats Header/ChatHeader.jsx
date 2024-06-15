@@ -17,9 +17,9 @@ export default function ChatHeader({showMenu, setShowMenu, userName, userImg}) {
         </div>
       </div>
       <div className="right flex items-center gap-2 pr-4">
-        <div className="notifications aspect-square md:w-12 w-8  bg-white rounded-full flex items-center justify-center">
+        {/* <div className="notifications aspect-square md:w-12 w-8  bg-white rounded-full flex items-center justify-center">
           <RiNotificationLine color="#7E7E7E" />
-        </div>
+        </div> */}
         <div className="profilePic aspect-square md:w-12 w-8  bg-white rounded-full overflow-hidden">
           <img src={userImg || ""} alt={userImg ? userName + "'s profile pic" : ""} className="w-full h-full object-cover"  />
         </div>

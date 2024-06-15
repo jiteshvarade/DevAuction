@@ -2,45 +2,78 @@ import React, { useState } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { MdModeEditOutline } from "react-icons/md";
 import "./project.css";
+import { useAuth0 } from "@auth0/auth0-react";
 import GradientBtn from "../Buttons/GradientBtn";
 
-function ProfileEdit(e) {
-  const skills = [];
+function ProfileEdit({resp,showEdit,setShowEdit}) {
+  const { user } = useAuth0();
+  let skills = [];
+  const [bio, setbio] = useState("");
+
   function skillpush() {
-    document.querySelectorAll(".skills").forEach((e) => skills.push(e.value));
+    const data = [];
+    document.querySelectorAll(".skills").forEach((e) => {
+      if(e.value)
+        {
+          data.push(e.value)
+        }
+      });
+    skills = data;
     console.log(skills);
   }
 
-  const [image, setImage] = useState(
-    "https://cdn.pixabay.com/photo/2016/11/22/21/26/asian-girl-1850617_1280.jpg"
-  );
-  function handelImageUpload(e) {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    if (file) {
-      reader.readAsDataURL(file);
+  const edithandler = async () => {
+    try {
+      console.log(skills)
+      const res = await fetch("http://in1.localto.net:5947/profile/edit", {
+        method: "POST",
+        body: JSON.stringify({ email: user.email, bio: bio, skills: skills }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      resp()
+      setShowEdit(!showEdit)
+      console.log(res);
+    } catch (error) {
+      console.log(error);
     }
-  }
-  const [proImg, setProImg] = useState(
-    '"https://i.pinimg.com/236x/fe/af/94/feaf944be5749d956396ebc4662ca39e.jpg"'
-  );
+  };
+
+  // const [image, setImage] = useState(
+  //   "https://cdn.pixabay.com/photo/2016/11/22/21/26/asian-girl-1850617_1280.jpg"
+  // );
+  // function handelImageUpload(e) {
+  //   const file = e.target.files[0];
+  //   const reader = new FileReader();
+
+  //   reader.onloadend = () => {
+  //     setImage(reader.result);
+  //   };
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
+  // const [proImg, setProImg] = useState(
+  //   '"https://i.pinimg.com/236x/fe/af/94/feaf944be5749d956396ebc4662ca39e.jpg"'
+  // );
   return (
     <>
-      <div className="border-2 bg-[#0f1325]  border-red-400   w-[100%] text-white">
+      <div className=" bg-[#0f1325]  border-red-400   w-[100%] text-white">
         <div id="content-box" className="w-full md:px-20 py-10">
           <div className="flex w-full lg:w-[40%] self-start items-center text-lg md:text-2xl pl-10 gap-6 mb-5">
             <div onClick={() => {}} className="text-2xl md:text-4xl" id="">
-              <FaLongArrowAltLeft />
+              <FaLongArrowAltLeft 
+               onClick={ () =>{
+                setShowEdit(!showEdit)
+               }}
+              />
             </div>
             <h2 className="font-semibold">Edit Profile</h2>
           </div>
 
           <div>
-            <div className="flex-wrap-reverse md:flex-nowrap flex items-center w-full gap-3">
+            {/* <div className="flex-wrap-reverse md:flex-nowrap flex items-center w-full gap-3">
               <div className="w-full lg:w-[80%] min-w-[300px]">
                 <div className="w-full px-4 rounded-xl bg-[#0CA3E7] bg-opacity-[10%] py-3 mb-4">
                   <p className="font-semibold text-xl">Title</p>
@@ -76,7 +109,7 @@ function ProfileEdit(e) {
                       <div className="">
                         <div className="bg-white absolute top-0 w-[30px] h-[30px] flex  justify-center items-center  rounded-full">
                           <span className="text-black text-2xl">
-                            {/* {"sourceCodeFile" || 'Upload Source Code'} */}
+                            {/* {"sourceCodeFile" || 'Upload Source Code'} 
                             <MdModeEditOutline />
                           </span>
                         </div>
@@ -92,10 +125,14 @@ function ProfileEdit(e) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="w-full px-4 rounded-xl bg-[#0CA3E7] bg-opacity-[10%] py-2 mb-2">
               <p className="font-semibold text-xl">Bio</p>
               <textarea
+                value={bio}
+                onChange={(e) => {
+                  setbio(e.target.value);
+                }}
                 name=""
                 className="w-full resize-none rounded-full px-6 py-1 border-none outline-none bg-[#062c4a] shadow-[inset_0_0_5px_white]"
                 id=""
@@ -126,9 +163,12 @@ function ProfileEdit(e) {
                 </div>
               </div>
             </div>
-            <div className="flex gap-4 mt-4">
-              <GradientBtn placeholder="Reset" />
-              <GradientBtn placeholder="Save" />
+            <div className="flex justify-between gap-4 mt-4">
+              <div className="flex gap-4" >
+                <GradientBtn placeholder="Reset" />
+                <GradientBtn placeholder="Save" onClick={skillpush} />
+              </div>
+              <GradientBtn placeholder="Save Changes" onClick={edithandler}/>
             </div>
           </div>
         </div>

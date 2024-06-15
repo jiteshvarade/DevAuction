@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Card from "./Card";
 import "./Auctionroom.css";
 import "primereact/resources/themes/saga-blue/theme.css";
@@ -10,7 +10,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { RiRefreshLine } from "react-icons/ri";
 
 const Auctionrooms = ({ show, setshow }) => {
-  const [first, setFirst] = useState(0);
+
+  const [first, setFirst] = useState(0); 
   const [rows, setRows] = useState(3);
   const [selectOption, setSelectOption] = useState("free");
   const roomOptions = ["free", "premium", "history"];
@@ -23,7 +24,7 @@ const Auctionrooms = ({ show, setshow }) => {
 
   // const cards = Array.from({ length: 25 }, (_, index) => <Card key={index} />);
 
-  useEffect(async () => {
+  const response = async () => {
     console.log("pulling all data");
     try {
       const res = await fetch(
@@ -36,12 +37,16 @@ const Auctionrooms = ({ show, setshow }) => {
           },
         }
       );
-      const roomData = await res.json(); // wo yaha hoga
+      const roomData = await res.json(); 
       setRoomData(roomData);
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }
+
+  useEffect( () =>{
+    response(); 
+  },[]);  
 
   async function refresh(type) {
     try {
@@ -60,7 +65,6 @@ const Auctionrooms = ({ show, setshow }) => {
         return {
           ...prevState,
           [Object.keys(roomData)[0]]: [
-            ...prevState[Object.keys(roomData)[0]],
             ...roomData[Object.keys(roomData)[0]],
           ],
         };
