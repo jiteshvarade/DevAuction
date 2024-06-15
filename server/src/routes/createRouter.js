@@ -97,11 +97,11 @@ router.post('/project', async (req,res)=>{
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
         const project_id = generateUniqueHexId()
+        console.log(req.file.filename,req.body.email,req.body.image, req.body.premium,req.body.title,req.body.description,req.body.link,req.body.offerPrice)
 
-        const {Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID,OfferPrice} = {
+        const {Owner, Image, Title, Description, FileID, Link, ProjectID,OfferPrice} = {
             Owner : req.body.email,
             Image : req.body.image,
-            Premium: req.body.premium,
             Title : req.body.title,
             Description: req.body.description,
             FileID : fileuploadResponse.data.id,
@@ -111,7 +111,7 @@ router.post('/project', async (req,res)=>{
         }
 
 
-        if (!Owner || !Image || !Premium || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
+        if (!Owner || !Image || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 

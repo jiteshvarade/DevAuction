@@ -9,10 +9,6 @@ const createProjectSchema = new mongoose.Schema({
         type : String,
         required : false
     },
-    Premium : {
-        type : Boolean,
-        required : false
-    },
     Title : {
         type : String,
         required : true
