@@ -22,14 +22,6 @@ function TeamComp() {
       url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg",
       name: "Kanishka",
     },
-    {
-      url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg",
-      name: "Aarti",
-    },
-    {
-      url: "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
-      name: "Shubham",
-    },
   ];
 
   return (
@@ -45,6 +37,34 @@ function TeamComp() {
           id="inner-weapper"
           className="flex gap-3 animate-[toRight_20s_linear_infinite]"
         >
+          {data.map(({ url, name }, index) => (
+            <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn" key={"members" + index}>
+              <div className="img w-[150px] h-[150px]">
+                <img
+                  src={url}
+                  className="object-cover w-[150px] h-[150px] rounded-full"
+                  alt=""
+                />
+              </div>
+              <div className="name text-xl text-white font-semibold text-center pt-5">
+                {name}
+              </div>
+            </div>
+          ))}
+          {data.map(({ url, name }, index) => (
+            <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn" key={"members" + index}>
+              <div className="img w-[150px] h-[150px]">
+                <img
+                  src={url}
+                  className="object-cover w-[150px] h-[150px] rounded-full"
+                  alt=""
+                />
+              </div>
+              <div className="name text-xl text-white font-semibold text-center pt-5">
+                {name}
+              </div>
+            </div>
+          ))}
           {data.map(({ url, name }, index) => (
             <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn" key={"members" + index}>
               <div className="img w-[150px] h-[150px]">
