@@ -4,7 +4,7 @@ import ChatMateStrip from "./ChatMateStrip";
 
 export default function ChatPeople({ recentChatUsers, setSelectedUser, showChats, setShowChats }) {
   return (
-    <div className={`chatLeft lg:w-1/3 mx-auto px-10 max-[420px]:p-4 md:py-7 flex-col gap-4 w-full flex-1 min-[420px]:min-w-[410px] max-w-full ${showChats ? "max-[1024px]:hidden max-h-screen" : "flex max-h-screen"}`}>
+    <div className={`chatLeft lg:w-1/3 mx-auto px-10 max-[420px]:p-4 md:py-7 flex-col gap-4 w-full flex-1 min-[420px]:min-w-[410px] max-w-full ${window.innerWidth < 1024 && showChats ? "hidden max-h-screen" : "flex max-h-screen"}`}>
       <div
         className="top h-14 w-full rounded-xl relative"
         style={{ backgroundColor: "rgba(12, 163, 231, 0.14)" }}
@@ -31,7 +31,7 @@ export default function ChatPeople({ recentChatUsers, setSelectedUser, showChats
         <div className="body h-full">
           <div className="header text-xl font-bold">People</div>
           {recentChatUsers?.map((elem) => {
-            return <ChatMateStrip key={btoa(elem.email)}  imgSrc={elem.image} userName={elem.name} onClick={window.innerWidth < 1024 ? () => {setSelectedUser(elem); setShowChats(true)} : ""} />
+            return <ChatMateStrip key={btoa(elem.email)}  imgSrc={elem.image} userName={elem.name} onClick={() => {setSelectedUser(elem); setShowChats(true)}} />
           })}
         </div>
       </div>

@@ -17,6 +17,7 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
   const [showAttachment, setShowAttachMent] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
   const [openCamera, setOpenCamera] = useState(false);
+  
   function onEmojiClickHndl(emoji) {
     setMsg((preMsg) => {
       return preMsg + emoji.emoji;
@@ -72,16 +73,16 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
 
   return (
     <div className="absolute bottom-4 flex gap-4 items-center w-[95%] left-1/2 max-w-full -translate-x-1/2">
-      <AttachmentModel
+      {/* <AttachmentModel
         className={
           showAttachment ? " bottom-20 opacity-100" : " -bottom-80 opacity-0"
         }
-      />
-      <CameraAccess
+      /> */}
+      {/* <CameraAccess
         className=""
         openCamera={openCamera}
         setOpenCamera={setOpenCamera}
-      />
+      /> */}
       <div
         className={
           "absolute md:right-20 bottom-20 right-0 " +
@@ -98,14 +99,14 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
         className="msgInterface flex items-center p-4 rounded-xl flex-1 gap-4"
         style={{ border: "1px solid rgba(255, 255, 255, 0.2)" }}
       >
-        <MdAttachment
+        {/* <MdAttachment
           size="1.5rem"
           className="rotate-[120deg] cursor-pointer active:bg-white active:text-gray-400 rounded-full"
           onClick={() => {
             setShowEmojis(false);
             setShowAttachMent(!showAttachment);
           }}
-        />
+        /> */}
         <input
           type="text"
           className="w-full bg-inherit text-white h-fit outline-none"
@@ -125,25 +126,25 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
             setShowEmojis(!showEmojis);
           }}
         />
-        <LuCamera
+        {/* <LuCamera
           size="1.5rem"
           onClick={() => setOpenCamera(!openCamera)}
           className="cursor-pointer"
-        />
+        /> */}
       </div>
       <div className="chatAction">
-        {msg.length == 0 ? (
+        {/* {msg.length == 0 ? (
           <MdKeyboardVoice
             size="3.4rem"
             className="p-4 bg-[#66bee3] rounded-xl cursor-pointer active:scale-95"
           />
-        ) : (
+        ) : ( */}
           <IoSend
             size="3.4rem"
             className="p-4 bg-[#66bee3] rounded-xl cursor-pointer active:scale-95"
             onClick={msg.trim() !== "" ? sendMsg : ""}
           />
-        )}
+        {/* )} */}
       </div>
     </div>
   );

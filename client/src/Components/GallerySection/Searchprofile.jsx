@@ -9,10 +9,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";
+import ChatsModel from "../ChatsModel/ChatsModel";
 
-export default function Searchprofile(  ) {
-  const params = useParams() ; 
-  // console.log(params.id);  
+export default function Searchprofile() {
+  const [showMessageModel, setShowMessageModel] = useState(false);
+  const [chatMemberData, setChatMemberData] = useState(null);
+  const params = useParams();
+  // console.log(params.id);
 
   const { showMenu, setShowMenu } = useMenuContext();
   const [explorerSection, setExplorerSection] = useState("Projects");
@@ -21,27 +24,34 @@ export default function Searchprofile(  ) {
   const { user, isLoading } = useAuth0();
   const [Data, setData] = useState(null);
   const [showEdit, setShowEdit] = useState(false);
-  const searchprof = true ; 
-  
+  const searchprof = true;
 
-  const response = async () => { 
-    console.log(params.id)
-    const res = await fetch("http://in1.localto.net:5947/profile/getUsersById", {
-      method: "POST",
-      body: JSON.stringify({ id: params.id }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
+  function messageHndl() {
+    console.log("clicked");
+    setChatMemberData(Data.userData.UserInfo);
+    setShowMessageModel(true);
+  }
+
+  const response = async () => {
+    console.log(params.id);
+    const res = await fetch(
+      "http://in1.localto.net:5947/profile/getUsersById",
+      {
+        method: "POST",
+        body: JSON.stringify({ id: params.id }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
     const data = await res.json();
-    // console.log(data)
+    console.log(data);
     setData(data);
   };
 
   useEffect(() => {
     response();
   }, [params]);
-
 
   return (
     <div className="relative">
@@ -56,7 +66,12 @@ export default function Searchprofile(  ) {
         </div>
       )}
       {!isLoading && (
-        <div>
+        <div className="relative">
+          <div
+            className={`absolute top-40 left-1/2 -translate-x-1/2 bg-black w-4/5 h-96 max-h-dvh rounded-xl  max-w-full z-50 ${showMessageModel ? " block" : " hidden"}`}
+          >
+            <ChatsModel selectedUser={chatMemberData} myEmail={user.email} chatCloseFunc={() => setShowMessageModel(false)}  />
+          </div>
           {showEdit && (
             <div className="absolute w-full flex justify-center z-20 top-[200px]">
               <ProfileEdit
@@ -89,6 +104,7 @@ export default function Searchprofile(  ) {
             ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} `}
           >
             <ProfileHero
+              messageOnClickFunction={messageHndl}
               resp={response}
               Data={Data}
               showFollow={showFollow}

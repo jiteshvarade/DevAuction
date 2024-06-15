@@ -25,7 +25,7 @@ const Transcations = ({transctions}) => {
                 <tr key={index + ele.name }>
                   <td className="p-2  text-center">{index + 1}</td>
                   <td className="p-2  text-center ">{ele.category}</td>
-                  <td className="p-2  text-center">{ ele.category =='debit'? -ele.amount/100 : ele.amount/100 }</td>
+                  <td className="p-2  text-center">{ ele.category =='debit' ? -ele.amount/100 : ele.amount/100 }</td>
                   <td className="p-2  text-center">{ele._id}</td>
                 </tr>
               );

@@ -27,7 +27,8 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
   const showtranszac = async () => {
     try {
       const response = await fetch(
-        "https://devauction.onrender.com/payments/transactions",
+        // "https://devauction.onrender.com/payments/transactions",
+        "http://in1.localto.net:5947/payments/transactions",
         {
           method: "POST",
           headers: {
@@ -50,6 +51,14 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
   };
 
   const widthdrawl = async () => {
+    if(Amount == "" || Amount == 0){
+      alert("Enter some amount to withdraw");
+      return;
+    }
+    if(Amount - credits > 0){
+      alert("Amount can't be greater than balance!");
+      return;
+    }
     const amount = Amount * 100;
     try {
       const response = await fetch(
