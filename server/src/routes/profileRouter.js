@@ -101,7 +101,6 @@ router.post("/follow", async (req, res) => {
 
 router.post("/unFollow", async (req, res) => {
     const { from, to } = req.body
-    console.log(from, to)
   
     try {
         const fromUser = await User.findOne({ "UserInfo.email": from })
