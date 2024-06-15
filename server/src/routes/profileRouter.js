@@ -16,6 +16,33 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.post('/getUsers', async (req, res) => {
+    const name = req.body.name
+
+    try{    
+        const users = await User.find({"UserInfo.name" : name})
+        res.send({users : users})
+
+    } catch(error) {
+        console.error(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+router.post('/getUsersById', async (req, res) => {
+    const id = req.body.id
+
+    try{    
+        const user = await User.findById(id)
+        res.send({userData : user})
+
+    } catch(error) {
+        console.error(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+
 router.post('/createdRooms', async (req, res) => {
     // logic to store created rooms id by user
 })
@@ -27,6 +54,85 @@ router.post('/createdProjects', async (req, res) => {
 router.post('/placedOffers', async (req, res) => {
     // logic to store Offers placed by user
 })
+
+router.post("/edit", async(req, res)=>{
+    const email = req.body.email
+    const bio = req.body.bio
+    const skills = req.body.skills
+
+    console.log(email,bio,skills)
+
+    try{
+        const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
+            $set : {"Profile.Bio" : bio, "Profile.Skills" : skills}
+        })
+        await user.save()
+
+        res.send("Profile edited successfully")
+    }catch(error){
+        console.log()
+    }
+})
+
+router.post("/follow", async (req, res) => {
+    const { from, to } = req.body
+
+    try {
+        const fromUser = await User.findOne({"UserInfo.email": from})
+        const toUser = await User.findOne({"UserInfo.email": to})
+
+        if (!fromUser || !toUser) {
+            return res.status(404).json({ message: "User Not found" })
+        }
+        else{
+            fromUser.Profile.Following.push(to)
+            toUser.Profile.Followers.push(from)
+
+            await fromUser.save()
+            await toUser.save()
+
+            res.status(201).send("Followers/following updated successfully")
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+router.post("/unFollow", async (req, res) => {
+    const { from, to } = req.body
+    console.log(from, to)
+  
+    try {
+        const fromUser = await User.findOne({ "UserInfo.email": from })
+        const toUser = await User.findOne({ "UserInfo.email": to })
+    
+        if (!fromUser || !toUser) {
+            return res.status(404).json({ message: "User Not found" })
+        }
+    
+        const fromFollowingIndex = fromUser.Profile.Following.indexOf(to)
+        const toFollowersIndex = toUser.Profile.Followers.indexOf(from)
+    
+        
+        if (fromFollowingIndex === -1 || toFollowersIndex === -1) {
+            return res.status(400).json({ message: "Users are not following each other" });
+        }
+        else{
+            fromUser.Profile.Following.splice(fromFollowingIndex, 1)
+            toUser.Profile.Followers.splice(toFollowersIndex, 1)
+        
+            await fromUser.save()
+            await toUser.save()
+        
+            res.status(200).send("Unfollowed successfully")
+        }
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
 
 router.post('/followers', async (req, res) => {
     const array = req.body.followers
@@ -245,20 +351,6 @@ router.post('/chat/send', async (req, res) => {
         console.error(error)
         res.status(500).send("Internal Server Error")
     }
-})
-
-
-
-router.post('/spending', async (req, res) => {
-    // logic to store spending data
-})
-
-router.post('/earning', async (req, res) => {
-    // logic to store earning data
-})
-
-router.post('/credits', async (req, res) => {
-    // logic to store credits of user
 })
 
 module.exports = router

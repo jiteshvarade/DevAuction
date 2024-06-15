@@ -66,29 +66,5 @@ router.post("/earnings", async (req,res)=>{
     }
 })
 
-router.post("/follow", async (req,res)=>{
-    const {from, to} = req.body
-
-    try {
-        const fromUser = await User.findOne({"UserInfo.email" : email},{
-            $push : {"Profile.Following" : to}
-        })
-
-        const toUser = await User.findOne({"UserInfo.email" : email},{
-            $push : {"Profile.Followers" : from}
-        })
-
-        if(!fromUser || !toUser){
-            res.status(500).json({message : "User Not found"})
-        }
-
-        await fromUser.save()
-        await toUser.save()
-        res.status(201).send("followers/following updated successfully")
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error')
-    }
-})
 
 module.exports = router

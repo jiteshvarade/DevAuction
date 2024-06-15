@@ -118,5 +118,17 @@ router.post("/withdraw",async (req,res)=>{
     }
 })
 
+router.post("/transactions",async (req,res)=>{
+    const email = req.body.email
+    
+    try{
+        const user = await User.findOne({"UserInfo.email" : email})
+
+        res.send({transactions : user.Profile.Transactions})
+    }catch(error){
+        console.log(error)
+    }
+})
+
 // export default router
 module.exports = router
