@@ -3,8 +3,9 @@ import Dashbord from "./Pages/Dashboardpage/Dashbord";
 import Gallery from "./Components/GallerySection/Gallery";
 import Preview from "./Pages/preview/Preview";
 import HomePage from "./Pages/Home page/HomePage";
-import MeetingPage from "./Pages/Meeting Page/MeetingPage"
+// import MeetingPage from "./Pages/Meeting Page/MeetingPage"
 import Searchprofile from "./Components/GallerySection/Searchprofile"
+import RoomX from "./Pages/Meeting Room/RoomX"
 
 import {
   Routes,
@@ -36,7 +37,7 @@ function App() {
       ],
     },
     { path: "/preview", element: <Preview /> },
-    {path: "/room/:roomid", element: <MeetingPage />}
+    {path: "/room/:roomID", element: <RoomX />}
   ]);
 
   return (

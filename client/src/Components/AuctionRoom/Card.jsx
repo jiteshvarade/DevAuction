@@ -5,8 +5,9 @@ import time from "../../assets/AuctionroomImages/ion_time.png";
 import "./Auctionroom.css";
 import GradientBtn from "../Buttons/GradientBtn";
 import { useNavigate } from "react-router-dom";
+import { BsFillCalendarDateFill } from "react-icons/bs";
 
-const Card = ({ roomId }) => {
+const Card = ({ roomId, date, title, imgSrc }) => {
   const navigate = useNavigate();
   const [live, setlive] = useState(true);
 
@@ -19,19 +20,20 @@ const Card = ({ roomId }) => {
         </span>
       )}
       <div className=" text-left w-full text-[16px] font-bold">
-        Wonder Kids Website
+        {title || "Mehenga project"}
       </div>
       <div>
-        <img className="rounded-lg" alt="" src={logo} />
+        <img className="rounded-lg" alt="" src={imgSrc || logo} />
       </div>
-      <div className="flex w-full justify-between">
-        <div className="flex gap-2 ">
-          <img alt="" src={eye} />
-          <span className="">2:00pm</span>
+      <div className="flex w-full justify-between px-2">
+        <div className="flex gap-2 items-center">
+          {/* <img alt="" src={eye} /> */}
+          <BsFillCalendarDateFill size="1.1rem"  />
+          <span className="">{date || "30-02-2060"}</span>
         </div>
         <div className="flex gap-2">
           <img alt="" src={time} />
-          <span>45</span>
+          <span>45min</span>
         </div>
       </div>
       <div className="w-full hover:scale-[0.95] transition ease-in-out">

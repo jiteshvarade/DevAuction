@@ -150,14 +150,14 @@ const Auctionrooms = ({ show, setshow }) => {
             {/* {cards.slice(first, first + rows).map((card) => card)} */}
             {selectOption == "free"
               ? roomData.freeRooms.map((elem, index) => (
-                  <Card roomId={elem.RoomID} key={elem.RoomID + index} />
+                  <Card roomId={elem.RoomID} date={elem.Time} imgSrc={elem.Image} title={elem.Title}  key={elem.RoomID + index} />
                 ))
               : "premium"
               ? roomData.premiumRooms.map((elem, index) => (
-                  <Card roomId={elem.RoomID} key={elem.RoomID + index} />
+                  <Card roomId={elem.RoomID} date={elem.Time} imgSrc={elem.Image} title={elem.Title}  key={elem.RoomID + index} />
                 ))
               : roomData.history.map((elem, index) => (
-                  <Card roomId={elem.RoomID} key={elem.RoomID + index} />
+                  <Card roomId={elem.RoomID} date={elem.Time} imgSrc={elem.Image} title={elem.Title}  key={elem.RoomID + index} />
                 ))}
           </div>
         </div>
