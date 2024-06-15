@@ -1,34 +1,50 @@
 import React from "react";
-
+import jitesh from "../../assets/LandingPage Images/Screenshot_20240131-162512.jpg"
+import Ankit from "../../assets/LandingPage Images/WhatsApp Image 2024-06-15 at 22.24.32.jpeg"
+import Nitish from "../../assets/LandingPage Images/nitieshbhai.jpeg"
+import Aakash from "../../assets/LandingPage Images/Snapchat-881403884.jpg"
+import Katole from "../../assets/LandingPage Images/Katole.jpeg"
+import Kanishka1 from "../../assets/LandingPage Images/kanis1.jpeg"
+import Kanishka2 from "../../assets/LandingPage Images/kanis2.jpeg"
+import Khushi from "../../assets/LandingPage Images/khushi2.jpeg"
+  
 function TeamComp() {
+  // 
   const data = [
     {
-      url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg",
-      name: "Khushi Prashad",
+      url: Khushi,
+      name: "Khushi",
+      desc: "UI/UX Designer"
     },
     {
-      url: "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
+      url: Nitish,
       name: "Nitish Kumar",
+      desc: "Full stack Developer"
     },
     {
-      url: "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
+      url: Ankit,
       name: "Ankit Chauhan",
+      desc: "Frontend Developer"
     },
     {
-      url: "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
+      url: jitesh,
       name: "Jitesh Varade",
+      desc: "Founder"
     },
     {
-      url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg",
+      url: Kanishka1,
       name: "Kanishka",
+      desc: "UI/UX Designer"
     },
     {
-      url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/55758/random-user-31.jpg",
-      name: "Aarti",
+      url: Katole,
+      name: "Ankit Katole",
+      desc: "Backend Developer"
     },
     {
-      url: "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
-      name: "Shubham",
+      url: Aakash,
+      name: "Aakash Kaushik",
+      desc: "Frontend Developer"
     },
   ];
 
@@ -45,7 +61,7 @@ function TeamComp() {
           id="inner-weapper"
           className="flex gap-3 animate-[toRight_20s_linear_infinite]"
         >
-          {data.map(({ url, name }, index) => (
+          {data.map(({ url, name ,desc }, index) => (
             <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn" key={"members" + index}>
               <div className="img w-[150px] h-[150px]">
                 <img
@@ -56,10 +72,13 @@ function TeamComp() {
               </div>
               <div className="name text-xl text-white font-semibold text-center pt-5">
                 {name}
+              </div>
+              <div className="name text-md text-white font-semibold text-center pt-5">
+                {desc}
               </div>
             </div>
           ))}
-          {data.map(({ url, name }, index) => (
+          {data.map(({ url, name ,desc }, index) => (
             <div className="card w-[180px] border-2 border-[#111330] p-3 rounded-3xl bg-[#0a0b1d] relative ctaBtn" key={"members" + index}>
               <div className="img w-[150px] h-[150px]">
                 <img
@@ -70,6 +89,9 @@ function TeamComp() {
               </div>
               <div className="name text-xl text-white font-semibold text-center pt-5">
                 {name}
+              </div>
+              <div className="name text-md text-white font-semibold text-center pt-5">
+                {desc}
               </div>
             </div>
           ))}

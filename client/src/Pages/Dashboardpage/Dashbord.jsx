@@ -8,18 +8,21 @@ import Highestbidder from "../../Components/AuctionRoom/Highestbidder";
 import Createauction from "../../Components/AuctionRoom/Createauction";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
+import Download from "../../Components/AuctionRoom/Download"
 
 function Dashbord() {
+  
   const { showMenu, setShowMenu } = useMenuContext();
   const [showtable,setshowTable] = useState(false) ; 
   const [show, setshow] = useState(false);
   const { user } = useAuth0();
   const [data, setdata] = useState(null);
-  const [avg, setavg] = useState(0);
+  const [avg, setavg] = useState(0); 
   const [total, settotal] = useState(0);
   const [totalearn, settotalearn] = useState(0);
   const [credits, setcredits] = useState(0);
   const [trans, settrans] = useState();
+  const [showdownload,setShowdownload] = useState(false)
 
   const userEmail = user?.email;
   const response = async () => {
@@ -84,16 +87,23 @@ function Dashbord() {
         </div>
       )}
       {user && (
-        <div id="main" className="flex h-screen">
+        <div id="main" className="flex h-screen relative">
           {show && (
-            <div className="absolute w-full flex justify-center  ">
+            <div className="absolute w-[90%] left-[5%] top-[10px] flex justify-center  ">
               <Createauction show={show} setshow={setshow} />
             </div>
           )}
+          {
+            showdownload &&(
+              <div className="absolute w-[90%] left-[5%] top-[100px] flex justify-center  ">
+                <Download show={showdownload} setshow={setShowdownload} />
+              </div>
+            )
+          }
           <div
-            className={`w-[100%] overflow-y-scroll  border-l-2 border-[#4b4c59] bg-[#050618] mg:px-10 pb-10 text-white ${
+            className={`w-[100%] overflow-y-scroll   border-l-2 border-[#4b4c59] bg-[#050618] mg:px-10 pb-10 text-white ${
               show ? "blur-xl" : ""
-            } ${showtable ? "":""}`}
+            } ${showtable ? "":""} ${showdownload ? "blur-lg": ""}`}
           >
             <Header
               Username={user?.given_name}
@@ -110,7 +120,7 @@ function Dashbord() {
             />
 
             {/* <Auction /> */}
-            <Auctionrooms show={show} setshow={setshow} />
+            <Auctionrooms show={show} setshow={setshow} showdownload={showdownload} setShowdownload={setShowdownload} />
             <Highestbidder />
             <Cradites resp={response} showtable={showtable} setshowTable={setshowTable} trans={trans} credits={credits/100} />
           </div>

@@ -27,7 +27,7 @@ export default function ProfileHero({
   const { user } = useAuth0();
   const skill = Data?.userData?.Profile.Skills || [];
   const [follow, setfollow] = useState(false);
-  console.log(Data);
+  // console.log(Data);
 
   const check = () => {
     const arr = Data?.userData?.Profile?.Followers || [];
@@ -78,7 +78,7 @@ export default function ProfileHero({
   // console.log("hello");
   // console.log(user)
 
-  console.log(Data);
+  // console.log(Data);
 
   return (
     <div className="sm:max-h-1/2 h-fit min-h-fit w-full relative text-white">

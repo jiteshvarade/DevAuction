@@ -3,6 +3,8 @@ import Plx from "react-plx";
 import AuctionSteps from "./AuctionSteps";
 import stepDetails from "./AuctionStepsData";
 
+
+
 export default function StepsContainer() {
   const fromRight = [
     {
@@ -10,12 +12,14 @@ export default function StepsContainer() {
       duration: 600,
       easing: "ease",
       properties: [{ startValue: 0, endValue: 1, property: "opacity" }],
+ 
     },
     {
       start: "self",
       duration: 600,
       easing: "ease",
       properties: [{ startValue: 500, endValue: window.innerWidth > 1024 ?  100 : 0, property: "translateX" }],
+    
     },
   ];
   const fromLeft = [
@@ -24,6 +28,7 @@ export default function StepsContainer() {
       duration: 600,
       easing: "ease",
       properties: [{ startValue: 0, endValue: 1, property: "opacity" }],
+   
     },
     {
       start: "self",
@@ -32,6 +37,7 @@ export default function StepsContainer() {
       properties: [
         { startValue: -500, endValue: window.innerWidth > 1024 ?  -100 : 0, property: "translateX" },
       ],
+ 
     },
   ];
   return (
@@ -59,6 +65,7 @@ export default function StepsContainer() {
               heading={elem.heading}
               tagline={elem.tagline}
               description={elem.stepDescription}
+              imgRef={elem.imgRef}
             />
           </Plx>
         );

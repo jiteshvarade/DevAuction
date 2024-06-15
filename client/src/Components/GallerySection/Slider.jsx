@@ -1,23 +1,47 @@
-import React from 'react'
-import './Slider.css'
-import Slide from './Slide'
+import React, { useEffect, useState } from "react";
+import "./Slider.css";
+import Slide from "./Slide";
 
 const Slider = () => {
+  const [data, setdata] = useState([]);
+  const images = Array.from({ length: 50 }, (_, index) => (
+    <Slide key={index} />
+  ));
 
-    const images = Array.from({ length:50 }, (_, index) => <Slide key={index} /> );
-    
+  const getdata = async () => {
+    console.log("heool"); 
+    try {
+      const res = await fetch(
+        "http://in1.localto.net:5947/gallery/getAllUsers"
+      );
+      console.log(res);
 
-    return (
-        <div className='mt-10 overflow-hidden p-2 rounded-xl'>
-            <div className='flex gap-6 ' >
-                {
-                    images.map( (imag) => 
-                        imag
-                    )
-                }
-            </div>
-        </div>
-    )
-}
+      const newdata = await res.json();
+      setdata(newdata)
+      console.log(data);
 
-export default Slider
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("hello");
+    getdata();
+  }, []);
+
+  return (
+    <div className="mt-10 overflow-hidden p-2 rounded-xl">
+      <div className="flex gap-6 ">
+        {data.map((ele) => {
+          return <Slide image={ele?.UserInfo.picture} name={ele.UserInfo.name} />;
+        })}
+        {data.map((ele) => {
+          return <Slide image={ele?.UserInfo.picture} name={ele.UserInfo.name} />;
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default Slider;

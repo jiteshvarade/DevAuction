@@ -12,7 +12,7 @@ import TeamComp from "../../Components/Home page footer/TeamComp";
 import Pricing from "../../Components/Pricing/Pricing";
 import { useNavigate } from "react-router-dom";
 import { ProgressSpinner } from "primereact/progressspinner";
-
+ 
 
 function Home() {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ function Home() {
           <FeatureSection />
           <OurMission />
           <Testimonials />
-          <Pricing />
+          {/* <Pricing /> */}
           <ContactUs />
           <TeamComp />
           <HomePageFooter />

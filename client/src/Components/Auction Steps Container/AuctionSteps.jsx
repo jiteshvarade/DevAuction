@@ -44,7 +44,7 @@ export default function AuctionSteps({
           />
         </div>
       </div>
-      <div className="right w-1/2 hidden lg:block">
+      <div className="right w-[50%] hidden lg:block shadow-xl  shadow-slate-800  ">
         <img src={imgRef || randomImg} alt={"Step " + stepNo + " " + heading} />
       </div>
     </div>

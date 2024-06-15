@@ -4,29 +4,53 @@ import "./Auctionroom.css";
 const Highestbidder = () => {
   const data = [
     {
-      name: "jistesh varade",
-      totalauc: 4,
-      highest: 20000,
-      total: 100000, 
+      name: "Ramesh Gupta",
+      totalauc: 12,
+      highest: "56k",
+      total: "1200k", 
     },
     {
-      name: "jitesh varade",
-      totalauc: 4,
-      highest: 20000,
-      total: 100000,
+      name: "Kishore Mahajan",
+      totalauc: 18,
+      highest: "32k" ,
+      total: "1100k",
     },
     {
-      name: "jitesh varade",
-      totalauc: 4,
-      highest: 20000,
-      total: 100000,
+      name: "Ramkisore jain",
+      totalauc: 19,
+      highest: "28k",
+      total: "900k",
     },
     {
-      name: "jitesh varade",
-      totalauc: 4,
-      highest: 20000,
-      total: 100000,
+      name: "Hafiz shekiq",
+      totalauc: 18,
+      highest: "22k",
+      total: "760k",
     },
+    {
+      name: "JS Stalin",
+      totalauc: 11,
+      highest: "21k",
+      total: "400k",
+    },
+    {
+      name:"Simran kaur",
+      totalauc:12, 
+      highest: "19k",
+      total: "200k",
+    },
+    {
+      name:"Ramanujam Iyer",
+      totalauc:7, 
+      highest:"14k",
+      total: "196k",
+    },
+    {
+      name:"Mukul Tiwari",
+      totalauc:5, 
+      highest:"10k",
+      total: "127k",
+    }
   ];
 
   return (

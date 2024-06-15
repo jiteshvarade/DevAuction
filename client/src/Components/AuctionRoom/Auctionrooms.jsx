@@ -9,13 +9,13 @@ import GradientBtn from "../Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiRefreshLine } from "react-icons/ri";
 
-const Auctionrooms = ({ show, setshow }) => {
-
-  const [first, setFirst] = useState(0); 
+const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
+  const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(3);
   const [selectOption, setSelectOption] = useState("free");
   const roomOptions = ["free", "premium", "history"];
   const [showOptions, setShowOptions] = useState(false);
+  
   const [roomData, setRoomData] = useState({
     freeRooms: [],
     premiumRooms: [],
@@ -37,16 +37,16 @@ const Auctionrooms = ({ show, setshow }) => {
           },
         }
       );
-      const roomData = await res.json(); 
+      const roomData = await res.json();
       setRoomData(roomData);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  useEffect( () =>{
-    response(); 
-  },[]);  
+  useEffect(() => {
+    response();
+  }, []);
 
   async function refresh(type) {
     try {
@@ -64,9 +64,7 @@ const Auctionrooms = ({ show, setshow }) => {
       setRoomData((prevState) => {
         return {
           ...prevState,
-          [Object.keys(roomData)[0]]: [
-            ...roomData[Object.keys(roomData)[0]],
-          ],
+          [Object.keys(roomData)[0]]: [...roomData[Object.keys(roomData)[0]]],
         };
       });
     } catch (error) {
@@ -81,17 +79,25 @@ const Auctionrooms = ({ show, setshow }) => {
 
   return (
     <div className=" bg-[#050618] flex flex-col gap-4">
-      <div className="p-6 flex flex-col gap-4">
+      <div className="p-6 flex flex-col gap-4"> 
         <div className="flex justify-between flex-wrap gap-8">
           <div className=" text-[28px] md:text-[40px] font-semibold w-[300px] text-white">
             Auction Room
           </div>
-          <GradientBtn
-            placeholder="Create Rooms"
-            onClick={() => {
-              setshow(!show);
-            }}
-          />
+          <div className="flex gap-3">
+            <GradientBtn
+              placeholder="Create Rooms"
+              onClick={() => {
+                setshow(!show);
+              }}
+            />
+            <GradientBtn
+              placeholder="Download"
+              onClick={() => {
+                setShowdownload(!showdownload)
+              }}
+            />
+          </div>
         </div>
         <div className="header flex justify-between items-center sm:pr-28 flex-wrap gap-4">
           <div
@@ -150,14 +156,32 @@ const Auctionrooms = ({ show, setshow }) => {
             {/* {cards.slice(first, first + rows).map((card) => card)} */}
             {selectOption == "free"
               ? roomData.freeRooms.map((elem, index) => (
-                  <Card roomId={elem.RoomID} date={elem.Time} imgSrc={elem.Image} title={elem.Title}  key={elem.RoomID + index} />
+                  <Card
+                    roomId={elem.RoomID}
+                    date={elem.Time}
+                    imgSrc={elem.Image}
+                    title={elem.Title}
+                    key={elem.RoomID + index}
+                  />
                 ))
               : "premium"
               ? roomData.premiumRooms.map((elem, index) => (
-                  <Card roomId={elem.RoomID} date={elem.Time} imgSrc={elem.Image} title={elem.Title}  key={elem.RoomID + index} />
+                  <Card
+                    roomId={elem.RoomID}
+                    date={elem.Time}
+                    imgSrc={elem.Image}
+                    title={elem.Title}
+                    key={elem.RoomID + index}
+                  />
                 ))
               : roomData.history.map((elem, index) => (
-                  <Card roomId={elem.RoomID} date={elem.Time} imgSrc={elem.Image} title={elem.Title}  key={elem.RoomID + index} />
+                  <Card
+                    roomId={elem.RoomID}
+                    date={elem.Time}
+                    imgSrc={elem.Image}
+                    title={elem.Title}
+                    key={elem.RoomID + index}
+                  />
                 ))}
           </div>
         </div>
