@@ -34,7 +34,7 @@ const createProjectSchema = new mongoose.Schema({
         required : true
     },
     OfferPrice : {
-        type : String,
+        type : Number,
         required : true,
     },
     Offers : {
