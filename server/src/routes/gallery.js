@@ -1,14 +1,26 @@
 const express = require('express')
 const router = express.Router()
 const Project = require('../models/project')
+const User = require("../models/user")
 
-router.post("/getProjects", async(req, res)=>{
-    const type = req.body.type
+router.get("/getProjects", async(req, res)=>{
     try
     {   
-        const projects = await Project.find({Premium : type}).sort({ createdAt: -1 })
+        const projects = await Project.find({}).sort({ createdAt: -1 })
 
         res.send(projects)
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.get("/getAllUsers", async(req, res)=>{
+    try
+    {   
+        console.log("Inside getAllUsers")
+        const user = await User.find({}).sort({ createdAt: -1 })
+
+        res.send(user)
     }catch(error){
         console.log(error)
     }

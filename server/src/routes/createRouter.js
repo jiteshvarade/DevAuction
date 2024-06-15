@@ -96,11 +96,8 @@ router.post('/project', upload.single("file"), async (req,res)=>{
     try{
         filename = req.file.filename
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
-        console.log(req.body)
         const project_id = generateUniqueHexId()
-        console.log(req.body.email,req.body.image,req.body.title,req.body.description,req.body.link,req.body.offerPrice)
-        console.log(req.file.filename)
-
+        
         const {Owner, Image, Title, Description, FileID, Link, ProjectID,OfferPrice} = {
             Owner : req.body.email,
             Image : req.body.image,
@@ -198,10 +195,11 @@ router.post("/room", upload.single("file"), async (req,res)=>{
 
 router.post("/download",async(req, res) => {
     const fileID = req.body.fileID 
+    console.log(fileID)
     try{
         await downloadFile(fileID).catch(console.error)
 
-        res.redirect("https://devauction.onrender.com/uploads/sendfile")
+        res.redirect("http://in1.localto.net:5947/create/sendfile")
 
     }catch(error){
         console.log(error)

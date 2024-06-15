@@ -15,6 +15,7 @@ const insideRoomRouter = require('./src/routes/insideRoomRouter')
 const projectRouter = require('./src/routes/projectsRouter')
 const profileRouter = require("./src/routes/profileRouter")
 const liveStreamRouter = require("./src/routes/livestream")
+const galleryRouter = require("./src/routes/gallery")
 
 //mongodb connection
 ConnectDB()
@@ -78,6 +79,15 @@ io.on("connection",(socket)=>{
         io.to(data.roomID).emit("room:message",{message : data.message, sender : socket.id})
     })
 
+    socket.on("on:bid",data=>{
+        console.log(data)
+        io.to(data.roomID).emit("on:bid",{data})
+    })
+
+    socket.on("roomClose",data=>{
+        io.to(data.roomID).emit("roomClose",{status : true})
+    })
+
     socket.on("disconnect", async()=>{
         
         for (const [key, value] of emailToSocketIdMap.entries()) {
@@ -108,6 +118,7 @@ app.use("/rooms",insideRoomRouter)
 app.use("/project",projectRouter)
 app.use("/profile",profileRouter)
 app.use("/livestream",liveStreamRouter)
+app.use("/gallery", galleryRouter)
 
 // to start chat cleanup process every midnight
 // cleanupJob.start()

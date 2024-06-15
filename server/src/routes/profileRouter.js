@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require("../models/user")
 const Inbox = require('../models/inbox')
+const Project = require("../models/project")
 
 router.post('/', async (req, res) => {
     const email = req.body.email
@@ -43,12 +44,32 @@ router.post('/getUsersById', async (req, res) => {
 })
 
 
-router.post('/createdRooms', async (req, res) => {
+router.post('/userRooms', async (req, res) => {
     // logic to store created rooms id by user
 })
 
-router.post('/createdProjects', async (req, res) => {
-    // logic to store created project id by user
+router.post('/userProjects', async (req, res) => {
+    const email = req.body.email
+
+    try{
+        let userProjects = []
+        const user = await User.findOne({"UserInfo.email" : email})
+        
+        const projectArray = user.Profile.Projects
+
+        const length = projectArray.length
+
+        for(let i = 0; i < length; i++){
+            const project = await Project.findOne({ProjectID : user.Profile.Projects[i]})
+            console.log(project)
+            userProjects.push(project)
+        }
+
+        res.send({userProjects})
+        
+    }catch(error){
+        console.log(error)
+    }
 })
 
 router.post('/placedOffers', async (req, res) => {
@@ -70,7 +91,7 @@ router.post("/edit", async(req, res)=>{
 
         res.send("Profile edited successfully")
     }catch(error){
-        console.log()
+        console.log(error)
     }
 })
 
