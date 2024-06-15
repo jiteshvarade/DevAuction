@@ -110,4 +110,4 @@ app.use("/profile",profileRouter)
 app.use("/livestream",liveStreamRouter)
 
 // to start chat cleanup process every midnight
-cleanupJob.start()
+// cleanupJob.start()

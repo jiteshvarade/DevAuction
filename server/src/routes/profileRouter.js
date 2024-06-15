@@ -236,6 +236,7 @@ router.post('/chats', async (req, res) => {
     // logic to get chats of both the users
     const me = req.body.me
     const other = req.body.other
+    console.log(me,other)
 
     let meArray
     let otherArray
