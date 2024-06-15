@@ -115,7 +115,7 @@ router.post('/project', async (req,res)=>{
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newProject = new Project({Owner, Image, Premium, Title, Description, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
+        const newProject = new Project({Owner, Image, Title, Description, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
         await newProject.save()
 
         fs.unlink(`./public/temp/${filename}`, (err) => {
