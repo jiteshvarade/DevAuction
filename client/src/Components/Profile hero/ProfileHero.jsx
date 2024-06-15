@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
 
 export default function ProfileHero({
-  resp,
+  resp, 
   Data,
   showFollow,
   setShowFollow,
@@ -20,7 +20,9 @@ export default function ProfileHero({
   showEdit,
   setShowEdit,
   searchprof = false,
-  messageOnClickFunction
+  showcreatepro,
+  setCreatePro,
+  messageOnClickFunction,
 }) {
   const { user } = useAuth0();
   const skill = Data?.userData?.Profile.Skills || [];
@@ -213,12 +215,20 @@ export default function ProfileHero({
                 </div>
               )}
               {!searchprof && (
+                <div className="flex gap-4">
                 <GradientBtn
                   placeholder="Edit Profile"
                   onClick={() => {
                     setShowEdit(!showEdit);
                   }}
                 />
+                <GradientBtn
+                  placeholder="Create project"
+                  onClick={() => {
+                    setCreatePro(!showcreatepro);
+                  }}
+                />
+              </div>
               )}
             </div>
           </div>

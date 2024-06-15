@@ -13,7 +13,7 @@ const Transcations = ({transctions}) => {
               <th className="p-2 sticky top-0 bg-[#050618]">#</th>
               <th className="p-2 sticky top-0 bg-[#050618]">Category</th>
               <th className="p-2 sticky top-0 bg-[#050618]">Amount</th>
-              <th className="p-2 sticky top-0 bg-[#050618]">
+              <th className="p-2 sticky top-0 bg-[#050618]"> 
                 Transaction ID
               </th>
             </tr>

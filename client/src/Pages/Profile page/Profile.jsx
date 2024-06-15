@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";
+import CreateProject from "../../Components/Profile hero/CreateProject";
 
 export default function Profile() { 
 
@@ -18,6 +19,7 @@ export default function Profile() {
   const { user , isLoading} = useAuth0();
   const [Data, setData] = useState(null);
   const [showEdit,setShowEdit] = useState(false) 
+  const [showcreatepro,setCreatePro] = useState(false)
   
   const response = async () => { 
     const res = await fetch("https://devauction.onrender.com/profile", {
@@ -52,6 +54,12 @@ export default function Profile() {
       { !isLoading && ( 
         <div>
           {
+            showcreatepro && 
+            <div className="absolute w-full flex justify-center z-20 top-[25px]">
+                <CreateProject show={showcreatepro} setshow={setCreatePro} />
+            </div>
+          }
+          {
             showEdit && (
               <div className="absolute w-full flex justify-center z-20 top-[200px]">
                 <ProfileEdit resp={response} showEdit={showEdit} setShowEdit={setShowEdit} />
@@ -78,7 +86,8 @@ export default function Profile() {
 
           <div
             className={`bg-[#05081B] w-full ${showFollow ? "blur-lg" : ""} 
-            ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} `}
+            
+            ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} ${ showcreatepro ? "blur-lg" :""} `}
           >
             <ProfileHero
               
@@ -91,6 +100,8 @@ export default function Profile() {
               showMenu={showMenu}
               showEdit={showEdit}
               setShowEdit={setShowEdit}
+              showcreatepro={showcreatepro}
+              setCreatePro={setCreatePro}
             />
             <div className="explorerSection h-full overflow-auto relative pt-[42px]">
               <div className="navlinksForExplorerSection flex items-center sticky top-0 w-full">

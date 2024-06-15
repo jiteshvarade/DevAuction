@@ -89,13 +89,10 @@ const ProfileSearch = ({ searchdata, showsearch, setShowsearch }) => {
                   </Link>
 
                   {check(ele) && (
-                    <GradientBtn
-                      className="text-white"
-                      placeholder="Unfollow"
-                    />
+                    <div className='border-2 border-[#E0E0E0] border-opacity-15  text-[#11111] text-[12px] min-w-fit rounded-full mb-1 py-1 px-6 bg-gradient-to-b from-[#18203E] to-[#172748] ' >Following</div>
                   )}
                   {!check(ele) && (
-                    <GradientBtn className="text-white" placeholder="Follow" />
+                    <div className='border-2 border-[#E0E0E0] border-opacity-15  text-[#11111] text-[12px] min-w-fit rounded-full mb-1 py-1 px-6 bg-gradient-to-b from-[#18203E] to-[#172748] ' >Not Following</div>
                   )}
                 </div>
               );

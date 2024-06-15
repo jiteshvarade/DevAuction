@@ -13,7 +13,7 @@ import { json } from "react-router-dom";
 function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
   const [Amount, setAmount] = useState("");
   const { user } = useAuth0();
-  const [trasctionss, setTransction] = useState([]);
+  const [trasctionss, setTransction] = useState([]); 
 
   console.log(credits);
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Gif from '../../assets/GalleryImages/V9wr.gif'
 import eye from '../../assets/AuctionroomImages/mdi_eye.png'
 
-const LongCard = () => {
+const LongCard = () => { 
     return (
         <div className='border-2 mt-4 mb-4 inline-block bg-[#0ca2e739] rounded-2xl w-[250px] h-[550px] lg:w-[350px] lg:h-[550px] '>
             <div className='w-[100%] h-[100%] p-3 flex flex-col gap-2'>
