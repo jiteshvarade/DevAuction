@@ -104,7 +104,6 @@ router.post('/project', async (req,res)=>{
             Premium: req.body.premium,
             Title : req.body.title,
             Description: req.body.description,
-            Topic : req.body.topic,
             FileID : fileuploadResponse.data.id,
             Link : req.body.link,
             OfferPrice : req.body.offerPrice,
@@ -116,10 +115,10 @@ router.post('/project', async (req,res)=>{
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
 
-        const newProject = new Project({Owner, Image, Premium, Title, Description, Topic, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
+        const newProject = new Project({Owner, Image, Premium, Title, Description, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
         await newProject.save()
 
-        await fs.unlink(`./public/temp/${filename}`, (err) => {
+        fs.unlink(`./public/temp/${filename}`, (err) => {
             if (err) {
                 console.error(err);
             } else {
