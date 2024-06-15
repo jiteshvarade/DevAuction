@@ -72,7 +72,7 @@
 
 //   async function getHost(){
 //     try{
-//       const res = await fetch("http://in1.localto.net:5947/rooms/getHost", {
+//       const res = await fetch("https://devauction.onrender.com/rooms/getHost", {
 //         method:"POST",
 //         body: JSON.stringify({
 //           roomID
@@ -109,7 +109,7 @@
 
 //   async function SendBidToBackEnd() {
 //     try {
-//       const res = await fetch("http://in1.localto.net:5947/rooms/bids", {
+//       const res = await fetch("https://devauction.onrender.com/rooms/bids", {
 //         method: "POST",
 //         body: JSON.stringify({
 //           roomId: roomID,
@@ -281,7 +281,7 @@ const RoomPage = () => {
   async function getHost() {
     // let resData;
     try {
-      const res = await fetch("http://in1.localto.net:5947/rooms/getHost", {
+      const res = await fetch("https://devauction.onrender.com/rooms/getHost", {
         method: "POST",
         body: JSON.stringify({
           roomID,
@@ -317,7 +317,7 @@ const RoomPage = () => {
     });
     socket.on("roomClose", (data) => {
       console.log(data);
-      fetch("http://in1.localto.net:5947/rooms/sendMailToBider", {
+      fetch("https://devauction.onrender.com/rooms/sendMailToBider", {
         method: "POST",
         body: JSON.stringify({ roomID }),
         headers: {
@@ -334,7 +334,7 @@ const RoomPage = () => {
 
   async function SendBidToBackEnd() {
     try {
-      const res = await fetch("http://in1.localto.net:5947/rooms/bids", {
+      const res = await fetch("https://devauction.onrender.com/rooms/bids", {
         method: "POST",
         body: JSON.stringify({
           roomId: roomID,

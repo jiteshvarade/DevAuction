@@ -10,7 +10,7 @@ const GallerySection = () => {
   async function fetchProjects() {
     try {
       const res = await fetch(
-        "http://in1.localto.net:5947/gallery/getProjects"
+        "https://devauction.onrender.com/gallery/getProjects"
       );
       const projects = await res.json();
       // console.log(projects);

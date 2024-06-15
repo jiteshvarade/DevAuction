@@ -5,7 +5,7 @@ import GradientBtn from "../Buttons/GradientBtn";
 import RazorpayButton from "../RazorpayButton/razorpaybutton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
-import photo from "../../assets/AuctionroomImages/mdi_eye.png";
+import photo from "../../assets/LandingPage Images/logo remove background.svg";
 import { IoTrophy } from "react-icons/io5";
 import Transcations from "./Transcations";
 import { json } from "react-router-dom";
@@ -28,7 +28,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
     try {
       const response = await fetch(
         // "https://devauction.onrender.com/payments/transactions",
-        "http://in1.localto.net:5947/payments/transactions",
+        "https://devauction.onrender.com/payments/transactions",
         {
           method: "POST",
           headers: {
@@ -173,7 +173,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
                 />
               </div>
               <GradientBtn placeholder="Withdraw" onClick={widthdrawl} />
-              <GradientBtn placeholder="Deposite" onClick={loadRazorPay} />
+              <GradientBtn placeholder="Deposit" onClick={loadRazorPay} />
             </div>
             <p className="text-[#0CA3E7] font-semibold mt-2 ml-5 mb-4">
               Balance (₹ {credits})
@@ -206,7 +206,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
           </div>
 
           {/* <div className="border-2 border-[#223534] rounded-lg py-3 lg:basis-[49%]">
-            <h4 className="text-2xl font-semibold ml-3 my-3">
+            <h4 className="text-https://dev-auction.vercel.app2xl font-semibold ml-3 my-3">
               Transaction history
             </h4>
             <div>

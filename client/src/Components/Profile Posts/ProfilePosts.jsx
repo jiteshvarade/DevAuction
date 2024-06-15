@@ -8,7 +8,7 @@ export default function ProfilePosts({ className }) {
 
   const MyprojectData =  async () => {
     try{
-      const res = await fetch("http://in1.localto.net:5947/profile/userProjects", {
+      const res = await fetch("https://devauction.onrender.com/profile/userProjects", {
         method: "POST",
         body: JSON.stringify({ email: user.email }),
         headers: {

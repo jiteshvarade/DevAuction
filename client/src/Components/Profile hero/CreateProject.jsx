@@ -40,7 +40,7 @@ const CreateProject = ({ show, setshow }) => {
     formData.append("email", user.email);
     console.log(formData);
     try {
-      const response = await axios.post('http://in1.localto.net:5947/create/project', formData, {
+      const response = await axios.post('https://devauction.onrender.com/create/project', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

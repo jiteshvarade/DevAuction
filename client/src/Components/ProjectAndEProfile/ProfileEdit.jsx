@@ -25,7 +25,7 @@ function ProfileEdit({resp,showEdit,setShowEdit}) {
   const edithandler = async () => {
     try {
       console.log(skills)
-      const res = await fetch("http://in1.localto.net:5947/profile/edit", {
+      const res = await fetch("https://devauction.onrender.com/profile/edit", {
         method: "POST",
         body: JSON.stringify({ email: user.email, bio: bio, skills: skills }),
         headers: {

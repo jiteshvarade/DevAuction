@@ -42,7 +42,7 @@ const Createauction = ({ show, setshow }) => {
     formData.append("email", user.email);
     console.log(formData);
     try {
-      const response = await axios.post('http://in1.localto.net:5947/create/room', formData, {
+      const response = await axios.post('https://devauction.onrender.com/create/room', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

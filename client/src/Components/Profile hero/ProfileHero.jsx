@@ -39,7 +39,7 @@ export default function ProfileHero({
   };
 
   const followMe = async () => {
-    const res = await fetch("http://in1.localto.net:5947/profile/follow", {
+    const res = await fetch("https://devauction.onrender.com/profile/follow", {
       method: "POST",
       body: JSON.stringify({
         from: user.email,
@@ -55,7 +55,7 @@ export default function ProfileHero({
   };
 
   const unfollowMe = async () => {
-    const res = await fetch("http://in1.localto.net:5947/profile/unFollow", {
+    const res = await fetch("https://devauction.onrender.com/profile/unFollow", {
       method: "POST",
       body: JSON.stringify({
         from: user.email,

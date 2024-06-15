@@ -35,7 +35,7 @@ export default function Searchprofile() {
   const response = async () => {
     console.log(params.id);
     const res = await fetch(
-      "http://in1.localto.net:5947/profile/getUsersById",
+      "https://devauction.onrender.com/profile/getUsersById",
       {
         method: "POST",
         body: JSON.stringify({ id: params.id }),

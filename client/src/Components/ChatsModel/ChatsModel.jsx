@@ -189,7 +189,7 @@ const ChatsModel = React.memo(({ selectedUser, myEmail, chatCloseFunc }) => {
   const getMsgs = async () => {
     console.log("getting msgs from server");
     const res = await fetch(
-        "http://in1.localto.net:5947/profile/chats",
+        "https://devauction.onrender.com/profile/chats",
         // "https://devauction.onrender.com/profile/chats",
          {
       method: "POST",

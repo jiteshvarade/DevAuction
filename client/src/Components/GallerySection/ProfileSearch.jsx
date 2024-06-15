@@ -9,10 +9,10 @@ import { ProgressSpinner } from "primereact/progressspinner";
 const ProfileSearch = ({ searchdata, showsearch, setShowsearch }) => {
   const data = searchdata || [];
   const { user } = useAuth0();
-  // http://in1.localto.net:5947/profile/follow
+  // https://devauction.onrender.com/profile/follow
 
   const followMe = async (eml) => {
-    const res = await fetch("http://in1.localto.net:5947/profile/follow", {
+    const res = await fetch("https://devauction.onrender.com/profile/follow", {
       method: "POST",
       body: JSON.stringify({ from:user.email , to:eml }),
       headers: {

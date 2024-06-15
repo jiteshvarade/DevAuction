@@ -12,7 +12,7 @@ const Slider = () => {
     console.log("heool"); 
     try {
       const res = await fetch(
-        "http://in1.localto.net:5947/gallery/getAllUsers"
+        "https://devauction.onrender.com/gallery/getAllUsers"
       );
       console.log(res);
 

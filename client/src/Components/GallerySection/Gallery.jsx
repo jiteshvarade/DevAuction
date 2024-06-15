@@ -26,7 +26,7 @@ const Gallery = () => {
       }
       setShowsearch(!showsearch)  
      try{
-      const res = await fetch("http://in1.localto.net:5947/profile/getUsers", {
+      const res = await fetch("https://devauction.onrender.com/profile/getUsers", {
         method: "POST",
         body: JSON.stringify({ name : search }),
         headers: {

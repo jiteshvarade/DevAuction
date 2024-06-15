@@ -28,7 +28,7 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
     console.log("pulling all data");
     try {
       const res = await fetch(
-        "http://in1.localto.net:5947/dashboard/getRooms",
+        "https://devauction.onrender.com/dashboard/getRooms",
         {
           method: "POST",
           body: JSON.stringify({ type: "all" }),
@@ -51,7 +51,7 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
   async function refresh(type) {
     try {
       const res = await fetch(
-        "http://in1.localto.net:5947/dashboard/getRooms",
+        "https://devauction.onrender.com/dashboard/getRooms",
         {
           method: "POST",
           body: JSON.stringify({ type: type }),

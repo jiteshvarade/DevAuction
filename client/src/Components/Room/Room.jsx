@@ -78,7 +78,7 @@ const Room = ()=> {
             sdp: peer.localDescription
         };
     
-        const { data } = await axios.post('http://in1.localto.net:5947/livestream/broadcast', payload)
+        const { data } = await axios.post('https://devauction.onrender.com/livestream/broadcast', payload)
         console.log(data)
         const desc = new RTCSessionDescription(data.sdp)
         peer.setRemoteDescription(desc).catch(e => console.log(e))
@@ -106,7 +106,7 @@ const Room = ()=> {
             sdp: peer.localDescription
         };
     
-        const { data } = await axios.post('http://in1.localto.net:5947/livestream/consumer', payload)
+        const { data } = await axios.post('https://devauction.onrender.com/livestream/consumer', payload)
         console.log(data)
         const desc = new RTCSessionDescription(data.sdp)
         peer.setRemoteDescription(desc).catch(e => console.log(e))

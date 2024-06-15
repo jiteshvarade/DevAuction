@@ -21,7 +21,7 @@ const Download = ({ show, setshow }) => {
     formData.append("fileID", fileid);
 
     // try {
-    //   const response = await fetch("http://in1.localto.net:5947/create/download", {
+    //   const response = await fetch("https://devauction.onrender.com/create/download", {
     //     method: "POST",
     //     body: JSON.stringify({
     //       fileID:fileid
@@ -38,7 +38,7 @@ const Download = ({ show, setshow }) => {
     try {
 
       const response = await axios({
-        url : 'http://in1.localto.net:5947/create/download',
+        url : 'https://devauction.onrender.com/create/download',
         method : "POST",
         responseType : "blob",
         data : {fileID : fileid},
