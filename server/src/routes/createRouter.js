@@ -200,7 +200,7 @@ router.post("/download",async(req, res) => {
     try{
         await downloadFile(fileID).catch(console.error)
 
-        res.redirect("http://in1.localto.net:5947/create/sendfile")
+        res.redirect("https://devauction.onrender.com/create/sendfile")
 
     }catch(error){
         console.log(error)
