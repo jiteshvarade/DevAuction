@@ -46,7 +46,7 @@ router.post("/getLatestBid",async (req,res)=>{
         const highestBid = Math.max(...room.Bids.map(bid => bid.amount))
         const highestBidders = room.Bids.filter(bid => bid.amount === highestBid)
 
-        const email : highestBidders[0].email
+        const email = highestBidders[0].email
 
         const user = await User.findOne({"UserInfo.email" : email})
 
