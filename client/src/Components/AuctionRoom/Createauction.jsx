@@ -65,7 +65,7 @@ const Createauction = ({ show, setshow }) => {
   return (
     <div
       className={
-        "flex justify-center items-center relative md:w-[900px] z-10 rounded-xl shadow-lg bg-[#050618]"
+        "flex justify-center items-center relative md:w-[900px] z-10 rounded-xl shadow-lg bg-[#050618] p-4"
       }
     >
       <RxCross2 className="absolute top-4  right-4 text-[24px]  z-20" onClick={() => {
@@ -85,13 +85,13 @@ const Createauction = ({ show, setshow }) => {
                 seturl(e.target.value);
               }}
               placeholder="URL"
-              className="bg-[#062541] rounded-full px-10 py-2 h-[30px] w-full md:w-14rem"
+              className="bg-[#062541] rounded-full px-10 py-2 h-[40px] w-full md:w-14rem" 
             />
           </div>
         </div>
 
-        <div className="text-white flex flex-wrap gap-6 w-[100%] justify-evenly">
-          <div className=" border w-full rounded-md md:w-[380px] bg-[#bec0dd0d] flex justify-center items-center ">
+        <div className="text-white flex flex-wrap gap-5 w-[100%] justify-evenly">
+          <div className=" border w-full rounded-md md:w-[390px] bg-[#bec0dd0d] flex justify-center items-center ">
             <div className="flex flex-col w-full gap-2 px-6 py-2 ">
               <label className=" text-left">Select Room</label>
               <Dropdown
@@ -108,7 +108,7 @@ const Createauction = ({ show, setshow }) => {
             </div>
           </div>
 
-          <div className="border w-full rounded-md md:w-[380px] bg-[#bec0dd0d] flex justify-center items-center">
+          <div className="border w-full rounded-md md:w-[390px] bg-[#bec0dd0d] flex justify-center items-center">
             <div className="flex flex-col gap-2 px-6 py-4  ">
               <label>Project Title</label>
               <input
@@ -123,9 +123,9 @@ const Createauction = ({ show, setshow }) => {
           </div>
         </div>
 
-        <div className="text-white flex flex-wrap gap-6 w-[100%] justify-between">
-          <div className=" border w-full rounded-md md:w-[380px] bg-[#bec0dd0d] flex justify-center items-center">
-            <div className="flex flex-col gap-2 w-full p-6 ">
+        <div className="text-white flex flex-wrap gap-5 w-[100%] justify-between">
+          <div className=" border w-full rounded-md md:w-[390px] bg-[#bec0dd0d] flex justify-center items-center">
+            <div className="flex flex-col gap-2 w-full px-6 py-4 ">
               <label>Time & Date</label>
               <input
                 value={date}
@@ -139,7 +139,7 @@ const Createauction = ({ show, setshow }) => {
             </div>
           </div>
 
-          <div className="border w-full rounded-md md:w-[380px] bg-[#bec0dd0d] flex justify-center items-center">
+          <div className="border w-full rounded-md md:w-[390px] bg-[#bec0dd0d] flex justify-center items-center">
             <div className="flex flex-col gap-2 w-full px-6 py-4 ">
               <label>Source Code</label>
               <div className="relative">

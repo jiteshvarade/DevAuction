@@ -6,7 +6,6 @@ import HomePage from "./Pages/Home page/HomePage";
 // import MeetingPage from "./Pages/Meeting Page/MeetingPage"
 import Searchprofile from "./Components/GallerySection/Searchprofile"
 import RoomX from "./Pages/Meeting Room/RoomX"
- 
 import {
   Routes,
   Route,
@@ -17,6 +16,7 @@ import LandingPage from "./Pages/Landing page/LandingPage";
 import Profile from "./Pages/Profile page/Profile";
 import Chat from "./Pages/Chat page/Chat";
 import { MenuProvider } from "./context/MenuContextProvider";
+import CreateProPopUp from "./Components/ProjectAndEProfile/CreateProPopUp";
 // import Profile from "./Pages/Profile page/Profile";
 function App() {
   const router = createBrowserRouter([
@@ -37,6 +37,7 @@ function App() {
         { path: "/homepage/gallery/preview/:id" , element: <Preview /> }
       ],
     },
+    {path: "/cree" , element:<CreateProPopUp/>},
     {path: "/room/:roomID", element: <RoomX />}
   ]);
 

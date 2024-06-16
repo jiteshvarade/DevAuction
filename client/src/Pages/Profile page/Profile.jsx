@@ -4,7 +4,7 @@ import ProfilePosts from "../../Components/Profile Posts/ProfilePosts";
 import ProfileOffers from "../../Components/Profile offers/ProfileOffers";
 import Follower from "../../Components/Follow/Follower"; 
 import Following from "../../Components/Follow/Following";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react"; 
 import { ProgressSpinner } from "primereact/progressspinner"; 
 import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";

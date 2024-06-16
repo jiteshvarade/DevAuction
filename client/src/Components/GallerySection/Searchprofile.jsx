@@ -67,9 +67,7 @@ export default function Searchprofile() {
       )}
       {!isLoading && (
         <div className="relative">
-          <div
-            className={`absolute top-40 left-1/2 -translate-x-1/2 bg-black w-4/5 h-96 max-h-dvh rounded-xl  max-w-full z-50 ${showMessageModel ? " block" : " hidden"}`}
-          >
+          <div className={`absolute top-40 left-1/2 -translate-x-1/2 bg-black w-4/5 h-96 max-h-dvh rounded-xl  max-w-full z-50 ${showMessageModel ? " block" : " hidden"}`}>
             <ChatsModel selectedUser={chatMemberData} myEmail={user.email} chatCloseFunc={() => setShowMessageModel(false)}  />
           </div>
           {showEdit && (
@@ -101,7 +99,7 @@ export default function Searchprofile() {
 
           <div
             className={`bg-[#05081B] w-full ${showFollow ? "blur-lg" : ""} 
-            ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} `}
+            ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} ${showMessageModel ? "blur-lg" : ""}`}
           >
             <ProfileHero
               messageOnClickFunction={messageHndl}
