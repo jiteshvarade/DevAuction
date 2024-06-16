@@ -12,16 +12,6 @@ function TeamComp() {
   // 
   const data = [
     {
-      url: Khushi,
-      name: "Khushi",
-      desc: "UI/UX Designer"
-    },
-    {
-      url: Nitish,
-      name: "Nitish Kumar",
-      desc: "Full stack Developer"
-    },
-    {
       url: Ankit,
       name: "Ankit Chauhan",
       desc: "Frontend Developer"
@@ -32,8 +22,18 @@ function TeamComp() {
       desc: "Founder"
     },
     {
+      url: Nitish,
+      name: "Nitish Kumar",
+      desc: "Full stack Developer"
+    },
+    {
       url: Kanishka1,
       name: "Kanishka",
+      desc: "UI/UX Designer"
+    },
+    {
+      url: Khushi,
+      name: "Khushi",
       desc: "UI/UX Designer"
     },
     {
