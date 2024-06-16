@@ -42,10 +42,22 @@ router.post("/getLatestBid",async (req,res)=>{
     try {
         
         const room = await Room.findOne({RoomID : roomID})
+        let highestBid , highestBidders , email, user
 
-        const highestBid = Math.max(...room.Bids.map(bid => bid.amount))
+        if(room.Bids.length == 0){
+            user = await User.findOne({"UserInfo.email" : room.Owner})
+            highestBid = 0
+        }else{
+            
+            highestBid = Math.max(...room.Bids.map(bid => bid.amount))
+            highestBidders = room.Bids.filter(bid => bid.amount === highestBid)
+    
+            email = highestBidders[0].email
+    
+            user = await User.findOne({"UserInfo.email" : email})
+        }
 
-        res.send(highestBid)
+        res.send({name : user.UserInfo.name, picture : user.UserInfo.picture, highestBid})
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error')
