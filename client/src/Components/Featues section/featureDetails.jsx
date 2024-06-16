@@ -9,9 +9,9 @@ import { IoStarHalf } from "react-icons/io5";
 const FeatureDetails = [
   {
     icon: <GiHourglass size="2.5rem" />,
-    heading: "Auction Rooms with Timer",
+    heading: "Auction Rooms",
     description:
-      "Real-time bidding with a countdown timer ensures competitive pricing.",
+      "Real-time bidding with a video and chat for competitive pricing.",
   },
   {
     icon: <GiTakeMyMoney size="2.5rem" />,
@@ -43,8 +43,8 @@ const FeatureDetails = [
   },
   {
     icon: <IoStarHalf size="2.5rem" />,
-    heading: "Review and Rating System",
-    description: "Rate and review sellers for better transparency and trust.",
+    heading: "Meaningful Connections",
+    description: "View Projects They Made to Foster Genuine Relationships.",
   },
 ];
 

@@ -56,10 +56,10 @@ function Navbar({ loginWithRedirect }) {
         </div>
         <ul className="hidden gap-7 text-white md:flex font-thin">
           {NavLinks.map((elem) => (
-            <li key={elem.toLowerCase()}>
+            <li key={elem.toLowerCase()} >
             <a
               href={"#" + elem.toLocaleLowerCase()}
-              className=" hover:text-[#23DD9F] cursor-pointer hover:underline"
+              className=' text-white hover:font-semibold cursor-pointer hover:text-[#66bee3]  relative after:content-[""] after:w-[85%] after:bg-gradient-to-r after:from-[#0a0b1d] after:via-[#66bee3] after:to-[#0a0b1d] after:absolute after:-bottom-2 after:hidden   after:h-[2px] hover:after:block'
               onClick={scrollInToView}
             >
               {elem}
