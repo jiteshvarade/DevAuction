@@ -4,7 +4,7 @@ import { RxUpdate } from "react-icons/rx";
 import { FaCode } from "react-icons/fa6";
 import { RiUserVoiceLine } from "react-icons/ri";
 import { PiFileVideo } from "react-icons/pi";
-import { IoStarHalf } from "react-icons/io5";
+import { FaUserFriends } from "react-icons/fa";
 
 const FeatureDetails = [
   {
@@ -42,7 +42,7 @@ const FeatureDetails = [
       "View short videos of projects and buy the source code or hire the creator instantly.",
   },
   {
-    icon: <IoStarHalf size="2.5rem" />,
+    icon: <FaUserFriends size="2.5rem" />,
     heading: "Meaningful Connections",
     description: "View Projects They Made to Foster Genuine Relationships.",
   },
