@@ -45,7 +45,7 @@ router.post("/getLatestBid",async (req,res)=>{
 
         const highestBid = Math.max(...room.Bids.map(bid => bid.amount))
 
-        res.send(highestBid)
+        res.send({highestBid})
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error')
