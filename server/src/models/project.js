@@ -17,6 +17,10 @@ const createProjectSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    Tags : {
+        type : [String],
+        required : false
+    },
     FileID : {
         type : String,
         required : true,
