@@ -9,8 +9,8 @@ export const useSocket = ()=>{
 }
 
 export const SocketProvider = (props)=>{
-    // const socket = useMemo(()=> io("https://devauction.onrender.com"),[])
-    const socket = useMemo(()=> io(`${import.meta.env.VITE_WEB_SERVER_URL}`),[])
+    const socket = useMemo(()=> io("https://devauction.onrender.com"),[])
+    // const socket = useMemo(()=> io(`${import.meta.env.VITE_WEB_SERVER_URL}`),[])
 
     return (
         <SocketContext.Provider value={socket}>
