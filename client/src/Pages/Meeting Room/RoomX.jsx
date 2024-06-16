@@ -205,8 +205,10 @@ import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSocket } from "../../context/SocketProvider";
 import GradientBtn from "../../Components/Buttons/GradientBtn";
+import { IoIosArrowDown } from "react-icons/io";
 
 const RoomPage = () => {
+  const [showBidSection, setShowBidSection] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
   const socket = useSocket();
@@ -357,6 +359,8 @@ const RoomPage = () => {
       alert("Are thoda sharam karo");
       return;
     }
+    setAmount("");
+    setShowBidSection(false);
     // console.log(localStorage.getItem("userCredits") - amount);
     socket.emit("on:bid", {
       email: user.email,
@@ -367,6 +371,13 @@ const RoomPage = () => {
     });
     SendBidToBackEnd();
   }
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    // Allow only numbers and remove any non-numeric characters
+    const sanitizedValue = value.replace(/[^0-9]/g, '');
+    setAmount(sanitizedValue);
+  };
 
   return (
     <div
@@ -379,46 +390,61 @@ const RoomPage = () => {
         style={{ height: "100%", width: "100%" }}
       />
       {showContent && (
-        <div className="absolute z-[54545545] bottom-20 left-4 p-4 rounded-xl0 flex gap-4 rounded-2xl items-center">
-          <input
-            type="number"
-            className="rounded-xl p-2 outline-none bg-transparent text-white"
-            placeholder="Bid amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            style={{
-              backgroundColor: "rgba(7, 38, 67, 1)",
-              boxShadow: "0 2.93px 3.67px 1.47px rgba(121, 197, 239, 0.38)",
-            }}
-          />
-          <GradientBtn
-            onClick={SendBid}
-            className={"text-white"}
-            placeholder={"Bid"}
-          />
-          <div
-            className={`absolute bottom-24 left-1/2 -translate-x-1/2 z-[545454545] bg-white w-40 rounded-xl aspect-square text-white min-w-fit flex flex-col items-center justify-center gap-2 ${
-              showAnimation ? "wiggleAnimation" : ""
-            }`}
-            style={{
-              backgroundColor: "rgba(7, 38, 67, 1)",
-              boxShadow: "0 2.93px 3.67px 1.47px rgba(121, 197, 239, 0.38)",
-            }}
-          >
-            <img
-              src={bidData?.data.img || user?.picture}
-              className="w-10 aspect-square rounded-full"
-              alt={bidData ? bidData?.data.name + "'s img" : ""}
+        <div className="absolute z-[54545545] top-0  p-4 rounded-2xl flex gap-4 flex-wrap">
+          <div className={`left shadow-2xl bg-white  rounded-xl transition-all duration-1000 relative ${showBidSection ? "flex flex-col gap-4 items-center " : "" }`} style={{padding: "0.5rem 1.5rem 0.5rem 1.5rem",}}>
+            <IoIosArrowDown className={`absolute right-4 top-5 transition-all duration-1000 cursor-pointer active:scale-95  ${showBidSection ? "rotate-180" : ""}`} size="1.5rem" onClick={() => setShowBidSection(!showBidSection)}   />
+            <div
+              className={`z-[545454545] w-40 rounded-xl min-w-fit flex  items-center justify-center gap-2 bg-white transition-all duration-500  ${
+                showAnimation ? "wiggleAnimation" : ""
+              } ${showBidSection ? "flex-col  text-white" : "text-black"}`}
+              style={
+                showBidSection
+                  ? {
+                      backgroundColor: "rgba(7, 38, 67, 1)",
+                      boxShadow:
+                        "0 2.93px 3.67px 1.47px rgba(121, 197, 239, 0.38)",
+                        paddingTop: "1rem"
+                    }
+                  : {}
+              }
+            >
+              <img
+                src={bidData?.data.img || user?.picture}
+                className="w-10 aspect-square rounded-full"
+                alt={bidData ? bidData?.data.name + "'s img" : ""}
+              />
+              <div className="bidAmt text-3xl font-bold">
+                &#8377; {bidData ? formatNumber(bidData?.data.Amt) : 0}
+              </div>
+              <div
+                className={`name text-xs pb-4 text-gray-400 transition-all duration-1000 ${
+                  showBidSection ? "" : "hidden"
+                }`}
+              >
+                {bidData ? bidData?.data.name : "Owner"}
+              </div>
+            </div>
+            <input
+              type="number"
+              className={`rounded-xl p-2 outline-none bg-transparent text-white ${
+                showBidSection ? "" : "hidden"
+              }`}
+              placeholder="Bid amount"
+              value={amount}
+              onChange={handleInputChange}
+              style={{
+                backgroundColor: "rgba(7, 38, 67, 1)",
+                boxShadow: "0 2.93px 3.67px 1.47px rgba(121, 197, 239, 0.38)",
+              }}
             />
-            <div className="bidAmt text-white text-3xl font-bold">
-              &#8377; {bidData ? formatNumber(bidData?.data.Amt) : 0}
-            </div>
-            <div className="name text-xs text-gray-400">
-              {bidData ? bidData?.data.name : "Owner"}
-            </div>
+            <GradientBtn
+              onClick={SendBid}
+              className={`text-white ${showBidSection ? "" : "hidden"}`}
+              placeholder={"Bid"}
+            />
           </div>
           <button
-            className={`absolute p-2  left-10 -bottom-16 bg-red-500  text-2xl rounded-xl font-bold text-white ${
+            className={`right bg-red-500  text-2xl rounded-xl font-bold text-white p-4 h-fit  ${
               host ? "" : "hidden"
             }`}
             onClick={closeRoom}
