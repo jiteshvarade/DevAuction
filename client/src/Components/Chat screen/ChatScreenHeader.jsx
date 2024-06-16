@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../../public/Icons/Logo.png";
 import { SlOptionsVertical } from "react-icons/sl";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
+import { RxCross2 } from "react-icons/rx";
 
 export default function ChatScreenHeader({ imgSrc, userName, setShowChats }) {
   return (
@@ -25,7 +26,7 @@ export default function ChatScreenHeader({ imgSrc, userName, setShowChats }) {
           </div>
           <div className="right flex gap-4 items-center">
             <SlOptionsVertical />
-            <IoChatbubbleEllipsesSharp size="1.5rem"  onClick={() => setShowChats(false)}  />
+            <RxCross2 size="1.5rem"  onClick={() => setShowChats(false)}  />
           </div>
         </div>
         <hr

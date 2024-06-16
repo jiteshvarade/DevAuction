@@ -103,6 +103,7 @@ router.post('/project', upload.single("file"), async (req,res)=>{
             Image : req.body.image,
             Title : req.body.title,
             Description: req.body.description,
+            Tags : req.body.tags,
             FileID : fileuploadResponse.data.id,
             Link : req.body.link,
             OfferPrice : req.body.offerPrice,
@@ -110,11 +111,11 @@ router.post('/project', upload.single("file"), async (req,res)=>{
         }
 
 
-        if (!Owner || !Image || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
+        if (!Owner || !Image || !Title || !Description || !Tags || !FileID || !Link || !OfferPrice || !ProjectID) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
         else{
-            const newProject = new Project({Owner, Image, Title, Description, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
+            const newProject = new Project({Owner, Image, Title, Description, Tags, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
             await newProject.save()
 
             fs.unlink(`./public/temp/${filename}`, (err) => {
@@ -199,7 +200,7 @@ router.post("/download",async(req, res) => {
     try{
         await downloadFile(fileID).catch(console.error)
 
-        res.redirect("https://devauction.onrender.com/create/sendfile")
+        res.redirect("http://in1.localto.net:5947/create/sendfile")
 
     }catch(error){
         console.log(error)

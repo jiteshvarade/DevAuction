@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import ChatScreenHeader from "../Chat screen/ChatScreenHeader";
 import ChatScreenFooter from "../Chat screen/ChatScreenFooter";
 import ChatBtn from "../Chat screen/ChatBtn";
+import { RxCross2 } from "react-icons/rx";
 
 const ChatsModel = React.memo(({ selectedUser, myEmail, chatCloseFunc }) => {
   const [msgs, setMsgs] = useState([]);

@@ -35,6 +35,23 @@ router.post('/verifyBidAmount', async (req,res)=>{
     }
 })
 
+router.post("/getLatestBid",async (req,res)=>{
+
+    const roomID = req.body.roomID    
+  
+    try {
+        
+        const room = await Room.findOne({RoomID : roomID})
+
+        const highestBid = Math.max(...room.Bids.map(bid => bid.amount))
+
+        res.send(highestBid)
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error')
+    }
+})
+
 router.post('/bids', async (req, res) => {
     const { roomId, email, bid } = req.body
   
@@ -91,6 +108,11 @@ router.post('/sendMailToBider', async (req, res) => {
         let message = '';
         if (highestBidders.length === 1) {
             message = `The highest bid of ${highestBid} was placed by ${highestBidders[0]}`
+            room.Sold = {
+                email : highestBidders[0].email,
+                amount : highestBid
+            }
+            await room.save()
         }
 
         const subject = "Thank You for Your Purchase! Access Your Project Now"
