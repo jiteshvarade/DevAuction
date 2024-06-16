@@ -19,7 +19,7 @@ const Createauction = ({ show, setshow }) => {
   const [desc, setdesc] = useState("");
   const plans = [
     { name: "Free Rooms", code: "false" },
-    { name: "Platinum Rooms", code: "true" },
+    // { name: "Platinum Rooms", code: "true" },
   ];
   const clickHandler = async () => {
     const data = {

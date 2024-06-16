@@ -19,7 +19,7 @@ export default function ChatMateStrip({ imgSrc, userName, onClick }) {
       <div className="stripDetails flex justify-between flex-1">
         <div className="nameAndLastMsg">
           <div className="name text-sm font-bold">{userName || "No name"}</div>
-          <div className="latestMsg text-xs font-thin">April fool's day</div>
+          <div className="latestMsg text-xs font-thin"></div>
         </div>
         <div className="timeAndStatus text-right">
           <div className="time text-xs">Today, 9:05 AM</div>

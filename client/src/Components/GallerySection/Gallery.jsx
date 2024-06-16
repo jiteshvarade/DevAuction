@@ -86,7 +86,7 @@ const Gallery = () => {
                   onKeyDown={clickhandler}
                   className="w-[100%] py-4 px-14 rounded-lg bg-[#0ca2e749] text-white "
                   placeholder="Find someone....."
-                ></input>
+                ></input> 
                 {/* <div className="absolute top-2 right-2 z-10" >
                   <GradientBtn placeholder="search" onClick={clickhandler} />
                 </div> */}

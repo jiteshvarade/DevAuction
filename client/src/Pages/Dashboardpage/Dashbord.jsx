@@ -13,7 +13,7 @@ import Download from "../../Components/AuctionRoom/Download"
 function Dashbord() {
   
   const { showMenu, setShowMenu } = useMenuContext();
-  const [showtable,setshowTable] = useState(false) ; 
+  const [showtable,setshowTable] = useState(false) ;  
   const [show, setshow] = useState(false);
   const { user } = useAuth0();
   const [data, setdata] = useState(null);
@@ -28,7 +28,7 @@ function Dashbord() {
   const response = async () => {
     const res = await fetch("https://devauction.onrender.com/profile", {
       method: "POST",
-      body: JSON.stringify({ email: userEmail }),
+      body: JSON.stringify({ email: user.email }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -74,7 +74,7 @@ function Dashbord() {
 
   
 
-  return (
+  return ( 
     <div className=" ">
       {!user && (
         <div className="w-[100%] h-[700px] flex justify-center items-center ">

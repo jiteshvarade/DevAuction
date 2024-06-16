@@ -100,7 +100,7 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
           </div>
         </div>
         <div className="header flex justify-between items-center sm:pr-28 flex-wrap gap-4">
-          <div
+          {/* <div
             className="bg-inherit w-52 text-center outline-none cursor-pointer rounded-xl relative"
             style={{
               backgroundColor: "rgba(7, 38, 67, 1)",
@@ -142,7 +142,7 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
                 );
               })}
             </div>
-          </div>
+          </div> */}
           <div
             className="right flex items-center gap-2 cursor-pointer hover:bg-blue-950 rounded-xl px-4 py-2"
             onClick={() => refresh(selectOption)}

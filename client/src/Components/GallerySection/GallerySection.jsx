@@ -13,12 +13,15 @@ const GallerySection = () => {
         "https://devauction.onrender.com/gallery/getProjects"
       );
       const projects = await res.json();
-      // console.log(projects);
+      console.log(projects);
       setProjects(projects);
+
     } catch (error) {
       console.log(error);
     }
   }
+
+  
 
   useEffect(() => {
     fetchProjects();
@@ -74,13 +77,16 @@ const GallerySection = () => {
         <div className="mt-8 lg:columns-3 columns-1 md:columns-2 gap-10 w-full p-2">
           {projects.map((elem, index) => {
             return (
-              <LongCard
+              <Link to={`preview/${elem.ProjectID}`} >
+                <LongCard
                 assetSrc={elem.Image}
                 offerPrice={formatNumber(elem.OfferPrice)}
                 title={elem.Title}
                 key={elem.Title + index}
                 type={isImageOrVideo(elem.Image)}
               />
+              </Link>
+              
             );
           })}
         </div>

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import logo from "../../assets/LandingPage Images/logo remove background.svg"
 import { Link, Outlet } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import LogoutButton from "../../Components/Gradient Btn/LogoutButton";
@@ -31,9 +32,11 @@ export default function HomePage() {
         style={{ borderRight: "1px solid rgba(255, 255, 255, 0.28)" }}
       >
         <div className="header flex items-center justify-between">
-          <div className="logo text-xl">DEVAUCTION</div>
+          <div className="logo text-xl">
+          <img src={logo} alt="" className=" w-28 " />
+          </div>
           <RxCross2
-            size="1.5rem"
+            size="1.5rem" 
             className="ml-auto md:hidden"
             onClick={() => setShowMenu(false)}
           />
@@ -55,6 +58,7 @@ export default function HomePage() {
               <GrGallery />
               Gallery
             </Link>
+
           </div>
           <LogoutButton />
         </div>

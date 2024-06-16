@@ -5,7 +5,7 @@ import ProfileOffers from "../../Components/Profile offers/ProfileOffers";
 import Follower from "../../Components/Follow/Follower"; 
 import Following from "../../Components/Follow/Following";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ProgressSpinner } from "primereact/progressspinner";
+import { ProgressSpinner } from "primereact/progressspinner"; 
 import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";
 import CreateProject from "../../Components/Profile hero/CreateProject";
@@ -69,6 +69,7 @@ export default function Profile() {
           {showFollow && (
             <div className="absolute w-full top-[150px] flex justify-center z-10">
               <Follower
+                resp={response}
                 Data={Data}
                 showFollow={showFollow}
                 setShowFollow={setShowFollow}
@@ -78,6 +79,8 @@ export default function Profile() {
           {showFollowing && (
             <div className="absolute w-full top-[150px] flex justify-center z-10">
               <Following
+                resp={response}
+                Data={Data}
                 showFollowing={showFollowing}
                 setShowFollowing={setShowFollowing}
               />
@@ -90,7 +93,6 @@ export default function Profile() {
             ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} ${ showcreatepro ? "blur-lg" :""} `}
           >
             <ProfileHero
-              
               Data={Data}
               showFollow={showFollow}
               setShowFollow={setShowFollow}

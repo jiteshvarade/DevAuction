@@ -33,10 +33,10 @@ function App() {
         { path: "/homepage/profile", element: <Profile /> },
         { path: "/homepage/chats", element: <Chat /> },
         { path: "/homepage/gallery" , element: <Gallery/> },
-        { path: "/homepage/gallery/searchprofile/:id" , element:<Searchprofile/>}
+        { path: "/homepage/gallery/searchprofile/:id" , element:<Searchprofile/>},
+        { path: "/homepage/gallery/preview/:id" , element: <Preview /> }
       ],
     },
-    { path: "/preview", element: <Preview /> },
     {path: "/room/:roomID", element: <RoomX />}
   ]);
 

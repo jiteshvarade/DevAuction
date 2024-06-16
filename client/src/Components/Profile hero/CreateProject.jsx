@@ -6,6 +6,7 @@ import axios from "axios";
 import GradientBtn from "../Buttons/GradientBtn";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { RxCross2 } from "react-icons/rx";
 
 const CreateProject = ({ show, setshow }) => {
   const navigate = useNavigate();
@@ -59,6 +60,9 @@ const CreateProject = ({ show, setshow }) => {
         "flex justify-center items-center relative md:w-[900px] z-10 rounded-xl shadow-lg bg-[#050618]"
       }
     >
+      <RxCross2 className="absolute top-4  right-4 text-[24px]  z-20" onClick={() => {
+        setshow(!show)
+      }} />
       <div className="flex flex-col items-center gap-4 font-semibold md:w-[800px]  w-[300px] py-6 z-20 ">
         <div className="w-full text-[40px] text-left  text-white">
           Create Project

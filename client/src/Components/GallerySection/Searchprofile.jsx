@@ -11,7 +11,7 @@ import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";
 import ChatsModel from "../ChatsModel/ChatsModel";
 
-export default function Searchprofile() {
+export default function Searchprofile() { 
   const [showMessageModel, setShowMessageModel] = useState(false);
   const [chatMemberData, setChatMemberData] = useState(null);
   const params = useParams();
@@ -107,7 +107,7 @@ export default function Searchprofile() {
               messageOnClickFunction={messageHndl}
               resp={response}
               Data={Data}
-              showFollow={showFollow}
+              showFollow={showFollow} 
               setShowFollow={setShowFollow}
               showFollowing={showFollowing}
               setShowFollowing={setShowFollowing}
@@ -149,6 +149,8 @@ export default function Searchprofile() {
               </div>
               <div>
                 <ProfilePosts
+                  Data={Data}
+                  searchprof={searchprof}
                   className={explorerSection == "Projects" ? "block" : "hidden"}
                 />
                 <ProfileOffers

@@ -86,7 +86,7 @@ const ProfileSearch = ({ searchdata, showsearch, setShowsearch }) => {
                       </span>
                       <span>{ele.UserInfo.name}</span>
                     </div>
-                  </Link>
+                  </Link> 
 
                   {check(ele) && (
                     <div className='border-2 border-[#E0E0E0] border-opacity-15  text-[#11111] text-[12px] min-w-fit rounded-full mb-1 py-1 px-6 bg-gradient-to-b from-[#18203E] to-[#172748] ' >Following</div>
