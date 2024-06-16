@@ -26,7 +26,7 @@ router.get("/getAllUsers", async(req, res)=>{
     }
 })
 
-router.get("/getProjectById", async(req, res)=>{
+router.post("/getProjectById", async(req, res)=>{
     try
     {   
         const project = await Project.findOne({ProjectID : req.body.projectID})
