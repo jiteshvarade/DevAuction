@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import GradientBtn from "../Buttons/GradientBtn";
 
 const GallerySection = () => {
+
   const [projects, setProjects] = useState([]);
   async function fetchProjects() {
     try {
@@ -13,15 +14,12 @@ const GallerySection = () => {
         "https://devauction.onrender.com/gallery/getProjects"
       );
       const projects = await res.json();
-      console.log(projects);
+      // console.log(projects);
       setProjects(projects);
-
     } catch (error) {
       console.log(error);
     }
   }
-
-  
 
   useEffect(() => {
     fetchProjects();
@@ -62,31 +60,28 @@ const GallerySection = () => {
       <div className=" text-[12px] md:text-[18px] flex justify-evenly border-b-2 border-[#ffffff64] ">
         <div className="p-2">Overview</div>
 
-        {/* <div className="p-2">Apps</div>
+        <div className="p-2">Apps</div>
 
         <div className="p-2">Websites</div>
 
-        <div className="p-2">Featured Stores</div> */}
+        <div className="p-2">Featured Stores</div>
       </div>
 
-      {/* <div className="flex gap-4 mt-8 justify-center  md:justify-end">
+      <div className="flex gap-4 mt-8 justify-center  md:justify-end">
         <GradientBtn placeholder="Buy" />
         <GradientBtn placeholder="Invest" />
-      </div> */}
+      </div>
       <div className="text-center">
-        <div className="mt-8 lg:columns-3 columns-1 md:columns-2 gap-10 w-full p-2">
+        <div className="mt-8 columns-auto gap-10 w-full p-2">
           {projects.map((elem, index) => {
             return (
-              <Link to={`preview/${elem.ProjectID}`} >
-                <LongCard
+              <LongCard
                 assetSrc={elem.Image}
                 offerPrice={formatNumber(elem.OfferPrice)}
                 title={elem.Title}
                 key={elem.Title + index}
                 type={isImageOrVideo(elem.Image)}
               />
-              </Link>
-              
             );
           })}
         </div>
