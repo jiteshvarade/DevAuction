@@ -5,17 +5,17 @@ import sakeofcoins from '../../../public/Icons/Sackofcoins.png'
 import coins2 from '../../../public/Icons/2coins.png'
 
 function EarningCards({earningAmount="000.00", earningRate="+00%", spandAmount="000.00", spandRate="+00%", avgAmount="000.00", avgRate="+00%",} ) {
-    function formatNumber(num) {
-        if (num >= 1000 && num < 1000000) {
-          return (num / 1000).toFixed(1).replace(/\.0$/, "") + "k";
-        } else if (num >= 1000000 && num < 1000000000) {
-          return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-        } else if (num >= 1000000000) {
-          return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + "B";
-        } else {
-          return num.toString();
-        }
-      }
+   function formatNumber(num) {
+  if (num >= 1000 && num < 1000000) {
+    return (num / 1000).toFixed(2).replace(/\.00$/, "").replace(/\.0$/, "") + "k";
+  } else if (num >= 1000000 && num < 1000000000) {
+    return (num / 1000000).toFixed(2).replace(/\.00$/, "").replace(/\.0$/, "") + "M";
+  } else if (num >= 1000000000) {
+    return (num / 1000000000).toFixed(2).replace(/\.00$/, "").replace(/\.0$/, "") + "B";
+  } else {
+    return num.toFixed(2).replace(/\.00$/, "").replace(/\.0$/, "");
+  }
+}
     return (
         <>
             <div id="earningCards" className='no-scrollbar flex gap-3 h-auto md:justify-center md:items-center md:flex-wrap px-2 overflow-x-auto overflow-y-hidden'>
