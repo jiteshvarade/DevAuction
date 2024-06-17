@@ -163,7 +163,7 @@ router.post("/room", upload.single("file"), async (req,res)=>{
         }
 
 
-        if (!Owner || !Image || !Time || !Title || !Status || !Description || !FileID || !RoomID ) {
+        if (!Owner || !Image || !Time || !Title || !Description || !FileID || !RoomID ) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }else{
             const newRoom = new Room({Owner ,Image,Premium,Time,Title,Status,Description,FileID, RoomID, Bids : [], Sold : {}})
