@@ -5,7 +5,9 @@ const User = require("../models/user")
 const sendEmail = require("../utils/email")
 
 router.post('/getHost', async (req,res)=>{
-    const { roomID, email} = req.body
+    const roomID  = req.body.roomID
+    const email = req.body.email
+    console.log(roomID,email)
   
     try {
         const room = await Room.findOne({ RoomID: roomID })
