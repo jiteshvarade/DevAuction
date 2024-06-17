@@ -112,7 +112,7 @@ router.post('/project', upload.single("file"), async (req,res)=>{
         }
 
 
-        if (!Owner || !Image || !Title || !Description || !Tags || !Status || !FileID || !Link || !OfferPrice || !ProjectID) {
+        if (!Owner || !Image || !Title || !Description || !FileID || !Link || !OfferPrice || !ProjectID) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
         else{
