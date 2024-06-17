@@ -37,7 +37,7 @@ router.post("/getRooms", async(req, res)=>{
 router.get('/highestBidders', async (req, res) => {
     try{
         let data = []
-        const highestBidders = await Room.find({"Sold.amount": { $exists: true } }).sort({ "Sold.amount": -1 })
+        const highestBidders = await Room.find({"Sold.amount": { $exists: true } }).sort({ "Sold.amount": -1 }).limit(10)
 
         for(let i = 0;i < highestBidders.length; i++){
             const userEmail = highestBidders[i].Sold.email
