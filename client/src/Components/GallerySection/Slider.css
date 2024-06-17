@@ -3,9 +3,10 @@
 }
 
 .slider-track{
-    width: fit-content;
+    /* width: fit-content; */
     /* width: calc(250px * 20); */
-    animation: scroll 100s linear infinite;
+    animation: scroll 20s linear infinite;
+    /* transform: translateX(-100%) */
 }
 
 @keyframes scroll{
@@ -13,7 +14,7 @@
         transform: translate(0);
     }
     100%{
-        transform: translateX(calc(-250px*19));
+        transform: translateX(-50%);
     }
 }
 

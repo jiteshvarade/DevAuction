@@ -108,7 +108,7 @@ const GallerySection = () => {
         <div className="p-2">Featured Stores</div> */}
       </div>
 
-      <div className="md:flex gap-4 mt-8 justify-between lg:items-center w-[100%] ">
+      <div className="flex gap-4 mt-8 justify-between items-center w-full flex-wrap">
         <div className="relative">
           <input
             value={search}
@@ -131,7 +131,7 @@ const GallerySection = () => {
         </div>
       </div>
       <div className="text-center">
-        <div className="mt-8 lg:columns-3  md:columns-2 coloums-1 gap-10 w-full p-2">
+        <div className="mt-8 columns-3xs gap-10 w-full p-2">
           {projects.length == 0 && (
             <div className="font-semibold text-[24px]">SEARCH A VALID TAG</div>
           )}
