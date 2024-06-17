@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Room = require('../models/createRoom')
+const User = require("../models/user")
 
 router.post("/getRooms", async(req, res)=>{
     const type = req.body.type // free premium history
@@ -40,7 +41,7 @@ router.get('/highestBidders', async (req, res) => {
 
         for(let i = 0;i < highestBidders.length; i++){
             const userEmail = highestBidders[i].Sold
-            const user = await findOne({ "UserInfo.email" : userEmail})
+            const user = await User.findOne({ "UserInfo.email" : userEmail})
 
             data.push({
                 title : highestBidders[i].Title,
