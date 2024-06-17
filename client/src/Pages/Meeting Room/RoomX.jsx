@@ -6,10 +6,12 @@ import { useSocket } from "../../context/SocketProvider";
 import GradientBtn from "../../Components/Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
 // import ResponsiveVoice from 'responsivevoice';
+import { FaCoins } from "react-icons/fa";
 
 const RoomPage = () => {
   const [showBidSection, setShowBidSection] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const [userCreditsLeft, setUserCreditsLeft] = useState(0);
   const navigate = useNavigate();
   const socket = useSocket();
   const { roomID } = useParams();
@@ -45,7 +47,7 @@ const RoomPage = () => {
   const myMeeting = async (element) => {
     const appID = 2052033427;
     const serverSecret = "07ba39bc58f578530c31f7656f5de08f";
-    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest( 
+    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,
       roomID,
@@ -68,8 +70,6 @@ const RoomPage = () => {
     // });
   };
 
-
-
   useEffect(() => {
     if (videoContainerRef.current) {
       myMeeting(videoContainerRef.current);
@@ -83,12 +83,14 @@ const RoomPage = () => {
   }
 
   async function getHost() {
+    console.log(user.email);
     // let resData;
     try {
       const res = await fetch("https://devauction.onrender.com/rooms/getHost", {
         method: "POST",
         body: JSON.stringify({
           roomID,
+          email: user.email,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -99,6 +101,7 @@ const RoomPage = () => {
       if (resData.Owner == user.email) {
         setHost(true);
       }
+      setUserCreditsLeft(resData.Credits);
     } catch (error) {
       console.log(error);
     }
@@ -120,17 +123,18 @@ const RoomPage = () => {
       const resData = await res.json();
       console.log(resData);
       setBidData(() => {
-        return {data: {
-          Amt: resData.highestBid,
-          img: resData.picture,
-          name: resData.name
-        }} 
-      })
+        return {
+          data: {
+            Amt: resData.highestBid,
+            img: resData.picture,
+            name: resData.name,
+          },
+        };
+      });
     } catch (error) {
       console.log(error);
     }
   }
-
 
   useEffect(() => {
     getHost();
@@ -144,11 +148,11 @@ const RoomPage = () => {
     // Optional: set voice, pitch, rate
     speechSynthesisUtterance.voice = speechSynthesis.getVoices()[0];
     speechSynthesisUtterance.pitch = 1; // 0 to 2
-    speechSynthesisUtterance.rate = 1;  // 0.1 to 10
+    speechSynthesisUtterance.rate = 1; // 0.1 to 10
 
     // Speak the text
-    window.speechSynthesis.speak(speechSynthesisUtterance); 
-}
+    window.speechSynthesis.speak(speechSynthesisUtterance);
+  }
 
   useEffect(() => {
     socket.on("on:bid", (data) => {
@@ -204,6 +208,13 @@ const RoomPage = () => {
       alert("Are thoda sharam karo");
       return;
     }
+
+    if(amount - userCreditsLeft > 0){
+      speak("Your bid amount can't be more than your credits!");
+      alert("Your bid amount can't be more than your credits!");
+      return;
+    }
+
     setAmount("");
     setShowBidSection(false);
     // console.log(localStorage.getItem("userCredits") - amount);
@@ -299,14 +310,25 @@ const RoomPage = () => {
               placeholder={"Bid"}
             />
           </div>
-          <button
-            className={`right bg-red-500  text-2xl rounded-xl font-bold text-white p-4 h-fit  ${
-              host ? "" : "hidden"
-            }`}
-            onClick={closeRoom}
-          >
-            End Auction
-          </button>
+          <div className="flex flex-col gap-4 items-center justify-center h-fit">
+            <button
+              className={`right bg-red-500  text-2xl rounded-xl font-bold text-white p-4 h-fit  ${
+                host ? "" : "hidden"
+              }`}
+              onClick={closeRoom}
+            >
+              End Auction
+            </button>
+            <div
+              className={`creditsLeft bg-white rounded-xl p-4 flex items-center gap-2  ${
+                Number(userCreditsLeft) >= 0 ? "text-black" : "text-red-500"
+              }`}
+              title="Your credits left"
+            >
+              <FaCoins size="1.2rem" /> 
+              {userCreditsLeft}
+            </div>
+          </div>
         </div>
       )}
     </div>
