@@ -124,6 +124,7 @@ router.post('/sendMailToBider', async (req, res) => {
                 email : highestBidders[0].email,
                 amount : highestBid
             }
+            room.Status = true
             await room.save()
         }
 

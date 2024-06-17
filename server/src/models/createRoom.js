@@ -10,7 +10,7 @@ const cerateRoomSchema = new mongoose.Schema({
         type : String,
         required : false
     },
-    Premium : {
+    Status : {
         type : Boolean,
         required : true
     },
