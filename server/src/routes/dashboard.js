@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Room = require('../models/createRoom')
+const User = require("../models/user")
 
 router.post("/getRooms", async(req, res)=>{
     const type = req.body.type // free premium history
@@ -28,6 +29,28 @@ router.post("/getRooms", async(req, res)=>{
             res.send("Sending wrong type")
         }
         
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.get('/highestBidders', async (req, res) => {
+    try{
+        let data = []
+        const highestBidders = await Room.find({"Sold.amount": { $exists: true } }).sort({ "Sold.amount": -1 }).limit(10)
+
+        for(let i = 0;i < highestBidders.length; i++){
+            const userEmail = highestBidders[i].Sold.email
+            const user = await User.findOne({ "UserInfo.email" : userEmail})
+
+            data.push({
+                title : highestBidders[i].Title,
+                name : user.UserInfo.name,
+                amount : highestBidders[i].Sold.amount
+            })
+        }
+
+        res.send({data})
     }catch(error){
         console.log(error)
     }
