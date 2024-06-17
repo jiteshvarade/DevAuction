@@ -22,15 +22,19 @@ function Home() {
   if (isAuthenticated) {
     console.log(user);
     console.log(isAuthenticated);
-    const response = fetch("https://devauction.onrender.com/auth", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-
-    navigate("/homepage/dashboard");
+    if(user.email_verified){
+      const response = fetch("https://devauction.onrender.com/auth", {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+  
+      navigate("/homepage/dashboard");
+    }else{
+      alert("Enter a valid email address!");
+    }
   }
   return (
     <div className="HomePage bg-[#050618] text-white">
