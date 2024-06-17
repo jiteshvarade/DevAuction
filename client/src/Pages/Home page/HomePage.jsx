@@ -43,18 +43,18 @@ export default function HomePage() {
         </div>
         <div className="navLinks py-4 h-full flex flex-col gap-2 justify-between">
           <div className="links flex flex-col gap-4 text-gray-400">
-            <NavLink to={"/homepage/dashboard"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
+            <NavLink to={"/homepage/dashboard"} onClick={() => setShowMenu(false)}  className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <MdDashboard /> Dashboard
             </NavLink> 
-            <NavLink to={"/homepage/profile"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
+            <NavLink to={"/homepage/profile"} onClick={() => setShowMenu(false)} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <IoPersonCircle />
               Profile
             </NavLink>
-            <NavLink to={"/homepage/chats"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
+            <NavLink to={"/homepage/chats"} onClick={() => setShowMenu(false)} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <IoChatbubbleEllipsesSharp />
               Chats
             </NavLink>
-            <NavLink to={"/homepage/gallery"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
+            <NavLink to={"/homepage/gallery"} onClick={() => setShowMenu(false)} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <GrGallery />
               Gallery
             </NavLink>

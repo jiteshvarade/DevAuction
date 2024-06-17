@@ -5,30 +5,16 @@ const User = require("../models/user")
 const sendEmail = require("../utils/email")
 
 router.post('/getHost', async (req,res)=>{
-    const { roomID} = req.body
+    const roomID  = req.body.roomID
+    const email = req.body.email
+    console.log(roomID,email)
   
     try {
         const room = await Room.findOne({ RoomID: roomID })
-
-        res.send({Owner : room.Owner})
-        
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error')
-    }
-})
-
-router.post('/verifyBidAmount', async (req,res)=>{
-    const { email, amount} = req.body
-  
-    try {
         const user = await User.findOne({ "UserInfo.email": email })
 
-        if(amount*100 > user.Profile.Credits){
-            res.send({success : true})
-        }else{
-            res.send({success : false})
-        }
+        res.send({Owner : room.Owner, Credits : user.Profile.Credits})
+        
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error')
@@ -82,19 +68,7 @@ router.post('/bids', async (req, res) => {
         else{
             await room.save()
 
-            const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
-                $inc : {"Profile.Credits" : -bid*100},
-                $push : {"Profile.Spendings" : {Category : "Bid", Amount : bid}}
-            })
-
-            if(!user)
-            {
-                res.status(500).json({message : "User Not found"})
-            }
-            else{
-                await user.save()
-                res.status(201).send('Bid placed successfully')
-            }
+            res.status(201).send('Bid placed successfully')
         }
         
     } catch (error) {
@@ -126,6 +100,12 @@ router.post('/sendMailToBider', async (req, res) => {
             }
             room.Status = true
             await room.save()
+
+            const bidder = await User.findOneAndUpdate({"UserInfo.email" : highestBidders[0].email},{
+                $inc : {"Profile.Credits" : -bid*100},
+                $push : {"Profile.Spendings" : {Category : "Bid", Amount : bid}}
+            })
+            await bidder.save()
         }
 
         const user = await User.findOneAndUpdate({"UserInfo.email" : highestBidders[0].email},{

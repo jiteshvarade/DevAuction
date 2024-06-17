@@ -77,44 +77,51 @@ router.post("/withdraw",async (req,res)=>{
     const amount = req.body.amount
 
     try{
-        const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
-            $push : {"Profile.Transactions" : {
+        const user = await User.findOne({"UserInfo.email" : email})
+
+        if(user.Profile.Credits > amount){
+            user.Profile.Transactions.push({
                 amount : amount,
                 category : "debit",
                 time : Date.now()
-            }},
-            $inc : {"Profile.Credits" : -amount}
-        })
+            })
 
-        const subject = "Confirmation of Your Withdrawal Request"
+            userProfile.Credits = userProfile.Credits - amount
+            await user.save()
 
-        const html = `
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            </head>
-            <body>
-                <p>Dear ${user.UserInfo.name},</p>
-                
-                <p>I hope this email finds you well.</p>
-                
-                We are pleased to inform you that your withdrawal request of ₹${amount/100} has been successfully received and is currently being processed. You can expect the completion of the withdrawal process within the next 24 hours.</p>
-                
-                <p>Should you have any questions or need further assistance, please do not hesitate to reach out to our support team. We are here to help and ensure a smooth experience for you.</p>
-                
-                <p>Thank you for your patience and understanding.</p>
-                
-                <p>Best regards,</p><br>
-                <p>DevAuction</p>
-            </body>
-            </html>        
-        `
+            const subject = "Confirmation of Your Withdrawal Request"
 
-        sendEmail(email,subject,html)
+            const html = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                    <p>Dear ${user.UserInfo.name},</p>
+                    
+                    <p>I hope this email finds you well.</p>
+                    
+                    We are pleased to inform you that your withdrawal request of ₹${amount/100} has been successfully received and is currently being processed. You can expect the completion of the withdrawal process within the next 24 hours.</p>
+                    
+                    <p>Should you have any questions or need further assistance, please do not hesitate to reach out to our support team. We are here to help and ensure a smooth experience for you.</p>
+                    
+                    <p>Thank you for your patience and understanding.</p>
+                    
+                    <p>Best regards,</p><br>
+                    <p>DevAuction</p>
+                </body>
+                </html>        
+            `
 
-        res.send("Wihtdraw successfull")
+            sendEmail(email,subject,html)
+
+            res.send("Wihtdraw successfull")
+
+        }else{
+            res.send("User have less credits in his account")
+        }   
     }catch(error){
         console.log(error)
     }
