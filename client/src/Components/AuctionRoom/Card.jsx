@@ -13,7 +13,7 @@ const Card = ({ roomId, date, title, imgSrc, status, bidCount }) => {
 
   return (
     <div className="border relative w-[350px] rounded-xl bg-[#bec0dd1f] border-[#223534] text-white p-2 flex flex-col gap-2 justify-center items-center hover:scale-[1.02] transition ease-in-out hover:shadow-lg shadow-white ">
-      {live && (
+      {(live && !status) && (
         <span className="absolute right-2 top-2 flex h-3 w-3">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
