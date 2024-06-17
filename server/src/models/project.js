@@ -29,6 +29,10 @@ const createProjectSchema = new mongoose.Schema({
         type : String,
         required : false,
     },
+    History : {
+        type : Boolean,
+        required : false
+    },
     ProjectID : {
         type : String,
         required : true

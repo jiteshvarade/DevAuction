@@ -98,10 +98,11 @@ router.post('/project', upload.single("file"), async (req,res)=>{
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
         const project_id = generateUniqueHexId()
         
-        const {Owner, Image, Title, Description, FileID, Link, ProjectID,OfferPrice} = {
+        const {Owner, Image, Title,Status, Description, Tags,FileID, Link, ProjectID,OfferPrice} = {
             Owner : req.body.email,
             Image : req.body.image,
             Title : req.body.title,
+            Status : false,
             Description: req.body.description,
             Tags : req.body.tags,
             FileID : fileuploadResponse.data.id,
@@ -111,11 +112,11 @@ router.post('/project', upload.single("file"), async (req,res)=>{
         }
 
 
-        if (!Owner || !Image || !Title || !Description || !Tags || !FileID || !Link || !OfferPrice || !ProjectID) {
+        if (!Owner || !Image || !Title || !Description || !Tags || !Status || !FileID || !Link || !OfferPrice || !ProjectID) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }
         else{
-            const newProject = new Project({Owner, Image, Title, Description, Tags, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
+            const newProject = new Project({Owner, Image, Title, Description, Status, Tags, FileID, Link, ProjectID, OfferPrice, Offers : [], Sold : {}})
             await newProject.save()
 
             fs.unlink(`./public/temp/${filename}`, (err) => {
@@ -150,10 +151,10 @@ router.post("/room", upload.single("file"), async (req,res)=>{
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
         const room_id = generateUniqueHexId()
 
-        const {Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, RoomSecret} = {
+        const {Owner ,Image,Status,Premium,Time,Title,Description,FileID, RoomID} = {
             Owner : req.body.email,
             Image : req.body.image,
-            Premium: req.body.premium,
+            Status: false,
             Time: req.body.date,
             Title : req.body.title,
             Description: req.body.description,
@@ -162,10 +163,10 @@ router.post("/room", upload.single("file"), async (req,res)=>{
         }
 
 
-        if (!Owner || !Image || !Premium || !Time || !Title || !Description || !FileID || !RoomID ) {
+        if (!Owner || !Image || !Premium || !Time || !Title || !Status || !Description || !FileID || !RoomID ) {
             return res.status(400).json({ message: 'Please fill in all required fields' })
         }else{
-            const newRoom = new Room({Owner ,Image,Premium,Time,Title,Description,FileID, RoomID, Bids : [], Sold : {}})
+            const newRoom = new Room({Owner ,Image,Premium,Time,Title,Status,Description,FileID, RoomID, Bids : [], Sold : {}})
             await newRoom.save()
             console.log("Room created successfully")
 
