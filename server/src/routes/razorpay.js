@@ -87,7 +87,7 @@ router.post("/withdraw",async (req,res)=>{
             })
 
             userProfile.Credits = userProfile.Credits - amount
-            user.save()
+            await user.save()
 
             const subject = "Confirmation of Your Withdrawal Request"
 
