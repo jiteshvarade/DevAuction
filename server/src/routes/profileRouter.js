@@ -105,8 +105,8 @@ router.post('/getUserOffers', async (req, res) => {
                 offers.push({
                     name : user.UserInfo.name,
                     projectTitle : projects[i].Title,
-                    amount : projects[i].Offers[j].email,
-                    result : projects[i].Offers[j].amount
+                    amount : projects[i].Offers[j].amount,
+                    result : projects[i].Offers[j].results
                 })
             }
         }
