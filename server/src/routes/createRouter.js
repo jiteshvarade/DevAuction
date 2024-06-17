@@ -151,7 +151,7 @@ router.post("/room", upload.single("file"), async (req,res)=>{
         const fileuploadResponse = await authorize().then(uploadFile).catch("error",console.error())
         const room_id = generateUniqueHexId()
 
-        const {Owner ,Image,Status,Premium,Time,Title,Description,FileID, RoomID} = {
+        const {Owner ,Image,Status,Time,Title,Description,FileID, RoomID} = {
             Owner : req.body.email,
             Image : req.body.image,
             Status: Boolean(false),

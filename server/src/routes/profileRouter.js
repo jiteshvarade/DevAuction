@@ -43,11 +43,6 @@ router.post('/getUsersById', async (req, res) => {
     }
 })
 
-
-router.post('/userRooms', async (req, res) => {
-    // logic to store created rooms id by user
-})
-
 router.post('/userProjects', async (req, res) => {
     const email = req.body.email
 
@@ -89,6 +84,26 @@ router.post('/placeOffer', async (req, res) => {
         await project.save()
 
         res.send("Offer placed sauccessfully")
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.post('/getUserOffers', async (req, res) => {
+    const email = req.body.email
+
+    try{
+        
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.post('/getProjectOffers', async (req, res) => {
+    const projectID = req.body.projectID
+
+    try{
+        
     }catch(error){
         console.log(error)
     }

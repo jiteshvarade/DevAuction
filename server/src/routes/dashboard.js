@@ -33,4 +33,14 @@ router.post("/getRooms", async(req, res)=>{
     }
 })
 
+router.get('/highestBidders', async (req, res) => {
+    try{
+        const highestBidders = await Room.find({"Sold.amount": { $exists: true } }).sort({ "Sold.amount": -1 })
+
+        res.send({highestBidders})
+    }catch(error){
+        console.log(error)
+    }
+})
+
 module.exports = router
