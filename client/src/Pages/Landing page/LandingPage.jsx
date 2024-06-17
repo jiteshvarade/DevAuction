@@ -30,7 +30,7 @@ function Home() {
       },
     });
 
-    navigate("/homepage");
+    navigate("/homepage/dashboard");
   }
   return (
     <div className="HomePage bg-[#050618] text-white">

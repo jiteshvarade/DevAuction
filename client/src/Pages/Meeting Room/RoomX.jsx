@@ -147,7 +147,7 @@ const RoomPage = () => {
     speechSynthesisUtterance.rate = 1;  // 0.1 to 10
 
     // Speak the text
-    window.speechSynthesis.speak(speechSynthesisUtterance);
+    window.speechSynthesis.speak(speechSynthesisUtterance); 
 }
 
   useEffect(() => {

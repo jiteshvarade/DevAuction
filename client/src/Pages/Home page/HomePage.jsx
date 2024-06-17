@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import logo from "../../assets/LandingPage Images/logo remove background.svg"
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import LogoutButton from "../../Components/Gradient Btn/LogoutButton";
 import { MdDashboard } from "react-icons/md";
@@ -42,22 +42,22 @@ export default function HomePage() {
           />
         </div>
         <div className="navLinks py-4 h-full flex flex-col gap-2 justify-between">
-          <div className="links flex flex-col gap-4">
-            <Link to={""} className="flex gap-2 items-center p-2">
+          <div className="links flex flex-col gap-4 text-gray-400">
+            <NavLink to={"/homepage/dashboard"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <MdDashboard /> Dashboard
-            </Link> 
-            <Link to={"profile"} className="flex gap-2 items-center p-2">
+            </NavLink> 
+            <NavLink to={"/homepage/profile"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <IoPersonCircle />
               Profile
-            </Link>
-            <Link to={"chats"} className="flex gap-2 items-center p-2">
+            </NavLink>
+            <NavLink to={"/homepage/chats"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <IoChatbubbleEllipsesSharp />
               Chats
-            </Link>
-            <Link to={"gallery"} className="flex gap-2 items-center p-2">
+            </NavLink>
+            <NavLink to={"/homepage/gallery"} className={({isActive }) => (isActive ? 'text-white flex gap-2 items-center p-2' : 'flex gap-2 items-center p-2')}>
               <GrGallery />
               Gallery
-            </Link>
+            </NavLink>
 
           </div>
           <LogoutButton />

@@ -26,10 +26,10 @@ function App() {
       errorElement: <div>404 page not found</div>, // baad mein ise custome 404 page se replace kr lenge
     },
     {
-      path: "/homepage", 
+      path: "/homepage/", 
       element: <HomePage />, 
       children: [
-        { path: "/homepage", element: <Dashbord /> },
+        { path: "/homepage/dashboard", element: <Dashbord /> },
         { path: "/homepage/profile", element: <Profile /> },
         { path: "/homepage/chats", element: <Chat /> },
         { path: "/homepage/gallery" , element: <Gallery/> },
