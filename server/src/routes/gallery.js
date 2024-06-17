@@ -18,7 +18,7 @@ router.get("/getAllUsers", async(req, res)=>{
     try
     {   
         console.log("Inside getAllUsers")
-        const user = await User.find({}).sort({ createdAt: -1 })
+        const user = await User.find({"UserInfo.email_verified" : Boolean(true)}).sort({ createdAt: -1 })
 
         res.send(user)
     }catch(error){
