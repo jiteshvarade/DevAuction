@@ -32,7 +32,7 @@ const Slider = () => {
 
   return (
     <div className="mt-10 overflow-hidden p-2 rounded-xl">
-      <div className="flex gap-6 ">
+      <div className="flex gap-6">
         {data.map((ele) => {
           return <Slide image={ele?.UserInfo.picture} name={ele.UserInfo.name} />;
         })}

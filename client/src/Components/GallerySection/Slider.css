@@ -3,7 +3,8 @@
 }
 
 .slider-track{
-    width: calc(250px * 20);
+    width: fit-content;
+    /* width: calc(250px * 20); */
     animation: scroll 100s linear infinite;
 }
 
