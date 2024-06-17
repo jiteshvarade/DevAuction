@@ -119,9 +119,23 @@ router.post('/getUserOffers', async (req, res) => {
 
 router.post('/getProjectOffers', async (req, res) => {
     const projectID = req.body.projectID
+    let offers = []
 
     try{
-        
+        const project = await Project.findOne({ProjectID : projectID})
+
+        const length = project.Offers.length
+
+        for(let i = 0;  i < length; i++){
+            const user = await User.findOne({"UserInfo.email" : project.Offers[i].email})
+            offers.push({
+                name : user.UserInfo.name,
+                amount : project.Offers[i].amount,
+                result : project.Offers[i].results
+            })
+        }
+
+        res.send({offers})
     }catch(error){
         console.log(error)
     }
