@@ -4,7 +4,7 @@ import GradientBtn from "../Buttons/GradientBtn";
 import "./Preview.css";
 import { useParams } from "react-router-dom";
 
-const PreviewSec = () => {
+const PreviewSec = ({show,setshow}) => {
   const params = useParams();
 //   console.log("hello");
   console.log(params.id);
@@ -62,7 +62,7 @@ const PreviewSec = () => {
       );
       console.log(res);
       const newdata = await res.json();
-      setdata(newdata.Owner);
+      setdata(newdata);
       setarr(newdata.Tags);
       console.log(newdata);
       seteml(newdata.Owner );
@@ -73,7 +73,7 @@ const PreviewSec = () => {
   };
 
   const fetchuser = async () => {
-    console.log("Baaji pala")
+    // console.log("Baaji pala")
     console.log(eml)
     try {
       const res = await fetch("https://devauction.onrender.com/profile", {
@@ -96,14 +96,14 @@ const PreviewSec = () => {
   useEffect(() => {
     response();
     fetchuser();
-  }, [data]);
+  }, []);
 
   return (
     <div className="mt-6 flex h-[560px] justify-center gap-4  flex-wrap ">
       {!data && <div>spinner</div>}
       {data && (
         <div className="border-[#223534] w-[775px] flex flex-col gap-2">
-          <div className="text-[34px] font-semibold">Wonder Kids Website</div>
+          <div className="text-[34px] font-semibold">{data.Title}</div>
           <div className="text-[#0CA3E7] text-justify flex flex-wrap">
             {/* Wonder Kids is Vibrant , interactive website design to provide a
             safe and engaging online environment for children aged 3-12. The
@@ -144,7 +144,9 @@ const PreviewSec = () => {
               <span> {use?.UserInfo?.name} </span>
             </div>
 
-            <GradientBtn placeholder="Make offer" />
+            <GradientBtn placeholder="Make offer" onClick={() =>{ 
+              setshow(!show)
+            }} />
           </div>
           <div className="border-2  h-fit rounded-2xl border-[#223534] overflow-hidden  ">
             {/* <div className="w-[100%] h-[100%] bg-[#223534] rounded-2xl "></div> */}
@@ -166,7 +168,9 @@ const PreviewSec = () => {
           </div>
           <div className="flex justify-center gap-4 mb-4 mt-4 ">
             {/* <GradientBtn placeholder="Screen Shot" /> */}
-            <GradientBtn placeholder="Live Preview" />
+            <GradientBtn placeholder="Live Preview" onClick={ () => {
+              window.open(data.Link)
+            }} />
           </div>
         </div>
       )}

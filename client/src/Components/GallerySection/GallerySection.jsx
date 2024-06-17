@@ -8,8 +8,10 @@ import Preview from "../../Pages/preview/Preview";
 import SearchIcon from "../../assets/GalleryImages/search 02.png";
 
 const GallerySection = () => {
+  const [data,setdata] = useState([])
   const [projects, setProjects] = useState([]);
-  const [search, setsearch] = useState();
+  const [search, setsearch] = useState('');
+
   async function fetchProjects() {
     try {
       const res = await fetch(
@@ -17,7 +19,8 @@ const GallerySection = () => {
       );
       const projects = await res.json();
       console.log(projects);
-      setProjects(projects);
+      setdata(projects);
+      setProjects(projects)
     } catch (error) {
       console.log(error);
     }
@@ -75,10 +78,16 @@ const GallerySection = () => {
     }
   }
   function searchProjects() {
+    if(search == '')
+    {
+      alert("Enter something")
+      return;
+    }
+    
     let temparry;
     const lowerCaseSearchTerm = search.toLowerCase();
 
-    temparry = projects.filter((project) =>
+    temparry = data.filter((project) =>
       project.Tags.some((tag) =>
         tag.toLowerCase().includes(lowerCaseSearchTerm)
       )
