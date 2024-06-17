@@ -15,8 +15,6 @@ function CreateProPopUp() {
                 <div className='bg-[#0f1325]   w-[70%] mx-auto h-full text-white pt-6'>
                 <div id='content-box' className='w-full h-full'>
                     <div id="form" className='flex flex-wrap lg:flex-nowrap justify-between gap-2 px-3 items-center'>
-
-
                             <div className='flex w-full lg:w-[40%] self-start items-center text-lg md:text-2xl pl-10 gap-6 mb-5'>
                                 <div onClick={showAndHideME} className='text-2xl md:text-4xl' id="">
                                     <FaLongArrowAltLeft />
