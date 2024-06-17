@@ -159,7 +159,7 @@ const RoomPage = () => {
       setTimeout(() => {
         setShowAnimation(false);
       }, 1000);
-      speak(`${data.data.name} has bid of ${data.data.Amt}`);
+      speak(`${data.data.name} has bid of ${data.data.Amt} Rupees`);
     });
     socket.on("roomClose", (data) => {
       console.log(data);
@@ -199,7 +199,8 @@ const RoomPage = () => {
   }
 
   function SendBid() {
-    if (bidData.data.Amt - amount > 0) {
+    if (bidData.data.Amt - amount >= 0) {
+      speak("Your bid should be higher than previous bid!");
       alert("Are thoda sharam karo");
       return;
     }

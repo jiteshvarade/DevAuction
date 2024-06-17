@@ -9,16 +9,16 @@ import GradientBtn from "../Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiRefreshLine } from "react-icons/ri";
 
-const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
+const Auctionrooms = ({ show, setshow, showdownload, setShowdownload }) => {
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(3);
   const [selectOption, setSelectOption] = useState("free");
-  const roomOptions = ["free", "premium", "history"];
+  const roomOptions = ["free", "history"];
   const [showOptions, setShowOptions] = useState(false);
-  
+
   const [roomData, setRoomData] = useState({
     freeRooms: [],
-    premiumRooms: [],
+    // premiumRooms: [],
     history: [],
   });
 
@@ -79,7 +79,7 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
 
   return (
     <div className=" bg-[#050618] flex flex-col gap-4">
-      <div className="p-6 flex flex-col gap-4"> 
+      <div className="p-6 flex flex-col gap-4">
         <div className="flex justify-between flex-wrap gap-8">
           <div className=" text-[28px] md:text-[40px] font-semibold w-[300px] text-white">
             Auction Room
@@ -94,13 +94,13 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
             <GradientBtn
               placeholder="Download"
               onClick={() => {
-                setShowdownload(!showdownload)
+                setShowdownload(!showdownload);
               }}
             />
           </div>
         </div>
         <div className="header flex justify-between items-center sm:pr-28 flex-wrap gap-4">
-          {/* <div
+          <div
             className="bg-inherit w-52 text-center outline-none cursor-pointer rounded-xl relative"
             style={{
               backgroundColor: "rgba(7, 38, 67, 1)",
@@ -142,7 +142,7 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
                 );
               })}
             </div>
-          </div> */}
+          </div>
           <div
             className="right flex items-center gap-2 cursor-pointer hover:bg-blue-950 rounded-xl px-4 py-2"
             onClick={() => refresh(selectOption)}
@@ -158,31 +158,27 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
               ? roomData.freeRooms.map((elem, index) => (
                   <Card
                     roomId={elem.RoomID}
+                    bidCount={elem.Bids.length}
                     date={elem.Time}
                     imgSrc={elem.Image}
                     title={elem.Title}
                     key={elem.RoomID + index}
                   />
                 ))
-              : "premium"
-              ? roomData.premiumRooms.map((elem, index) => (
-                  <Card
-                    roomId={elem.RoomID}
-                    date={elem.Time}
-                    imgSrc={elem.Image}
-                    title={elem.Title}
-                    key={elem.RoomID + index}
-                  />
-                ))
-              : roomData.history.map((elem, index) => (
-                  <Card
-                    roomId={elem.RoomID}
-                    date={elem.Time}
-                    imgSrc={elem.Image}
-                    title={elem.Title}
-                    key={elem.RoomID + index}
-                  />
-                ))}
+              : roomData.history.map((elem, index) => {
+                  {/* console.log(elem); */}
+                  return (
+                    <Card
+                      status={elem.Status}
+                      bidCount={elem.Bids.length}
+                      roomId={elem.RoomID}
+                      date={elem.Time}
+                      imgSrc={elem.Image}
+                      title={elem.Title}
+                      key={elem.RoomID + index}
+                    />
+                  );
+                })}
           </div>
         </div>
       </div>
@@ -198,3 +194,15 @@ const Auctionrooms = ({ show, setshow , showdownload , setShowdownload }) => {
 };
 
 export default Auctionrooms;
+
+// "premium"
+// ? roomData.premiumRooms.map((elem, index) => (
+//     <Card
+//       roomId={elem.RoomID}
+//       date={elem.Time}
+//       imgSrc={elem.Image}
+//       title={elem.Title}
+//       key={elem.RoomID + index}
+//     />
+//   ))
+// :

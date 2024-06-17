@@ -7,7 +7,7 @@ import GradientBtn from "../Buttons/GradientBtn";
 import { useNavigate } from "react-router-dom";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 
-const Card = ({ roomId, date, title, imgSrc }) => {
+const Card = ({ roomId, date, title, imgSrc, status, bidCount }) => {
   const navigate = useNavigate();
   const [live, setlive] = useState(true);
 
@@ -22,8 +22,8 @@ const Card = ({ roomId, date, title, imgSrc }) => {
       <div className=" text-left w-full text-[16px] font-bold">
         {title || "Mehenga project"}
       </div>
-      <div>
-        <img className="rounded-lg" alt="" src={imgSrc || logo} />
+      <div className="h-full">
+        <img className="rounded-lg w-full h-full object-cover" alt="" src={imgSrc || logo} />
       </div>
       <div className="flex w-full justify-between px-2">
         <div className="flex gap-2 items-center">
@@ -32,19 +32,20 @@ const Card = ({ roomId, date, title, imgSrc }) => {
           <span className="">{date || "30-02-2060"}</span>
         </div>
         <div className="flex gap-2">
-          <img alt="" src={time} />
-          <span>45min</span>
+          {/* <img alt="" src={time} /> */}
+          <span>Bids: {bidCount || 0}</span>
         </div>
       </div>
       <div className="w-full hover:scale-[0.95] transition ease-in-out">
         <button
-          className="text-[#11111] bg-gradient-to-b from-[#18203E] to-[#172748]rounded-full px-8 py-3 text-[18px] font-semibold rounded-full border w-full"
+          className={`px-8 py-3 text-lg font-semibold rounded-full border w-full   ${status ? "bg-red-500 text-white" : "text-[#11111] bg-gradient-to-b from-[#18203E] to-[#172748]"}`}
           onClick={() => {
             console.log(roomId)
             navigate(`/room/${roomId}`);
           }}
+          disabled={status}
         >
-          Enter
+          {status ? "Closed!" :  "Enter"}
         </button>
       </div>
     </div>
