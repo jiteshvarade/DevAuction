@@ -29,7 +29,7 @@ const createProjectSchema = new mongoose.Schema({
         type : String,
         required : false,
     },
-    History : {
+    Status : {
         type : Boolean,
         required : false
     },
