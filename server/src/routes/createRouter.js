@@ -102,7 +102,7 @@ router.post('/project', upload.single("file"), async (req,res)=>{
             Owner : req.body.email,
             Image : req.body.image,
             Title : req.body.title,
-            Status : false,
+            Status : Boolean(false),
             Description: req.body.description,
             Tags : req.body.tags,
             FileID : fileuploadResponse.data.id,
@@ -154,7 +154,7 @@ router.post("/room", upload.single("file"), async (req,res)=>{
         const {Owner ,Image,Status,Premium,Time,Title,Description,FileID, RoomID} = {
             Owner : req.body.email,
             Image : req.body.image,
-            Status: false,
+            Status: Boolean(false),
             Time: req.body.date,
             Title : req.body.title,
             Description: req.body.description,
