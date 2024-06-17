@@ -72,8 +72,26 @@ router.post('/userProjects', async (req, res) => {
     }
 })
 
-router.post('/placedOffers', async (req, res) => {
-    // logic to store Offers placed by user
+router.post('/placeOffer', async (req, res) => {
+    const projectID = req.body.projectID
+    const email = req.body.email
+    const amount = req.body.amount
+
+    try{
+        const project = await Project.findOneAndUpdate({ProjectID : projectID},{
+            $push : {"Offers" : {
+                email : email,
+                amount : amount,
+                results : 0
+            }}
+        })
+        
+        await project.save()
+
+        res.send("Offer placed sauccessfully")
+    }catch(error){
+        console.log(error)
+    }
 })
 
 router.post("/edit", async(req, res)=>{
