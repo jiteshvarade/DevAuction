@@ -12,6 +12,18 @@ function ContactUs() {
     }, 5000);
   };
 
+  function validateEmail(email) {
+    console.log(email);
+    // Basic syntax check using regex
+    const emailRegex = /^[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/    ;
+    console.log(emailRegex.test(email))
+    if (!emailRegex.test(email)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   const handelSubmit = async (e) => {
     // e.preventdefault()
     const firstName = document.querySelector("#firstName");
@@ -33,12 +45,15 @@ function ContactUs() {
     ) {
       window.alert("enter the details first");
       return;
+    } else if (!validateEmail(email.value)) {
+      alert("Enter a valid email address");
+      return;
     } else {
       let fullName = firstName.value + " " + lastName.value;
       const details = {
         Name: fullName,
         Email: email.value,
-        PhoneNo: phone.value,
+        PhoneNo: phone.value.toString(),
         Message: message.value,
       };
       const response = await fetch(
@@ -81,7 +96,7 @@ function ContactUs() {
             <h4 className="text-4xl font-bold mb-5">Contact Form</h4>
 
             <div className="flex gap-2 w-full ">
-              <div className='basis-[50%] '>
+              <div className="basis-[50%] ">
                 <p className="leading-8">First Name</p>
                 <input
                   className="outline-none bg-[#060e21]  border-[0.5px] border-[#2D2E3D] w-full rounded-xl px-2 py-1 h-10"
@@ -89,10 +104,13 @@ function ContactUs() {
                   name="Name"
                   autoComplete="off"
                   id="firstName"
-                  style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
+                  required
+                  style={{
+                    boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)",
+                  }}
                 />
               </div>
-              <div className='basis-[50%]'>
+              <div className="basis-[50%]">
                 <p className="leading-8">Last Name</p>
                 <input
                   className="outline-none bg-[#060e21] border-[0.5px] border-[#2D2E3D] w-full rounded-xl px-2 py-1 h-10"
@@ -100,24 +118,30 @@ function ContactUs() {
                   name="Name"
                   autoComplete="off"
                   id="lastName"
-                  style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
+                  required
+                  style={{
+                    boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)",
+                  }}
                 />
               </div>
             </div>
 
             <div className="flex gap-2 my-3">
-              <div className='basis-[50%]'>
+              <div className="basis-[50%]">
                 <p className="leading-8">Phone</p>
                 <input
-                  type="tel"
+                  type="number"
                   className="outline-none w-full bg-[#060e21] border-[0.5px] border-[#2D2E3D] rounded-xl px-2 py-1 h-10"
                   name="phone"
                   autoComplete="off"
                   id="phone"
-                  style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
+                  required
+                  style={{
+                    boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)",
+                  }}
                 />
               </div>
-              <div className='basis-[50%]'>
+              <div className="basis-[50%]">
                 <p className="leading-8">Email</p>
                 <input
                   className="outline-none bg-[#060e21] border-[0.5px] border-[#2D2E3D] w-full rounded-xl px-2 py-1 h-10"
@@ -125,24 +149,30 @@ function ContactUs() {
                   name="email"
                   autoComplete="off"
                   id="email"
-                  style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
+                  required={true}
+                  style={{
+                    boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)",
+                  }}
                 />
               </div>
             </div>
 
-            <div className=''>
+            <div className="">
               <p className="leading-8">Message</p>
               <textarea
                 name="message"
                 rows={3}
                 className="bg-[#060e21] outline-none border-[0.5px] border-[#2D2E3D] resize-none w-full rounded-xl px-2 py-1 h-20"
                 id="message"
-                style={{boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)"}}
+                style={{
+                  boxShadow: "inset 0 4px 22px 0 rgba(255,255,255,0.1)",
+                }}
               ></textarea>
             </div>
             <input
               type="checkbox"
               id="checkbox"
+              required
               value={check}
               onChange={() => setCheck(!check)}
               className="mt-4"

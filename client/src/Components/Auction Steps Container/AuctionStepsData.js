@@ -25,7 +25,7 @@ const stepDetails = [
     {
       step: 3,
       heading: "Enter Auction Rooms",
-      stepDescription: "Once you have credits, you can enter auction rooms. Some rooms may require tickets, which can be bought using your credits, while others are free to enter. Each room showcases various projects up for auction.",
+      stepDescription: "Once you have credits, you can enter any auction room. Each room showcases various projects up for auction. Explore the rooms to find items that interest you and start bidding.",
       tagline: "Step into the auction arena and seize your chance to win!",
       imgRef: step3
     },
@@ -47,7 +47,7 @@ const stepDetails = [
     {
       step: 6,
       heading: "Explore the Gallery Section",
-      stepDescription: "Visit our dedicated gallery section to discover developer content such as project reels. Here, you can give diamonds to the reels you appreciate and even buy the project directly from the reel.",
+      stepDescription: "Visit our dedicated gallery section to discover developer content such as project reels. You can offer to buy the project directly from the reel.",
       tagline: "Discover and invest in creativity with a single click!",
       imgRef: step6
     },

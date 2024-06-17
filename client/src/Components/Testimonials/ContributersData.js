@@ -5,7 +5,7 @@ export const items = [
       id: 1,
       img: "https://unavatar.io/github/1stevengrant",
       title: "John Smith, Lead Developer",
-      description: "Using [Your Website Name]'s auction platform has been a game-changer. The competitive bidding helped us secure a much higher value for our software than we anticipated. Highly recommended!",
+      description: "Using DevAuction's auction platform has been a game-changer. The competitive bidding helped us secure a much higher value for our software than we anticipated. Highly recommended!",
       bgColor: "bg-green-500",
     },
     {
@@ -19,7 +19,7 @@ export const items = [
       id: 3,
       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWHNWkbNYWA9KU6gofP5rqXmEiq3jnqvWfog&s',
       title: "Michael Lee, Independent Developer",
-      description: "I was new to auctioning projects, but [Your Website Name]'s user-friendly platform and helpful support made the process straightforward. I successfully auctioned my first project and received a great price.",
+      description: "I was new to auctioning projects, but DevAuction's user-friendly platform and helpful support made the process straightforward. I successfully auctioned my first project and received a great price.",
       bgColor: "bg-purple-500",
     },
     {

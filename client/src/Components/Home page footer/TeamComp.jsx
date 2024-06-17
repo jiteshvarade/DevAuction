@@ -50,7 +50,7 @@ function TeamComp() {
 
   return (
     <div className="py-10 text-white">
-      <h5 className="text-center text-4xl font-bold my-5 mb-20">
+      <h5 className="text-center font-bold my-5 mb-20 lg:text-4xl text-xl sm:text-2xl uppercase">
         Team Members
       </h5>
       <div

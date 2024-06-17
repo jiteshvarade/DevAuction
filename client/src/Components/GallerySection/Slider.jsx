@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Slider.css";
 import Slide from "./Slide";
 
 const Slider = () => {
   const [data, setdata] = useState([]);
-  const images = Array.from({ length: 50 }, (_, index) => (
-    <Slide key={index} />
-  ));
+  // const images = Array.from({ length: 50 }, (_, index) => (
+  //   <Slide key={index} />
+  // ));
 
   const getdata = async () => {
     console.log("heool"); 
@@ -18,8 +18,7 @@ const Slider = () => {
 
       const newdata = await res.json();
       setdata(newdata)
-      console.log(data);
-
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -31,8 +30,8 @@ const Slider = () => {
   }, []);
 
   return (
-    <div className="mt-10 overflow-hidden p-2 rounded-xl">
-      <div className="flex gap-6">
+    <div className="sliderContainer mt-10 overflow-hidden p-2 rounded-xl">
+      <div className="slider flex gap-6">
         {data.map((ele) => {
           return <Slide image={ele?.UserInfo.picture} name={ele.UserInfo.name} />;
         })}

@@ -37,7 +37,7 @@ export default function OurMission() {
       id="mission"
       className="ourMissionSection flex flex-col lg:gap-24 gap-10 justify-center xl:h-dvh max-[1280px]:py-10 text-white bg-[#050618]"
     >
-      <div className="heading sm:text-4xl min-[500px]:text-3xl min-[340px]:text-2xl text-xl text-center font-semibold font-serif">
+      <div className="heading lg:text-4xl text-xl sm:text-2xl uppercase text-center font-semibold font-serif">
         Our Mission
       </div>
       <div className="missions flex justify-center flex-wrap gap-10 sm:px-20 px-8 md:flex-nowrap lg:px-32 overflow-x-hidden">

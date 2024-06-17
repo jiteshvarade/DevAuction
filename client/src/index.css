@@ -110,3 +110,7 @@ html {
     transform: rotateZ(0);
   }
 }
+
+.material-symbols-outlined, svg{
+  @apply cursor-pointer;
+}

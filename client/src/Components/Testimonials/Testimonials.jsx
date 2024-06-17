@@ -28,7 +28,7 @@ const Carousel = () => {
   };
   return (
     <div id="about us" className="testimonialSection pt-40 px-4">
-      <h1 className="lg:text-5xl md:text-3xl  font-bold text-center mb-20 text-xl sm:text-2xl">
+      <h1 className="font-bold text-center mb-20 lg:text-4xl text-xl sm:text-2xl uppercase">
         Our Happy Users!
       </h1>
       <div className="carouselContainer flex justify-center items-center flex-col gap-80 py-20">
