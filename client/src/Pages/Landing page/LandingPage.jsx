@@ -9,14 +9,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import HomePageFooter from "../../Components/Home page footer/HomePageFooter";
 import ContactUs from "../../Components/Home page footer/ContactUs";
 import TeamComp from "../../Components/Home page footer/TeamComp";
-import Pricing from "../../Components/Pricing/Pricing";
+// import Pricing from "../../Components/Pricing/Pricing";
 import { useNavigate } from "react-router-dom";
 import { ProgressSpinner } from "primereact/progressspinner";
  
 
 function Home() {
   const navigate = useNavigate();
-  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
 
   console.log(isAuthenticated);
   if (isAuthenticated) {
@@ -34,6 +34,7 @@ function Home() {
       navigate("/homepage/dashboard");
     }else{
       alert("Enter a valid email address!");
+      logout({ logoutParams: { returnTo: window.location.origin } });
     }
   }
   return (
