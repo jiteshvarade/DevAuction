@@ -128,6 +128,15 @@ router.post('/sendMailToBider', async (req, res) => {
             await room.save()
         }
 
+        const user = await User.findOneAndUpdate({"UserInfo.email" : highestBidders[0].email},{
+            $inc : {"Profile.Credits" : highestBid},
+            $push : {"Profile.Earnings" : {
+                Category : "room",
+                Amount : highestBid
+            }}
+        })
+        await user.save()
+
         const subject = "Thank You for Your Purchase! Access Your Project Now"
 
         const html = `
