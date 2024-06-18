@@ -99,15 +99,8 @@ const GallerySection = () => {
   return (
     <div className=" mt-10">
       <div className=" text-[12px] md:text-[18px] flex justify-evenly border-b-2 border-[#ffffff64] ">
-        <div className="p-2">Overview</div>
-
-        {/* <div className="p-2">Apps</div>
-
-        <div className="p-2">Websites</div>
-
-        <div className="p-2">Featured Stores</div> */}
+        <div className="p-2">Projects</div>
       </div>
-
       <div className="flex gap-4 mt-8 justify-between items-center w-full flex-wrap">
         <div className="relative">
           <input
@@ -124,10 +117,6 @@ const GallerySection = () => {
             placeholder="Find projects....."
           ></input>
           <img className="absolute top-4 left-4" src={SearchIcon} alt="" />
-        </div>
-        <div className="flex gap-2 mt-4">
-          <GradientBtn placeholder="Buy" />
-          <GradientBtn placeholder="Invest" />
         </div>
       </div>
       <div className="text-center">
@@ -151,7 +140,6 @@ const GallerySection = () => {
           })}
         </div>
       </div>
-
       <div className="flex justify-center">
         <GradientBtn placeholder="Browse More" />
       </div>
