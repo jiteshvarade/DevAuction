@@ -104,13 +104,14 @@ function Dashbord() {
               show ? "blur-xl" : ""
             } ${showtable ? "":""} ${showdownload ? "blur-lg": ""}`}
           >
+            <div className="px-5">
             <Header
               Username={user?.given_name}
               UserImg={user?.picture}
               isnav={showMenu}
               setisnav={setShowMenu}
             />
-
+            </div>
             {/* earnings cards */}
             <EarningCards
               earningAmount={totalearn}
