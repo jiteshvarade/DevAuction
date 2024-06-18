@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import ChatScreenHeader from "./ChatScreenHeader";
 import ChatScreenFooter from "./ChatScreenFooter";
 import ChatBtn from "./ChatBtn";
+import logo from "../../assets/LandingPage Images/logo remove background.svg";
 
 const ChatScreen = React.memo(({ selectedUser, myEmail, showChats, setShowChats }) => {
   const [msgs, setMsgs] = useState([]);
@@ -248,7 +249,7 @@ const ChatScreen = React.memo(({ selectedUser, myEmail, showChats, setShowChats 
           </>
         ) : (
           <div className="logo flex w-full h-full justify-center items-center flex-col gap-2 select-none">
-            <div className="text-3xl font-bold text-[#66bee3]">DEVAuction</div>
+            <div className="text-3xl font-bold text-[#66bee3]"><img src={logo} alt="DevAuction" className="w-60 h-20 object-cover opacity-30" style={{filter: "grayscale(100%)"}}  /></div>
             <div className="text-gray-600">
               Select someone to start chatting
             </div>

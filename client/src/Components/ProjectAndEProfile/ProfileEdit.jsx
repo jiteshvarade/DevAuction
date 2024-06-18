@@ -5,26 +5,32 @@ import "./project.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import GradientBtn from "../Buttons/GradientBtn";
 
-function ProfileEdit({resp,showEdit,setShowEdit}) {
+function ProfileEdit({ resp, showEdit, setShowEdit, userData }) {
+  const [inputValue, setInputValue] = useState(userData.Skills)
   const { user } = useAuth0();
   let skills = [];
-  const [bio, setbio] = useState("");
-
+  const [bio, setbio] = useState(userData.Bio);
+  console.log(userData);
   function skillpush() {
     const data = [];
     document.querySelectorAll(".skills").forEach((e) => {
-      if(e.value)
-        {
-          data.push(e.value)
-        }
-      });
+      if (e.value) {
+        data.push(e.value);
+      }
+    });
     skills = data;
     console.log(skills);
   }
 
+  function changeHndlr(index, e){
+    const newValues = [...inputValue];
+    newValues[index] = e.target.value;
+    setInputValue(newValues);
+  }
+
   const edithandler = async () => {
     try {
-      console.log(skills)
+      console.log(skills);
       const res = await fetch("https://devauction.onrender.com/profile/edit", {
         method: "POST",
         body: JSON.stringify({ email: user.email, bio: bio, skills: skills }),
@@ -32,41 +38,23 @@ function ProfileEdit({resp,showEdit,setShowEdit}) {
           "Content-type": "application/json; charset=UTF-8",
         },
       });
-      resp()
-      setShowEdit(!showEdit)
+      resp();
+      setShowEdit(!showEdit);
       console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const [image, setImage] = useState(
-  //   "https://cdn.pixabay.com/photo/2016/11/22/21/26/asian-girl-1850617_1280.jpg"
-  // );
-  // function handelImageUpload(e) {
-  //   const file = e.target.files[0];
-  //   const reader = new FileReader();
-
-  //   reader.onloadend = () => {
-  //     setImage(reader.result);
-  //   };
-  //   if (file) {
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
-  // const [proImg, setProImg] = useState(
-  //   '"https://i.pinimg.com/236x/fe/af/94/feaf944be5749d956396ebc4662ca39e.jpg"'
-  // );
   return (
     <>
       <div className=" bg-[#0f1325]  border-red-400   w-[100%] text-white">
         <div id="content-box" className="w-full md:px-20 py-10">
           <div className="flex w-full lg:w-[40%] self-start items-center text-lg md:text-2xl pl-10 gap-6 mb-5">
             <div onClick={() => {}} className="text-2xl md:text-4xl" id="">
-              <FaLongArrowAltLeft 
-               onClick={ () =>{
-                setShowEdit(!showEdit)
-               }}
+              <FaLongArrowAltLeft
+                onClick={() => {
+                  setShowEdit(!showEdit);
+                }}
               />
             </div>
             <h2 className="font-semibold">Edit Profile</h2>
@@ -160,15 +148,26 @@ function ProfileEdit({resp,showEdit,setShowEdit}) {
                   >
                     +
                   </span>
+                  {userData.Skills.map((elem, index) => {
+                    {/* setInputValue(elem); */}
+                    return (
+                      <input
+                        value={inputValue[index]}
+                        className="skills w-[120px] px-4 rounded-xl border-none outline-none bg-[#0CA3E7] bg-opacity-[7%] py-1 shadow-[inset_0_0_5px_white]"
+                        key={elem + index}
+                        onChange={e => changeHndlr(index, e)}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
             <div className="flex justify-between gap-4 mt-4">
-              <div className="flex gap-4" >
+              <div className="flex gap-4">
                 <GradientBtn placeholder="Reset" />
                 <GradientBtn placeholder="Save" onClick={skillpush} />
               </div>
-              <GradientBtn placeholder="Save Changes" onClick={edithandler}/>
+              <GradientBtn placeholder="Save Changes" onClick={edithandler} />
             </div>
           </div>
         </div>

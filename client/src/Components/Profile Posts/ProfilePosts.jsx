@@ -125,8 +125,7 @@ export default function ProfilePosts({ Data, searchprof, className }) {
       )}
       {data && <div
         className={
-          "bg-[rgb(5,8,27)] h-fit w-full p-4 xl:columns-sm columns-[190px] gap-8 pt-8 " +
-          ` ${data.length !== 0 ? "block" : "hidden"}`
+          "bg-[rgb(5,8,27)] h-fit w-full columns-[190px] p-4 min-[700px]:columns-[344px] gap-4"
         }
       >
         <div>
@@ -140,7 +139,7 @@ export default function ProfilePosts({ Data, searchprof, className }) {
                   key={"project " + index}
                 />
               );
-            }): <div className="w-full text-center">Nothing to see here!</div>}
+            }): <div className="w-full text-gray-500 text-center pt-4" style={{columnSpan: "all"}}>Nothing to see here!</div>}
         </div>
       </div>}
     </div>
