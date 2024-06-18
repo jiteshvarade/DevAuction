@@ -14,19 +14,12 @@ const Makeoffer = ({ id, show, setshow }) => {
 
   const clickHandler = async () => {
     console.log(user.email);
-    setshow(!show);
-    console.log(user.email);
     console.log(Amount);
     console.log(id);
-    const formData = new FormData();
-    formData.append("email", user.email);
-    formData.append("amount", Amount);
-    formData.append("projectID", id);
-    console.log(formData);
 
     try {
       const response = await fetch(
-        "https://devauction.onrender.com/profile/placeOffer",
+        "https://devauction.onrender.com/project/offers",
         {
           method: "POST",
           body: JSON.stringify({
@@ -39,7 +32,11 @@ const Makeoffer = ({ id, show, setshow }) => {
           },
         }
       );
-      console.log(response);
+      if(!response.ok){
+        alert("Bid amount should be greater than offer price!")
+        return;
+      }
+      setshow(!show);
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
     }
