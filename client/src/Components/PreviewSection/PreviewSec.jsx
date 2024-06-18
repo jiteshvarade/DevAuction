@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Table from "./Table";
 import GradientBtn from "../Buttons/GradientBtn";
 import "./Preview.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PreviewSec = ({ show, setshow }) => {
+  const navigate = useNavigate();
   const params = useParams();
   //   console.log("hello");
   console.log(params.id);
@@ -64,7 +65,7 @@ const PreviewSec = ({ show, setshow }) => {
       const newdata = await res.json();
       setdata(newdata);
       setarr(newdata.Tags);
-      // console.log(newdata);
+      console.log(newdata);
       seteml(newdata.Owner);
       seturl(newdata.Image);
     } catch (error) {
@@ -96,9 +97,12 @@ const PreviewSec = ({ show, setshow }) => {
     fetchuser();
   }, [eml])
 
+  function redirectToProfile(){
+    navigate(`/homepage/gallery/searchprofile/${use._id}`)
+  }
+
   return (
     <>
-      {/* {(!data && !use) && <div className="w-52 aspect-square"></div>} */}
       {data && (
         <div className="mt-6 flex h-[560px] justify-center gap-4 flex-wrap">
           <div className="border-[#223534] w-[775px] flex flex-col gap-2">
@@ -123,7 +127,7 @@ const PreviewSec = ({ show, setshow }) => {
             </div>
             <div className="border border-[#223534] mt-3 mb-4"></div>
             <div className="flex justify-between mb-6 ">
-              <div className="flex gap-2 justify-center items-center">
+              <div className={`flex gap-2 justify-center items-center ${use ? "cursor-pointer" : "cursor-not-allowed"}`} onClick={use ? redirectToProfile : ""}>
                 <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black text-white">
                   {use ? (
                     <img
