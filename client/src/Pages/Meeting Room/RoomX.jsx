@@ -175,7 +175,7 @@ const RoomPage = () => {
         },
       });
       alert("Thankyou for joining");
-      navigate("/homepage");
+      navigate("/homepage/dashboard");
     });
     return () => {
       socket.off("on:bid", (data) => {});
