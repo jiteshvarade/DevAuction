@@ -7,10 +7,10 @@ function Header({ Username = "Jhon", UserImg = "https://images.unsplash.com/phot
         <>
 
 
-            <div id="nav-top" className='flex px-10 justify-between flex-wrap-reverse md:flex-nowrap items-center mt-2'>
+            <div id="nav-top" className='flex justify-between flex-wrap-reverse md:flex-nowrap items-center mt-3'>
                 <div>
-                    <h3 className='text-[20px] font-semibold'>Hi, {Username}</h3>
-                    <p className='text-[14px]'>Welcome back, it's good to have you back</p>
+                    <h3 className='text-[20px] font-bold'>Hi, {Username}</h3>
+                    <p className='text-[14px] font-semibold'>Welcome back, it's good to have you back</p>
                 </div>
 
                 <div className='flex w-[100%] md:w-fit justify-end gap-4'>

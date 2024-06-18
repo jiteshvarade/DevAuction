@@ -113,7 +113,7 @@ const GallerySection = () => {
                 searchProjects();
               }
             }}
-            className="lg:w-[300px] md:w-[240px] py-4 px-14 rounded-lg bg-[#0ca2e749] text-white "
+            className="w-full lg:w-[300px] md:w-[240px] py-4 px-14 rounded-lg bg-[#0ca2e749] text-white "
             placeholder="Find projects....."
           ></input>
           <img className="absolute top-4 left-4" src={SearchIcon} alt="" />
@@ -141,7 +141,7 @@ const GallerySection = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <GradientBtn placeholder="Browse More" />
+        {/* <GradientBtn placeholder="Browse More" /> */}
       </div>
     </div>
   );

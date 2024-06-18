@@ -179,8 +179,11 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
                   id=""
                 />
               </div>
-              <GradientBtn placeholder="Withdraw" onClick={widthdrawl} />
-              <GradientBtn placeholder="Deposit" onClick={loadRazorPay} />
+
+              <div className="ml-5  md:ml-0">
+              <GradientBtn placeholder="Withdraw" className=" mb-2 md:m-0  w-fit"  onClick={widthdrawl} />
+              <GradientBtn placeholder="Deposit"  onClick={loadRazorPay} />
+              </div>
             </div>
             <p className="text-[#0CA3E7] font-semibold mt-2 ml-5 mb-4">
               Balance (₹ {credits})
