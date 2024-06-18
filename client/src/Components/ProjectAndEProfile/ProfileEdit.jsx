@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import GradientBtn from "../Buttons/GradientBtn";
 
 function ProfileEdit({ resp, showEdit, setShowEdit, userData }) {
+  const [inputValue, setInputValue] = useState(userData.Skills)
   const { user } = useAuth0();
   let skills = [];
   const [bio, setbio] = useState(userData.Bio);
@@ -19,6 +20,12 @@ function ProfileEdit({ resp, showEdit, setShowEdit, userData }) {
     });
     skills = data;
     console.log(skills);
+  }
+
+  function changeHndlr(index, e){
+    const newValues = [...inputValue];
+    newValues[index] = e.target.value;
+    setInputValue(newValues);
   }
 
   const edithandler = async () => {
@@ -142,10 +149,13 @@ function ProfileEdit({ resp, showEdit, setShowEdit, userData }) {
                     +
                   </span>
                   {userData.Skills.map((elem, index) => {
+                    {/* setInputValue(elem); */}
                     return (
                       <input
-                        value={elem}
+                        value={inputValue[index]}
                         className="skills w-[120px] px-4 rounded-xl border-none outline-none bg-[#0CA3E7] bg-opacity-[7%] py-1 shadow-[inset_0_0_5px_white]"
+                        key={elem + index}
+                        onChange={e => changeHndlr(index, e)}
                       />
                     );
                   })}

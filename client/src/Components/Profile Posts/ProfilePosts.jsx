@@ -125,7 +125,7 @@ export default function ProfilePosts({ Data, searchprof, className }) {
       )}
       {data && <div
         className={
-          "bg-[rgb(5,8,27)] h-fit w-full columns-xs gap-8"
+          "bg-[rgb(5,8,27)] h-fit w-full columns-[190px] p-4 min-[700px]:columns-[344px] gap-4"
         }
       >
         <div>

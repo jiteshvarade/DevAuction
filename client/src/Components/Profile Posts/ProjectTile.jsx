@@ -4,7 +4,7 @@ import cardSrc from "../../assets/AuctionroomImages/WonderKids Landing Page Expl
 
 export default function ProjectTile({title, imgSrc, viewsCount}) {
   return (
-    <div className='w-80 p-2 rounded-3xl border-2 border-[#67879E] mb-8 break-inside-avoid bg-[#0CA3E7] bg-opacity-10 max-w-full'>
+    <div className='w-full p-2 rounded-3xl border-2 border-[#67879E] mb-8 break-inside-avoid bg-[#0CA3E7] bg-opacity-10 max-w-full'>
         <div className="img rounded-2xl overflow-hidden"><img src={imgSrc || cardSrc} alt={title} className='w-full h-full object-cover' /></div>
         <div className="footer flex items-center justify-between p-2 pb-0">
             <div className="title">{title}</div>

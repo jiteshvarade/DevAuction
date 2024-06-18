@@ -143,7 +143,7 @@ export default function ProfileOffers({ className }) {
       </div>
       <div
         className={
-          "text-center text-gray-500 w-full p-4 " +
+          "text-center text-gray-500 w-full p-4 pt-8 " +
           ` ${offersData.length == 0 ? "block" : "hidden"}` + ` ${className}`
         }
       >
