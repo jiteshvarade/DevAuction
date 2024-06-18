@@ -17,7 +17,7 @@ router.post('/offers', async (req, res) => {
             return res.status(404).send('Project not found')
         }
 
-        if(offer > project.OfferPrice){
+        if(offer >= project.OfferPrice){
             project.Offers.push({
                 email : email,
                 amount : offer,
