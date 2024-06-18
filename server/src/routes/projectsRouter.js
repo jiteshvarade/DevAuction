@@ -11,7 +11,7 @@ router.post('/offers', async (req, res) => {
     const { projectID, email, offer } = req.body
   
     try {
-        const project = await Project.findOneAndUpdate({ ProjectID: projectID })
+        const project = await Project.findOne({ ProjectID: projectID })
 
         if (!project) {
             return res.status(404).send('Project not found')
