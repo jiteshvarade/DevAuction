@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../../public/Icons/Logo.png";
 import { SlOptionsVertical } from "react-icons/sl";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import {useLocation} from "react-router-dom"
 
 export default function ChatScreenHeader({ imgSrc, userName, setShowChats }) {
+  const location = useLocation();
   return (
     <>
       <div className="absolute h-20 w-full rounded-tr-xl rounded-tl-xl flex px-8 select-none flex-col top-0">
@@ -25,8 +27,8 @@ export default function ChatScreenHeader({ imgSrc, userName, setShowChats }) {
             </div>
           </div>
           <div className="right flex gap-4 items-center">
-            <SlOptionsVertical />
-            <RxCross2 size="1.5rem" className="lg:hidden block" onClick={() => setShowChats(false)}  />
+            {/* <SlOptionsVertical /> */}
+            <RxCross2 size="1.5rem" className={`${location.pathname == "/homepage/chats" || window.innerWidth < 1024 ? "opacity-0" : "opacity-100"}`} onClick={() => setShowChats(false)}  />
           </div>
         </div>
         <hr
