@@ -108,10 +108,11 @@ const PreviewSec = ({ show, setshow }) => {
           <div className="border-[#223534] w-[775px] flex flex-col gap-2">
             <div className="text-[34px] font-semibold flex justify-between items-center">
               {data.Title}{" "}
-              <GradientBtn
+              {/* <GradientBtn
                 className={"text-white w-fit h-10 text-base cursor-default"}
                 placeholder={<span>&#8377; {data.OfferPrice} </span>}
-              />
+              /> */}
+              <span className="font-semibold text-lg px-3 py-2 border-2 border-[#0ca2e739] bg-transparent"> &#8377; {data.OfferPrice}</span>
             </div>
             <div className="text-[#0CA3E7] text-justify flex flex-wrap">
               {data.Description}
