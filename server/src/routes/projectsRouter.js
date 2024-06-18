@@ -38,7 +38,7 @@ router.post('/offers', async (req, res) => {
 
             await user.save()
         
-            res.status(201).send('Bid placed successfully')
+            res.status(201).send('Offer placed successfully')
         }
         else{
             res.status(500).send("Amount should be greater than offer price")
