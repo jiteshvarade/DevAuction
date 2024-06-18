@@ -7,6 +7,7 @@ import SkillsContainer from "./SkillsContainer";
 import { RiNotificationLine } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
+import {useNavigate} from "react-router-dom"
 
 export default function ProfileHero({
   resp, 
@@ -24,6 +25,7 @@ export default function ProfileHero({
   setCreatePro,
   messageOnClickFunction,
 }) {
+  const navigate = useNavigate();
   const { user } = useAuth0();
   const skill = Data?.userData?.Profile.Skills || [];
   const [follow, setfollow] = useState(false);
@@ -101,7 +103,7 @@ export default function ProfileHero({
               onClick={() => setShowMenu(!showMenu)}
             />
             <div className="left flex items-center text-2xl gap-2">
-              <FaLongArrowAltLeft className="opacity-0 md:opacity-100 z-0" />{" "}
+              <FaLongArrowAltLeft className="opacity-0 md:opacity-100 z-0" onClick={() => navigate(-1)}  />{" "}
               Profile
             </div>
             <div className="right flex items-center gap-2 pr-4">

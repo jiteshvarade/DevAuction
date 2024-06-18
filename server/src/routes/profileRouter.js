@@ -83,7 +83,7 @@ router.post('/placeOffer', async (req, res) => {
         
         await project.save()
 
-        res.send("Offer placed sauccessfully")
+        res.send("Offer placed successfully")
     }catch(error){
         console.log(error)
     }
@@ -91,9 +91,27 @@ router.post('/placeOffer', async (req, res) => {
 
 router.post('/getUserOffers', async (req, res) => {
     const email = req.body.email
+    let offers = []
 
     try{
-        
+        const projects = await Project.find({Owner : email})
+
+        const length = projects.length
+
+        for(let i = 0;  i < length; i++){
+            const projectOffersLenght = projects[i].Offers.length
+            for(j = 0; j < projectOffersLenght; j++){
+                const user = await User.findOne({"UserInfo.email" : projects[i].Offers[j].email})
+                offers.push({
+                    name : user.UserInfo.name,
+                    projectTitle : projects[i].Title,
+                    amount : projects[i].Offers[j].amount,
+                    result : projects[i].Offers[j].results
+                })
+            }
+        }
+
+        res.send({offers})
     }catch(error){
         console.log(error)
     }
@@ -101,9 +119,23 @@ router.post('/getUserOffers', async (req, res) => {
 
 router.post('/getProjectOffers', async (req, res) => {
     const projectID = req.body.projectID
+    let offers = []
 
     try{
-        
+        const project = await Project.findOne({ProjectID : projectID})
+
+        const length = project.Offers.length
+
+        for(let i = 0;  i < length; i++){
+            const user = await User.findOne({"UserInfo.email" : project.Offers[i].email})
+            offers.push({
+                name : user.UserInfo.name,
+                amount : project.Offers[i].amount,
+                result : project.Offers[i].results
+            })
+        }
+
+        res.send({offers})
     }catch(error){
         console.log(error)
     }

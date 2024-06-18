@@ -1,28 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Table = () => {
-  const data = [
-    {
-      name: "Ankit chauhan",
-      total: 1000000,
-    },
-    {
-      name: "Ankit chauhan",
-      total: 1000000,
-    },
-    {
-      name: "Ankit chauhan",
-      total: 1000000,
-    },
-    {
-      name: "Ankit chauhan",
-      total: 1000000,
-    },
-    {
-      name: "Ankit chauhan",
-      total: 1000000,
-    },
-  ];
+const Table = ({ projectID }) => {
+  const [tableData, setTableData] = useState([]);
+  async function getProjectOffers() {
+    // console.log(projectID);
+    try {
+      const res = await fetch(
+        "https://devauction.onrender.com/profile/getProjectOffers",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            projectID: projectID,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
+      const { offers } = await res.json();
+      setTableData(offers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getProjectOffers();
+  }, []);
+
+  // const data = [
+  //   {
+  //     name: "Ankit chauhan",
+  //     total: 1000000,
+  //   },
+  //   {
+  //     name: "Ankit chauhan",
+  //     total: 1000000,
+  //   },
+  //   {
+  //     name: "Ankit chauhan",
+  //     total: 1000000,
+  //   },
+  //   {
+  //     name: "Ankit chauhan",
+  //     total: 1000000,
+  //   },
+  //   {
+  //     name: "Ankit chauhan",
+  //     total: 1000000,
+  //   },
+  // ];
   return (
     <div className="border-2 border-[rgb(34,53,52)] text-[12px] rounded-lg sm:text-[18px] h-[560px] lg:h-screen w-full md:w-[350px] no-scrollbar overflow-auto">
       <table className="w-full">
@@ -34,18 +61,17 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-        {
-            
-            data.map((ele,index) => {
-              return (
-                <tr>
-                  <td className="p-2  text-center">{index + 1}</td>
-                  <td className="p-2  text-center ">{ele.name}</td>
-                  <td className="p-2  text-center">{ele.total}</td>
-                </tr>
-              );
-            })
-            }
+          {tableData.length != 0 ?  tableData.map((ele, index) => {
+            return (
+              <tr>
+                <td className="p-2  text-center">{index + 1}</td>
+                <td className="p-2  text-center ">{ele.name}</td>
+                <td className="p-2  text-center">{ele.amount}</td>
+              </tr>
+            );
+          }) : <tr>
+            <td colSpan={3} className="text-center text-gray-500">Nothing to see here!</td>
+          </tr>}
         </tbody>
       </table>
     </div>

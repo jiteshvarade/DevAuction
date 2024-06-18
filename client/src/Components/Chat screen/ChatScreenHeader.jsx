@@ -19,14 +19,14 @@ export default function ChatScreenHeader({ imgSrc, userName, setShowChats }) {
             </div>
             <div className="nameAndStatus">
               <div className="userName sm:text-2xl text-lg font-bold">{userName || "Someone"}</div>
-              <div className="status text-xs font-thin">
+              {/* <div className="status text-xs font-thin">
                 Online.Last seen 7:05 PM
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="right flex gap-4 items-center">
             <SlOptionsVertical />
-            <RxCross2 size="1.5rem"  onClick={() => setShowChats(false)}  />
+            <RxCross2 size="1.5rem" className="lg:hidden block" onClick={() => setShowChats(false)}  />
           </div>
         </div>
         <hr

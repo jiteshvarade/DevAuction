@@ -5,7 +5,9 @@ const User = require("../models/user")
 const sendEmail = require("../utils/email")
 
 router.post('/getHost', async (req,res)=>{
-    const { roomID, email} = req.body
+    const roomID  = req.body.roomID
+    const email = req.body.email
+    console.log(roomID,email)
   
     try {
         const room = await Room.findOne({ RoomID: roomID })
@@ -106,7 +108,7 @@ router.post('/sendMailToBider', async (req, res) => {
             await bidder.save()
         }
 
-        const user = await User.findOneAndUpdate({"UserInfo.email" : highestBidders[0].email},{
+        const user = await User.findOneAndUpdate({"UserInfo.email" : room.Owner},{
             $inc : {"Profile.Credits" : highestBid},
             $push : {"Profile.Earnings" : {
                 Category : "room",
@@ -146,6 +148,36 @@ router.post('/sendMailToBider', async (req, res) => {
         `
 
         await sendEmail(highestBidders[0].email, subject, html)
+
+        const subjectOwner = `Confirmation of Credit Addition and Auction End for Room ID ${room.RoomID}`
+
+        const htmlOwner = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+            <p>Dear ${user.UserInfo.name},</p>
+        
+            <p>I hope this message finds you well.</p>
+        
+            <p>We are pleased to inform you that the credits ${highestBid} have been successfully added to your account. Additionally, we would like to confirm that the auction for Room ID ${room.RoomID} has ended.</p>
+        
+            <p>Should you have any questions or require further assistance, please do not hesitate to contact our customer support team.</p>
+        
+            <p>Thank you for choosing DevAuction</p>
+        
+            <p>Best regards,</p>
+        
+            <p>DevAuction</p>
+        </body>
+        </html>
+        
+        `
+
+        await sendEmail(room.Owner, subjectOwner, htmlOwner)
 
         console.log(message)
         res.status(200).send('Highest bidder information processed successfully')

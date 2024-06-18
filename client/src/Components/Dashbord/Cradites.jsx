@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import craditSecImg from "../../../public/Icons/craditesSectionImg.png";
 import craditeSecBg from "../../../public/Icons/craditeBG.png";
 import GradientBtn from "../Buttons/GradientBtn";
@@ -9,11 +9,13 @@ import photo from "../../assets/LandingPage Images/logo remove background.svg";
 import { IoTrophy } from "react-icons/io5";
 import Transcations from "./Transcations";
 import { json } from "react-router-dom";
- 
+
 function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
+  // const transectionsTable = useRef(null);
   const [Amount, setAmount] = useState("");
   const { user } = useAuth0();
-  const [trasctionss, setTransction] = useState([]); 
+  const [trasctionss, setTransction] = useState([]);
+  
 
   console.log(credits);
 
@@ -51,11 +53,11 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
   };
 
   const widthdrawl = async () => {
-    if(Amount == "" || Amount == 0){
+    if (Amount == "" || Amount == 0) {
       alert("Enter some amount to withdraw");
       return;
     }
-    if(Amount - credits > 0){
+    if (Amount - credits > 0) {
       alert("Amount can't be greater than balance!");
       return;
     }
@@ -84,7 +86,12 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
 
   async function handleSubmit() {
     const amount = Amount * 100;
+
     console.log(Amount);
+    if (amount > 50000000) {
+      alert("Aukat mein: Amount should be less than 500000");
+      return;
+    }
     try {
       const response = await fetch("https://devauction.onrender.com/payments", {
         method: "POST",
@@ -184,24 +191,28 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
                     </div> */}
         </div>
 
-        <div className="mt-5  lg:flex justify-between">
-          <div className="border-2 border-[#223534]  mb-4 lg:mb-0 rounded-lg py-3 lg:basis-[99%]">
+        <div className="mt-5 lg:flex justify-between">
+          <div className="border-2 border-[#223534] lg:mb-0 rounded-lg py-3 lg:basis-[99%]">
             <h4 className="text-2xl font-semibold ml-3 my-3">
               Transaction history
             </h4>
-            <div>
+            <div className="flex flex-col gap-0">
               {/* <div className='bg-[#0567FC] flex rounded-xl text-lg bg-opacity-30 px-3 py-2 w-[90%] mx-auto'>
                                 <span className="material-symbols-outlined">
                                     wallet
                                 </span>
                                 No Transaction history
                             </div> */}
-              <div className="p-6">
-                <GradientBtn
-                  placeholder="Show Transactions"
-                  onClick={showtranszac}
-                />
-              </div>
+              <GradientBtn
+                className="mx-4 w-fit"
+                placeholder="Show Transactions"
+                onClick={showtranszac}
+              />
+              {showtable && (
+                <div className="p-4">
+                  <Transcations transctions={trasctionss} />
+                </div>
+              )}
             </div>
           </div>
 
@@ -218,11 +229,11 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
           </div> */}
         </div>
       </section>
-      {showtable && (
+      {/* {showtable && (
         <div className=" p-4">
           <Transcations transctions={trasctionss} />
         </div>
-      )}
+      )} */}
     </>
   );
 }
