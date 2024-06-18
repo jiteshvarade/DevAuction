@@ -96,7 +96,7 @@ export default function ProfileHero({
       )}
       {Data && (
         <div>
-          <div className="header flex items-center text-2xl gap-2 md:p-4 p-2 px-2 md:mx-12 md:border-b-2 border-[#66bee3] justify-between">
+          <div className="header flex items-center text-2xl gap-2 md:p-4 p-2 px-2 md:mx-12 justify-between md:border-b-2 border-gray-800">
             <IoMenu
               size="1.5rem"
               className="absolute top-[13px] left-3 md:hidden cursor-pointer z-20"
@@ -144,13 +144,13 @@ export default function ProfileHero({
                   {Data?.userData.UserInfo.given_name}
                 </div>
                 <div className="followersFollwingProjects flex gap-6 max-[340px]:flex-wrap">
-                  <div className="projects flex gap-1 items-end flex-wrap justify-center">
+                  <div className="projects flex gap-1 items-end flex-wrap justify-center cursor-pointer">
                     <div className="count sm:text-2xl font-bold text-sm">
                       {Data?.userData.Profile.Projects.length}
                     </div>
                     <div className="heading sm:text-lg text-xs">Projects</div>
                   </div>
-                  <div className="followers flex gap-1 items-end flex-wrap justify-center">
+                  <div className="followers flex gap-1 items-end flex-wrap justify-center cursor-pointer">
                     <div className="count sm:text-2xl font-bold text-sm">
                       {Data?.userData.Profile.Followers.length}
                     </div>
@@ -163,7 +163,7 @@ export default function ProfileHero({
                       Followers
                     </div>
                   </div>
-                  <div className="following flex gap-1 items-end flex-wrap justify-center">
+                  <div className="following flex gap-1 items-end flex-wrap justify-center cursor-pointer">
                     <div className="count sm:text-2xl font-bold text-sm">
                       {Data?.userData.Profile.Following.length}
                     </div>
