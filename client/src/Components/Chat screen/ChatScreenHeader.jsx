@@ -28,7 +28,7 @@ export default function ChatScreenHeader({ imgSrc, userName, setShowChats }) {
           </div>
           <div className="right flex gap-4 items-center">
             {/* <SlOptionsVertical /> */}
-            <RxCross2 size="1.5rem" className={`${location.pathname == "/homepage/chats" || window.innerWidth < 1024 ? "opacity-0" : "opacity-100"}`} onClick={() => setShowChats(false)}  />
+            <RxCross2 size="1.5rem" className={`${location.pathname == "/homepage/chats" && window.innerWidth > 1024 ? "opacity-0" : "opacity-100"}`} onClick={() => setShowChats(false)}  />
           </div>
         </div>
         <hr
