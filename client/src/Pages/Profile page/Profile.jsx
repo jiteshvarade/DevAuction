@@ -20,6 +20,8 @@ export default function Profile() {
   const [Data, setData] = useState(null);
   const [showEdit,setShowEdit] = useState(false) 
   const [showcreatepro,setCreatePro] = useState(false)
+
+  console.log(user);
   
   const response = async () => { 
     const res = await fetch("https://devauction.onrender.com/profile", {
@@ -33,6 +35,7 @@ export default function Profile() {
     const data = await res.json();
 
     setData(data);
+    // console.log(data)
   };
 
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function Profile() {
           {
             showEdit && (
               <div className="absolute w-full flex justify-center z-20 top-[200px]">
-                <ProfileEdit resp={response} showEdit={showEdit} setShowEdit={setShowEdit} />
+                <ProfileEdit resp={response} showEdit={showEdit} setShowEdit={setShowEdit} userData={Data.userData.Profile} />
               </div>
             )
           }
