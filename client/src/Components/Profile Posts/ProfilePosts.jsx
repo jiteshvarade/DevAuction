@@ -130,7 +130,7 @@ export default function ProfilePosts({ Data, searchprof, className }) {
         }
       >
         <div>
-          {data.length != 0 &&
+          {data.length != 0 ?
             data.map((elem, index) => {
               return (
                 <ProjectTile
@@ -140,7 +140,7 @@ export default function ProfilePosts({ Data, searchprof, className }) {
                   key={"project " + index}
                 />
               );
-            })}
+            }): <div className="w-full text-center">Nothing to see here!</div>}
         </div>
       </div>}
     </div>

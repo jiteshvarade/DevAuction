@@ -134,7 +134,7 @@ export default function Profile() {
                   Offers
                 </div>
               </div>
-              <div>
+              <div className="pb-10">
                 <ProfilePosts
                   className={explorerSection == "Projects" ? "block" : "hidden"}
                 />

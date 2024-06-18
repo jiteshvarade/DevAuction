@@ -144,7 +144,7 @@ export default function ProfileOffers({ className }) {
       <div
         className={
           "text-center text-gray-400 w-full p-4 " +
-          ` ${offersData.length == 0 ? "" : "hidden"}`
+          ` ${offersData.length == 0 ? "block" : "hidden"}` + ` ${className}`
         }
       >
         Nothing to see here
