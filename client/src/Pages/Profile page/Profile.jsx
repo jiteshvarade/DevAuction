@@ -105,7 +105,7 @@ export default function Profile() {
               showcreatepro={showcreatepro}
               setCreatePro={setCreatePro}
             />
-            <div className="explorerSection h-full overflow-auto relative pt-[42px]">
+            <div className="explorerSection h-full overflow-auto relative pt-[12px]">
               <div className="navlinksForExplorerSection flex items-center sticky top-0 w-full">
                 <div
                   className={

@@ -4,7 +4,7 @@ import eye from "../../assets/AuctionroomImages/mdi_eye.png";
 
 const LongCard = ({ title, offerPrice, assetSrc, type }) => {
   return (
-    <div className="border-2 mb-4  inline-block bg-[#0ca2e739] rounded-2xl w-[250px] lg:w-[350px]">
+    <div className="border-2 mb-4  inline-block bg-[#0ca2e739] border-[#0ca2e739] rounded-2xl w-[250px] lg:w-[350px]">
       <div className="w-[100%] h-[100%] p-3 flex flex-col gap-2">
         <div className="border bg-[#a4f518] rounded-2xl lg:w-[325px] h-fit overflow-hidden">
           {type == "image" ? (
