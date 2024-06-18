@@ -7,6 +7,7 @@ import GradientBtn from "../../Components/Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
 // import ResponsiveVoice from 'responsivevoice';
 import { FaCoins } from "react-icons/fa";
+import { leaveRoom} from "@zegocloud/zego-uikit-prebuilt"
 
 const RoomPage = () => {
   const [showBidSection, setShowBidSection] = useState(false);
@@ -62,12 +63,17 @@ const RoomPage = () => {
       scenario: {
         mode: ZegoUIKitPrebuilt.VideoConference,
       },
+      onJoinRoom: () => {
+        // console.log("kuchh to mila: ", e);
+        console.log("join ho gye hai");
+      },
+      onLeaveRoom: () => {
+        console.log("main ja raha hu");
+        navigate("/homepage/dashboard")
+        zp.destroy()
+        console.log("destory kr diya hai");
+      }
     });
-
-    // zp.on('leaveRoom', () => {
-    //   // Redirect users to a specific endpoint when the meeting ends
-    //   navigate("/homepage");
-    // });
   };
 
   useEffect(() => {
@@ -280,7 +286,7 @@ const RoomPage = () => {
                 className="w-10 aspect-square rounded-full"
                 alt={bidData ? bidData?.data.name + "'s img" : ""}
               />
-              <div className="bidAmt text-3xl font-bold">
+              <div className="bidAmt text-3xl font-bold min-w-fit">
                 &#8377; {bidData ? formatNumber(bidData?.data.Amt) : 0}
               </div>
               <div
