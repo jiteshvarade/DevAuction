@@ -83,7 +83,7 @@ router.post('/placeOffer', async (req, res) => {
         
         await project.save()
 
-        res.send("Offer placed sauccessfully")
+        res.send("Offer placed successfully")
     }catch(error){
         console.log(error)
     }
