@@ -30,7 +30,7 @@ router.post('/offers', async (req, res) => {
 
             // logic to add data inside user spendings
             const user = await User.findOneAndUpdate({"UserInfo.email" : email},{
-                $inc : {"Profile.Credits" : -offer},
+                $inc : {"Profile.Credits" : -offer*100},
                 $push : {"Profile.Spendings" : {Category : "Offer", Amount : offer}}
             })
 
@@ -58,7 +58,7 @@ router.post("/earnings", async (req,res)=>{
 
     try {
         const user = await User.findOne({"UserInfo.email" : email},{
-            $inc : {"Profile.Credits" : amount},
+            $inc : {"Profile.Credits" : amount*100},
             $push : {"Profile.Earnings" : {Category : category, Amount : amount}}
         })
 
