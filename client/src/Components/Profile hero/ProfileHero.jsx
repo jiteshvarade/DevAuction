@@ -7,10 +7,10 @@ import SkillsContainer from "./SkillsContainer";
 import { RiNotificationLine } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileHero({
-  resp, 
+  resp,
   Data,
   showFollow,
   setShowFollow,
@@ -57,16 +57,19 @@ export default function ProfileHero({
   };
 
   const unfollowMe = async () => {
-    const res = await fetch("https://devauction.onrender.com/profile/unFollow", {
-      method: "POST",
-      body: JSON.stringify({
-        from: user.email,
-        to: Data.userData.UserInfo.email,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
+    const res = await fetch(
+      "https://devauction.onrender.com/profile/unFollow",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          from: user.email,
+          to: Data.userData.UserInfo.email,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
 
     console.log(res);
     setfollow(!follow);
@@ -100,14 +103,16 @@ export default function ProfileHero({
             <IoMenu
               size="1.5rem"
               className="absolute top-[13px] left-3 md:hidden cursor-pointer z-20"
-              onClick={() => setShowMenu(!showMenu)}
+              onClick={() => setShowMenu(true)}
             />
             <div className="left flex items-center text-2xl gap-2">
-              <FaLongArrowAltLeft className="opacity-0 md:opacity-100 z-0" onClick={() => navigate(-1)}  />{" "}
+              <FaLongArrowAltLeft
+                className="opacity-0 md:opacity-100 z-0"
+                onClick={() => navigate(-1)}
+              />{" "}
               Profile
             </div>
             <div className="right flex items-center gap-2 pr-4">
-              {/* <div className="notifications aspect-square md:w-12 w-8  bg-white rounded-full flex items-center justify-center"><RiNotificationLine color="#7E7E7E"  /></div> */}
               <div className="profilePic aspect-square md:w-12 w-8  bg-white rounded-full overflow-hidden">
                 <img
                   src={user?.picture || profileImg}
@@ -144,7 +149,7 @@ export default function ProfileHero({
                   {Data?.userData.UserInfo.given_name}
                 </div>
                 <div className="followersFollwingProjects flex gap-6 max-[340px]:flex-wrap">
-                  <div className="projects flex gap-1 items-end flex-wrap justify-center cursor-pointer">
+                  <div className="projects flex gap-1 items-end flex-wrap justify-center">
                     <div className="count sm:text-2xl font-bold text-sm">
                       {Data?.userData.Profile.Projects.length}
                     </div>
@@ -156,6 +161,7 @@ export default function ProfileHero({
                     </div>
                     <div
                       onClick={() => {
+                        console.log("followers pe click kiya");
                         setShowFollow(!showFollow);
                       }}
                       className="heading sm:text-lg text-xs"
@@ -177,12 +183,8 @@ export default function ProfileHero({
                     </div>
                   </div>
                 </div>
-                <div className="description text-xs sm:text-base">
-                  {/* <b>UI/UX</b> */}
-                  {/* <p>Crafting Intuitive Experiences | Passionate</p>
-              <p> About Design & Usability | Bringing Ideas to</p>
-              <p>Life One Pixel at a Time | Let's Create!</p> */}
-                  <p className="md:text-[24px]">{Data.userData.Profile.Bio}</p>
+                <div className="description text-xs sm:text-base max-w-[30rem] text-gray-400">
+                  {Data.userData.Profile.Bio}
                 </div>
                 <div className="skills flex flex-wrap gap-2 max-w-72">
                   {skill.map((elem) => {
@@ -218,19 +220,19 @@ export default function ProfileHero({
               )}
               {!searchprof && (
                 <div className="flex gap-4">
-                <GradientBtn
-                  placeholder="Edit Profile"
-                  onClick={() => {
-                    setShowEdit(!showEdit);
-                  }}
-                />
-                <GradientBtn
-                  placeholder="Create project"
-                  onClick={() => {
-                    setCreatePro(!showcreatepro);
-                  }}
-                />
-              </div>
+                  <GradientBtn
+                    placeholder="Edit Profile"
+                    onClick={() => {
+                      setShowEdit(!showEdit);
+                    }}
+                  />
+                  <GradientBtn
+                    placeholder="Create project"
+                    onClick={() => {
+                      setCreatePro(!showcreatepro);
+                    }}
+                  />
+                </div>
               )}
             </div>
           </div>

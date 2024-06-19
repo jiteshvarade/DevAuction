@@ -58,19 +58,19 @@ export default function Profile() {
         <div>
           {
             showcreatepro && 
-            <div className="absolute w-full flex justify-center z-20 top-[25px]">
+            <div className="absolute w-full flex justify-center z-20 top-6 left-1/2 -translate-x-1/2">
                 <CreateProject show={showcreatepro} setshow={setCreatePro} />
             </div>
           }
           {
             showEdit && (
-              <div className="absolute w-full flex justify-center z-20 top-[200px]">
+              <div className="absolute w-full flex justify-center z-20 top-52 left-1/2 -translate-x-1/2">
                 <ProfileEdit resp={response} showEdit={showEdit} setShowEdit={setShowEdit} userData={Data.userData.Profile} />
               </div>
             )
           }
           {showFollow && (
-            <div className="absolute w-full top-[150px] flex justify-center z-10">
+            <div className="absolute w-full top-40 left-1/2 -translate-x-1/2 flex justify-center z-10">
               <Follower
                 resp={response}
                 Data={Data}
