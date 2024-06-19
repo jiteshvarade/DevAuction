@@ -58,7 +58,7 @@ router.post("/earnings", async (req,res)=>{
 
     try {
         const user = await User.findOne({"UserInfo.email" : email},{
-            $inc : {"Profile.Credits" : amount*100},
+            $inc : {"Profile.Credits" : amount},
             $push : {"Profile.Earnings" : {Category : category, Amount : amount}}
         })
 
