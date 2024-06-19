@@ -6,7 +6,6 @@ import { ProgressSpinner } from "primereact/progressspinner";
 export default function ProfilePosts({ Data, searchprof, className }) {
   const { user } = useAuth0();
   const [data, setdata] = useState([]);
-  // const [sdata, setsdata] = useState([]);
 
   const MyprojectData = async () => {
     try {
@@ -24,11 +23,6 @@ export default function ProfilePosts({ Data, searchprof, className }) {
       const newdata = await res.json();
       console.log(newdata.userProjects);
       setdata(newdata.userProjects);
-
-      // const newsdata = data?.userData.Profile.Projects||[]
-      // console.log("hello")
-      // console.log(newsdata)
-      // setsdata(newsdata)
     } catch (error) {
       console.log(error);
     }
@@ -37,79 +31,6 @@ export default function ProfilePosts({ Data, searchprof, className }) {
   useEffect(() => {
     MyprojectData();
   }, []);
-
-  // const projects = [
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  //   {
-  //     title: "Wonder kids project",
-  //     imgSrc: "",
-  //     viewCount: 34,
-  //   },
-  // ];
 
   return (
     <div className={className}>
@@ -131,14 +52,15 @@ export default function ProfilePosts({ Data, searchprof, className }) {
         <div>
           {data.length != 0 ?
             data.map((elem, index) => {
-              return (
+              if(elem)
+              {return (
                 <ProjectTile
                   imgSrc={elem.Image}
                   title={elem.Title}
                   viewsCount={"₹" + elem.OfferPrice}
                   key={"project " + index}
                 />
-              );
+              );}
             }): <div className="w-full text-gray-500 text-center pt-4" style={{columnSpan: "all"}}>Nothing to see here!</div>}
         </div>
       </div>}
