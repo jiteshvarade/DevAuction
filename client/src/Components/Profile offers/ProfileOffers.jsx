@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function ProfileOffers({ className }) {
-  const { user } = useAuth0();
+export default function ProfileOffers({ className, user }) {
+  // const { user } = useAuth0();
   const [offersData, setOffersData] = useState([]);
 
   // const offersData = [

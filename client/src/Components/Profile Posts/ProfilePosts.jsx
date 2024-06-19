@@ -3,9 +3,10 @@ import ProjectTile from "./ProjectTile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
 
-export default function ProfilePosts({ Data, searchprof, className }) {
-  const { user } = useAuth0();
+export default function ProfilePosts({ Data, searchprof, className, user }) {
+  // const { user } = useAuth0();
   const [data, setdata] = useState([]);
+  console.log(user)
 
   const MyprojectData = async () => {
     try {
@@ -30,7 +31,7 @@ export default function ProfilePosts({ Data, searchprof, className }) {
 
   useEffect(() => {
     MyprojectData();
-  }, []);
+  }, [user]);
 
   return (
     <div className={className}>

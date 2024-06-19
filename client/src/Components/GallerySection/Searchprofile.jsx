@@ -11,7 +11,7 @@ import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";
 import ChatsModel from "../ChatsModel/ChatsModel";
 
-export default function Searchprofile() { 
+export default function Searchprofile() {
   const [showMessageModel, setShowMessageModel] = useState(false);
   const [chatMemberData, setChatMemberData] = useState(null);
   const params = useParams();
@@ -67,8 +67,16 @@ export default function Searchprofile() {
       )}
       {!isLoading && (
         <div className="relative">
-          <div className={`absolute top-40 left-1/2 -translate-x-1/2 bg-black w-4/5 h-96 max-h-dvh rounded-xl  max-w-full z-50 ${showMessageModel ? " block" : " hidden"}`}>
-            <ChatsModel selectedUser={chatMemberData} myEmail={user.email} chatCloseFunc={() => setShowMessageModel(false)}  />
+          <div
+            className={`absolute top-40 left-1/2 -translate-x-1/2 bg-black w-4/5 h-96 max-h-dvh rounded-xl  max-w-full z-50 ${
+              showMessageModel ? " block" : " hidden"
+            }`}
+          >
+            <ChatsModel
+              selectedUser={chatMemberData}
+              myEmail={user.email}
+              chatCloseFunc={() => setShowMessageModel(false)}
+            />
           </div>
           {showEdit && (
             <div className="absolute w-full flex justify-center z-20 top-[200px]">
@@ -99,13 +107,15 @@ export default function Searchprofile() {
 
           <div
             className={`bg-[#05081B] w-full ${showFollow ? "blur-lg" : ""} 
-            ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} ${showMessageModel ? "blur-lg" : ""}`}
+            ${showFollowing ? "blur-lg" : ""} ${showEdit ? "blur-lg" : ""} ${
+              showMessageModel ? "blur-lg" : ""
+            }`}
           >
             <ProfileHero
               messageOnClickFunction={messageHndl}
               resp={response}
               Data={Data}
-              showFollow={showFollow} 
+              showFollow={showFollow}
               setShowFollow={setShowFollow}
               showFollowing={showFollowing}
               setShowFollowing={setShowFollowing}
@@ -147,11 +157,13 @@ export default function Searchprofile() {
               </div>
               <div>
                 <ProfilePosts
+                  user={Data?.userData.UserInfo}
                   Data={Data}
                   searchprof={searchprof}
                   className={explorerSection == "Projects" ? "block" : "hidden"}
                 />
                 <ProfileOffers
+                  user={Data?.userData.UserInfo}
                   className={explorerSection == "Offers" ? "block" : "hidden"}
                 />
               </div>
