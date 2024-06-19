@@ -125,7 +125,7 @@ const RoomPage = () => {
       if (resData.Owner == user.email) {
         setHost(true);
       }
-      setUserCreditsLeft(resData.Credits);
+      setUserCreditsLeft(resData.Credits/100);
     } catch (error) {
       console.log(error);
     }
