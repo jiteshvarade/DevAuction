@@ -23,6 +23,7 @@ const RoomPage = () => {
   const [host, setHost] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastDetails, setToastDetails] = useState({});
+  const [zp, setZp] = useState(null); //related to zegocloud
 
   setTimeout(() => {
     setShowContent(true);
@@ -56,6 +57,10 @@ const RoomPage = () => {
     });
   }, [socket]);
 
+  function updateZPState(zp){
+    setZp(zp);
+  }
+
   const myMeeting = async (element) => {
     const appID = 2052033427;
     const serverSecret = "07ba39bc58f578530c31f7656f5de08f";
@@ -68,6 +73,8 @@ const RoomPage = () => {
     );
     // Create instance object from Kit Token.
     const zp = ZegoUIKitPrebuilt.create(kitToken);
+    // setZp(zp);
+    updateZPState(zp);
     // start the call
     zp.joinRoom({
       container: element,
@@ -192,6 +199,7 @@ const RoomPage = () => {
         },
       });
       displayToast("Thankyou for joining", "green");
+      console.log(zp);
       navigate("/homepage/dashboard");
     });
     return () => {
@@ -350,7 +358,7 @@ const RoomPage = () => {
               title="Your credits left"
             >
               <FaCoins size="1.2rem" />
-              {userCreditsLeft}
+              {userCreditsLeft / 100}
             </div>
           </div>
         </div>
