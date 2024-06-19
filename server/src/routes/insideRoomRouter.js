@@ -78,7 +78,7 @@ router.post('/bids', async (req, res) => {
 })
 
 router.post('/sendMailToBider', async (req, res) => {
-    const { roomID } = req.body
+    const roomID = req.body
 
     try {
         const room = await Room.findOne({ RoomID: roomID })
@@ -90,6 +90,7 @@ router.post('/sendMailToBider', async (req, res) => {
         const highestBid = Math.max(...room.Bids.map(bid => bid.amount))
 
         const highestBidders = room.Bids.filter(bid => bid.amount === highestBid)
+        console.log(highestBidders)
 
         let message = '';
         if (highestBidders.length === 1) {
