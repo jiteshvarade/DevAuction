@@ -160,7 +160,7 @@ export default function HomePage() {
     <div className="profileParent flex h-dvh overflow-hidden w-full text-white bg-[#05081B]">
       <div
         className={
-          "sideNav p-4 overflow-hidden bg-[#05081B]  w-64 max-w-[90vw]  md:static absolute h-full z-30 transition-all duration-500 " +
+          "sideNav p-4 overflow-hidden bg-[#05081B]  w-64 max-w-[90vw]  md:static absolute h-full z-[9999] transition-all  duration-500 " +
           ` ${showMenu ? "left-0" : "-left-64"}`
         }
         style={{ borderRight: "1px solid rgba(255, 255, 255, 0.28)" }}
