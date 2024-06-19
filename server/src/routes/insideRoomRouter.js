@@ -78,7 +78,7 @@ router.post('/bids', async (req, res) => {
 })
 
 router.post('/sendMailToBider', async (req, res) => {
-    const roomID = req.body
+    const roomID = req.body.roomID
 
     try {
         const room = await Room.findOne({ RoomID: roomID })
