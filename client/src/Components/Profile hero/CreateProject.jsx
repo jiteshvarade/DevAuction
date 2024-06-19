@@ -71,11 +71,11 @@ const CreateProject = ({ show, setshow }) => {
   return (
     <div
       className={
-        "flex justify-center items-center px-4 relative md:w-[900px] z-10 rounded-xl shadow-lg bg-[#050618]"
+        "flex justify-center items-center px-4 relative md:w-[900px] z-[150] rounded-xl shadow-lg bg-[#050618]"
       }
     >
       <RxCross2
-        className="absolute top-4  right-4 text-[24px]  z-20"
+        className="absolute top-4  right-4 text-[24px] z-[500]"
         onClick={() => {
           setshow(!show);
         }}

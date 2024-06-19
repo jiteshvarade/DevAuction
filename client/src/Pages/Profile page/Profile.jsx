@@ -64,7 +64,7 @@ export default function Profile() {
           }
           {
             showEdit && (
-              <div className="absolute w-full flex justify-center z-20 top-52 left-1/2 -translate-x-1/2">
+              <div className="absolute w-full flex justify-center z-[150] top-52 left-1/2 -translate-x-1/2">
                 <ProfileEdit resp={response} showEdit={showEdit} setShowEdit={setShowEdit} userData={Data.userData.Profile} />
               </div>
             )

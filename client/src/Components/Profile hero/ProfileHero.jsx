@@ -86,7 +86,7 @@ export default function ProfileHero({
   // console.log(Data);
 
   return (
-    <div className="sm:max-h-1/2 h-fit min-h-fit w-full relative text-white">
+    <div className="sm:max-h-1/2 h-fit min-h-fit w-full relative text-white overflow-x-hidden">
       {!Data && (
         <div className="w-[100%] h-[700px] flex justify-center items-center ">
           <ProgressSpinner
@@ -99,6 +99,7 @@ export default function ProfileHero({
       )}
       {Data && (
         <div>
+          <div className="w-80 aspect-square rounded-full absolute left-20 -top-24 bg-[#0CA3E7] bg-opacity-30 blur-[200px] z-[100] lg:block hidden"></div>
           <div className="header flex items-center text-2xl gap-2 md:p-4 p-2 px-2 md:mx-12 justify-between md:border-b-2 border-gray-800">
             <IoMenu
               size="1.5rem"
@@ -164,7 +165,7 @@ export default function ProfileHero({
                         console.log("followers pe click kiya");
                         setShowFollow(!showFollow);
                       }}
-                      className="heading sm:text-lg text-xs"
+                      className="heading sm:text-lg text-xs z-[500]"
                     >
                       Followers
                     </div>
@@ -177,7 +178,7 @@ export default function ProfileHero({
                       onClick={() => {
                         setShowFollowing(!showFollowing);
                       }}
-                      className="heading sm:text-lg text-xs"
+                      className="heading sm:text-lg text-xs z-[500]"
                     >
                       Following
                     </div>
@@ -207,13 +208,13 @@ export default function ProfileHero({
                     <GradientBtn
                       placeholder="Follow"
                       onClick={followMe}
-                      className="text-white h-fit flex-1 max-w-28"
+                      className="text-white h-fit flex-1 max-w-28 z-[500]"
                     />
                   )}
 
                   <GradientBtn
                     placeholder="Message"
-                    className="text-white h-fit flex-1 max-w-28"
+                    className="text-white h-fit flex-1 max-w-28 z-[500]"
                     onClick={messageOnClickFunction}
                   />
                 </div>
@@ -221,12 +222,14 @@ export default function ProfileHero({
               {!searchprof && (
                 <div className="flex gap-4">
                   <GradientBtn
+                    className="z-[500]"
                     placeholder="Edit Profile"
                     onClick={() => {
                       setShowEdit(!showEdit);
                     }}
                   />
                   <GradientBtn
+                    className={"z-[500]"}
                     placeholder="Create project"
                     onClick={() => {
                       setCreatePro(!showcreatepro);

@@ -171,7 +171,7 @@ export default function HomePage() {
           </div>
           <RxCross2
             size="1.5rem"
-            className="ml-auto md:hidden active:text-red-500"
+            className="ml-auto md:hidden"
             onClick={() => { 
               console.log("clicked cross");
               setShowMenu(false);
@@ -232,7 +232,6 @@ export default function HomePage() {
         </div>
       </div>
       <div className="right overflow-auto w-full relative">
-        {/* <div className="w-80 aspect-square rounded-full absolute left-20 -top-24 bg-[#0CA3E7] bg-opacity-30 blur-[200px] z-[11111111]"></div> */}
         <Outlet />
       </div>
     </div>

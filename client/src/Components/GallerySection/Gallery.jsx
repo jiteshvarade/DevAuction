@@ -59,7 +59,7 @@ const Gallery = () => {
       }
       {
         !isLoading && 
-        <div className="" >
+        <div className="">
           {
             showsearch && 
             <div className="absolute w-[80%] flex justify-center top-[150px]  z-10">
@@ -73,8 +73,9 @@ const Gallery = () => {
           
             <div className="flex h-screen">
             {/* <LeftNavbar/> */}
-    
-            <div className={`w-full overflow-y-scroll bg-[#050618]  px-10 pb-10 text-white ${showsearch ? " blur-2xl ":""}`}>
+            <div className={`w-full overflow-y-scroll bg-[#050618] px-10 pb-10 text-white ${showsearch ? " blur-2xl ":""} overflow-x-hidden`}>
+            <div className="w-80 aspect-square rounded-full absolute left-20 -top-24 bg-[#0CA3E7] bg-opacity-30 blur-[200px] z-[100] hidden lg:block"></div>
+
               <Header Username={user?.given_name} UserImg={user?.picture} isnav={showMenu} setisnav={setShowMenu} />
               <Slider />
               <div className="mt-6 relative">
