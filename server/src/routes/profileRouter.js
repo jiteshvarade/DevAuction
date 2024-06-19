@@ -56,11 +56,9 @@ router.post('/userProjects', async (req, res) => {
 
         for(let i = 0; i < length; i++){
             const project = await Project.findOne({ProjectID : user.Profile.Projects[i]})
-            console.log(project)
             userProjects.push(project)
         }
 
-        console.log(userProjects)
         res.send({userProjects})
         
     }catch(error){
