@@ -8,20 +8,33 @@ import Highestbidder from "../../Components/AuctionRoom/Highestbidder";
 import Createauction from "../../Components/AuctionRoom/Createauction";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
-import Download from "../../Components/AuctionRoom/Download"
+import Download from "../../Components/AuctionRoom/Download";
+import CustomToast from "../../Components/Custom Toast/CustomToast";
 
 function Dashbord() {
   const { showMenu, setShowMenu } = useMenuContext();
-  const [showtable,setshowTable] = useState(false) ;  
+  const [showtable, setshowTable] = useState(false);
   const [show, setshow] = useState(false);
   const { user } = useAuth0();
   const [data, setdata] = useState(null);
-  const [avg, setavg] = useState(0); 
+  const [avg, setavg] = useState(0);
   const [total, settotal] = useState(0);
   const [totalearn, settotalearn] = useState(0);
   const [credits, setcredits] = useState(0);
   const [trans, settrans] = useState();
-  const [showdownload,setShowdownload] = useState(false)
+  const [showdownload, setShowdownload] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastDetails, setToastDetails] = useState({});
+
+  function displayToast(msg, type) {
+    setToastDetails(PrevState => {
+      return {msg, type};
+    });
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
+  }
 
   const userEmail = user?.email;
   const response = async () => {
@@ -36,7 +49,7 @@ function Dashbord() {
     const userData = await res.json();
     console.log(userData?.userData?.UserInfo.email);
     setdata(userData);
-    const creds = userData.userData?.Profile.Credits
+    const creds = userData.userData?.Profile.Credits;
     setcredits(creds);
 
     if (userData.userData?.Profile.Transactions.length != 0) {
@@ -64,17 +77,22 @@ function Dashbord() {
         totalEarn = totalEarn + arr2[i]?.Amount;
       }
       settotalearn(totalEarn);
-    } 
+    }
   };
 
   useEffect(() => {
     response();
   }, [user]);
 
-  
+  return (
+    <div className="relative">
+      <CustomToast
+        className={showToast ? "right-10 opacity-100" : "-right-96 opacity-0"}
+        msg={toastDetails.msg}
+        type={toastDetails.type}
+        setShowToast={setShowToast}
+      />
 
-  return ( 
-    <div className=" ">
       {!user && (
         <div className="w-[100%] h-[700px] flex justify-center items-center ">
           <ProgressSpinner
@@ -92,25 +110,23 @@ function Dashbord() {
               <Createauction show={show} setshow={setshow} />
             </div>
           )}
-          {
-            showdownload &&(
-              <div className="absolute w-[90%] left-[5%] top-[100px] flex justify-center  ">
-                <Download show={showdownload} setshow={setShowdownload} />
-              </div>
-            )
-          }
+          {showdownload && (
+            <div className="absolute w-[90%] left-[5%] top-[100px] flex justify-center  ">
+              <Download show={showdownload} setshow={setShowdownload} />
+            </div>
+          )}
           <div
             className={`w-[100%] overflow-y-scroll   border-l-2 border-[#4b4c59] bg-[#050618] mg:px-10 pb-10 text-white ${
               show ? "blur-xl" : ""
-            } ${showtable ? "":""} ${showdownload ? "blur-lg": ""}`}
+            } ${showtable ? "" : ""} ${showdownload ? "blur-lg" : ""}`}
           >
             <div className="px-5">
-            <Header
-              Username={user?.given_name}
-              UserImg={user?.picture}
-              isnav={showMenu}
-              setisnav={setShowMenu}
-            />
+              <Header
+                Username={user?.given_name}
+                UserImg={user?.picture}
+                isnav={showMenu}
+                setisnav={setShowMenu}
+              />
             </div>
             {/* earnings cards */}
             <EarningCards
@@ -120,9 +136,21 @@ function Dashbord() {
             />
 
             {/* <Auction /> */}
-            <Auctionrooms show={show} setshow={setshow} showdownload={showdownload} setShowdownload={setShowdownload} />
+            <Auctionrooms
+              show={show}
+              setshow={setshow}
+              showdownload={showdownload}
+              setShowdownload={setShowdownload}
+            />
             <Highestbidder />
-            <Cradites resp={response} showtable={showtable} setshowTable={setshowTable} trans={trans} credits={credits/100} />
+            <Cradites
+              displayToast={displayToast}
+              resp={response}
+              showtable={showtable}
+              setshowTable={setshowTable}
+              trans={trans}
+              credits={credits / 100}
+            />
           </div>
         </div>
       )}

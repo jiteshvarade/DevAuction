@@ -10,12 +10,11 @@ import { IoTrophy } from "react-icons/io5";
 import Transcations from "./Transcations";
 import { json } from "react-router-dom";
 
-function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
+function Cradites({ resp, trans, credits = 0, showtable, setshowTable, displayToast }) {
   // const transectionsTable = useRef(null);
   const [Amount, setAmount] = useState("");
   const { user } = useAuth0();
   const [trasctionss, setTransction] = useState([]);
-  
 
   console.log(credits);
 
@@ -53,14 +52,16 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
   };
 
   const widthdrawl = async () => {
+    console.log("koshish kr rahe hai");
     if (Amount == "" || Amount == 0) {
-      alert("Enter some amount to withdraw");
+      displayToast("Enter some amount to withdraw", "red");
       return;
     }
     if (Amount - credits > 0) {
-      alert("Amount can't be greater than balance!");
+      displayToast("Amount can't be greater than balance!", "red");
       return;
     }
+    console.log("amount tak poche hai");
     const amount = Amount * 100;
     try {
       const response = await fetch(
@@ -73,9 +74,9 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
           body: JSON.stringify({ email: user.email, amount: amount }),
         }
       );
-
+      console.log(response);
       if (response.ok) {
-        alert("withdrawal successfull!");
+        displayToast("withdrawal successfull!", "green");
         setAmount("");
         resp();
       }
@@ -89,7 +90,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
 
     console.log(Amount);
     if (amount > 50000000) {
-      alert("Aukat mein: Amount should be less than 500000");
+      displayToast("Aukat mein: Amount should be less than 500000", "red");
       return;
     }
     try {
@@ -113,7 +114,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
           image: { photo },
           order_id: `${result.id}`,
           handler: function (response) {
-            alert("Payment successfull!");
+            displayToast("Payment successfull!", "green");
             resp();
             setAmount("");
           },
@@ -135,13 +136,13 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
         await rzp1.open();
 
         rzp1.on("payment.failed", function (response) {
-          alert(response.error.code);
-          alert(response.error.description);
-          alert(response.error.source);
-          alert(response.error.step);
-          alert(response.error.reason);
-          alert(response.error.metadata.order_id);
-          alert(response.error.metadata.payment_id);
+          displayToast(response.error.code, "red");
+          displayToast(response.error.description, "red");
+          displayToast(response.error.source, "red");
+          displayToast(response.error.step, "red");
+          displayToast(response.error.reason, "red");
+          displayToast(response.error.metadata.order_id, "red");
+          displayToast(response.error.metadata.payment_id, "red");
         });
       }
 
@@ -181,8 +182,21 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable }) {
               </div>
 
               <div className="ml-5  md:ml-0">
-              <GradientBtn placeholder="Withdraw" className=" mb-2 md:m-0  w-fit"  onClick={widthdrawl} />
-              <GradientBtn placeholder="Deposit"  onClick={loadRazorPay} />
+                <GradientBtn
+                  placeholder="Withdraw"
+                  className=" mb-2 md:m-0  w-fit"
+                  onClick={widthdrawl}
+                />
+                <GradientBtn
+                  placeholder="Deposit"
+                  onClick={() => {
+                    if(Amount == "" || Amount == 0){
+                      displayToast("Rokda daal, Rokda!", "red")
+                      return;
+                    }
+                    loadRazorPay();
+                  }}
+                />
               </div>
             </div>
             <p className="text-[#0CA3E7] font-semibold mt-2 ml-5 mb-4">
