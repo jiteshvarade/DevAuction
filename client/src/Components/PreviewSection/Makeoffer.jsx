@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { RxCross2 } from "react-icons/rx";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
 
-const Makeoffer = ({ id, show, setshow }) => {
+const Makeoffer = ({ id, show, setshow, getProjectOffers }) => {
   const { user } = useAuth0();
   const [Amount, setAmount] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -53,6 +53,7 @@ const Makeoffer = ({ id, show, setshow }) => {
         displayToast("Offer placed successfully!", "green");
         setshow(!show);
       }
+      getProjectOffers();
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
     }

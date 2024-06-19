@@ -1,32 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const Table = ({ projectID }) => {
-  const [tableData, setTableData] = useState([]);
-  async function getProjectOffers() {
-    // console.log(projectID);
-    try {
-      const res = await fetch(
-        "https://devauction.onrender.com/profile/getProjectOffers",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            projectID: projectID,
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
-      const { offers } = await res.json();
-      setTableData(offers);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+const Table = ({ tableData}) => {
 
-  useEffect(() => {
-    getProjectOffers();
-  }, []);
+  console.log("tableData: ", tableData)
 
   // const data = [
   //   {

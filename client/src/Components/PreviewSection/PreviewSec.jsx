@@ -4,11 +4,11 @@ import GradientBtn from "../Buttons/GradientBtn";
 import "./Preview.css";
 import { useNavigate, useParams } from "react-router-dom";
 
-const PreviewSec = ({ show, setshow }) => {
+const PreviewSec = ({ show, setshow, tableData }) => {
   const navigate = useNavigate();
   const params = useParams();
   //   console.log("hello");
-  console.log(params.id);
+  // console.log(params.id);
   const [data, setdata] = useState([]);
   const [arr, setarr] = useState([]);
   const [url, seturl] = useState("");
@@ -49,7 +49,7 @@ const PreviewSec = ({ show, setshow }) => {
   }
 
   const response = async () => {
-    console.log(params.id);
+    // console.log(params.id);
     try {
       const res = await fetch(
         "https://devauction.onrender.com/gallery/getProjectById",
@@ -183,7 +183,7 @@ const PreviewSec = ({ show, setshow }) => {
               />
             </div>
           </div>
-          <Table projectID={params.id} />
+          <Table tableData={tableData} />
         </div>
       )}
     </>
