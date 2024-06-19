@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import GradientBtn from "../Buttons/GradientBtn";
 
 function ContactUs({ displayToast }) {
-  const [styleSucess, setStyleSucess] = useState(null);
-  const [textSucess, setTextSucess] = useState(null);
   const [check, setCheck] = useState(false);
-  const reset = () => {
-    setTimeout(() => {
-      setStyleSucess(null);
-      setTextSucess(null);
-    }, 5000);
-  };
 
   function validateEmail(email) {
     console.log(email);
@@ -33,7 +25,7 @@ function ContactUs({ displayToast }) {
     const message = document.querySelector("#message");
     // console.log(checkbox.value)
     if (!check) {
-      displayToast("please accept T&C first");
+      displayToast("please accept T&C first", "red");
       return;
     }
     if (
@@ -43,10 +35,10 @@ function ContactUs({ displayToast }) {
       phone == "" ||
       message == ""
     ) {
-      window.displayToast("enter the details first");
+      window.displayToast("enter the details first", "red");
       return;
     } else if (!validateEmail(email.value)) {
-      displayToast("Enter a valid email address");
+      displayToast("Enter a valid email address", "red");
       return;
     } else {
       let fullName = firstName.value + " " + lastName.value;
@@ -68,14 +60,9 @@ function ContactUs({ displayToast }) {
       );
       console.log(response);
       if (response.ok) {
-        window.displayToast("Thank You for contacting us!");
-        setStyleSucess("bg-green-600 py-2 px-3 mt-3 font-semibold text-2xl");
-        setTextSucess(`Email Sent!`);
-        reset();
+        displayToast("Thank You for contacting us!", "green");
       } else {
-        setStyleSucess("bg-red-600 py-2 px-3 mt-3 font-semibold text-2xl");
-        setTextSucess(`Email not Sent!`);
-        reset();
+        displayToast("Email not sent! (check if any of the fields are empty)", "red");
       }
 
       firstName.value = "";
@@ -209,8 +196,6 @@ function ContactUs({ displayToast }) {
           </p>
         </div>
       </div>
-
-      <div className={styleSucess}>{textSucess}</div>
     </section>
   );
 }

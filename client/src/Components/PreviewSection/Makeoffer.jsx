@@ -7,10 +7,23 @@ import GradientBtn from "../Buttons/GradientBtn";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { RxCross2 } from "react-icons/rx";
+import CustomToast from "../../Components/Custom Toast/CustomToast";
 
 const Makeoffer = ({ id, show, setshow }) => {
   const { user } = useAuth0();
   const [Amount, setAmount] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [toastDetails, setToastDetails] = useState({});
+
+  function displayToast(msg, type) {
+    setToastDetails((PrevState) => {
+      return { msg, type };
+    });
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
+  }
 
   const clickHandler = async () => {
     console.log(user.email);
@@ -32,8 +45,8 @@ const Makeoffer = ({ id, show, setshow }) => {
           },
         }
       );
-      if(!response.ok){
-        alert("Bid amount should be greater than offer price!")
+      if (!response.ok) {
+        displayToast("Bid amount should be greater than offer price!", "red");
         return;
       }
       setshow(!show);
@@ -47,6 +60,12 @@ const Makeoffer = ({ id, show, setshow }) => {
         "flex justify-center items-center relative lg:w-[900px] z-10 rounded-xl shadow-lg bg-[#050618] p-4"
       }
     >
+      <CustomToast
+        className={showToast ? "right-10 opacity-100" : "-right-96 opacity-0"}
+        msg={toastDetails.msg}
+        type={toastDetails.type}
+        setShowToast={setShowToast}
+      />
       <RxCross2
         className="absolute top-4  right-4 text-[24px]  z-20"
         onClick={() => {

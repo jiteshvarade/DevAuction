@@ -7,10 +7,10 @@ import GradientBtn from "../Buttons/GradientBtn";
 import Preview from "../../Pages/preview/Preview";
 import SearchIcon from "../../assets/GalleryImages/search 02.png";
 
-const GallerySection = () => {
-  const [data,setdata] = useState([])
+const GallerySection = ({displayToast}) => {
+  const [data, setdata] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [search, setsearch] = useState('');
+  const [search, setsearch] = useState("");
 
   async function fetchProjects() {
     try {
@@ -20,7 +20,7 @@ const GallerySection = () => {
       const projects = await res.json();
       console.log(projects);
       setdata(projects);
-      setProjects(projects)
+      setProjects(projects);
     } catch (error) {
       console.log(error);
     }
@@ -78,12 +78,11 @@ const GallerySection = () => {
     }
   }
   function searchProjects() {
-    if(search == '')
-    {
-      alert("Enter something")
+    if (search == "") {
+      displayToast("Enter something", "red");
       return;
     }
-    
+
     let temparry;
     const lowerCaseSearchTerm = search.toLowerCase();
 
@@ -124,20 +123,20 @@ const GallerySection = () => {
           {projects.length == 0 && (
             <div className="font-semibold text-[24px]">SEARCH A VALID TAG</div>
           )}
-          { projects.length != 0 && 
-          projects.map((elem, index) => {
-            return (
-              <Link to={`preview/${elem.ProjectID}`}>
-                <LongCard
-                  assetSrc={elem.Image}
-                  offerPrice={formatNumber(elem.OfferPrice)}
-                  title={elem.Title}
-                  key={elem.Title + index}
-                  type={isImageOrVideo(elem.Image)}
-                />
-              </Link>
-            );
-          })}
+          {projects.length != 0 &&
+            projects.map((elem, index) => {
+              return (
+                <Link to={`preview/${elem.ProjectID}`}>
+                  <LongCard
+                    assetSrc={elem.Image}
+                    offerPrice={formatNumber(elem.OfferPrice)}
+                    title={elem.Title}
+                    key={elem.Title + index}
+                    type={isImageOrVideo(elem.Image)}
+                  />
+                </Link>
+              );
+            })}
         </div>
       </div>
       <div className="flex justify-center">

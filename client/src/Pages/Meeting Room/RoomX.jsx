@@ -7,7 +7,8 @@ import GradientBtn from "../../Components/Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
 // import ResponsiveVoice from 'responsivevoice';
 import { FaCoins } from "react-icons/fa";
-import { leaveRoom} from "@zegocloud/zego-uikit-prebuilt"
+import { leaveRoom } from "@zegocloud/zego-uikit-prebuilt";
+import CustomToast from "../../Components/Custom Toast/CustomToast";
 
 const RoomPage = () => {
   const [showBidSection, setShowBidSection] = useState(false);
@@ -22,10 +23,22 @@ const RoomPage = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const videoContainerRef = useRef(null); // Add useRef for the video container
   const [host, setHost] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastDetails, setToastDetails] = useState({});
 
   setTimeout(() => {
     setShowContent(true);
   }, 5000);
+
+  function displayToast(msg, type) {
+    setToastDetails((PrevState) => {
+      return { msg, type };
+    });
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
+  }
 
   function formatNumber(num) {
     if (num >= 1000 && num < 1000000) {
@@ -69,10 +82,10 @@ const RoomPage = () => {
       },
       onLeaveRoom: () => {
         console.log("main ja raha hu");
-        navigate("/homepage/dashboard")
-        zp.destroy()
+        navigate("/homepage/dashboard");
+        zp.destroy();
         console.log("destory kr diya hai");
-      }
+      },
     });
   };
 
@@ -180,7 +193,7 @@ const RoomPage = () => {
           "Content-type": "application/json; charset=UTF-8",
         },
       });
-      alert("Thankyou for joining");
+      displayToast("Thankyou for joining", "green");
       navigate("/homepage/dashboard");
     });
     return () => {
@@ -211,13 +224,13 @@ const RoomPage = () => {
   function SendBid() {
     if (bidData.data.Amt - amount >= 0) {
       speak("Your bid should be higher than previous bid!");
-      alert("Are thoda sharam karo");
+      displayToast("Are thoda sharam karo (Bid amount should be greater than previous bid placed!)", "red");
       return;
     }
 
-    if(amount - userCreditsLeft > 0){
+    if (amount - userCreditsLeft > 0) {
       speak("Your bid amount can't be more than your credits!");
-      alert("Your bid amount can't be more than your credits!");
+      displayToast("Your bid amount can't be more than your credits!", "red");
       return;
     }
 
@@ -250,6 +263,12 @@ const RoomPage = () => {
         ref={videoContainerRef}
         className="video-container relative"
         style={{ height: "100%", width: "100%" }}
+      />
+      <CustomToast
+        className={showToast ? "right-10 opacity-100" : "-right-96 opacity-0"}
+        msg={toastDetails.msg}
+        type={toastDetails.type}
+        setShowToast={setShowToast}
       />
       {showContent && (
         <div className="absolute z-[54545545] top-0  p-4 rounded-2xl flex gap-4 flex-wrap">
@@ -331,7 +350,7 @@ const RoomPage = () => {
               }`}
               title="Your credits left"
             >
-              <FaCoins size="1.2rem" /> 
+              <FaCoins size="1.2rem" />
               {userCreditsLeft}
             </div>
           </div>
