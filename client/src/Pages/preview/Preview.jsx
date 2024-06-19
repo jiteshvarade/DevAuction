@@ -14,10 +14,9 @@ const Preview = () => {
 
   return (
     <div>
-      <div className="flex h-screen">
-        {/* <LeftNavbar/> */}
+      <div className="flex h-screen relative">
         {show && (
-          <div className="absolute w-[90%] left-[10%] top-[100px] flex justify-center  ">
+          <div className="absolute w-full top-[100px] flex justify-center">
             <Makeoffer id={params.id} show={show} setshow={setshow} />
           </div>
         )}

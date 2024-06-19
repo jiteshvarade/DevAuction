@@ -37,7 +37,7 @@ const Makeoffer = ({ id, show, setshow }) => {
           method: "POST",
           body: JSON.stringify({
             email: user.email,
-            amount: Amount,
+            offer: Amount,
             projectID: id,
           }),
           headers: {
@@ -45,11 +45,14 @@ const Makeoffer = ({ id, show, setshow }) => {
           },
         }
       );
+      console.log(response);
       if (!response.ok) {
         displayToast("Bid amount should be greater than offer price!", "red");
         return;
+      }else{
+        displayToast("Offer placed successfully!", "green");
+        setshow(!show);
       }
-      setshow(!show);
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
     }

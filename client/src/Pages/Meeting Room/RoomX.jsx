@@ -5,9 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useSocket } from "../../context/SocketProvider";
 import GradientBtn from "../../Components/Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
-// import ResponsiveVoice from 'responsivevoice';
 import { FaCoins } from "react-icons/fa";
-import { leaveRoom } from "@zegocloud/zego-uikit-prebuilt";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
 
 const RoomPage = () => {
@@ -198,6 +196,7 @@ const RoomPage = () => {
     });
     return () => {
       socket.off("on:bid", (data) => {});
+      socket.off("roomClose", (data) => {});
     };
   }, [roomID, user]);
 
@@ -273,7 +272,7 @@ const RoomPage = () => {
       {showContent && (
         <div className="absolute z-[54545545] top-0  p-4 rounded-2xl flex gap-4 flex-wrap">
           <div
-            className={`left shadow-2xl bg-white  rounded-xl transition-all duration-1000 relative ${
+            className={`left shadow-2xl h-fit bg-white  rounded-xl transition-all duration-1000 relative ${
               showBidSection ? "flex flex-col gap-4 items-center " : ""
             }`}
             style={{ padding: "0.5rem 1.5rem 0.5rem 1.5rem" }}
@@ -345,7 +344,7 @@ const RoomPage = () => {
               End Auction
             </button>
             <div
-              className={`creditsLeft bg-white rounded-xl p-4 flex items-center gap-2  ${
+              className={`creditsLeft bg-white rounded-xl p-4 flex items-center gap-2 ${
                 Number(userCreditsLeft) >= 0 ? "text-black" : "text-red-500"
               }`}
               title="Your credits left"
