@@ -102,14 +102,14 @@ router.post('/sendMailToBider', async (req, res) => {
             await room.save()
 
             const bidder = await User.findOneAndUpdate({"UserInfo.email" : highestBidders[0].email},{
-                $inc : {"Profile.Credits" : -bid*100},
+                $inc : {"Profile.Credits" : -highestBid*100},
                 $push : {"Profile.Spendings" : {Category : "Bid", Amount : bid}}
             })
             await bidder.save()
         }
 
         const user = await User.findOneAndUpdate({"UserInfo.email" : room.Owner},{
-            $inc : {"Profile.Credits" : highestBid},
+            $inc : {"Profile.Credits" : highestBid*100},
             $push : {"Profile.Earnings" : {
                 Category : "room",
                 Amount : highestBid
