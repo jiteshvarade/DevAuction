@@ -78,7 +78,7 @@ router.post('/bids', async (req, res) => {
 })
 
 router.post('/sendMailToBider', async (req, res) => {
-    const roomID = req.body
+    const roomID = req.body.roomID
 
     try {
         const room = await Room.findOne({ RoomID: roomID })
@@ -88,9 +88,10 @@ router.post('/sendMailToBider', async (req, res) => {
         }
 
         const highestBid = Math.max(...room.Bids.map(bid => bid.amount))
+        console.log("higest bid in paisa",highestBid*100)
 
         const highestBidders = room.Bids.filter(bid => bid.amount === highestBid)
-        console.log(highestBidders)
+        console.log("higesht bidder : ",highestBidders)
 
         let message = '';
         if (highestBidders.length === 1) {
@@ -103,7 +104,7 @@ router.post('/sendMailToBider', async (req, res) => {
             await room.save()
 
             const bidder = await User.findOneAndUpdate({"UserInfo.email" : highestBidders[0].email},{
-                $inc : {"Profile.Credits" : -highestBid*100},
+                $inc : {"Profile.Credits" : -(highestBid*100)},
                 $push : {"Profile.Spendings" : {Category : "Bid", Amount : highestBid}}
             })
             await bidder.save()

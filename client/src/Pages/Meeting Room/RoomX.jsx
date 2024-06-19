@@ -126,7 +126,7 @@ const RoomPage = () => {
       if (resData.Owner == user.email) {
         setHost(true);
       }
-      setUserCreditsLeft(resData.Credits);
+      setUserCreditsLeft(resData.Credits/100);
     } catch (error) {
       console.log(error);
     }
@@ -366,7 +366,7 @@ const RoomPage = () => {
               title="Your credits left"
             >
               <FaCoins size="1.2rem" />
-              {userCreditsLeft / 100}
+              {userCreditsLeft}
             </div>
           </div>
         </div>
