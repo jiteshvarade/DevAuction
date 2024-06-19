@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Hero from "../../Components/HomePageHero/HomePageHero";
 import NavBar from "../../Components/NavBar/NavBar";
 import FeatureSection from "../../Components/Featues section/FeaturesSection";
@@ -12,8 +12,11 @@ import TeamComp from "../../Components/Home page footer/TeamComp";
 import { useNavigate } from "react-router-dom";
 import { ProgressSpinner } from "primereact/progressspinner";
 import star from "../../assets/Icons/star.svg";
+import CustomToast from "../../Components/Custom Toast/CustomToast";
 
 function Home() {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMsg, setToastMsg] = useState("");
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
     useAuth0();
@@ -37,6 +40,15 @@ function Home() {
       logout({ logoutParams: { returnTo: window.location.origin } });
     }
   }
+
+  function displayToast(msg){
+    setToastMsg(msg);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
+  }
+
   return (
     <div className="HomePage bg-[#050618] text-white">
       {isLoading && (
@@ -51,6 +63,7 @@ function Home() {
       )}
       {!isLoading && (
         <div className="relative">
+          <CustomToast className={showToast ? "right-10 opacity-100" : "-right-96 opacity-0"} msg={toastMsg} setShowToast={setShowToast}  />
           <img
             src={star}
             className="absolute z-50 top-[35rem] scale-75 xl:block hidden"
@@ -83,7 +96,7 @@ function Home() {
           <FeatureSection />
           <OurMission />
           <Testimonials />
-          <ContactUs />
+          <ContactUs displayToast={displayToast} />
           <TeamComp />
           <HomePageFooter />
         </div>

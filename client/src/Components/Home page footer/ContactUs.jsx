@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import GradientBtn from "../Buttons/GradientBtn";
 
-function ContactUs() {
+function ContactUs({ displayToast }) {
   const [styleSucess, setStyleSucess] = useState(null);
   const [textSucess, setTextSucess] = useState(null);
   const [check, setCheck] = useState(false);
@@ -15,8 +15,8 @@ function ContactUs() {
   function validateEmail(email) {
     console.log(email);
     // Basic syntax check using regex
-    const emailRegex = /^[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/    ;
-    console.log(emailRegex.test(email))
+    const emailRegex = /^[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    console.log(emailRegex.test(email));
     if (!emailRegex.test(email)) {
       return false;
     } else {
@@ -33,7 +33,7 @@ function ContactUs() {
     const message = document.querySelector("#message");
     // console.log(checkbox.value)
     if (!check) {
-      alert("please accept T&C first");
+      displayToast("please accept T&C first");
       return;
     }
     if (
@@ -43,10 +43,10 @@ function ContactUs() {
       phone == "" ||
       message == ""
     ) {
-      window.alert("enter the details first");
+      window.displayToast("enter the details first");
       return;
     } else if (!validateEmail(email.value)) {
-      alert("Enter a valid email address");
+      displayToast("Enter a valid email address");
       return;
     } else {
       let fullName = firstName.value + " " + lastName.value;
@@ -68,7 +68,7 @@ function ContactUs() {
       );
       console.log(response);
       if (response.ok) {
-        window.alert("Thank You for contacting us!");
+        window.displayToast("Thank You for contacting us!");
         setStyleSucess("bg-green-600 py-2 px-3 mt-3 font-semibold text-2xl");
         setTextSucess(`Email Sent!`);
         reset();
@@ -85,6 +85,7 @@ function ContactUs() {
       message.value = "";
     }
   };
+
   return (
     <section id="contact us" className="text-white py-10">
       <div className="flex w-full justify-center flex-wrap gap-4 items-center text-white py-10 ">
