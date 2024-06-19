@@ -9,6 +9,7 @@ import { FaCoins } from "react-icons/fa";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
 
 const RoomPage = () => {
+  // const zpInstance = useRef(null);
   const [showBidSection, setShowBidSection] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [userCreditsLeft, setUserCreditsLeft] = useState(0);
@@ -199,8 +200,15 @@ const RoomPage = () => {
         },
       });
       displayToast("Thankyou for joining", "green");
-      console.log(zp);
-      navigate("/homepage/dashboard");
+      // console.log(zp);
+      // navigate("/homepage/dashboard");
+      navigate('/homepage/dashboard');
+      if (videoContainerRef.current) {
+        videoContainerRef.current.leaveRoom();
+        ZegoUIKitPrebuilt.destroy();
+      }
+      // setTimeout(() => {
+      // }, 5000);
     });
     return () => {
       socket.off("on:bid", (data) => {});
