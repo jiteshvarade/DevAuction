@@ -60,6 +60,7 @@ router.post('/userProjects', async (req, res) => {
             userProjects.push(project)
         }
 
+        console.log(userProjects)
         res.send({userProjects})
         
     }catch(error){
