@@ -8,7 +8,10 @@ router.post('/getProject', async (req,res)=>{
 })
 
 router.post('/offers', async (req, res) => {
-    const { projectID, email, offer } = req.body
+    const projectID = req.body.projectID
+    const email = req.body.email
+    const offer = req.body.offer
+    console.log(projectID,email,offer)
   
     try {
         const project = await Project.findOne({ ProjectID: projectID })
