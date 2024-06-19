@@ -16,11 +16,20 @@ import CustomToast from "../../Components/Custom Toast/CustomToast";
 
 function Home() {
   const [showToast, setShowToast] = useState(false);
-  const [toastMsg, setToastMsg] = useState("");
+  const [toastDetails, setToastDetails] = useState({});
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
     useAuth0();
 
+  function displayToast(msg, type) {
+    setToastDetails((PrevState) => {
+      return { msg, type };
+    });
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
+  }
   console.log(isAuthenticated);
   if (isAuthenticated) {
     console.log(user);
@@ -36,17 +45,9 @@ function Home() {
 
       navigate("/homepage/dashboard");
     } else {
-      alert("Enter a valid email address!");
+      displayToast("Enter a valid email address!");
       logout({ logoutParams: { returnTo: window.location.origin } });
     }
-  }
-
-  function displayToast(msg){
-    setToastMsg(msg);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 5000);
   }
 
   return (
@@ -63,7 +64,14 @@ function Home() {
       )}
       {!isLoading && (
         <div className="relative">
-          <CustomToast className={showToast ? "right-10 opacity-100" : "-right-96 opacity-0"} msg={toastMsg} setShowToast={setShowToast}  />
+          <CustomToast
+            className={
+              showToast ? "right-10 opacity-100" : "-right-96 opacity-0"
+            }
+            msg={toastDetails.msg}
+            type={toastDetails.type}
+            setShowToast={setShowToast}
+          />
           <img
             src={star}
             className="absolute z-50 top-[35rem] scale-75 xl:block hidden"

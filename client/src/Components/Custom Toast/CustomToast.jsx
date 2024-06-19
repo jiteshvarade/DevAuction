@@ -9,7 +9,7 @@ export default function CustomToast({
 }) {
   return (
     <div
-      className={`toast z-[100000] fixed flex items-center gap-4 p-4 rounded-xl top-10 transition-all duration-500 ${className} ${type?.toLowerCase() == "red" ? "bg-red-500" : "bg-green-500"}`}
+      className={`toast z-[100000] fixed flex items-center gap-4 p-4 rounded-xl text-white top-10 transition-all duration-500 ${className} ${type?.toLowerCase() == "red" ? "bg-red-500" : "bg-green-500"}`}
     >
       {msg}{" "}
       <RxCross2
