@@ -90,7 +90,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable, displayTo
 
     console.log(Amount);
     if (amount > 50000000) {
-      displayToast("Aukat mein: Amount should be less than 500000", "red");
+      displayToast("Amount should be less than 500000", "red");
       return;
     }
     try {
@@ -191,7 +191,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable, displayTo
                   placeholder="Deposit"
                   onClick={() => {
                     if(Amount == "" || Amount == 0){
-                      displayToast("Rokda daal, Rokda!", "red")
+                      displayToast("Enter some amount!", "red")
                       return;
                     }
                     loadRazorPay();
