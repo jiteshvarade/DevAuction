@@ -9,6 +9,7 @@ import photo from "../../assets/LandingPage Images/logo remove background.svg";
 import { IoTrophy } from "react-icons/io5";
 import Transcations from "./Transcations";
 import { json } from "react-router-dom";
+import SERVER_URL from "../../contants.mjs";
 
 function Cradites({ resp, trans, credits = 0, showtable, setshowTable, displayToast }) {
   // const transectionsTable = useRef(null);
@@ -28,8 +29,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable, displayTo
   const showtranszac = async () => {
     try {
       const response = await fetch(
-        // "https://devauction.onrender.com/payments/transactions",
-        "https://devauction.onrender.com/payments/transactions",
+        `${SERVER_URL}/payments/transactions`,
         {
           method: "POST",
           headers: {
@@ -65,7 +65,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable, displayTo
     const amount = Amount * 100;
     try {
       const response = await fetch(
-        "https://devauction.onrender.com/payments/withdraw",
+        `${SERVER_URL}/payments/withdraw`,
         {
           method: "POST",
           headers: {
@@ -94,7 +94,7 @@ function Cradites({ resp, trans, credits = 0, showtable, setshowTable, displayTo
       return;
     }
     try {
-      const response = await fetch("https://devauction.onrender.com/payments", {
+      const response = await fetch(`${SERVER_URL}/payments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

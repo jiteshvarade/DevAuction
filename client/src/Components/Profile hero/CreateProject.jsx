@@ -7,6 +7,7 @@ import GradientBtn from "../Buttons/GradientBtn";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { RxCross2 } from "react-icons/rx";
+import SERVER_URL from "../../contants.mjs";
 
 const CreateProject = ({ show, setshow }) => {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ const CreateProject = ({ show, setshow }) => {
     console.log(formData);
     try {
       const response = await axios.post(
-        "https://devauction.onrender.com/create/project",
+        `${SERVER_URL}/create/project`,
         formData,
         {
           headers: {

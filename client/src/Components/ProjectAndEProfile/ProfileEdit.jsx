@@ -4,6 +4,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import "./project.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import GradientBtn from "../Buttons/GradientBtn";
+import SERVER_URL from "../../contants.mjs";
 
 function ProfileEdit({ resp, showEdit, setShowEdit, userData }) {
   const [inputValue, setInputValue] = useState(userData.Skills)
@@ -31,7 +32,7 @@ function ProfileEdit({ resp, showEdit, setShowEdit, userData }) {
   const edithandler = async () => {
     try {
       console.log(skills);
-      const res = await fetch("https://devauction.onrender.com/profile/edit", {
+      const res = await fetch(`${SERVER_URL}/profile/edit`, {
         method: "POST",
         body: JSON.stringify({ email: user.email, bio: bio, skills: skills }),
         headers: {

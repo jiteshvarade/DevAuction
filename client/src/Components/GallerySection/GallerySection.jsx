@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import GradientBtn from "../Buttons/GradientBtn";
 import Preview from "../../Pages/preview/Preview";
 import SearchIcon from "../../assets/GalleryImages/search 02.png";
+import SERVER_URL from "../../contants.mjs";
 
 const GallerySection = ({displayToast}) => {
   const [data, setdata] = useState([]);
@@ -15,7 +16,7 @@ const GallerySection = ({displayToast}) => {
   async function fetchProjects() {
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/gallery/getProjects"
+        `${SERVER_URL}/gallery/getProjects`
       );
       const projects = await res.json();
       console.log(projects);

@@ -1,59 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import SERVER_URL from "../../contants.mjs";
 
 export default function ProfileOffers({ className, user }) {
-  // const { user } = useAuth0();
   const [offersData, setOffersData] = useState([]);
-
-  // const offersData = [
-  //   {
-  //     sno: 1,
-  //     name: "someone",
-  //     project: "Random project",
-  //     amount: 454149.95,
-  //     status: "Accepted",
-  //   },
-  //   {
-  //     sno: 2,
-  //     name: "someone",
-  //     project: "Random project",
-  //     amount: 454149.67,
-  //     status: "Rejected",
-  //   },
-  //   {
-  //     sno: 3,
-  //     name: "someone",
-  //     project: "Random project",
-  //     amount: 45414965,
-  //     status: "Accepted",
-  //   },
-  //   {
-  //     sno: 4,
-  //     name: "someone",
-  //     project: "Random project",
-  //     amount: 454149.32,
-  //     status: "Accepted",
-  //   },
-  //   {
-  //     sno: 5,
-  //     name: "someone",
-  //     project: "Random project",
-  //     amount: 454149.5,
-  //     status: "Rejected",
-  //   },
-  //   {
-  //     sno: 6,
-  //     name: "someone",
-  //     project: "Random project",
-  //     amount: 45414965,
-  //     status: "Rejected",
-  //   },
-  // ];
 
   async function getOffersHistory() {
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/profile/getUserOffers",
+        `${SERVER_URL}/profile/getUserOffers`,
         {
           method: "POST",
           body: JSON.stringify({

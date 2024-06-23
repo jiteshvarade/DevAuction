@@ -10,6 +10,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";
 import ChatsModel from "../ChatsModel/ChatsModel";
+import SERVER_URL from "../../contants.mjs";
 
 export default function Searchprofile() {
   const [showMessageModel, setShowMessageModel] = useState(false);
@@ -35,7 +36,7 @@ export default function Searchprofile() {
   const response = async () => {
     console.log(params.id);
     const res = await fetch(
-      "https://devauction.onrender.com/profile/getUsersById",
+      `${SERVER_URL}/profile/getUsersById`,
       {
         method: "POST",
         body: JSON.stringify({ id: params.id }),

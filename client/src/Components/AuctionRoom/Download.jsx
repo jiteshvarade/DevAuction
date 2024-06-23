@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { RxCross2 } from "react-icons/rx";
 import { saveAs } from 'file-saver';
+import SERVER_URL from "../../contants.mjs";
 
 const Download = ({ show, setshow }) => {
   const navigate = useNavigate();
@@ -20,25 +21,10 @@ const Download = ({ show, setshow }) => {
     const formData = new FormData();
     formData.append("fileID", fileid);
 
-    // try {
-    //   const response = await fetch("https://devauction.onrender.com/create/download", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       fileID:fileid
-    //     }),
-    //     headers: {
-    //       "Content-type": "application/json; charset=UTF-8",
-    //     },
-    //   });
-    //   console.log(response.data);
-    //   // navigate(`/room/${response.data.RoomID}`)
-    // } catch (error) {
-    //   console.error(error.response ? error.response.data : error.message);
-    // }
     try {
 
       const response = await axios({
-        url : 'https://devauction.onrender.com/create/download',
+        url : `${SERVER_URL}/create/download`,
         method : "POST",
         responseType : "blob",
         data : {fileID : fileid},

@@ -9,6 +9,7 @@ import EmojiPicker from "emoji-picker-react";
 import CameraAccess from "./CameraAccess";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSocket } from "../../context/SocketProvider";
+import SERVER_URL from "../../contants.mjs";
 
 const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) => {
   const socket = useSocket();
@@ -49,7 +50,7 @@ const ChatScreenFooter = React.memo(({ receiversMailId, setMsgs, setMsgComps }) 
     });
 
     const res = await fetch(
-      "https://devauction.onrender.com/profile/chat/send",
+      `${SERVER_URL}/profile/chat/send`,
       {
         method: "POST",
         body: JSON.stringify({

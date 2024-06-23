@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import SERVER_URL from '../../contants.mjs'
 
 function UploadFiles() {
   
@@ -7,7 +8,7 @@ function UploadFiles() {
   const upload = () => {
     const formData = new FormData()
     formData.append('file', file)
-    axios.post("https://devauction.onrender.com/uploads", formData)
+    axios.post(`${SERVER_URL}/uploads`, formData)
       .then(response => {console.log(response)})
       .catch(error => console.log(error))
   }

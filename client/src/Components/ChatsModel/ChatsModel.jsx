@@ -3,6 +3,7 @@ import ChatScreenHeader from "../Chat screen/ChatScreenHeader";
 import ChatScreenFooter from "../Chat screen/ChatScreenFooter";
 import ChatBtn from "../Chat screen/ChatBtn";
 import { RxCross2 } from "react-icons/rx";
+import SERVER_URL from "../../contants.mjs";
 
 const ChatsModel = React.memo(({ selectedUser, myEmail, chatCloseFunc }) => {
   const [msgs, setMsgs] = useState([]);
@@ -190,8 +191,8 @@ const ChatsModel = React.memo(({ selectedUser, myEmail, chatCloseFunc }) => {
   const getMsgs = async () => {
     console.log("getting msgs from server");
     const res = await fetch(
-        "https://devauction.onrender.com/profile/chats",
-        // "https://devauction.onrender.com/profile/chats",
+        `${SERVER_URL}/profile/chats`,
+        // "${SERVER_URL}/profile/chats",
          {
       method: "POST",
       body: JSON.stringify({

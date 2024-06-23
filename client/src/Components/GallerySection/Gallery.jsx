@@ -12,6 +12,7 @@ import ProfileSearch from "./ProfileSearch";
 import axios from "axios";
 import { FaGlassWater } from "react-icons/fa6";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
+import SERVER_URL from "../../contants.mjs";
 
 const Gallery = () => {
   const { user, isLoading } = useAuth0();
@@ -39,7 +40,7 @@ const Gallery = () => {
     setShowsearch(!showsearch);
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/profile/getUsers",
+        `${SERVER_URL}/profile/getUsers`,
         {
           method: "POST",
           body: JSON.stringify({ name: search }),

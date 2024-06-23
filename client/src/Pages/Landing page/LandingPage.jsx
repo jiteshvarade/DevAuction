@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { ProgressSpinner } from "primereact/progressspinner";
 import star from "../../assets/Icons/star.svg";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
+import SERVER_URL from "../../contants.mjs";
 
 function Home() {
   const [showToast, setShowToast] = useState(false);
@@ -35,7 +36,7 @@ function Home() {
     console.log(user);
     console.log(isAuthenticated);
     if (user.email_verified) {
-      const response = fetch("https://devauction.onrender.com/auth", {
+      const response = fetch(`${SERVER_URL}/auth`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
