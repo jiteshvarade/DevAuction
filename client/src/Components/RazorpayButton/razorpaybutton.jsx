@@ -1,4 +1,5 @@
 import React from 'react'
+import SERVER_URL from '../../contants.mjs'
 
 function RazorpayButton() {
 
@@ -14,7 +15,7 @@ function RazorpayButton() {
   {
     const amount = 100
     try {
-      const response = await fetch("https://devauction.onrender.com/payments", {
+      const response = await fetch(`${SERVER_URL}/payments`, {
         method: "POST", 
         headers: {
           "Content-Type": "application/json",

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { RxCross2 } from "react-icons/rx";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
+import SERVER_URL from "../../contants.mjs";
 
 const Makeoffer = ({ id, show, setshow, getProjectOffers }) => {
   const { user } = useAuth0();
@@ -32,7 +33,7 @@ const Makeoffer = ({ id, show, setshow, getProjectOffers }) => {
 
     try {
       const response = await fetch(
-        "https://devauction.onrender.com/project/offers",
+        `${SERVER_URL}/project/offers`,
         {
           method: "POST",
           body: JSON.stringify({

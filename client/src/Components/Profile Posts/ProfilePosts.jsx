@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProjectTile from "./ProjectTile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
+import SERVER_URL from "../../contants.mjs";
 
 export default function ProfilePosts({ Data, searchprof, className, user }) {
   // const { user } = useAuth0();
@@ -11,7 +12,7 @@ export default function ProfilePosts({ Data, searchprof, className, user }) {
   const MyprojectData = async () => {
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/profile/userProjects",
+        `${SERVER_URL}/profile/userProjects`,
         {
           method: "POST",
           body: JSON.stringify({ email: user.email }),

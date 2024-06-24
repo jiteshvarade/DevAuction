@@ -8,6 +8,7 @@ import DotPaginator from "./DotPaginator";
 import GradientBtn from "../Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiRefreshLine } from "react-icons/ri";
+import SERVER_URL from "../../contants.mjs";
 
 const Auctionrooms = ({ show, setshow, showdownload, setShowdownload }) => {
   const [first, setFirst] = useState(0);
@@ -28,7 +29,7 @@ const Auctionrooms = ({ show, setshow, showdownload, setShowdownload }) => {
     console.log("pulling all data");
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/dashboard/getRooms",
+        `${SERVER_URL}/dashboard/getRooms`,
         {
           method: "POST",
           body: JSON.stringify({ type: "all" }),
@@ -51,7 +52,7 @@ const Auctionrooms = ({ show, setshow, showdownload, setShowdownload }) => {
   async function refresh(type) {
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/dashboard/getRooms",
+        `${SERVER_URL}/dashboard/getRooms`,
         {
           method: "POST",
           body: JSON.stringify({ type: type }),

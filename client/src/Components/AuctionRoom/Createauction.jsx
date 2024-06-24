@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { RxCross2 } from "react-icons/rx";
 import { GoQuestion } from "react-icons/go";
 import urlUploadVideo from "../../../public/videos/urlUploadVideo.mp4";
+import SERVER_URL from "../../contants.mjs"
 
 const Createauction = ({ show, setshow }) => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Createauction = ({ show, setshow }) => {
     console.log(formData);
     try {
       const response = await axios.post(
-        "https://devauction.onrender.com/create/room",
+        `${SERVER_URL}/create/room`,
         formData,
         {
           headers: {

@@ -4,6 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 import "./Follow.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import GradientBtn from "../Buttons/GradientBtn";
+import SERVER_URL from "../../contants.mjs";
 
 const Followering = ({resp, Data, showFollowing, setShowFollowing }) => {
   const [data, setdata] = useState([]);
@@ -14,7 +15,7 @@ const Followering = ({resp, Data, showFollowing, setShowFollowing }) => {
   const follow = Data.userData.Profile.Following || [];
   const response = async () => {
     const res = await fetch(
-      "https://devauction.onrender.com/profile/followers",
+      `${SERVER_URL}/profile/followers`,
       {
         method: "POST",
         body: JSON.stringify({ followers: follow }),
@@ -33,7 +34,7 @@ const Followering = ({resp, Data, showFollowing, setShowFollowing }) => {
 
     console.log(user.email) 
     console.log(Data?.userData?.UserInfo?.email)
-    const res = await fetch("https://devauction.onrender.com/profile/unFollow", {
+    const res = await fetch(`${SERVER_URL}/profile/unFollow`, {
       method: "POST",
       body: JSON.stringify({
         from: user.email,

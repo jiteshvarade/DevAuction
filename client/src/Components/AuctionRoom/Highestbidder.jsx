@@ -1,63 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Auctionroom.css";
+import SERVER_URL from "../../contants.mjs";
 
 const Highestbidder = () => {
   const [data, setData] = useState([]);
-  // const data = [
-  //   {
-  //     name: "Ramesh Gupta",
-  //     totalauc: 12,
-  //     highest: "56k",
-  //     total: "1200k",
-  //   },
-  //   {
-  //     name: "Kishore Mahajan",
-  //     totalauc: 18,
-  //     highest: "32k" ,
-  //     total: "1100k",
-  //   },
-  //   {
-  //     name: "Ramkisore jain",
-  //     totalauc: 19,
-  //     highest: "28k",
-  //     total: "900k",
-  //   },
-  //   {
-  //     name: "Hafiz shekiq",
-  //     totalauc: 18,
-  //     highest: "22k",
-  //     total: "760k",
-  //   },
-  //   {
-  //     name: "JS Stalin",
-  //     totalauc: 11,
-  //     highest: "21k",
-  //     total: "400k",
-  //   },
-  //   {
-  //     name:"Simran kaur",
-  //     totalauc:12,
-  //     highest: "19k",
-  //     total: "200k",
-  //   },
-  //   {
-  //     name:"Ramanujam Iyer",
-  //     totalauc:7,
-  //     highest:"14k",
-  //     total: "196k",
-  //   },
-  //   {
-  //     name:"Mukul Tiwari",
-  //     totalauc:5,
-  //     highest:"10k",
-  //     total: "127k",
-  //   }
-  // ];
-
+  
   async function getHighestBidderList() {
     try {
       const highestBidderList = await fetch(
-        "https://devauction.onrender.com/dashboard/highestBidders"
+        `${SERVER_URL}/dashboard/highestBidders`
       );
       const list = await highestBidderList.json();
       console.log(list);

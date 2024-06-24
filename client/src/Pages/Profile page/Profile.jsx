@@ -9,6 +9,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
 import ProfileEdit from "../../Components/ProjectAndEProfile/ProfileEdit";
 import CreateProject from "../../Components/Profile hero/CreateProject";
+import SERVER_URL from "../../contants.mjs";
 
 export default function Profile() {
   const { showMenu, setShowMenu } = useMenuContext();
@@ -23,7 +24,7 @@ export default function Profile() {
   console.log(user);
 
   const response = async () => {
-    const res = await fetch("https://devauction.onrender.com/profile", {
+    const res = await fetch(`${SERVER_URL}/profile`, {
       method: "POST",
       body: JSON.stringify({ email: user.email }),
       headers: {

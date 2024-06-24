@@ -10,6 +10,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import { useMenuContext } from "../../context/MenuContextProvider";
 import Download from "../../Components/AuctionRoom/Download";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
+import SERVER_URL from "../../contants.mjs";
 
 function Dashbord() {
   const { showMenu, setShowMenu } = useMenuContext();
@@ -38,7 +39,7 @@ function Dashbord() {
 
   const userEmail = user?.email;
   const response = async () => {
-    const res = await fetch("https://devauction.onrender.com/profile", {
+    const res = await fetch(`${SERVER_URL}/profile`, {
       method: "POST",
       body: JSON.stringify({ email: user.email }),
       headers: {

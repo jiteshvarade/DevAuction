@@ -5,14 +5,15 @@ import GradientBtn from "../Buttons/GradientBtn";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
+import SERVER_URL from "../../contants.mjs";
 
 const ProfileSearch = ({ searchdata, showsearch, setShowsearch }) => {
   const data = searchdata || [];
   const { user } = useAuth0();
-  // https://devauction.onrender.com/profile/follow
+  // ${SERVER_URL}/profile/follow
 
   const followMe = async (eml) => {
-    const res = await fetch("https://devauction.onrender.com/profile/follow", {
+    const res = await fetch(`${SERVER_URL}/profile/follow`, {
       method: "POST",
       body: JSON.stringify({ from:user.email , to:eml }),
       headers: {

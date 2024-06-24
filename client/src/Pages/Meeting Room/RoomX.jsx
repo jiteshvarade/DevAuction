@@ -7,6 +7,7 @@ import GradientBtn from "../../Components/Buttons/GradientBtn";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaCoins } from "react-icons/fa";
 import CustomToast from "../../Components/Custom Toast/CustomToast";
+import SERVER_URL from "../../contants.mjs";
 
 const RoomPage = () => {
   // const zpInstance = useRef(null);
@@ -111,7 +112,7 @@ const RoomPage = () => {
     console.log(user.email);
     // let resData;
     try {
-      const res = await fetch("https://devauction.onrender.com/rooms/getHost", {
+      const res = await fetch(`${SERVER_URL}/rooms/getHost`, {
         method: "POST",
         body: JSON.stringify({
           roomID,
@@ -136,7 +137,7 @@ const RoomPage = () => {
   async function getLatestBidAmount() {
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/rooms/getLatestBid",
+        `${SERVER_URL}/rooms/getLatestBid`,
         {
           method: "POST",
           body: JSON.stringify({ roomID }),
@@ -192,7 +193,7 @@ const RoomPage = () => {
     });
     socket.on("roomClose", (data) => {
       console.log(data);
-      fetch("https://devauction.onrender.com/rooms/sendMailToBider", {
+      fetch(`${SERVER_URL}/rooms/sendMailToBider`, {
         method: "POST",
         body: JSON.stringify({ roomID }),
         headers: {
@@ -218,7 +219,7 @@ const RoomPage = () => {
 
   async function SendBidToBackEnd() {
     try {
-      const res = await fetch("https://devauction.onrender.com/rooms/bids", {
+      const res = await fetch(`${SERVER_URL}/rooms/bids`, {
         method: "POST",
         body: JSON.stringify({
           roomId: roomID,

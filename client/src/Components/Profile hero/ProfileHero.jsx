@@ -8,6 +8,7 @@ import { RiNotificationLine } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useNavigate } from "react-router-dom";
+import SERVER_URL from "../../contants.mjs";
 
 export default function ProfileHero({
   resp,
@@ -41,7 +42,7 @@ export default function ProfileHero({
   };
 
   const followMe = async () => {
-    const res = await fetch("https://devauction.onrender.com/profile/follow", {
+    const res = await fetch(`${SERVER_URL}/profile/follow`, {
       method: "POST",
       body: JSON.stringify({
         from: user.email,
@@ -58,7 +59,7 @@ export default function ProfileHero({
 
   const unfollowMe = async () => {
     const res = await fetch(
-      "https://devauction.onrender.com/profile/unFollow",
+      `${SERVER_URL}/profile/unFollow`,
       {
         method: "POST",
         body: JSON.stringify({

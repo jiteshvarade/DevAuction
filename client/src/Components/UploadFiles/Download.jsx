@@ -1,13 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import { saveAs } from 'file-saver';
+import SERVER_URL from '../../contants.mjs';
 
 function Download() {
   const downloadFile = async () => {
     try {
 
       const response = await axios({
-        url : 'https://devauction.onrender.com//uploads/download',
+        url : `${SERVER_URL}//uploads/download`,
         method : "POST",
         responseType : "blob",
         data : {fileID : "1o4sDzcEHXsnG0Gvds0gs9-4iqO9rsEZ_"},

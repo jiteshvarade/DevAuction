@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useSocket } from "../../context/SocketProvider"
 import axios from "axios"
+import SERVER_URL from "../../contants.mjs"
 
 const Room = ()=> {
     const socket = useSocket()
@@ -78,7 +79,7 @@ const Room = ()=> {
             sdp: peer.localDescription
         };
     
-        const { data } = await axios.post('https://devauction.onrender.com/livestream/broadcast', payload)
+        const { data } = await axios.post(`${SERVER_URL}/livestream/broadcast`, payload)
         console.log(data)
         const desc = new RTCSessionDescription(data.sdp)
         peer.setRemoteDescription(desc).catch(e => console.log(e))
@@ -106,7 +107,7 @@ const Room = ()=> {
             sdp: peer.localDescription
         };
     
-        const { data } = await axios.post('https://devauction.onrender.com/livestream/consumer', payload)
+        const { data } = await axios.post(`${SERVER_URL}/livestream/consumer`, payload)
         console.log(data)
         const desc = new RTCSessionDescription(data.sdp)
         peer.setRemoteDescription(desc).catch(e => console.log(e))

@@ -4,6 +4,7 @@ import ChatPeople from "../../Components/Chat people/ChatPeople";
 import ChatScreen from "../../Components/Chat screen/ChatScreen";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMenuContext } from "../../context/MenuContextProvider";
+import SERVER_URL from "../../contants.mjs";
 
 export default function Chat() {
   const {showMenu, setShowMenu} = useMenuContext();
@@ -14,7 +15,7 @@ export default function Chat() {
   const [showChats, setShowChats] = useState(false);
 
   async function getUsersRecentChats() {
-    const res = await fetch(`https://devauction.onrender.com/profile/inbox`, {
+    const res = await fetch(`${SERVER_URL}/profile/inbox`, {
       method: "POST",
       body: JSON.stringify({ email: usersEmail }),
       headers: {

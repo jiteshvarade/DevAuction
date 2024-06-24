@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Slider.css";
 import Slide from "./Slide";
+import SERVER_URL from "../../contants.mjs";
 
 const Slider = () => {
   const [data, setdata] = useState([]);
@@ -12,7 +13,7 @@ const Slider = () => {
     console.log("heool"); 
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/gallery/getAllUsers"
+        `${SERVER_URL}/gallery/getAllUsers`
       );
       console.log(res);
 

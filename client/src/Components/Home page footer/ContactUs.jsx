@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GradientBtn from "../Buttons/GradientBtn";
+import SERVER_URL from "../../contants.mjs";
 
 function ContactUs({ displayToast }) {
   const [check, setCheck] = useState(false);
@@ -49,7 +50,7 @@ function ContactUs({ displayToast }) {
         Message: message.value,
       };
       const response = await fetch(
-        "https://devauction.onrender.com/contactus",
+        `${SERVER_URL}/contactus`,
         {
           method: "POST",
           body: JSON.stringify(details),

@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useMenuContext } from "../../context/MenuContextProvider";
 import Makeoffer from "../../Components/PreviewSection/Makeoffer";
 import { useParams } from "react-router-dom";
+import SERVER_URL from "../../contants.mjs";
 
 const Preview = () => {
   const { showMenu, setShowMenu } = useMenuContext();
@@ -17,7 +18,7 @@ const Preview = () => {
   async function getProjectOffers() {
     try {
       const res = await fetch(
-        "https://devauction.onrender.com/profile/getProjectOffers",
+        `${SERVER_URL}/profile/getProjectOffers`,
         {
           method: "POST",
           body: JSON.stringify({
