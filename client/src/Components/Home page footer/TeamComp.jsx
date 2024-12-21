@@ -47,7 +47,7 @@ function TeamComp() {
     //   desc: "Frontend Developer"
     // },
     {
-      url: "https://ibb.co/Gnv4yDN",
+      url: Aakash,
       name: "Gajendra",
       desc: "Frontend Developer"
     },
