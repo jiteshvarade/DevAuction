@@ -7,47 +7,48 @@ import Katole from "../../assets/LandingPage Images/Katole.jpeg"
 import Kanishka1 from "../../assets/LandingPage Images/kanis1.jpeg"
 import Kanishka2 from "../../assets/LandingPage Images/kanis2.jpeg"
 import Khushi from "../../assets/LandingPage Images/khushi2.jpeg"
+import Gajendra from "../../assets/LandingPage Images/Gajendra.png"
   
 function TeamComp() {
   // 
   const data = [
-    // {
-    //   url: Ankit,
-    //   name: "Ankit Chauhan",
-    //   desc: "Frontend Developer"
-    // },
+    {
+      url: Ankit,
+      name: "Ankit Chauhan",
+      desc: "Frontend Developer"
+    },
     {
       url: jitesh,
       name: "Jitesh Varade",
       desc: "Founder"
     },
-    // {
-    //   url: Nitish,
-    //   name: "Nitish Kumar",
-    //   desc: "Full stack Developer"
-    // },
-    // {
-    //   url: Kanishka1,
-    //   name: "Kanishka",
-    //   desc: "UI/UX Designer"
-    // },
-    // {
-    //   url: Khushi,
-    //   name: "Khushi",
-    //   desc: "UI/UX Designer"
-    // },
+    {
+      url: Nitish,
+      name: "Nitish Kumar",
+      desc: "Full stack Developer"
+    },
+    {
+      url: Kanishka1,
+      name: "Kanishka",
+      desc: "UI/UX Designer"
+    },
+    {
+      url: Khushi,
+      name: "Khushi",
+      desc: "UI/UX Designer"
+    },
     {
       url: Katole,
       name: "Ankit Katole",
       desc: "Backend Developer"
     },
-    // {
-    //   url: Aakash,
-    //   name: "Aakash Kaushik",
-    //   desc: "Frontend Developer"
-    // },
     {
       url: Aakash,
+      name: "Aakash Kaushik",
+      desc: "Frontend Developer"
+    },
+    {
+      url: Gajendra,
       name: "Gajendra",
       desc: "Frontend Developer"
     },
